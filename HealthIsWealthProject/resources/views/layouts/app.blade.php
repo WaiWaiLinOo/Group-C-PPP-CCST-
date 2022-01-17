@@ -29,7 +29,6 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav mr-auto"></ul>
@@ -40,11 +39,24 @@
             <li class="product"><a class="nav-link" href="">OUR POST</a></li>
             <li class="contact"><a class="nav-link" href="">CONTACT US</a></li>
             <!-- Authentication Links -->
-  
+            @guest
+            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+            @else
+            <li class="nav-item dropdown">
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->name }} <span class="caret"></span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  {{ __('Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>
               </div>
             </li>
-           
+            @endguest
           </ul>
         </div>
       </div>
@@ -65,7 +77,6 @@
             <li><i class="fas fa-phone-volume"></i>09-67890322</li>
             <li><i class="fas fa-location-arrow"></i>Yangon,Myanmar</li>
           </ul>
-
         </div>
         <div class="company">
           <h4>About The Company</h4>
@@ -77,7 +88,6 @@
             <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <span class="input-group-text" id="basic-addon2">Sign up</span>
           </div>
-
         </div>
       </div>
     </div>
