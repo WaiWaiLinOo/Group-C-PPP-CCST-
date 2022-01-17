@@ -1,6 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\auth\RegisterController;
+use App\Models\User;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +22,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.app');
 });
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('user/register', [RegisterController::class, 'showRegistrationView'])->name('register');
+Route::post('user/register/confirm', [RegisterController::class, 'create'])->name('registeruser');
