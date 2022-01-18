@@ -5,12 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\auth\RegisterController;
-use App\Models\User;
 use App\Http\Controllers\customer\CustomerController;
-
-
-
-
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,4 +28,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('user/register', [RegisterController::class, 'showRegistrationView'])->name('register');
 Route::post('user/register/confirm', [RegisterController::class, 'create'])->name('registeruser');
-Route::get('showlist', [CustomerController::class , 'index'])->name('customerView');
+Route::get('user/showuserlist', [CustomerController::class , 'index'])->name('customerView');
+Route::get('user/edit/{id}',[CustomerController::class,'userEditView'])->name('user_edit_view');
+Route::post('user/role_update/{id}',[CustomerController::class,'userRoleUpdate'])->name('user_role_update');
+
+//destroy user
+Route::delete('user/delete/{id}', [CustomerController::class,'destroy'])->name('destroyUser');
+

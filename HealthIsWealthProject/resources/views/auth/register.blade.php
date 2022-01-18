@@ -2,7 +2,7 @@
 @section('content')
 <div class="adduser">
     <div class="cardHeader">Add User</div>
-    <form method="POST" action="{{ route('registeruser') }}" enctype="multipart/form-data">
+    <form class="register-form" method="POST" action="{{ route('registeruser') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="name">Name : </label>
@@ -25,17 +25,17 @@
             <span class="text-danger">{{ $errors->first('password') }}</span>
             @endif
         </div>
-        <div class="form-group mb-3">
+        <div class="form-group mb-3 profile">
             <label for="profile">User Profile</label>
-            (<small class="text-danger">*We only accept jpeg|png|gif|jpg format</small>)
-            <input type="file" placeholder="User Profile" class="form-control" value="{{ old('profile') }}" name="profile" id="profile" accept="image/png, image/gif, image/jpeg">
+            (<small class="text-danger">*We only accept jpeg png gif jpg format</small>)
+            <input type="file" placeholder="User Profile"  value="{{ old('profile') }}" name="profile" id="profile" accept="image/png, image/gif, image/jpeg">
             @if ($errors->has('profile'))
             <span class="text-danger">{{ $errors->first('profile') }}</span>
             @endif
         </div>
-        <div class="form-group">
+        <div class="certificate">
             <label for="text" class="form-label">*option(if you have certificate)</label>
-            <input type="file" placeholder="Certificate" class="form-control" id="certificate" name="certificate">
+            <input type="file" placeholder="Certificate"  id="certificate" name="certificate">
         </div>
         <div class="form-group">
             <label for="date"> Date Of Birth :</label>
