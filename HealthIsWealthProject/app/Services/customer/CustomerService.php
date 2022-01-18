@@ -34,7 +34,25 @@ class CustomerService implements CustomerServiceInterface
         return $this->customerDao->getUser();
     }
 
+    /**
+    * To show user in user edit form
+    *@param $id
+    *@return object
+    */
+    public function userEditView($id){
+        return $this->customerDao->userEditView($id);
+    }
 
+    /**
+    * To update user role
+    *@param $id
+    *@param $request
+    * @return view
+    */
+    public function userRoleUpdate($request,$id)
+    {
+        return $this->customerDao->userRoleUpdate($request,$id);
+    }
     /**
      * To delete user by id
      * @param string $id user id

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\customer;
 
+use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Contracts\Services\customer\CustomerServiceInterface;
@@ -25,11 +26,29 @@ class CustomerController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * To show user in user edit form
+     *@param $id
+     * @return view
      */
+
+    public function userEditView($id)
+    {
+        $user = $this->customerInterface->userEditView($id); 
+        return view('customer.user_edit',compact('user'));
+    }
+
+    /**
+    * To update user role
+    *@param $id
+    *@param $request
+    * @return view
+    */
+    public function userRoleUpdate(Request $request, $id)
+    {
+       
+        $message = $this->customerInterface->userRoleUpdate($request,$id); 
+        return $message;
+    }
     public function destroy($id)
     {
         $user = $this->customerInterface->deleteUser($id);

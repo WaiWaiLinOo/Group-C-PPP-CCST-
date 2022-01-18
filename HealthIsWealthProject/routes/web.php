@@ -31,6 +31,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('user/register', [RegisterController::class, 'showRegistrationView'])->name('register');
 Route::post('user/register/confirm', [RegisterController::class, 'create'])->name('registeruser');
 
+Route::get('user/edit/{id}',[CustomerController::class,'userEditView'])->name('user_edit_view');
+Route::post('user/role_update/{id}',[CustomerController::class,'userRoleUpdate'])->name('user_role_update');
 
 //destroy user 
 Route::delete('user/delete/{id}', [CustomerController::class,'destroy'])->name('destroyUser');
