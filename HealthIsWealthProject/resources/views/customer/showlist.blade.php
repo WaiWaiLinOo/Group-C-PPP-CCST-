@@ -32,7 +32,7 @@
                                 <td>{{ $customer->email }}</td>
                                 <td>
                                     <a href=""><button class="btn btn-primary">Show</button></a>
-                                    <a href=""><button class="btn btn-success">Edit</button></a>
+                                    <a href="{{route('user_edit_view',$customer->id)}}"><button class="btn btn-success">Edit</button></a>
                                     {{-- {!! Form::open(['method' => 'DELETE','route' => ['customer.destroy', $customer->id],'style'=>'display:inline']) !!}
                                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                     {!! Form::close() !!} --}}

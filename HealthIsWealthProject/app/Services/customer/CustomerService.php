@@ -52,7 +52,7 @@ class CustomerService implements CustomerServiceInterface
     public function userRoleUpdate($request,$id)
     {
         return $this->customerDao->userRoleUpdate($request,$id);
-
+    }
     /**
      * To delete user by id
      * @param string $id user id
