@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Dao\customer;
+
+use App\Models\User;
 use App\Contracts\Dao\customer\CustomerDaoInterface;
 
 /**
@@ -8,7 +10,14 @@ use App\Contracts\Dao\customer\CustomerDaoInterface;
  */
 class CustomerDao implements CustomerDaoInterface
 {
-
-
-
+  /**
+   * To delete user by id
+   * @param string $id user id
+   * @param string $deletedUserId deleted user id
+   * @return string $message message for success or not
+   */
+  public function deleteUser($id)
+  {
+    return User::find($id)->delete();
+  }
 }

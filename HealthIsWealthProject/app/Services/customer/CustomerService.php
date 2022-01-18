@@ -11,7 +11,7 @@ use App\Contracts\Services\customer\CustomerServiceInterface;
 class CustomerService implements CustomerServiceInterface
 {
 
-     /*
+    /*
      * customer dao
      */
     private $customerDao;
@@ -25,4 +25,14 @@ class CustomerService implements CustomerServiceInterface
         $this->customerDao = $customerDao;
     }
 
+    /**
+     * To delete user by id
+     * @param string $id user id
+     * @param string $deletedUserId deleted user id
+     * @return string $message message for success or not
+     */
+    public function deleteUser($id)
+    {
+        return $this->customerDao->deleteUser($id);
+    }
 }

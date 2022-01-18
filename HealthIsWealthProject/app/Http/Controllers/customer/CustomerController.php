@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\customer;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Contracts\Services\customer\CustomerServiceInterface;
 
@@ -19,9 +20,20 @@ class CustomerController extends Controller
      */
     public function __construct(CustomerServiceInterface $customerServiceInterface)
     {
-       $this->middleware('guest');
-       $this->customerInterface = $customerServiceInterface;
+        $this->middleware('guest');
+        $this->customerInterface = $customerServiceInterface;
     }
 
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $user = $this->customerInterface->deleteUser($id);
+        return redirect()->route('customerView')
+            ->with('success', 'User deleted successfully');
+    }
 }
