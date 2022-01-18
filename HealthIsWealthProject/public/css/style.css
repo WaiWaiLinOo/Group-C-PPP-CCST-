@@ -161,3 +161,19 @@ form button{
 .panel  table{
     margin-bottom: 70px;
 }
+.register-form .profile input{
+    padding: 0px 0px;
+    border: 1px solid #ccbdbd;
+    border-radius: 5px;
+    width: 500px;
+}
+.register-form .certificate input{
+    padding: 0px 0px;
+    border: 1px solid #ccbdbd;
+    border-radius: 5px;
+    width: 500px;
+}
+tbody tr td button{
+    padding: 0 5px;
+    width: 100px;
+}

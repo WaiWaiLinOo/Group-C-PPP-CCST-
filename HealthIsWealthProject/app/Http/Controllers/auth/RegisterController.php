@@ -15,7 +15,7 @@ use App\Http\Requests\UserCreateRequest;
 class RegisterController extends Controller
 {
     /**
-     * student interface
+     * user interface
      */
     private $userInterface;
 
@@ -29,7 +29,7 @@ class RegisterController extends Controller
         $this->middleware('guest');
        $this->userInterface = $userServiceInterface;
     }
-    
+
     /**
      * Where to redirect users after registration.
      *
@@ -43,7 +43,11 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    /*to save user in database*/
+  /**
+   * To save User with values from request
+   * @param Request $request request including inputs
+   * @return Object dave user
+   */
     protected function create(UserCreateRequest $request)
     {
         $validated = $request->validated();

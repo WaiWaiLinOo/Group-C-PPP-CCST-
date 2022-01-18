@@ -8,7 +8,7 @@ namespace App\Contracts\Services\customer;
  */
 interface CustomerServiceInterface
 {
-    
+
     /**
      * get data from database
      * @return View getdata
@@ -27,8 +27,8 @@ interface CustomerServiceInterface
      *@param $request
      */
     public function userRoleUpdate($request, $id);
-    
-    /** 
+
+    /**
      * To delete user by id
      * @param string $id user id
      * @param string $deletedUserId deleted user id

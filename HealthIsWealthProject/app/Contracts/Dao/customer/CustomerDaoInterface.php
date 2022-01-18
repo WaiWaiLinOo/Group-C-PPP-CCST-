@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
  */
 interface CustomerDaoInterface
 {
-      
+
     /**
      * to get data from database
      *
@@ -36,5 +36,5 @@ interface CustomerDaoInterface
      * @return string $message message for success or not
      */
     public function deleteUser($id);
-  
+
 }

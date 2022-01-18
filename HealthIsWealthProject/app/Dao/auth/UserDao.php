@@ -7,16 +7,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Contracts\Dao\auth\UserDaoInterface;
 use Illuminate\Support\Facades\Hash;
+
+class UserDao implements UserDaoInterface
+{
   /**
    * save data in database
    *
    * @return View savadata into database
    */
-class UserDao implements UserDaoInterface
-{
-    /**
-     * To save data into database
-     */
     public function saveUser(Request $request)
     {  if ($profile = $request->file('profile')) {
         $name = time().'_'.$request->file('profile')->getClientOriginalName();
