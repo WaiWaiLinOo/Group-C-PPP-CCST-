@@ -10,8 +10,10 @@ use Illuminate\Http\Request;
  */
 interface UserServiceInterface
 {
-    /**
-     * To save user()
-     */
+   /**
+   * save data
+   *
+   * @return View savedata
+   */
     public function saveUser(Request $request);
 }

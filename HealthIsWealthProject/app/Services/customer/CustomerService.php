@@ -11,7 +11,7 @@ use App\Contracts\Services\customer\CustomerServiceInterface;
 class CustomerService implements CustomerServiceInterface
 {
 
-     /*
+    /*
      * customer dao
      */
     private $customerDao;
@@ -23,6 +23,15 @@ class CustomerService implements CustomerServiceInterface
     public function __construct(CustomerDaoInterface $customerDao)
     {
         $this->customerDao = $customerDao;
+    }
+   /**
+   * to get data from database
+   *
+   * @return View getdata from database
+   */
+    public function getUser()
+    {
+        return $this->customerDao->getUser();
     }
 
     /**
@@ -43,5 +52,15 @@ class CustomerService implements CustomerServiceInterface
     public function userRoleUpdate($request,$id)
     {
         return $this->customerDao->userRoleUpdate($request,$id);
+
+    /**
+     * To delete user by id
+     * @param string $id user id
+     * @param string $deletedUserId deleted user id
+     * @return string $message message for success or not
+     */
+    public function deleteUser($id)
+    {
+        return $this->customerDao->deleteUser($id);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\customer;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Contracts\Services\customer\CustomerServiceInterface;
 
@@ -20,8 +21,8 @@ class CustomerController extends Controller
      */
     public function __construct(CustomerServiceInterface $customerServiceInterface)
     {
-       $this->middleware('guest');
-       $this->customerInterface = $customerServiceInterface;
+        $this->middleware('guest');
+        $this->customerInterface = $customerServiceInterface;
     }
 
     /**
@@ -46,6 +47,23 @@ class CustomerController extends Controller
     {
        
         $message = $this->customerInterface->userRoleUpdate($request,$id); 
-        dd($message);
+        return $message;
+    }
+    public function destroy($id)
+    {
+        $user = $this->customerInterface->deleteUser($id);
+        return redirect()->route('customerView')
+            ->with('success', 'User deleted successfully');
+    }
+   /**
+   * Show user data
+   *
+   * @return View Userdata
+   */
+    public function index()
+    {
+        $customers = $this->customerInterface->getUser();
+
+        return view('customer.showlist', compact('customers'));
     }
 }

@@ -22,4 +22,18 @@ interface CustomerDaoInterface
      *@param $request
      */
     public function userRoleUpdate($request, $id);
+    /**
+     * To delete user by id
+     * @param string $id user id
+     * @param string $deletedUserId deleted user id
+     * @return string $message message for success or not
+     */
+    public function deleteUser($id);
+    
+    /**
+     * to get data from database
+     *
+     * @return View get data from databse
+     */
+    public function getUser();
 }
