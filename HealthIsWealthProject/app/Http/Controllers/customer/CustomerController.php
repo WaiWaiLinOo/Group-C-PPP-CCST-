@@ -19,9 +19,19 @@ class CustomerController extends Controller
      */
     public function __construct(CustomerServiceInterface $customerServiceInterface)
     {
-       $this->middleware('guest');
-       $this->customerInterface = $customerServiceInterface;
+        $this->middleware('guest');
+        $this->customerInterface = $customerServiceInterface;
     }
 
+   /**
+   * Show user data
+   *
+   * @return View Userdata
+   */
+  public function index()
+    {
+        $customers = $this->customerInterface->getUser();
 
+        return view('customer.showlist', compact('customers'));
+    }
 }

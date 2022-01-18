@@ -4,27 +4,18 @@ namespace App\Dao\auth;
 
 
 use App\Models\User;
-use App\Models\Student;
 use Illuminate\Http\Request;
-
 use App\Contracts\Dao\auth\UserDaoInterface;
-use App\Notifications\WelcomeEmailNotification;
-use Illuminate\Foundation\Auth\RegistersUsers;
-
-
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Validator;
-use App\Contracts\Services\auth\UserServiceInterface;
-
-/**
- * Data accessing object for post
- */
+  /**
+   * save data in database
+   *
+   * @return View savadata into database
+   */
 class UserDao implements UserDaoInterface
 {
     /**
-     * To getuser
+     * To save data into database
      */
     public function saveUser(Request $request)
     {  if ($profile = $request->file('profile')) {
@@ -38,8 +29,6 @@ class UserDao implements UserDaoInterface
         $user['certificate'] = "$certificate";
     }
         return User::create([
-            //$user = User::create([
-          
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
@@ -49,8 +38,8 @@ class UserDao implements UserDaoInterface
                 'address' => $request['address'],
 
             ]);
-           
+
     }
 
-    
+
 }

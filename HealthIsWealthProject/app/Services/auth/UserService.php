@@ -26,13 +26,14 @@ class UserService implements UserServiceInterface
         $this->userDao = $userDao;
     }
 
-    /**
-     * To save user
-     */
-    public function saveUser(Request $request)
+   /**
+   * saveuser
+   *
+   * @return View save user
+   */    public function saveUser(Request $request)
     {
         return $this->userDao->saveUser($request);
     }
 
-   
+
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Models\User;
+use App\Http\Controllers\customer\CustomerController;
 
 
 
@@ -31,3 +32,4 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('user/register', [RegisterController::class, 'showRegistrationView'])->name('register');
 Route::post('user/register/confirm', [RegisterController::class, 'create'])->name('registeruser');
+Route::get('showlist', [CustomerController::class , 'index'])->name('customerView');

@@ -24,5 +24,15 @@ class CustomerService implements CustomerServiceInterface
     {
         $this->customerDao = $customerDao;
     }
+   /**
+   * to get data from database
+   *
+   * @return View getdata from database
+   */
+    public function getUser()
+    {
+        return $this->customerDao->getUser();
+    }
+
 
 }
