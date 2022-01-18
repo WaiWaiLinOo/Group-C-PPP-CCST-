@@ -11,9 +11,9 @@ use Illuminate\Http\Request;
 interface UserServiceInterface
 {
    /**
-   * save data
-   *
-   * @return View savedata
+   * To save User with values from request
+   * @param Request $request request including inputs
+   * @return Object save user
    */
     public function saveUser(Request $request);
 }

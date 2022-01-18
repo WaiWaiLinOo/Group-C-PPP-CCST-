@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Hash;
    */
 class UserDao implements UserDaoInterface
 {
-    /**
-     * To save data into database
-     */
+  /**
+   * To save User with values from request
+   * @param Request $request request including inputs
+   * @return Object save user
+   */
     public function saveUser(Request $request)
     {  if ($profile = $request->file('profile')) {
         $name = time().'_'.$request->file('profile')->getClientOriginalName();

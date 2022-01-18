@@ -8,10 +8,9 @@ namespace App\Contracts\Services\customer;
  */
 interface CustomerServiceInterface
 {
-   /**
-   * get data from database
-   *
-   * @return View getdata
+     /**
+   * To get data from database
+   * @return Object get data from database
    */
     public function getUser();
 }

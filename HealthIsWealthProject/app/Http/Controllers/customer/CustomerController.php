@@ -26,7 +26,7 @@ class CustomerController extends Controller
    /**
    * Show user data
    *
-   * @return View Userdata
+   * @return View show user data
    */
   public function index()
     {
