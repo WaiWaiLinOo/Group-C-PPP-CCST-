@@ -14,4 +14,11 @@ interface CustomerDaoInterface
      * @return string $message message for success or not
      */
     public function deleteUser($id);
+    
+    /**
+     * to get data from database
+     *
+     * @return View get data from databse
+     */
+    public function getUser();
 }

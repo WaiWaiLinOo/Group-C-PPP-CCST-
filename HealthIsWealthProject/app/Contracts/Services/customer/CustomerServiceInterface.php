@@ -2,7 +2,6 @@
 
 namespace App\Contracts\Services\customer;
 
-use Illuminate\Http\Request;
 
 /**
  * Interface for customer service
@@ -16,4 +15,10 @@ interface CustomerServiceInterface
      * @return string $message message for success or not
      */
     public function deleteUser($id);
+
+    /**
+     * get data from database
+     * @return View getdata
+     */
+    public function getUser();
 }

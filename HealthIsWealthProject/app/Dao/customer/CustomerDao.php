@@ -20,4 +20,15 @@ class CustomerDao implements CustomerDaoInterface
   {
     return User::find($id)->delete();
   }
+
+   /**
+   * to get data from database
+   *
+   * @return View get data
+   */
+    public function getUser()
+    {
+        return User::all();
+    }
+
 }

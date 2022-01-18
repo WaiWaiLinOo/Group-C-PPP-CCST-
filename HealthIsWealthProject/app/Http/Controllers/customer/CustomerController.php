@@ -36,4 +36,15 @@ class CustomerController extends Controller
         return redirect()->route('customerView')
             ->with('success', 'User deleted successfully');
     }
+   /**
+   * Show user data
+   *
+   * @return View Userdata
+   */
+    public function index()
+    {
+        $customers = $this->customerInterface->getUser();
+
+        return view('customer.showlist', compact('customers'));
+    }
 }

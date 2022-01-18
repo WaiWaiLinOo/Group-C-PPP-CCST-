@@ -8,6 +8,7 @@ use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\customer\CustomerController;
 use App\Models\User;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,3 +34,4 @@ Route::post('user/register/confirm', [RegisterController::class, 'create'])->nam
 
 //destroy user 
 Route::delete('user/delete/{id}', [CustomerController::class,'destroy'])->name('destroyUser');
+Route::get('showlist', [CustomerController::class , 'index'])->name('customerView');
