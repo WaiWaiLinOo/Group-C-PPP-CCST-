@@ -8,6 +8,13 @@ namespace App\Contracts\Services\customer;
  */
 interface CustomerServiceInterface
 {
+    
+    /**
+     * get data from database
+     * @return View getdata
+     */
+    public function getUser();
+
     /**
      * To show user in user edit form
      *@param $id
@@ -20,6 +27,7 @@ interface CustomerServiceInterface
      *@param $request
      */
     public function userRoleUpdate($request, $id);
+    
     /** 
      * To delete user by id
      * @param string $id user id
@@ -28,9 +36,4 @@ interface CustomerServiceInterface
      */
     public function deleteUser($id);
 
-    /**
-     * get data from database
-     * @return View getdata
-     */
-    public function getUser();
 }

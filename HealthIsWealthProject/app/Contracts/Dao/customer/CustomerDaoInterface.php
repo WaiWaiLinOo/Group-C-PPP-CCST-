@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
  */
 interface CustomerDaoInterface
 {
+      
+    /**
+     * to get data from database
+     *
+     * @return View get data from databse
+     */
+    public function getUser();
 
     /**
      * To show user in user edit form
@@ -29,11 +36,5 @@ interface CustomerDaoInterface
      * @return string $message message for success or not
      */
     public function deleteUser($id);
-    
-    /**
-     * to get data from database
-     *
-     * @return View get data from databse
-     */
-    public function getUser();
+  
 }

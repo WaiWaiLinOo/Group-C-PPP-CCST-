@@ -24,6 +24,18 @@ class CustomerService implements CustomerServiceInterface
     {
         $this->customerDao = $customerDao;
     }
+
+     /**
+     * To delete user by id
+     * @param string $id user id
+     * @param string $deletedUserId deleted user id
+     * @return string $message message for success or not
+     */
+    public function deleteUser($id)
+    {
+        return $this->customerDao->deleteUser($id);
+    }
+    
    /**
    * to get data from database
    *
@@ -53,14 +65,5 @@ class CustomerService implements CustomerServiceInterface
     {
         return $this->customerDao->userRoleUpdate($request,$id);
     }
-    /**
-     * To delete user by id
-     * @param string $id user id
-     * @param string $deletedUserId deleted user id
-     * @return string $message message for success or not
-     */
-    public function deleteUser($id)
-    {
-        return $this->customerDao->deleteUser($id);
-    }
+   
 }
