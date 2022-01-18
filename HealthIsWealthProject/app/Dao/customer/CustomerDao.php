@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Dao\customer;
+
 use App\Models\User;
 use App\Contracts\Dao\customer\CustomerDaoInterface;
 
@@ -19,7 +20,8 @@ class CustomerDao implements CustomerDaoInterface
     {
         return User::all();
     }
-     /**
+
+    /**
      * to edit data and show updated
      * @return object
      */
@@ -28,6 +30,7 @@ class CustomerDao implements CustomerDaoInterface
         $user = User::find($id);
         return $user;
     }
+
     /**
      * To update user role
      *@param $id
@@ -43,8 +46,8 @@ class CustomerDao implements CustomerDaoInterface
      * @param string $id user id
      * @param string $deletedUserId deleted user id
      */
-
-    public function deleteUser($id){
+    public function deleteUser($id)
+    {
         return User::find($id)->delete();
     }
 }

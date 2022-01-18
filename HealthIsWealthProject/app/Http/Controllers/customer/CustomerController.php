@@ -61,6 +61,7 @@ class CustomerController extends Controller
         $message = $this->customerInterface->userRoleUpdate($request, $id);
         return $message;
     }
+    
     /**
      * To delelte user role
      *@param $id

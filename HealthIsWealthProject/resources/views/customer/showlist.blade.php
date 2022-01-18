@@ -30,20 +30,19 @@
           <td>{{ $customer->id }}</td>
           <td>{{ $customer->name }}</td>
           <td>{{ $customer->email }}</td>
-          <td >
+          <td>
             <a href=""><button class="btn btn-primary">Show</button></a>
           </td>
           <td>
             <a href="{{route('user_edit_view',$customer->id)}}"><button class="btn btn-success">Edit</button></a>
           </td>
           <td>
-            <form class ="delete" style="width: 100px; display:inline"; action="{{ url('user/delete/'.$customer->id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" style="width: 100px;" class="btn btn-danger ">Delete</button>
-              </form>
+            <form class="delete" style="width: 100px; display:inline" ; action="{{ url('user/delete/'.$customer->id) }}" method="POST">
+              @csrf
+              @method('DELETE')
+              <button type="submit" style="width: 100px;" class="btn btn-danger ">Delete</button>
+            </form>
           </td>
-
         </tr>
         @endforeach
       </tbody>

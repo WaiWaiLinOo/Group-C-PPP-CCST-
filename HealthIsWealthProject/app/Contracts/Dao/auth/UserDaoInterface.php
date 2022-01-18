@@ -16,6 +16,4 @@ interface UserDaoInterface
    * @return Object save user
    */
     public function saveUser(Request $request);
-
-
 }
