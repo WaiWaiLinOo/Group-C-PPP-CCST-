@@ -16,17 +16,25 @@ interface CustomerDaoInterface
      * @return View get data from databse
      */
     public function getUser($request);
+
+    /**
+     * store user
+     * @return View getdata
+     */
+    public function storeUser($request);
+
     /**
      * get data from role
      * @return View role
      */
     public function getRole();
-     /**
+    
+    /**
      * get data from customer id
      * @return View customer
      */
     public function getUserId($id);
-    //test 
+   
     /**
      * To show user in user edit form
      *@param $id
@@ -39,7 +47,7 @@ interface CustomerDaoInterface
      *@param $request
      */
     public function userRoleUpdate($request, $id);
-    
+
     /**
      * To delete user by id
      * @param string $id user id
@@ -47,5 +55,4 @@ interface CustomerDaoInterface
      * @return string $message message for success or not
      */
     public function deleteUser($id);
-
 }
