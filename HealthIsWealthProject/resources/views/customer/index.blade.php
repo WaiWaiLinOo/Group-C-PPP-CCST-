@@ -13,6 +13,13 @@
       <input type="submit" name="submit" value="Search" id="submit">
     </form>
   </div>
+  <div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-right">
+            <a class="btn btn-success" href="{{ route('customers.create') }}"> Create User</a>
+        </div>
+    </div>
+</div>
   <div class="panel panel-default">
     <div class="cardHeader">
       Customer List
@@ -34,7 +41,7 @@
             <a href=""><button class="btn btn-primary">Show</button></a>
           </td>
           <td>
-            <a href="{{route('user_edit_view',$customer->id)}}"><button class="btn btn-success">Edit</button></a>
+            <a href="{{route('customers.edit',$customer->id)}}"><button class="btn btn-success">Edit</button></a>
           </td>
           <td>
             <form class="delete" style="width: 100px; display:inline" ; action="{{ url('user/delete/'.$customer->id) }}" method="POST">

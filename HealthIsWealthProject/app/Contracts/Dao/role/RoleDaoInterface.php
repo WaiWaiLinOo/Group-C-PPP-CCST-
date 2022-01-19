@@ -20,4 +20,13 @@ interface RoleDaoInterface
      *@param $request
      */
     public function getRoleId($id);
+
+      /**
+     * To delete role by id
+     * @param string $id role id
+     * @param string $deletedRoleId
+     * @return string $message message for success or not
+     */
+    public function deleteRole($id);
+
 }

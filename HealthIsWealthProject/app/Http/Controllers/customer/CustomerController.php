@@ -41,7 +41,7 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $customers = $this->customerInterface->getUser($request);
-        return view('customer.showlist',compact('customers'))
+        return view('customer.index',compact('customers'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
         //return view('customer.showlist', compact('customers'));
     }
@@ -55,9 +55,9 @@ class CustomerController extends Controller
     {
         $roles = $this->customerInterface->getRole();
         //$roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles'));
+        return view('customer.create',compact('roles'));
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -72,17 +72,17 @@ class CustomerController extends Controller
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
         ]);
-    
+
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-    
+
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
-    
+
         return redirect()->route('customer.showlist')
                         ->with('success','User created successfully');
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -95,28 +95,17 @@ class CustomerController extends Controller
         $customer = $this->customerInterface->getUserId($id);
         return view('users.show',compact('customer'));
     }
-
-
-
-
-
-
-
-
-
-
-
-    //test 
+    //test
     /**
      * To show user in user edit form
      *@param $id
      * @return view
      */
 
-    public function userEditView($id)
+    public function edit($id)
     {
         $user = $this->customerInterface->userEditView($id);
-        return view('customer.user_edit', compact('user'));
+        return view('customer.edit', compact('user'));
     }
 
     /**
@@ -131,7 +120,7 @@ class CustomerController extends Controller
         $message = $this->customerInterface->userRoleUpdate($request, $id);
         return $message;
     }
-    
+
     /**
      * To delelte user role
      *@param $id

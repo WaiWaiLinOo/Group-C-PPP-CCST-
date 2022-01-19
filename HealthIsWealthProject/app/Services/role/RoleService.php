@@ -45,4 +45,15 @@ class RoleService implements RoleServiceInterface
     {
         return $this->roleDao->getRoleId($id);
     }
+    /**
+     * To delete role by id
+     * @param string $id role id
+     * @param string $deletedRolerId
+     * @return string $message message for success or not
+     */
+    public function deleteRole($id)
+    {
+        return $this->roleDao->deleteRole($id);
+    }
+
 }

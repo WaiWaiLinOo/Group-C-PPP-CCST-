@@ -20,7 +20,7 @@ class RoleDao implements RoleDaoInterface
      */
     public function getRole($request)
     {
-        return Role::orderBy('id', 'DESC')->paginate(5); 
+        return Role::orderBy('id', 'DESC')->paginate(5);
     }
 
     /**
@@ -36,4 +36,13 @@ class RoleDao implements RoleDaoInterface
         //->where("role_has_permissions.role_id",$id)
         //->get();
     }
+      /**
+     * To delete role
+     * @return Object delete Role
+     */
+    public function deleteRole($id)
+    {
+      return Role::find($id)->delete();
+    }
+
 }
