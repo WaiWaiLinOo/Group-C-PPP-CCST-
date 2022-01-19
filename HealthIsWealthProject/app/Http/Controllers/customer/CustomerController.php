@@ -26,9 +26,9 @@ class CustomerController extends Controller
      */
     public function __construct(CustomerServiceInterface $customerServiceInterface)
     {
-        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','store']]);
-        $this->middleware('permission:user-create', ['only' => ['create','store']]);
-        $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
         $this->customerInterface = $customerServiceInterface;
     }
@@ -41,12 +41,12 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $customers = $this->customerInterface->getUser($request);
-        return view('customer.index',compact('customers'))
+        return view('customer.index', compact('customers'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
         //return view('customer.showlist', compact('customers'));
     }
 
-     /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -54,8 +54,7 @@ class CustomerController extends Controller
     public function create()
     {
         $roles = $this->customerInterface->getRole();
-        //$roles = Role::pluck('name','name')->all();
-        return view('customer.create',compact('roles'));
+        return view('customer.create', compact('roles'));
     }
 
     /**
@@ -72,15 +71,10 @@ class CustomerController extends Controller
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
         ]);
+        $user = $this->customerInterface->storeUser($request);
 
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
-
-        $user = User::create($input);
-        $user->assignRole($request->input('roles'));
-
-        return redirect()->route('customer.showlist')
-                        ->with('success','User created successfully');
+        return redirect()->route('customers.index')
+            ->with('success', 'User created successfully');
     }
 
     /**
@@ -91,17 +85,15 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //$user = User::find($id);
         $customer = $this->customerInterface->getUserId($id);
-        return view('customer.show',compact('customer'));
+        return view('users.show', compact('customer'));
     }
-    //test
+
     /**
      * To show user in user edit form
      *@param $id
      * @return view
      */
-
     public function edit($id)
     {
         $user = $this->customerInterface->userEditView($id);
@@ -116,7 +108,6 @@ class CustomerController extends Controller
      */
     public function userRoleUpdate(Request $request, $id)
     {
-
         $message = $this->customerInterface->userRoleUpdate($request, $id);
         return $message;
     }

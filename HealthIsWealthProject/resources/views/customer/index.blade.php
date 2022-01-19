@@ -16,6 +16,7 @@
       <input type="submit" name="submit" value="Search" id="submit">
     </form>
   </div>
+
   <div class="panel panel-default">
     <div class="cardHeader">
       Customer List
@@ -34,7 +35,14 @@
           <td>{{ $customer->name }}</td>
           <td>{{ $customer->email }}</td>
           <td>
-            <a href=""><button class="show">Show</button></a>
+            @if(!empty($customer->getRoleNames()))
+            @foreach($customer->getRoleNames() as $v)
+            <label class="badge badge-success">{{ $v }}</label>
+            @endforeach
+            @endif
+          </td>
+          <td>
+            <a href=""><button class="btn btn-primary">Show</button></a>
           </td>
           <td>
             <a href="{{route('customers.edit',$customer->id)}}"><button class="edit">Edit</button></a>

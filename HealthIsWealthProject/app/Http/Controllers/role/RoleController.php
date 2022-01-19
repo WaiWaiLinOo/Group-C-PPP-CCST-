@@ -38,7 +38,6 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        //$roles = Role::orderBy('id','DESC')->paginate(5);
         $roles = $this->roleInterface->getRole($request);
         return view('roles.index', compact('roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
@@ -55,7 +54,7 @@ class RoleController extends Controller
         return view('roles.create', compact('permission'));
     }
 
-     /**
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -67,12 +66,9 @@ class RoleController extends Controller
             'name' => 'required|unique:roles,name',
             'permission' => 'required',
         ]);
-
-        $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
-
+        $role = $this->roleInterface->storeRole($request);
         return redirect()->route('roles.index')
-                        ->with('success','Role created successfully');
+            ->with('success', 'Role created successfully');
     }
 
     /**
@@ -84,13 +80,12 @@ class RoleController extends Controller
     public function show($id)
     {
         $role = $this->roleInterface->getRoleId($id);
-        //$role = Role::find($id);
-        $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
-            ->where("role_has_permissions.role_id",$id)
+        $rolePermissions = Permission::join("role_has_permissions", "role_has_permissions.permission_id", "=", "permissions.id")
+            ->where("role_has_permissions.role_id", $id)
             ->get();
-
-        return view('roles.show',compact('role','rolePermissions'));
+        return view('roles.show', compact('role', 'rolePermissions'));
     }
+
     /**
      * To delete user role
      *@param $id

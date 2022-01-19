@@ -2,7 +2,7 @@
 @section('content')
 <div class="adduser">
   <div class="cardHeader">Add User</div>
-  <form class="register-form" method="POST" enctype="multipart/form-data">
+  <form class="register-form" method="POST" action="{{ route('customers.store') }}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
       <label for="name">Name : </label>
@@ -24,6 +24,10 @@
       @if ($errors->has('password'))
       <span class="text-danger">{{ $errors->first('password') }}</span>
       @endif
+    </div>
+    <div class="form-group">
+    <strong>Confirm Password:</strong>
+    {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
     </div>
     <div class="form-group mb-3 profile">
       <label for="profile">User Profile</label>
@@ -50,6 +54,13 @@
       @if ($errors->has('address'))
       <span class="text-danger">{{ $errors->first('address') }}</span>
       @endif
+    </div>
+    <!--test -->
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="form-group">
+        <strong>Role:</strong>
+        {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+      </div>
     </div>
     <button type="submit" class="btn btn-primary">Register</button>
   </form>
