@@ -36,7 +36,16 @@ class RoleService implements RoleServiceInterface
         return $this->roleDao->getRole($request);
     }
 
-     /**
+    /**
+     * To store role
+     *@param $request
+     */
+    public function storeRole($request)
+    {
+        return $this->roleDao->storeRole($request);
+    }
+
+    /**
      * to get data from database
      *
      * @return View getdata id from role
@@ -45,6 +54,7 @@ class RoleService implements RoleServiceInterface
     {
         return $this->roleDao->getRoleId($id);
     }
+
     /**
      * To delete role by id
      * @param string $id role id
@@ -55,5 +65,4 @@ class RoleService implements RoleServiceInterface
     {
         return $this->roleDao->deleteRole($id);
     }
-
 }

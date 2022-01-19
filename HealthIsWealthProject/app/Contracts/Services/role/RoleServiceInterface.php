@@ -14,6 +14,12 @@ interface RoleServiceInterface
      */
     public function getRole($request);
 
+    /**
+     * To store role
+     *@param $request
+     */
+    public function storeRole($request);
+
      /**
      * To show role id
      *@param $request

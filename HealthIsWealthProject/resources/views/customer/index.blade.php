@@ -15,11 +15,11 @@
   </div>
   <div class="row">
     <div class="col-lg-12 margin-tb">
-        <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('customers.create') }}"> Create User</a>
-        </div>
+      <div class="pull-right">
+        <a class="btn btn-success" href="{{ route('customers.create') }}"> Create User</a>
+      </div>
     </div>
-</div>
+  </div>
   <div class="panel panel-default">
     <div class="cardHeader">
       Customer List
@@ -37,6 +37,13 @@
           <td>{{ $customer->id }}</td>
           <td>{{ $customer->name }}</td>
           <td>{{ $customer->email }}</td>
+          <td>
+            @if(!empty($customer->getRoleNames()))
+            @foreach($customer->getRoleNames() as $v)
+            <label class="badge badge-success">{{ $v }}</label>
+            @endforeach
+            @endif
+          </td>
           <td>
             <a href=""><button class="btn btn-primary">Show</button></a>
           </td>

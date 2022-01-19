@@ -2,7 +2,6 @@
 
 namespace App\Contracts\Services\customer;
 
-
 /**
  * Interface for customer service
  */
@@ -14,11 +13,19 @@ interface CustomerServiceInterface
      * @return View getdata
      */
     public function getUser($request);
+
+    /**
+     * store user
+     * @return View getdata
+     */
+    public function storeUser($request);
+
     /**
      * get data from role
      * @return View role
      */
     public function getRole();
+
     /**
      * get data from customer id
      * @return View customer
