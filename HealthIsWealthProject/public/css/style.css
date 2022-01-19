@@ -107,7 +107,7 @@ body {
 }
 form{
     width: 500px;
-    margin: 0 auto;
+    margin-left: 50px;
 }
 form div{
     margin: 25px 0px;
@@ -151,9 +151,10 @@ form button{
     width: 100%;
 }
 .search form{
-    width: 100%;
-    margin-left: 120px;
-    margin-bottom: 20px;
+    width: 94%;
+    margin-left: 15px;
+    margin-bottom: 18px;
+    margin-top: 4px;
 }
 .search form input{
     padding-left: 5px;
@@ -176,4 +177,75 @@ form button{
 tbody tr td button{
     padding: 0 5px;
     width: 100px;
+}
+
+.create a button{
+    background-color: #193063;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #2f65dc;
+    color: #ffffff;
+    width: 162px;
+    border-color: #2b4cd4;
+}
+.create a:hover{
+   color: #2b4cd4;
+}
+.show{
+    background-color: #2e52a0;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #2e52a0;
+    color: #ffffff;
+    width: 120px;
+    border-color: #2e52a0;
+}
+.delete{
+    background-color: #d65316;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #d65316;
+    color: #ffffff;
+    width: 120px;
+    border-color: #d65316;
+}
+.edit{
+    background-color: #1ab83c;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #1ab83c;
+    color: #ffffff;
+    width: 120px;
+    border-color: #1ab83c;
+}
+.edit-role{
+    background-color: #1ab83c;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #1ab83c;
+    color: #ffffff;
+    width: 120px;
+    border-color: #1ab83c;
+}
+.edit-r{
+    margin-left: 15px;
+}
+.delete-role{
+    background-color: #d65316;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #d65316;;
+    color: #ffffff;
+    width: 120px;
+    border-color: #d65316;
+
+}
+.show-role{
+    background-color: #2e52a0;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #2e52a0;
+    color: #ffffff;
+    width: 120px;
+    border-color: #2e52a0;
 }

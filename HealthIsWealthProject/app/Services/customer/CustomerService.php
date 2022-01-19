@@ -15,6 +15,7 @@ class CustomerService implements CustomerServiceInterface
      * customer dao
      */
     private $customerDao;
+
     /**
      * Class Constructor
      * @param customerDaoInterface
@@ -24,6 +25,7 @@ class CustomerService implements CustomerServiceInterface
     {
         $this->customerDao = $customerDao;
     }
+
     /**
      * to get data from database
      *
@@ -33,6 +35,7 @@ class CustomerService implements CustomerServiceInterface
     {
         return $this->customerDao->getUser($request);
     }
+
     /**
      * get data from role
      * @return View role
@@ -41,6 +44,7 @@ class CustomerService implements CustomerServiceInterface
     {
         return $this->customerDao->getRole();
     }
+
     /**
      * get data from customer id
      * @return View customer
@@ -50,7 +54,15 @@ class CustomerService implements CustomerServiceInterface
         return $this->customerDao->getUserId($id);
     }
 
-    //test 
+    /**
+     * store user
+     * @return View getdata
+     */
+    public function storeUser($request)
+    {
+        return $this->customerDao->storeUser($request);
+    }
+
     /**
      * To delete user by id
      * @param string $id user id

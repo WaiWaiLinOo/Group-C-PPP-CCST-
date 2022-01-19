@@ -5,6 +5,10 @@ namespace App\Dao\customer;
 use App\Models\User;
 use App\Contracts\Dao\customer\CustomerDaoInterface;
 use Spatie\Permission\Models\Role;
+use DB;
+use Hash;
+use Illuminate\Support\Arr;
+use Spatie\Permission\Models\Permission;
 
 /**
  * Data accessing object for customer
@@ -19,37 +23,44 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function getUser($request)
     {
-        return User::orderBy('id','DESC')->paginate(5);
-        //return User::all();
+        return User::orderBy('id', 'DESC')->paginate(5);
     }
 
-     /**
+    /**
      * to get data from role
      *
      * @return View get role all
      */
-    public function getRole(){
-        return Role::pluck('name','name')->all();
+    public function getRole()
+    {
+        return Role::pluck('name', 'name')->all();
     }
 
-     /**
+    /**
      * to get data from customerId
      *
      * @return View get id
      */
-    public function getUserId($id){
+    public function getUserId($id)
+    {
         return User::find($id);
     }
 
+    /**
+     * to store from customerId
+     *
+     * @return View 
+     */
+    public function storeUser($request)
+    {
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
 
+        $user = User::create($input);
+        $user->assignRole($request->input('roles'));
+        return $user;
+    }
 
-
-
-
-
-
-
-    //test 
     /**
      * to edit data and show updated
      * @return object
