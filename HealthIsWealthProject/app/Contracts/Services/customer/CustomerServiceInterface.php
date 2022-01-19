@@ -13,7 +13,17 @@ interface CustomerServiceInterface
      * get data from database
      * @return View getdata
      */
-    public function getUser();
+    public function getUser($request);
+    /**
+     * get data from role
+     * @return View role
+     */
+    public function getRole();
+    /**
+     * get data from customer id
+     * @return View customer
+     */
+    public function getUserId($id);
 
     /**
      * To show user in user edit form
@@ -35,5 +45,4 @@ interface CustomerServiceInterface
      * @return string $message message for success or not
      */
     public function deleteUser($id);
-
 }
