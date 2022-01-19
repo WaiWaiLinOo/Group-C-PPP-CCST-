@@ -86,7 +86,7 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = $this->customerInterface->getUserId($id);
-        return view('users.show', compact('customer'));
+        return $customer;
     }
 
     /**
@@ -96,8 +96,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $user = $this->customerInterface->userEditView($id);
-        return view('customer.edit', compact('user'));
+        $datas = $this->customerInterface->userEditView($id);
+        return view('customer.edit', compact('datas'));
     }
 
     /**
@@ -106,10 +106,14 @@ class CustomerController extends Controller
      *@param $request
      * @return view
      */
-    public function userRoleUpdate(Request $request, $id)
+    public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'roles' => 'required'
+        ]);
         $message = $this->customerInterface->userRoleUpdate($request, $id);
-        return $message;
+        return redirect()->route('customers.index')
+        ->with('success',$message);
     }
 
     /**

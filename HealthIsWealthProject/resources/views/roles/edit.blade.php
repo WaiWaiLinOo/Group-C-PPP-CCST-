@@ -25,8 +25,7 @@
     </div>
 @endif
 
-
-{!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
+{!! Form::model($role = $datas['role'], ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
@@ -38,19 +37,18 @@
         <div class="form-group">
             <strong>Permission:</strong>
             <br/>
-            @foreach($permission as $value)
-                <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name')) }}
+            @foreach($permission = $datas['permission'] as $value)
+                <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions = $datas['rolePermission']) ? true : false, array('class' => 'name')) }}
                 {{ $value->name }}</label>
             <br/>
             @endforeach
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </div>
 </div>
 {!! Form::close() !!}
 
 
 @endsection
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
