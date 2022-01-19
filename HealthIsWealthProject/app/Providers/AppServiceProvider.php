@@ -16,11 +16,14 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Contracts\Dao\auth\UserDaoInterface', 'App\Dao\auth\UserDao');
         /*Customer*/
         $this->app->bind('App\Contracts\Dao\customer\CustomerDaoInterface', 'App\Dao\customer\CustomerDao');
-
+        //Role 
+        $this->app->bind('App\Contracts\Dao\role\RoleDaoInterface', 'App\Dao\role\RoleDao');
         // Business logic registration
         $this->app->bind('App\Contracts\Services\auth\UserServiceInterface', 'App\Services\auth\UserService');
         /*Customer*/
         $this->app->bind('App\Contracts\Services\customer\CustomerServiceInterface', 'App\Services\customer\CustomerService');
+        //Role 
+        $this->app->bind('App\Contracts\Services\role\RoleServiceInterface', 'App\Services\role\RoleService');
     }
 
 

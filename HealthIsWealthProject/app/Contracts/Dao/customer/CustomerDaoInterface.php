@@ -15,8 +15,18 @@ interface CustomerDaoInterface
      *
      * @return View get data from databse
      */
-    public function getUser();
-
+    public function getUser($request);
+    /**
+     * get data from role
+     * @return View role
+     */
+    public function getRole();
+     /**
+     * get data from customer id
+     * @return View customer
+     */
+    public function getUserId($id);
+    //test 
     /**
      * To show user in user edit form
      *@param $id
