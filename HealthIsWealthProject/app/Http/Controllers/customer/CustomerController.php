@@ -93,7 +93,7 @@ class CustomerController extends Controller
     {
         //$user = User::find($id);
         $customer = $this->customerInterface->getUserId($id);
-        return view('users.show',compact('customer'));
+        return view('customer.show',compact('customer'));
     }
     //test
     /**
@@ -130,7 +130,7 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $user = $this->customerInterface->deleteUser($id);
-        return redirect()->route('customerView')
+        return redirect()->route('customers.index')
             ->with('success', 'User deleted successfully');
     }
 }
