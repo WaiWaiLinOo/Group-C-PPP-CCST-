@@ -1,6 +1,4 @@
 @extends('layouts.app')
-
-
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -14,7 +12,7 @@
     <div class="showlist">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-               <span>Permission for {{ $role->name }}</span>
+               <span>Permission for {{ $datas->name }}</span>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
