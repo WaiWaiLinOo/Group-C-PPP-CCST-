@@ -20,7 +20,7 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('home');
 });
 
 Auth::routes();
