@@ -88,10 +88,18 @@ class CustomerService implements CustomerServiceInterface
      * To update user role
      *@param $id
      *@param $request
-     * @return view
      */
     public function userRoleUpdate($request, $id)
     {
         return $this->customerDao->userRoleUpdate($request, $id);
+    }
+
+    /**
+     * To update user role
+     *@param $id
+     *@param $request
+     */
+    public function profileUpdate($request, $id){
+        return $this->customerDao->profileUpdate($request, $id);
     }
 }

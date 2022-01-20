@@ -12,14 +12,14 @@
     <div class="showlist">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-               <span>Permission for {{ $datas->name }}</span>
+               <span>Permission for {{ $datas['role']->name }}</span>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Permissions Provided:</strong>
-                @if(!empty($rolePermissions))
-                    @foreach($rolePermissions as $v)
+                @if(!empty($datas['rolePermissions']))
+                    @foreach($datas['rolePermissions'] as $v)
                     <br>
                         <label class="label label-success">{{ $v->name }}</label>
                     @endforeach

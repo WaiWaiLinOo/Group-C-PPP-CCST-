@@ -81,7 +81,6 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function userRoleUpdate($request, $id)
     {   
-
         $input = $request->all();
         if(!empty($input['password'])){ 
             $input['password'] = Hash::make($input['password']);
@@ -95,6 +94,34 @@ class CustomerDao implements CustomerDaoInterface
         $user->assignRole($request->input('roles'));
         
         return 'Role Update Successfully!';
+    }
+    
+    /**
+     * To update user profile
+     *@param $id
+     *@param $request
+     */
+    public function profileUpdate($request, $id){
+
+        $user = User::find($id);
+        if ($profile = $request->file('profile')) {
+            $name = time() . '.' . $request->file('profile')->clientExtension();
+            $request->file('profile')->move('userProfile',$name);
+            $user->profile = $name;
+        }
+
+        if ($certificate = $request->file('certificate')) {
+            $certificate = time() . '.' . $request->file('certificate')->clientExtension();
+            $request->file('certificate')->move('userCertificate',$certificate);
+            $user->certificate = $certificate;
+        }
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->dob = $request->input('dob');
+        $user->address = $request->input('address');
+        $user->update();
+        return 'Profile Update Successfully!';
     }
 
     /**
