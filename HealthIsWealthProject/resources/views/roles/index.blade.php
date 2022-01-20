@@ -7,7 +7,7 @@
         <div class="pull-left">
             <h2>Role Management</h2>
         </div>
-        <div class="create">
+        <div class="create-role">
         @can('role-create')
             <a href="{{ route('roles.create') }}"><button>Create New Role</button></a>
             @endcan
@@ -22,8 +22,8 @@
     </div>
 @endif
 
-
-<table class="table">
+<div class="panel">
+<table class="table" id="first">
   <tr>
      <th>No</th>
      <th>Name</th>
@@ -47,7 +47,7 @@
     </tr>
     @endforeach
 </table>
-
+</div>
 
 {!! $roles->render() !!}
 @endsection
