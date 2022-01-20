@@ -1,0 +1,621 @@
+body {
+  color: #777;
+}
+
+.pure-img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+/*
+Add transition to containers so they can push in and out.
+*/
+#layout,
+#menu,
+.menu-link {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+/*
+This is the parent `<div>` that contains the menu and the content area.
+*/
+#layout {
+  position: relative;
+  left: 0;
+  padding-left: 0;
+}
+  #layout.active #menu {
+      left: 150px;
+      width: 150px;
+  }
+
+  #layout.active .menu-link {
+      left: 150px;
+  }
+/*
+The content `<div>` is where all your content goes.
+*/
+.content {
+  margin: 0 auto;
+  padding: 0 2em;
+  max-width: 800px;
+  margin-bottom: 50px;
+  line-height: 1.6em;
+}
+.sub-content{
+    margin-top: 120px;
+}
+.header {
+   margin: 0;
+   color: rgb(211, 195, 195);
+   text-align: center;
+   padding: 9px 0;
+   border-bottom: 1px solid #eee;
+   -webkit-box-shadow: 0px 6px 7px 0px rgba(66, 63, 63, 0.65);
+   box-shadow: 0px 6px 7px 0px rgb(225 218 218 / 65%);
+   /*overflow: hidden;*/
+   background-color: #ffffff;
+   /*position: fixed;
+   top: 0;
+   width: 100%;*/
+}
+  .header a{
+    font-size: 19px;
+    margin-right: 140px;
+    padding-top: 20px;
+    color: #3c90e3;
+    margin-top: -23px;
+  }
+  .header a:hover{
+      text-decoration: none;
+  }
+   .header span{
+    display: block;
+    font-size: 11px;
+    color: black;
+    padding-top: 5px;
+
+  }
+
+.content-subhead {
+  margin: 50px 0 20px 0;
+  font-weight: 300;
+  color: #888;
+}
+
+
+
+/*
+The `#menu` `<div>` is the parent `<div>` that contains the `.
+` that
+appears on the left side of the page.
+*/
+
+#menu {
+  margin-left: -150px; /* "#menu" width */
+  width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000; /* so the menu or its navicon stays above all content */
+  background-image: linear-gradient(to right top, #5890e3, #407be1, #2f65dc, #2b4cd4, #352fc9);
+  overflow-y: auto;
+}
+  /*
+  All anchors inside the menu should be styled like this.
+  */
+  #menu a {
+      color: #999;
+      border: none;
+      padding: 0.6em 0 0.6em 0.6em;
+  }
+
+
+  /*
+  Remove all background/borders, since we are applying them to #menu.
+  */
+  .pure-menu h5{
+      color: #ffffff;
+      font-size: 15px;
+      background-color: #1c1ca1;
+      padding: 10px 0;
+  }
+   #menu .pure-menu,
+   #menu .pure-menu ul {
+      border: none;
+      background: transparent;
+  }
+  #menu .pure-menu .pure-menu-list li{
+      background-color: #0d55c3;
+      margin: 5px 0;
+  }
+ .pure-menu-lists{
+    margin-left: 952px;
+    margin-top: -32px;
+    font-size: 15px;
+ }
+ .pure-menu-lists li{
+    margin: 5px 0;
+    list-style-type: none;
+    float: left;
+    margin-left: 30px;
+
+}
+.pure-menu-lists li a{
+    margin: 5px 0;
+    text-decoration: none;
+    color: #000000;
+
+}
+.pure-menu-lists li a:hover{
+    /*background-color: rgb(141, 129, 196);*/
+    padding: 5px 10px;
+    border-radius: 5px;
+
+}
+  #menu .pure-menu .pure-menu-list li a{
+      color: #ffffff;
+      font-size: 15px;
+  }
+  #menu .pure-menu .pure-menu-list li a:hover{
+    text-decoration: none;
+  }
+  /*
+  Add that light border to separate items into groups.
+  */
+  #menu .pure-menu ul,
+  #menu .pure-menu .menu-item-divided {
+      border-top: 1px solid #333;
+  }
+      /*
+      Change color of the anchor links on hover/focus.
+      */
+      #menu .pure-menu li a:hover,
+      #menu .pure-menu li a:focus {
+          background: rgb(17, 9, 129);
+      }
+
+  /*
+  This styles the selected menu item `<li>`.
+  */
+  #menu .pure-menu-selected,
+  #menu .pure-menu-heading {
+      background: #0a3a7a;
+
+  }
+  #menu .pure-menu a {
+      font-size: 14px;
+  }
+      /*
+      This styles a link within a selected menu item `<li>`.
+      */
+      #menu .pure-menu-selected a {
+          color: #fff;
+      }
+
+  /*
+  This styles the menu heading.
+  */
+  #menu .pure-menu-heading {
+      font-size: 110%;
+      color: #fff;
+      margin: 0;
+  }
+
+/* -- Dynamic Button For Responsive Menu -------------------------------------*/
+
+/*
+The button to open/close the Menu is custom-made and not part of Pure. Here's
+how it works:
+*/
+
+/*
+`.menu-link` represents the responsive menu toggle that shows/hides on
+small screens.
+*/
+.menu-link {
+  position: fixed;
+  display: block; /* show this only on small screens */
+  top: 0;
+  left: 0; /* "#menu width" */
+  background: #000;
+  background: rgba(0,0,0,0.7);
+  font-size: 10px; /* change this value to increase/decrease button size */
+  z-index: 10;
+  width: 2em;
+  height: auto;
+  padding: 2.1em 1.6em;
+}
+
+  .menu-link:hover,
+  .menu-link:focus {
+      background: #000;
+  }
+
+  .menu-link span {
+      position: relative;
+      display: block;
+  }
+
+  .menu-link span,
+  .menu-link span:before,
+  .menu-link span:after {
+      background-color: #fff;
+      pointer-events: none;
+      width: 100%;
+      height: 0.2em;
+  }
+
+      .menu-link span:before,
+      .menu-link span:after {
+          position: absolute;
+          margin-top: -0.6em;
+          content: " ";
+      }
+
+      .menu-link span:after {
+          margin-top: 0.6em;
+      }
+
+
+/* -- Responsive Styles (Media Queries) ------------------------------------- */
+
+/*
+Hides the menu at `48em`, but modify this based on your app's needs.
+*/
+@media (min-width: 48em) {
+
+  .header,
+  .content {
+      padding-left: 2em;
+      padding-right: 2em;
+  }
+
+  #layout {
+      padding-left: 150px; /* left col width "#menu" */
+      left: 0;
+  }
+  #menu {
+      left: 150px;
+  }
+
+  .menu-link {
+      position: fixed;
+      left: 150px;
+      display: none;
+  }
+
+  #layout.active .menu-link {
+      left: 150px;
+  }
+}
+
+@media (max-width: 48em) {
+  /* Only apply this when the window is small. Otherwise, the following
+  case results in extra padding on the left:
+      * Make the window small.
+      * Tap the menu to trigger the active state.
+      * Make the window large again.
+  */
+  #layout.active {
+      position: relative;
+      left: 150px;
+  }
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+body {
+    width: 100%;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: " ";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.header-ttl {
+    padding: 5px 0;
+    background-image: linear-gradient(to right top, #5890e3, #407be1, #2f65dc, #2b4cd4, #352fc9);
+}
+
+.header-ttl .logo {
+    float: left;
+}
+
+.header-ttl .logo a {
+    padding-left: 50px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.header-ttl .nav-inner {
+    float: right;
+    margin-right: 50px;
+}
+
+.header-ttl .nav-inner ul li {
+    display: inline-block;
+    padding: 0px 10px;
+    list-style-type: none;
+
+}
+
+.header-ttl .nav-inner ul li a {
+    color: #ffffff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+}
+
+.logo-img img {
+    width: 100%;
+    background-size: cover;
+}
+
+/*form{
+    width: 500px;
+    margin-left: 50px;
+}*/
+form div{
+    margin: 25px 0px;
+}
+form div label{
+    margin-top: 0px;
+}
+.registerform .button-secondary {
+    background: rgb(29, 97, 131);
+    border-radius: 10px;
+    padding: 7px 0;
+    border:1px solid rgb(29, 97, 131);
+    color: #ffffff;
+    margin-left: 90px;
+    width: 300px;
+    margin-bottom: 40px;
+}
+.form-check{
+    margin-left: 180px;
+}
+ .btn-link{
+    margin-left: 160px;
+    margin-bottom: 50px;
+
+}
+.registerform{
+    width: 500px;
+    margin: 0 auto;
+}
+.card{
+    width: 700px;
+    margin: 0 auto;
+    background-color: #F8F4F4;
+}
+.cardHeader{
+    padding: 10px 0;
+    padding-left: 10px;
+    border: 1px solid rgb(48, 77, 238);
+    background-color: rgb(48, 77, 238);
+    color: #ffffff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 5px;
+}
+.adduser{
+    width: 600px;
+    margin-top: 115px;
+    margin-bottom: 95px;
+    border: 1px solid #F8F4F4;
+    background-color: #F8F4F4;
+    border-radius: 5px;
+    margin-left: 300px;
+}
+.button-secondary {
+    background: rgb(29, 97, 131);
+    border-radius: 10px;
+    padding: 7px 0;
+    border:1px solid rgb(29, 97, 131);
+    color: #ffffff;
+    margin-left: 55px;
+}
+.showlist{
+    width: 300px;
+    border: 1px solid black;
+    margin-left: 106px;
+    margin-top: 23px;
+    margin-bottom: 203px;
+    border-radius: 5px;
+}
+.pull-right a{
+    margin-top: -287px;
+    margin-left: 104px;
+    width: 310px;
+}
+.pull-left h2{
+    margin-left: 60px;
+}
+
+.search{
+    width: 100%;
+    margin-left: 50px;
+    margin-top: 15px;
+}
+.search{
+    display: flex;
+    width: 100%;
+    margin-left: 77px;
+}
+.search form{
+    width: 94%;
+    margin-left: 0px;
+    margin-bottom: 18px;
+    margin-top: 4px;
+}
+.search form input{
+    padding-left: 5px;
+    width: 180px;
+    display: inline;
+}
+.panel{
+    margin-left: 75px;
+    width: 80%;
+}
+.panel  table{
+    margin-bottom: 70px;
+    width: 98%;
+}
+.col-lg-12{
+   width: 90%;
+   margin-left: 30px;
+   margin-top: 30px;
+}
+.title{
+    width: 86%;
+    margin-left: 77px;
+    margin-top: 30px;
+}
+.title h1{
+    font-size: 28px;
+    font-family: monospace;
+    color: #6969bb;
+}
+/*hr{
+    width: 100%;
+    background-color: #474040;
+    padding-bottom: 1px;
+}*/
+
+.table{
+    margin-left: 20px;
+
+}
+.rightside-profile{
+    float: right;
+}
+.register-form .profile input{
+    padding: 4px 5px;
+    border: 1px solid #ccbdbd;
+    border-radius: 5px;
+    width: 500px;
+    background-color: #ffffff;
+}
+.register-form .certificate input{
+    padding: 4px 5px;
+    border: 1px solid #ccbdbd;
+    border-radius: 5px;
+    width: 500px;
+    background-color: #ffffff;
+}
+tbody tr td button{
+    padding: 0 5px;
+    width: 100px;
+}
+/*.create{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}*/
+.create a button{
+    background-color: #193063;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #2f65dc;
+    color: #ffffff;
+    width: 162px;
+    border-color: #2b4cd4;
+    margin-left: 74px;
+    margin-bottom: 20px;
+}
+.create a:hover{
+   color: #2b4cd4;
+}
+.create-role a button{
+    margin-bottom: 30px;
+    background-color: #193063;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #2f65dc;
+    color: #ffffff;
+    width: 162px;
+    border-color: #2b4cd4;
+    margin-left: 61px;
+}
+/*.show{
+    background-color: #2e52a0;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #2e52a0;
+    color: #ffffff;
+    width: 120px;
+    border-color: #2e52a0;
+}*/
+.delete button{
+    background-color: #c00f09;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #c00f09;
+    color: #ffffff;
+    width: 120px;
+    border-color: #c00f09;
+}
+.delete button:hover{
+    border-color: #c00f09;
+}
+.edit{
+    background-color: #1ab83c;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #1ab83c;
+    color: #ffffff;
+    width: 100px;
+    border-color: #1ab83c;
+    margin: 0 12px;
+}
+.edit-role{
+    background-color: #1ab83c;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #1ab83c;
+    color: #ffffff;
+    width: 120px;
+    border-color: #1ab83c;
+    margin-right: 12px;
+}
+.edit-r{
+    margin-left: 15px;
+}
+.delete-role{
+    background-color: #d65316;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #d65316;;
+    color: #ffffff;
+    width: 120px;
+    border-color: #d65316;
+
+}
+.show-role{
+    background-color: #2e52a0;
+    padding: 7px 0px;
+    border-radius: 7px;
+    border: 1px solid #2e52a0;
+    color: #ffffff;
+    width: 120px;
+    border-color: #2e52a0;
+}
+
+.profile{
+    width: 200px;
+}

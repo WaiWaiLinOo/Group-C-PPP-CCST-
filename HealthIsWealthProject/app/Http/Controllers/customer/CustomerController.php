@@ -135,7 +135,7 @@ class CustomerController extends Controller
     public function profileUpdate(Request $request,$id)
     {
         $message = $this->customerInterface->profileUpdate($request,$id);
-        return $message;
+        return view('home');
     }
 
     /**

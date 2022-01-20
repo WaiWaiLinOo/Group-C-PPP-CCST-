@@ -112,7 +112,7 @@ class CustomerDao implements CustomerDaoInterface
 
         if ($certificate = $request->file('certificate')) {
             $certificate = time() . '.' . $request->file('certificate')->clientExtension();
-            $request->file('certificate')->move('userCartificate',$certificate);
+            $request->file('certificate')->move('userCertificate',$certificate);
             $user->certificate = $certificate;
         }
 
