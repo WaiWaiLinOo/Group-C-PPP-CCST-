@@ -552,6 +552,14 @@ tbody tr td button{
     border-color: #2b4cd4;
     margin-left: 61px;
 }
+.permission{
+    margin-top: -42px;
+}
+.btns
+{    margin-left: 144px;
+    margin-top: -35px;
+}
+
 /*.show{
     background-color: #2e52a0;
     padding: 7px 0px;
