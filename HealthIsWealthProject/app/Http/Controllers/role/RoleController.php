@@ -50,7 +50,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permission = Permission::get();
+        $permission = $this->roleInterface->getPermission();
         return view('roles.create', compact('permission'));
     }
 
@@ -79,13 +79,39 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $role = $this->roleInterface->getRoleId($id);
-        $rolePermissions = Permission::join("role_has_permissions", "role_has_permissions.permission_id", "=", "permissions.id")
-            ->where("role_has_permissions.role_id", $id)
-            ->get();
-        return view('roles.show', compact('role', 'rolePermissions'));
+        $datas = $this->roleInterface->getRoleId($id);
+        return view('roles.show', compact('datas'));
     }
 
+    /**
+     * To edit role
+     *@param $id
+     * @return view
+     */
+    public function edit($id)
+    {
+        $datas = $this->roleInterface->editRole($id);
+        return view('roles.edit',compact('datas'));
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  $request
+     * @param  $id
+     * @return 
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'permission' => 'required',
+        ]);
+
+        $message = $this->roleInterface->updateRole($request,$id);
+        return redirect()->route('roles.index')
+                        ->with('success',$message);
+    }
     /**
      * To delete user role
      *@param $id

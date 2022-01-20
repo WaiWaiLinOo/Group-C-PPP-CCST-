@@ -15,6 +15,11 @@ interface RoleServiceInterface
     public function getRole($request);
 
     /**
+     * To get permission
+     */
+    public function getPermission();
+
+    /**
      * To store role
      *@param $request
      */
@@ -25,7 +30,21 @@ interface RoleServiceInterface
      *@param $request
      */
     public function getRoleId($id);
-      /**
+
+    /**
+     * To edit role
+     *@param $id
+    */
+    public function editRole($id);
+
+    /**
+     * To update role
+     *@param $request
+     *@param $id
+    */
+    public function updateRole($request,$id);
+
+    /**
      * To delete role by id
      * @param string $id role id
      * @param string $deletedRoleId

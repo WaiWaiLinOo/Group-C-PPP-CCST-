@@ -37,6 +37,14 @@ class RoleService implements RoleServiceInterface
     }
 
     /**
+     * To get permission
+     * @return object
+     */
+    public function getPermission(){
+        return $this->roleDao->getPermission();
+    }
+
+    /**
      * To store role
      *@param $request
      */
@@ -53,6 +61,23 @@ class RoleService implements RoleServiceInterface
     public function getRoleId($id)
     {
         return $this->roleDao->getRoleId($id);
+    }
+
+    /**
+     * To edit role
+     *@param $id
+     *@return 
+    */
+    public function editRole($id){
+        return $this->roleDao->editRole($id);
+    }
+
+    /**
+     * To update role
+     *@param $request
+     */
+    public function updateRole($request,$id){
+        return $this->roleDao->updateRole($request,$id);
     }
 
     /**
