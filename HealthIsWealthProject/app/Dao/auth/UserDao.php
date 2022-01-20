@@ -18,15 +18,17 @@ class UserDao implements UserDaoInterface
     public function saveUser(Request $request)
     {
         if ($profile = $request->file('profile')) {
-            $name = time() . '_' . $request->file('profile')->getClientOriginalName();
-            $request->file('profile')->store('public/images');
+            $name = time() . '.' . $request->file('profile')->clientExtension();
+            $request->file('profile')->move('userProfile',$name);
             $user['profile'] = "$name";
         }
+
         if ($certificate = $request->file('certificate')) {
-            $certificate = time() . '_' . $request->file('certificate')->getClientOriginalName();
-            $request->file('profile')->store('public/images');
+            $certificate = time() . '.' . $request->file('certificate')->clientExtension();
+            $request->file('certificate')->move('userCartificate',$certificate);
             $user['certificate'] = "$certificate";
         }
+
         return User::create([
             'name' => $request['name'],
             'email' => $request['email'],

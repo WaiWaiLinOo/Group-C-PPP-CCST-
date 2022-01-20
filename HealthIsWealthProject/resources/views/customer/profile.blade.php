@@ -19,17 +19,17 @@
       <span class="text-danger">{{ $errors->first('email') }}</span>
       @endif
     </div>
-    <!--<div class="form-group">
+    <div class="form-group">
       <label for="profile">Profile :</label>
-      <input type="text" class="form-control" value="{{ $datas['user']->profile }}" name="profile" id="profile">
-      <img src="{{ asset('storage/public/images/' . $datas['user']->profile) }}" />
+      <input type="file" class="form-control" name="profile" id="profile">
+      <img src="{{ asset('userProfile/' . $datas['user']->profile) }}" class="profile" />
     </div>
     <div class="form-group">
       <label for="email">Certificate :</label>
       @if($datas['user']->certificate)
       <input type="checkbox" checked disabled>
       @endif
-    </div>-->
+    </div>
     <div class="form-group">
       <label for="date"> Date Of Birth :</label>
       <input type="date" placeholder="Date Of Birth" class="form-control" id="dob" name="dob" value="{{ $datas['user']->dob }}">
