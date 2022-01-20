@@ -116,6 +116,28 @@ class CustomerController extends Controller
         ->with('success',$message);
     }
 
+     /**
+     * To show user profile
+     *@param $id
+     * @return view
+     */
+    public function profileView($id)
+    {
+        $datas = $this->customerInterface->userEditView($id);
+        return view('customer.profile', compact('datas'));
+    }
+    /**
+     * To update user profile
+     *@param $id
+     *@param $request
+     * @return view
+     */
+    public function profileUpdate(Request $request,$id)
+    {
+        $message = $this->customerInterface->profileUpdate($request,$id);
+        return $message;
+    }
+
     /**
      * To delelte user role
      *@param $id

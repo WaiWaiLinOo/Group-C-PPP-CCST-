@@ -96,6 +96,25 @@ class CustomerDao implements CustomerDaoInterface
         
         return 'Role Update Successfully!';
     }
+    
+    /**
+     * To update user profile
+     *@param $id
+     *@param $request
+     */
+    public function profileUpdate($request, $id){
+
+        $input = $request->all();
+        if(!empty($input['password'])){ 
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            $input = Arr::except($input,array('password'));    
+        }
+
+        $user = User::find($id);
+        $user->update($input);
+        return 'Profile Update Successfully!';
+    }
 
     /**
      * @param string $id user id

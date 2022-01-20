@@ -38,4 +38,6 @@ Route::group(['middleware' => ['auth']], function () {
     //Route::post('user/role_update/{id}', [CustomerController::class, 'userRoleUpdate'])->name('user_role_update');
     //destroy user
     Route::delete('user/delete/{id}', [CustomerController::class, 'destroy'])->name('destroyUser');
+    Route::get('user/profile/{id}', [CustomerController::class,'profileView'])->name('profileView');
+    Route::put('user/profile_update/{id}', [CustomerController::class,'profileUpdate'])->name('profileUpdate');
 });

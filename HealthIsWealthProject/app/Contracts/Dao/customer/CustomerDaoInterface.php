@@ -49,6 +49,13 @@ interface CustomerDaoInterface
     public function userRoleUpdate($request, $id);
 
     /**
+     * To update user profile
+     *@param $id
+     *@param $request
+     */
+    public function profileUpdate($request, $id);
+
+    /**
      * To delete user by id
      * @param string $id user id
      * @param string $deletedUserId deleted user id
