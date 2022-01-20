@@ -33,7 +33,6 @@ class RoleController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -45,7 +44,6 @@ class RoleController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -56,7 +54,6 @@ class RoleController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -73,7 +70,6 @@ class RoleController extends Controller
 
     /**
      * Display the specified resource.
-     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -85,18 +81,17 @@ class RoleController extends Controller
 
     /**
      * To edit role
-     *@param $id
+     * @param $id
      * @return view
      */
     public function edit($id)
     {
         $datas = $this->roleInterface->editRole($id);
-        return view('roles.edit',compact('datas'));
+        return view('roles.edit', compact('datas'));
     }
 
-     /**
+    /**
      * Update the specified resource in storage.
-     *
      * @param  $request
      * @param  $id
      * @return 
@@ -108,14 +103,15 @@ class RoleController extends Controller
             'permission' => 'required',
         ]);
 
-        $message = $this->roleInterface->updateRole($request,$id);
+        $message = $this->roleInterface->updateRole($request, $id);
         return redirect()->route('roles.index')
-                        ->with('success',$message);
+            ->with('success', $message);
     }
+
     /**
      * To delete user role
-     *@param $id
-     *@param $request
+     * @param $id
+     * @param $request
      * @return view
      */
     public function destroy($id)

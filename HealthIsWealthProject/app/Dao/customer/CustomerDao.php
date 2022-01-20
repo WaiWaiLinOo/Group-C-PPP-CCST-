@@ -18,7 +18,6 @@ class CustomerDao implements CustomerDaoInterface
 
     /**
      * to get data from database
-     *
      * @return View get data
      */
     public function getUser($request)
@@ -28,7 +27,6 @@ class CustomerDao implements CustomerDaoInterface
 
     /**
      * to get data from role
-     *
      * @return View get role all
      */
     public function getRole()
@@ -38,7 +36,6 @@ class CustomerDao implements CustomerDaoInterface
 
     /**
      * to get data from customerId
-     *
      * @return View get id
      */
     public function getUserId($id)
@@ -48,7 +45,6 @@ class CustomerDao implements CustomerDaoInterface
 
     /**
      * to store from customerId
-     *
      * @return View 
      */
     public function storeUser($request)
@@ -68,51 +64,50 @@ class CustomerDao implements CustomerDaoInterface
     public function userEditView($id)
     {
         $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
-        return ['user' => $user,'roles' => $roles,'userRole' => $userRole];
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
+        return ['user' => $user, 'roles' => $roles, 'userRole' => $userRole];
     }
 
     /**
      * To update user role
-     *@param $id
-     *@param $request
+     * @param $id
+     * @param $request
      * @return
      */
     public function userRoleUpdate($request, $id)
-    {   
+    {
         $input = $request->all();
-        if(!empty($input['password'])){ 
+        if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
-        }else{
-            $input = Arr::except($input,array('password'));    
+        } else {
+            $input = Arr::except($input, array('password'));
         }
-
         $user = User::find($id);
         $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
         $user->assignRole($request->input('roles'));
-        
         return 'Role Update Successfully!';
     }
-    
+
     /**
      * To update user profile
-     *@param $id
-     *@param $request
+     * @param $id
+     * @param $request
      */
-    public function profileUpdate($request, $id){
+    public function profileUpdate($request, $id)
+    {
 
         $user = User::find($id);
         if ($profile = $request->file('profile')) {
             $name = time() . '.' . $request->file('profile')->clientExtension();
-            $request->file('profile')->move('userProfile',$name);
+            $request->file('profile')->move('userProfile', $name);
             $user->profile = $name;
         }
 
         if ($certificate = $request->file('certificate')) {
             $certificate = time() . '.' . $request->file('certificate')->clientExtension();
-            $request->file('certificate')->move('userCertificate',$certificate);
+            $request->file('certificate')->move('userCertificate', $certificate);
             $user->certificate = $certificate;
         }
 

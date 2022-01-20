@@ -21,7 +21,6 @@ class CustomerController extends Controller
 
     /**
      * Create a new controller instance.
-     *
      * @return void
      */
     public function __construct(CustomerServiceInterface $customerServiceInterface)
@@ -35,7 +34,6 @@ class CustomerController extends Controller
 
     /**
      * Show user data
-     *
      * @return View Userdata
      */
     public function index(Request $request)
@@ -43,12 +41,10 @@ class CustomerController extends Controller
         $customers = $this->customerInterface->getUser($request);
         return view('customer.index', compact('customers'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
-        //return view('customer.showlist', compact('customers'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -59,7 +55,6 @@ class CustomerController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -79,7 +74,6 @@ class CustomerController extends Controller
 
     /**
      * Display the specified resource.
-     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -91,7 +85,7 @@ class CustomerController extends Controller
 
     /**
      * To show user in user edit form
-     *@param $id
+     * @param $id
      * @return view
      */
     public function edit($id)
@@ -102,8 +96,8 @@ class CustomerController extends Controller
 
     /**
      * To update user role
-     *@param $id
-     *@param $request
+     * @param $id
+     * @param $request
      * @return view
      */
     public function update(Request $request, $id)
@@ -113,12 +107,12 @@ class CustomerController extends Controller
         ]);
         $message = $this->customerInterface->userRoleUpdate($request, $id);
         return redirect()->route('customers.index')
-        ->with('success',$message);
+            ->with('success', $message);
     }
 
-     /**
+    /**
      * To show user profile
-     *@param $id
+     * @param $id
      * @return view
      */
     public function profileView($id)
@@ -126,22 +120,23 @@ class CustomerController extends Controller
         $datas = $this->customerInterface->userEditView($id);
         return view('customer.profile', compact('datas'));
     }
+
     /**
      * To update user profile
-     *@param $id
-     *@param $request
+     * @param $id
+     * @param $request
      * @return view
      */
-    public function profileUpdate(Request $request,$id)
+    public function profileUpdate(Request $request, $id)
     {
-        $message = $this->customerInterface->profileUpdate($request,$id);
+        $message = $this->customerInterface->profileUpdate($request, $id);
         return view('home');
     }
 
     /**
      * To delelte user role
-     *@param $id
-     *@param $request
+     * @param $id
+     * @param $request
      * @return view
      */
     public function destroy($id)
