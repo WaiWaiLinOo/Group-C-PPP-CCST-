@@ -40,27 +40,38 @@ class PostService implements PostServiceInterface
      * store user
      * @return View getdata
      */
-    public function storePost($request){
-        return $this->postDao->storePost($request); 
+    public function storePost($request)
+    {
+        return $this->postDao->storePost($request);
+    }
+    /**
+     * To delete post by id
+     * @param string $id post id
+     * @param string $deletedPostId
+     * @return string $message message for success or not
+     */
+    public function deletePost($id)
+    {
+        return $this->postDao->deletePost($id);
     }
 
     /**
-    *  Show the form  for post edit
-    * @param $id
-    * @return object
-    */
-    public function editPost($id){
+     *  update the form  for post
+     * @param $request
+     * @param $id
+     * @return object
+     */
+    public function updatePost($request, $id)
+    {
+        return $this->postDao->updatePost($request, $id);
+    }
+    /**
+     *  Show the form  for post edit
+     * @param $id
+     * @return object
+     */
+    public function editPost($id)
+    {
         return $this->postDao->editPost($id);
     }
-
-    /**
-    *  update the form  for post
-    * @param $request
-    * @param $id
-    * @return object
-    */
-    public function updatePost($request,$id){
-        return $this->postDao->updatePost($request,$id);
-    }
-        
 }

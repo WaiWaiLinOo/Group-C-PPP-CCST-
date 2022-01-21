@@ -27,7 +27,7 @@ class PostDao implements PostDaoInterface
 
     /**
      * to store from customerId
-     * @return View 
+     * @return View
      */
     public function storePost($request)
     {
@@ -43,25 +43,33 @@ class PostDao implements PostDaoInterface
         $post->save();
         return $post;
     }
-
-
+    /**
+     * @param string $id post id
+     * @param string $deletedPostId deleted
+     */
+    public function deletePost($id)
+    {
+        return Post::find($id)->delete();
+    }
 
     /**
-    * show the form  for post edit
-    * @param $id
-    * @return object
-    */
-    public function editPost($id){
+     * show the form  for post edit
+     * @param $id
+     * @return object
+     */
+    public function editPost($id)
+    {
         return Post::find($id);
     }
 
     /**
-    *  update the form  for post
-    * @param $request
-    * @param $id
-    * @return object
-    */
-    public function updatePost($request,$id){
+     *  update the form  for post
+     * @param $request
+     * @param $id
+     * @return object
+     */
+    public function updatePost($request, $id)
+    {
         $post = Post::find($id);
         $post->post_name = request()->post_name;
         $post->detail = request()->detail;
@@ -73,6 +81,5 @@ class PostDao implements PostDaoInterface
         $post->user_id = auth()->user()->id;
         $post->update();
         return "Post updated successfully";
-
     }
 }
