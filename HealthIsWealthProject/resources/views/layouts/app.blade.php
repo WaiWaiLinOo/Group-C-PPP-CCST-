@@ -33,6 +33,7 @@
           <li class="pure-menu-item"><a href="#contact" class="pure-menu-link">Contact</a></li>
           <li class="pure-menu-item"><a href="{{ route('customers.index') }}" class="pure-menu-link">Manage Users</a></li>
           <li class="pure-menu-item"><a href="{{ route('roles.index') }}" class="pure-menu-link">Manage Role</a></li>
+          <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
         </ul>
       </div>
     </div>

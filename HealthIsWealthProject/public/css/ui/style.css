@@ -378,7 +378,7 @@ form div{
 form div label{
     margin-top: 0px;
 }
-.registerform .button-secondary {
+.register-form .button-secondary {
     background: rgb(29, 97, 131);
     border-radius: 10px;
     padding: 7px 0;
@@ -396,7 +396,8 @@ form div label{
     margin-bottom: 50px;
 
 }
-.registerform{
+
+.register-form{
     width: 500px;
     margin: 0 auto;
 }
@@ -624,6 +625,11 @@ tbody tr td button{
     border-color: #2e52a0;
 }
 
-.profile{
+.profile_img{
     width: 200px;
+}
+.post_img{
+    width: 100px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px black;
 }

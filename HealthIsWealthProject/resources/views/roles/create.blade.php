@@ -17,7 +17,7 @@
 
 
 {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
-<div class="registerform">
+<div class="register-form">
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="form-group">

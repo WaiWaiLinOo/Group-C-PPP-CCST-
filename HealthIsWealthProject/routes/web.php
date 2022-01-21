@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\Role\RoleController;
+use App\Http\Controllers\Post\PostController;
 use App\Models\User;
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::post('user/register/confirm', [RegisterController::class, 'create'])->nam
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('customers', CustomerController::class);
+    Route::resource('posts', PostController::class);
     Route::delete('user/delete/{id}', [CustomerController::class, 'destroy'])->name('destroyUser');
     Route::get('user/profile/{id}', [CustomerController::class,'profileView'])->name('profileView');
     Route::put('user/profile_update/{id}', [CustomerController::class,'profileUpdate'])->name('profileUpdate');

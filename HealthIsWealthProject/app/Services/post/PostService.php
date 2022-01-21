@@ -25,4 +25,23 @@ class PostService implements PostServiceInterface
     {
         $this->postDao = $postDao;
     }
+
+    /**
+     * to get data from database
+     *
+     * @return View getdata from database
+     */
+    public function getPost()
+    {
+        return $this->postDao->getPost();
+    }
+
+    /**
+     * store user
+     * @return View getdata
+     */
+    public function storePost($request){
+        return $this->postDao->storePost($request); 
+    }
+        
 }
