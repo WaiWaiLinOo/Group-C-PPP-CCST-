@@ -43,5 +43,24 @@ class PostService implements PostServiceInterface
     public function storePost($request){
         return $this->postDao->storePost($request); 
     }
+
+    /**
+    *  Show the form  for post edit
+    * @param $id
+    * @return object
+    */
+    public function editPost($id){
+        return $this->postDao->editPost($id);
+    }
+
+    /**
+    *  update the form  for post
+    * @param $request
+    * @param $id
+    * @return object
+    */
+    public function updatePost($request,$id){
+        return $this->postDao->updatePost($request,$id);
+    }
         
 }
