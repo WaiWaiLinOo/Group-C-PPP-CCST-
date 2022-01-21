@@ -36,7 +36,7 @@
       <td>{{ ++$i }}</td>
       <td>{{ $post->post_name }}</td>
       <td> <img src="{{ asset('post_img/' . $post->post_img) }}" class="post_img" /></td>
-      <td>{{ $post->detail }}</td>
+      <td>{{substr($post->detail,0,50) }}</td>
       <td>
         <a href="{{ route('posts.show',$post->id) }}"> <button class="show-role">Show</button></a>
         @can('role-edit')

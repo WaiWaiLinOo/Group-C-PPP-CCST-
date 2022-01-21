@@ -26,7 +26,7 @@ class PostDao implements PostDaoInterface
 
     /**
      * to store from customerId
-     * @return View 
+     * @return View
      */
     public function storePost($request)
     {
@@ -42,4 +42,15 @@ class PostDao implements PostDaoInterface
         $post->save();
         return $post;
     }
+    /**
+     * @param string $id post id
+     * @param string $deletedPostId deleted
+     */
+    public function deletePost($id)
+    {
+        return Post::find($id)->delete();
+    }
+
+
+
 }

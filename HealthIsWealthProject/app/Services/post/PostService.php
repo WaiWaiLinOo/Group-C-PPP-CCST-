@@ -41,7 +41,18 @@ class PostService implements PostServiceInterface
      * @return View getdata
      */
     public function storePost($request){
-        return $this->postDao->storePost($request); 
+        return $this->postDao->storePost($request);
     }
-        
+     /**
+     * To delete post by id
+     * @param string $id post id
+     * @param string $deletedPostId
+     * @return string $message message for success or not
+     */
+    public function deletePost($id)
+    {
+        return $this->postDao->deletePost($id);
+    }
+
+
 }

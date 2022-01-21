@@ -20,4 +20,7 @@ interface PostDaoInterface
      * @return View getdata
      */
     public function storePost($request);
+
+    /*post delete*/
+    public function deletePost($id);
 }

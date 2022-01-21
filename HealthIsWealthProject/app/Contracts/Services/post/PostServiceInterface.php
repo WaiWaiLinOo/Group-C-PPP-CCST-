@@ -18,4 +18,12 @@ interface PostServiceInterface
      * @return View getdata
      */
     public function storePost($request);
+
+     /**
+     * To delete post by id
+     * @param string $id post id
+     * @param string $deletedPostId
+     * @return string $message message for success or not
+     */
+    public function deletePost($id);
 }
