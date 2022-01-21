@@ -5,7 +5,7 @@
   <form method="POST" action="{{ route('profileUpdate',$datas['user']->id) }}" enctype="multipart/form-data">
     @csrf
     @method ('PUT')
-    <div class="registerform">
+    <div class="register-form">
       <div class="form-group">
         <label for="name">Name : </label>
         <input type="text" class="form-control" name="name" id="name" value="{{ $datas['user']->name }}">
@@ -20,15 +20,15 @@
         <span class="text-danger">{{ $errors->first('email') }}</span>
         @endif
       </div>
-      <div class="form-group">
+      <div class="form-group profile">
         <label for="profile">Profile :</label>
         <input type="file" class="form-control" name="profile" id="profile">
-        <img src="{{ asset('userProfile/' . $datas['user']->profile) }}" class="profile" />
+        <img src="{{ asset('userProfile/' . $datas['user']->profile) }}" class="profile_img" />
       </div>
-      <div class="form-group">
+      <div class="form-group certificate">
         <label for="profile">Certificate :</label>
         <input type="file" class="form-control" name="certificate" id="certificate">
-        <img src="{{ asset('userCertificate/' . $datas['user']->certificate) }}" class="profile" />
+        <img src="{{ asset('userCertificate/' . $datas['user']->certificate) }}" class="profile_img" />
       </div>
       <div class="form-group">
         <label for="date"> Date Of Birth :</label>

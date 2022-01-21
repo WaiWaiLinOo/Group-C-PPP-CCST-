@@ -7,9 +7,6 @@
     <div class="pull-left">
       <h2>Edit Role</h2>
     </div>
-    <div class="pull-right">
-      <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
-    </div>
   </div>
 </div>
 
@@ -26,26 +23,28 @@
 @endif
 
 {!! Form::model($role = $datas['role'], ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12">
-    <div class="form-group">
-      <strong>Name:</strong>
-      {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+<div class="register-form">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="form-group">
+        <strong>Name:</strong>
+        {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+      </div>
     </div>
-  </div>
-  <div class="col-xs-12 col-sm-12 col-md-12">
-    <div class="form-group">
-      <strong>Permission:</strong>
-      <br />
-      @foreach($permission = $datas['permission'] as $value)
-      <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions = $datas['rolePermission']) ? true : false, array('class' => 'name')) }}
-        {{ $value->name }}</label>
-      <br />
-      @endforeach
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="form-group">
+        <strong>Permission:</strong>
+        <br />
+        @foreach($permission = $datas['permission'] as $value)
+        <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions = $datas['rolePermission']) ? true : false, array('class' => 'name')) }}
+          {{ $value->name }}</label>
+        <br />
+        @endforeach
+      </div>
     </div>
-  </div>
-  <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-    <button type="submit" class="btn btn-primary">Update</button>
+    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+      <button type="submit" class="button-secondary">Update</button>
+    </div>
   </div>
 </div>
 {!! Form::close() !!}
