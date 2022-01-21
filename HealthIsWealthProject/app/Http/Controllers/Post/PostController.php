@@ -75,7 +75,35 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-    return view('posts.show', compact('post'));
+        return view('posts.show', compact('post'));
+    }
+
+    /**
+     * Show the form  for post edit
+     * @param  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $post = $this->postInterface->editPost($id);
+        return view('posts.edit', compact('post'));
+    }
+
+    /**
+     * Update the post.
+     * @param  $request
+     * @param  $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'post_name' => 'required',
+            'detail' => 'required'
+        ]);
+        $message = $this->postInterface->updatePost($request, $id);
+        return redirect()->route('posts.index')
+            ->with('success', $message);
     }
 
 

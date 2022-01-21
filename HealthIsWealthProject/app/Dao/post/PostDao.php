@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
+use PhpParser\Node\Expr\AssignOp\Pow;
 use Spatie\Permission\Models\Permission;
 
 /**
@@ -51,6 +52,34 @@ class PostDao implements PostDaoInterface
         return Post::find($id)->delete();
     }
 
+    /**
+     * show the form  for post edit
+     * @param $id
+     * @return object
+     */
+    public function editPost($id)
+    {
+        return Post::find($id);
+    }
 
-
+    /**
+     *  update the form  for post
+     * @param $request
+     * @param $id
+     * @return object
+     */
+    public function updatePost($request, $id)
+    {
+        $post = Post::find($id);
+        $post->post_name = request()->post_name;
+        $post->detail = request()->detail;
+        if ($post_img = $request->file('post_img')) {
+            $post_img = time() . '.' . $request->file('post_img')->clientExtension();
+            $request->file('post_img')->move('post_img', $post_img);
+            $post->post_img = $post_img;
+        }
+        $post->user_id = auth()->user()->id;
+        $post->update();
+        return "Post updated successfully";
+    }
 }
