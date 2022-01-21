@@ -27,7 +27,7 @@ interface PostServiceInterface
     public function editPost($id);
 
     /**
-     *  update the form  for post
+     * update the form  for post
      * @param $request
      * @param $id
      */

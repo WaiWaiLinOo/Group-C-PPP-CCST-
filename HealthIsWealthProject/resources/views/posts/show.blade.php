@@ -20,16 +20,15 @@
   </div>
 </div>
 <div class="adduser" style="margin-top: 20px">
-    <div class="cardHeader">
-        {{ $post->post_name }}
-    </div>
-    <div class="register-form">
-      <img src="{{ asset('post_img/' . $post->post_img) }}" class="post_img" style="width: 500px;margin-top:20px; hei
-      auto" />
-     <span>Details</span><br>
-      {{ $post->detail }}<br>
-     <a href="{{ route('posts.index') }}"><button class="button-secondary">Back</button></a>
-    </div>
+  <div class="cardHeader">
+    {{ $post->post_name }}
+  </div>
+  <div class="register-form">
+    <img src="{{ asset('post_img/' . $post->post_img) }}" class="post_img" style="width: 500px;margin-top:20px; height:auto;" />
+    <span>Details</span><br>
+    {{ $post->detail }}<br>
+    <a href="{{ route('posts.index') }}"><button class="button-secondary">Back</button></a>
+  </div>
 </div>
 
 @endsection

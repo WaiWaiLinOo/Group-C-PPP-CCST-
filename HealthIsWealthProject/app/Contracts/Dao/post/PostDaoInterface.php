@@ -28,12 +28,16 @@ interface PostDaoInterface
     public function editPost($id);
 
     /**
-     *  update the form  for post
+     * update the form  for post
      * @param $request
      * @param $id
      */
     public function updatePost($request, $id);
 
-    /*post delete*/
+    /**
+     * delete the form  for post
+     * @param $request
+     * @param $id
+     */
     public function deletePost($id);
 }

@@ -63,7 +63,7 @@ class PostDao implements PostDaoInterface
     }
 
     /**
-     *  update the form  for post
+     * update the form  for post
      * @param $request
      * @param $id
      * @return object

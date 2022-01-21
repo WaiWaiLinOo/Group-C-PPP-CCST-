@@ -28,7 +28,6 @@ class PostService implements PostServiceInterface
 
     /**
      * to get data from database
-     *
      * @return View getdata from database
      */
     public function getPost()
@@ -44,6 +43,7 @@ class PostService implements PostServiceInterface
     {
         return $this->postDao->storePost($request);
     }
+
     /**
      * To delete post by id
      * @param string $id post id
@@ -56,7 +56,7 @@ class PostService implements PostServiceInterface
     }
 
     /**
-     *  update the form  for post
+     * update the form  for post
      * @param $request
      * @param $id
      * @return object
@@ -65,8 +65,9 @@ class PostService implements PostServiceInterface
     {
         return $this->postDao->updatePost($request, $id);
     }
+
     /**
-     *  Show the form  for post edit
+     * Show the form  for post edit
      * @param $id
      * @return object
      */
