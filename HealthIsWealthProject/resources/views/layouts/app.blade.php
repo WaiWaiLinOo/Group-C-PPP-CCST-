@@ -27,13 +27,20 @@
         <h5>Medic Care
           <span>Health Specilist</span>
         </h5>
+       
         <ul class="pure-menu-list">
           <li class="pure-menu-item"><a href="#home" class="pure-menu-link">Home</a></li>
           <li class="pure-menu-item"><a href="#about" class="pure-menu-link">About</a></li>
           <li class="pure-menu-item"><a href="#contact" class="pure-menu-link">Contact</a></li>
+          @auth
+          @if (Auth::user()->id == 1)
           <li class="pure-menu-item"><a href="{{ route('customers.index') }}" class="pure-menu-link">Manage Users</a></li>
           <li class="pure-menu-item"><a href="{{ route('roles.index') }}" class="pure-menu-link">Manage Role</a></li>
+          @endif
+          @if (Auth::user()->id == 1 || Auth::user()->id == 2)
           <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
+          @endif
+          @endauth
         </ul>
       </div>
     </div>
