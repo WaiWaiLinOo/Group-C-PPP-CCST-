@@ -42,7 +42,7 @@
       <b>Comments ({{ count($post->comments) }})</b>
       </td>
       <td>
-        <a href="{{ route('posts.show',$post->id) }}"> <button class="show-role">Show</button></a>
+        <a href="{{ route('posts.show',$post->id) }}"> <button class="show-role">Details</button></a>
         @can('post-edit')
         <a class="edit-r" href="{{ route('posts.edit',$post->id) }}"><button class="edit-role">Edit</button></a>
         @endcan

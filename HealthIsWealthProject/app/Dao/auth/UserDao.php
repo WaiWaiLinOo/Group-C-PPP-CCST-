@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Contracts\Dao\auth\UserDaoInterface;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Arr;
+use Spatie\Permission\Models\Permission;
 
 class UserDao implements UserDaoInterface
 {
@@ -28,8 +31,8 @@ class UserDao implements UserDaoInterface
             $request->file('certificate')->move('userCartificate',$certificate);
             $user['certificate'] = "$certificate";
         }
-
-        return User::create([
+       
+        $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
@@ -39,5 +42,16 @@ class UserDao implements UserDaoInterface
             'address' => $request['address'],
 
         ]);
+        $user->assignRole($request->input('roles'));
+        return $user;
+    }
+
+    /**
+     * to get data from role
+     * @return View get role all
+     */
+    public function getRole()
+    {
+        return Role::pluck('name', 'name')->all();
     }
 }
