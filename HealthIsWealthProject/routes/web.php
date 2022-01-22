@@ -8,6 +8,7 @@ use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Comment\CommentController;
 use App\Models\User;
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('user/profile/{id}', [CustomerController::class,'profileView'])->name('profileView');
     Route::put('user/profile_update/{id}', [CustomerController::class,'profileUpdate'])->name('profileUpdate');
 });
+
+Route::post('/comments/add', [CommentController::class, 'create']);
+Route::get('/comments/delete/{id}', [CommentController::class,'delete'])->name('commentDelete');

@@ -113,9 +113,9 @@ class PostController extends Controller
      * @param $request
      * @return view
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = $this->postInterface->deletePost($id);
+        $post = $this->postInterface->deletePost($post);
         return redirect()->route('posts.index')
             ->with('success', 'Post deleted successfully');
     }

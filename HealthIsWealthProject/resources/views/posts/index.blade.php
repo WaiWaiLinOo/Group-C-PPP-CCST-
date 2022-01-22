@@ -8,7 +8,7 @@
       <h2>Post Management</h2>
     </div>
     <div class="create-role">
-      @can('role-create')
+      @can('post-create')
       <a href="{{ route('posts.create') }}"><button>Create New Post</button></a>
       @endcan
     </div>
@@ -29,6 +29,7 @@
       <th>Name</th>
       <th>Post image</th>
       <th>Details</th>
+      <th>Comment Number</th>
       <th width="460px">Action</th>
     </tr>
     @foreach ($posts as $key => $post)
@@ -38,8 +39,11 @@
       <td> <img src="{{ asset('post_img/' . $post->post_img) }}" class="post_img" /></td>
       <td>{{substr($post->detail,0,50) }}</td>
       <td>
+      <b>Comments ({{ count($post->comments) }})</b>
+      </td>
+      <td>
         <a href="{{ route('posts.show',$post->id) }}"> <button class="show-role">Show</button></a>
-        @can('role-edit')
+        @can('post-edit')
         <a class="edit-r" href="{{ route('posts.edit',$post->id) }}"><button class="edit-role">Edit</button></a>
         @endcan
         @can('post-delete')
