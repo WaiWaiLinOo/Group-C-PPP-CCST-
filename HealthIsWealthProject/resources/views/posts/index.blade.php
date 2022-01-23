@@ -39,7 +39,7 @@
       <td> <img src="{{ asset('post_img/' . $post->post_img) }}" class="post_img" /></td>
       <td>{{substr($post->detail,0,50) }}</td>
       <td>
-      <b>Comments ({{ count($post->comments) }})</b>
+        <b>Comments ({{ count($post->comments) }})</b>
       </td>
       <td>
         <a href="{{ route('posts.show',$post->id) }}"> <button class="show-role">Details</button></a>
@@ -47,9 +47,11 @@
         <a class="edit-r" href="{{ route('posts.edit',$post->id) }}"><button class="edit-role">Edit</button></a>
         @endcan
         @can('post-delete')
-        {!! Form::open(['method' => 'DELETE','route' => ['posts.destroy', $post->id],'style'=>'display:inline;']) !!}
-        {!! Form::submit('Delete', ['class' => 'delete-role']) !!}
-        {!! Form::close() !!}
+        <a href="#" onclick="return confirm('Are you sure you want to delete this post!')">
+          {!! Form::open(['method' => 'DELETE','route' => ['posts.destroy', $post->id],'style'=>'display:inline;']) !!}
+          {!! Form::submit('Delete', ['class' => 'delete-role']) !!}
+          {!! Form::close() !!}
+        </a>
         @endcan
       </td>
     </tr>

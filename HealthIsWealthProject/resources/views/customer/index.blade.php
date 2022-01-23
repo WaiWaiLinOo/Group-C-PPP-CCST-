@@ -48,7 +48,7 @@
         <td>
           <a href=""><button class="btn btn-primary">Show</button></a>
           <a href="{{route('customers.edit',$customer->id)}}"><button class="edit">Edit</button></a>
-          <a href="">
+          <a href="" onclick="return confirm('Are you sure you want to delete this user!')">
             <form class="delete" style="display:inline-block" ; action="{{ url('user/delete/'.$customer->id) }}" method="POST">
               @csrf
               @method('DELETE')
