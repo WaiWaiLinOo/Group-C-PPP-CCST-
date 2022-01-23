@@ -27,18 +27,20 @@
         <h5>Medic Care
           <span>Health Specilist</span>
         </h5>
-       
+
+
         <ul class="pure-menu-list">
-          <li class="pure-menu-item"><a href="#home" class="pure-menu-link">Home</a></li>
-          <li class="pure-menu-item"><a href="#about" class="pure-menu-link">About</a></li>
-          <li class="pure-menu-item"><a href="#contact" class="pure-menu-link">Contact</a></li>
+
+
+          <li class="pure-menu-item  {{ Route::currentRouteNamed( 'homeside' ) ?  'active' : '' }}"><a href="{{route('homeside')}}" class="pure-menu-link ">Home</a></li>
+          <li class="pure-menu-item {{ Route::currentRouteNamed( 'aboutUs' ) ?  'active' : '' }}"><a href="{{route('aboutUs')}}" class="pure-menu-link ">About</a></li>
+          <li class="pure-menu-item {{ Route::currentRouteNamed( 'contactUs' ) ?  'active' : '' }}"><a href="{{route('contactUs')}}" class="pure-menu-link">Contact</a></li>
           @auth
-        
           @role('Admin')
           <li class="pure-menu-item"><a href="{{ route('customers.index') }}" class="pure-menu-link">Manage Users</a></li>
           <li class="pure-menu-item"><a href="{{ route('roles.index') }}" class="pure-menu-link">Manage Role</a></li>
           @endrole
-          @hasanyrole('Admin|SubAdmin')
+          @hasanyrole('Admin|Subadmin')
           <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
           @endhasanyrole
          @endauth
@@ -50,10 +52,10 @@
       <div class="header">
         <a class="pure-menu-heading" href="#company">Health is Wealth</a>
       </div>
-      <div class="pure-menu-lists clearfix">
+      <div class="auth-list clearfix">
         @guest
-        <li class="pure-menu-item "><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
-        <li class="pure-menu-item"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+        <li class="register"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+        <li class="login"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
         @else
         <li class="nav-item dropdown pure-menu-item ">
 
@@ -64,7 +66,7 @@
             <a class="dropdown-item" style="color: #000000" href="{{ route('profileView', Auth::user()->id) }}">
               {{ __('Profile') }}
             </a>
-            <a class="" style="color: #000000" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a class="dropdown-item" style="color: #000000;" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               {{ __('Logout') }}
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

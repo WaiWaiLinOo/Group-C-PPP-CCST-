@@ -42,6 +42,18 @@ class PostController extends Controller
         return view('posts.index', compact('posts'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
+    public function postView()
+    {
+        $posts = $this->postInterface->getPost();
+        return view('home', compact('posts'));
+    }
+    public function postDetail($id)
+    {
+        $posts = Post::find($id);
+        return view('customer.postdetail',compact('posts'));
+        //$posts = $this->postInterface->getPost();
+        //return view('customer.postdetail', compact('posts'));
+    }
 
     /**
      * Show the form for creating a new resource.

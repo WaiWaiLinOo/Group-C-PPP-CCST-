@@ -22,7 +22,7 @@ class PostDao implements PostDaoInterface
      */
     public function getPost()
     {
-        return Post::latest()->paginate(5);
+        return Post::latest()->paginate(20);
     }
 
     /**

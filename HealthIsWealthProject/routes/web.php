@@ -20,19 +20,21 @@ use App\Models\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home');
-});
+//
+//Route::get('/', function () {
+//    return view('home');
+//});
 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('user/register', [RegisterController::class, 'showRegistrationView'])->name('register');
 Route::post('user/register/confirm', [RegisterController::class, 'create'])->name('registeruser');
-
-
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', [PostController::class, 'postView'])->name('homeside');
+    Route::get('/detail/{id}', [PostController::class , 'postDetail'])->name('postdetail');
+    Route::get('/aboutus', [HomeController::class , 'aboutUs'])->name('aboutUs');
+    Route::get('/contactus', [HomeController::class , 'contactUs'])->name('contactUs');
     Route::resource('roles', RoleController::class);
     Route::resource('customers', CustomerController::class);
     Route::resource('posts', PostController::class);

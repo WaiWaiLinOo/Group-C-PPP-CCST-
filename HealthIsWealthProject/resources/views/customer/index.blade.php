@@ -13,7 +13,7 @@
     <input type="date" name="s_date" class="form-control">
     <label class="enddate">End Date :</label>
     <input type="date" name="e_date" class="form-control">
-    <input type="submit" name="submit" value="Search" id="submit" class="form-control">
+    <input type="submit" name="submit" value="Search" id="submited" class="form-control">
   </form>
 </div>
 <div class="create">
