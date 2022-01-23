@@ -36,7 +36,12 @@
     <tr>
       <td>{{ ++$i }}</td>
       <td>{{ $post->post_name }}</td>
-      <td> <img src="{{ asset('post_img/' . $post->post_img) }}" class="post_img" /></td>
+      <td>
+          @if($post->post_img)
+          <img src="{{ asset('post_img/' . $post->post_img) }}" class="post_img" />
+          @endif
+      </td>
+
       <td>{{substr($post->detail,0,50) }}</td>
       <td>
         <b>Comments ({{ count($post->comments) }})</b>
