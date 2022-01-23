@@ -52,13 +52,7 @@
         <span class="text-danger">{{ $errors->first('address') }}</span>
         @endif
       </div>
-      <div class="form-group">
-        <div class="form-group">
-          <strong>Role:</strong>
-          {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
-        </div>
-      </div>
-      <button type="submit" class="button-secondary pure-button">Register</button>
+     <button type="submit" class="button-secondary pure-button">Register</button>
     </div>
   </form>
 </div>

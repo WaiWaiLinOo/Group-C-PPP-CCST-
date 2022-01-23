@@ -42,7 +42,7 @@ class UserDao implements UserDaoInterface
             'address' => $request['address'],
 
         ]);
-        $user->assignRole($request->input('roles'));
+        $user->assignRole('User');
         return $user;
     }
 
