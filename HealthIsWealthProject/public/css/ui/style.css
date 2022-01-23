@@ -581,13 +581,12 @@ tbody tr td button{
     border-color: #2e52a0;
 }*/
 .delete button{
-    background-color: #c00f09;
+    background-color: #FF0000;
     padding: 7px 0px;
     border-radius: 7px;
-    border: 1px solid #c00f09;
+    border: 1px solid #FF0000;
     color: #ffffff;
     width: 120px;
-    border-color: #c00f09;
 }
 .delete button:hover{
     border-color: #c00f09;

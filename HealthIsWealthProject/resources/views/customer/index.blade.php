@@ -52,7 +52,7 @@
             <form class="delete" style="display:inline-block" ; action="{{ url('user/delete/'.$customer->id) }}" method="POST">
               @csrf
               @method('DELETE')
-              <button type="submit" style="width: 100px;" class="delete">Delete</button>
+              <button type="submit" style="width: 100px;" class="delete-role">Delete</button>
             </form>
           </a>
         </td>

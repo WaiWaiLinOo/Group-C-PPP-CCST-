@@ -40,7 +40,7 @@
           <li class="pure-menu-item"><a href="{{ route('customers.index') }}" class="pure-menu-link">Manage Users</a></li>
           <li class="pure-menu-item"><a href="{{ route('roles.index') }}" class="pure-menu-link">Manage Role</a></li>
           @endrole
-          @hasanyrole('Admin|Subadmin')
+          @hasanyrole('Admin|SubAdmin')
           <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
           @endhasanyrole
          @endauth
