@@ -2,13 +2,14 @@
 
 namespace App\Dao\customer;
 
-use App\Models\User;
-use App\Contracts\Dao\customer\CustomerDaoInterface;
-use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use App\Models\User;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Contracts\Dao\customer\CustomerDaoInterface;
 
 /**
  * Data accessing object for customer
@@ -45,7 +46,7 @@ class CustomerDao implements CustomerDaoInterface
 
     /**
      * to store from customerId
-     * @return View 
+     * @return View
      */
     public function storeUser($request)
     {
@@ -80,7 +81,8 @@ class CustomerDao implements CustomerDaoInterface
         $input = $request->all();
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
-        } else {
+        }
+        else {
             $input = Arr::except($input, array('password'));
         }
         $user = User::find($id);
@@ -127,4 +129,29 @@ class CustomerDao implements CustomerDaoInterface
     {
         return User::find($id)->delete();
     }
+    /**
+     * search user
+     * @param string $request
+     */
+    public function searchUser(Request $request)
+    {
+        $name = $request->name;
+        $start_date = $request->s_name;
+        $end_date = $request->e_date;
+
+        //$user = DB::table('users')
+        //    ->select('users.*');
+
+        //if ($name) {
+        //    $user->where('students.name', 'LIKE', '%' . $name . '%');
+        //}
+        //if ($start_date) {
+        //    $user->where('students.created_at', 'LIKE', '%' . $start_date . '%');
+        //}
+        //if ($end_date) {
+        //    $user->where('students.updated_at', 'LIKE', '%' . $end_date . '%');
+        //}
+        //return $user->get();
+    }
+
 }

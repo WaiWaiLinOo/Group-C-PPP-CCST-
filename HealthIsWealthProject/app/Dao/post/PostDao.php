@@ -34,11 +34,20 @@ class PostDao implements PostDaoInterface
         $post = new Post;
         $post->post_name = request()->post_name;
         $post->detail = request()->detail;
-        if ($post_img = $request->file('post_img')) {
-            $post_img = time() . '.' . $request->file('post_img')->clientExtension();
-            $request->file('post_img')->move('post_img', $post_img);
-            $post->post_img = $post_img;
+        //if ($post_img = $request->file('post_img')) {
+        //    $post_img = time() . '.' . $request->file('post_img')->clientExtension();
+        //    $request->file('post_img')->move('post_img', $post_img);
+        //    $post->post_img = $post_img;
+        //}
+        if($request->file()){
+            $fileName = time().'.'.$request->post_img->clientExtension();
+            $filePath = $request->file('post_img')->storeAs('userProfile',$fileName,'public');
+            //$path = 'storage/' . $fileName;
+            $post->post_img = $filePath;
+
         }
+
+
         $post->user_id = auth()->user()->id;
         $post->save();
         return $post;

@@ -19,6 +19,7 @@ class CustomerController extends Controller
      */
     private $customerInterface;
 
+
     /**
      * Create a new controller instance.
      * @return void
@@ -144,5 +145,14 @@ class CustomerController extends Controller
         $user = $this->customerInterface->deleteUser($id);
         return redirect()->route('customers.index')
             ->with('success', 'User deleted successfully');
+    }
+
+    /*
+    To search user
+    */
+    public function searchUser(Request $request)
+    {
+        $user = $this->customerInterface->searchUser($request);
+        return view('customer.index')->with(['users' => $user]);
     }
 }
