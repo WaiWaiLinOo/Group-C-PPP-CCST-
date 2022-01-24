@@ -1,97 +1,89 @@
-<html lang="{{ app()->getLocale() }}">
+<!doctype html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- CSRF Token -->
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ config('app.name', 'Laravel 8 User Roles and Permissions Tutorial') }}</title>
-  <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
-  <link href="{{ asset('css/library/fontawesome.all.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-  <!-- Fonts -->
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-  <!-- Styles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+  <title>Health Is Wealth</title>
+  <link rel="stylesheet" href="{{asset('css/ui/pure-min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/ui/style.css')}}">
+  <link rel="stylesheet" href="{{asset('css/ui/ui.js')}}">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <script src="{{ asset('js/app.js') }}" defer></script>
+
 </head>
 
 <body>
+  <div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+      <!-- Hamburger icon -->
+      <span></span>
+    </a>
 
-  <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-      <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-          Health Is Wealth
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Left Side Of Navbar -->
-          <ul class="navbar-nav mr-auto"></ul>
-          <!-- Right Side Of Navbar -->
-          <ul class="navbar-nav ml-auto">
-            <li class="home"><a class="nav-link" href="" class="active">HOME</a></li>
-            <li class="about"><a class="nav-link" href="">ABOUT US</a></li>
-            <li class="product"><a class="nav-link" href="">OUR POST</a></li>
-            <li class="contact"><a class="nav-link" href="">CONTACT US</a></li>
-            <!-- Authentication Links -->
-            @guest
-            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-            @else
-            <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }} <span class="caret"></span>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                  {{ __('Logout') }}
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-                </form>
-              </div>
-            </li>
-            @endguest
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <main class="py-4">
-      <div class="container">
-        @yield('content')
-      </div>
-    </main>
-  </div>
-  <section class="footer">
-    <div class="container">
-      <div class="footer-sub">
-        <div class="company">
-          <h4 id="health">Health is Wealth</h4>
-          <ul>
-            <li><i class="far fa-envelope"></i> health@info.com</li>
-            <li><i class="fas fa-phone-volume"></i>09-67890322</li>
-            <li><i class="fas fa-location-arrow"></i>Yangon,Myanmar</li>
-          </ul>
-        </div>
-        <div class="company">
-          <h4>About The Company</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, animi modi vitae sequi laboriosam ea exercitationem.</p>
-        </div>
-        <div class="company">
-          <h4>Health is Wealth</h4>
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <span class="input-group-text" id="basic-addon2">Sign up</span>
-          </div>
-        </div>
+    <div id="menu">
+      <div class="pure-menu ">
+        <h5>Medic Care
+          <span>Health Specilist</span>
+        </h5>
+
+
+        <ul class="pure-menu-list">
+
+
+          <li class="pure-menu-item  {{ Route::currentRouteNamed( 'homeside' ) ?  'active' : '' }}"><a href="{{route('homeside')}}" class="pure-menu-link ">Home</a></li>
+          <li class="pure-menu-item {{ Route::currentRouteNamed( 'aboutUs' ) ?  'active' : '' }}"><a href="{{route('aboutUs')}}" class="pure-menu-link ">About</a></li>
+          <li class="pure-menu-item {{ Route::currentRouteNamed( 'contactUs' ) ?  'active' : '' }}"><a href="{{route('contactUs')}}" class="pure-menu-link">Contact</a></li>
+          @auth
+          @role('Admin')
+          <li class="pure-menu-item"><a href="{{ route('customers.index') }}" class="pure-menu-link">Manage Users</a></li>
+          <li class="pure-menu-item"><a href="{{ route('roles.index') }}" class="pure-menu-link">Manage Role</a></li>
+          @endrole
+          @hasanyrole('Admin|SubAdmin')
+          <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
+          @endhasanyrole
+         @endauth
+        </ul>
       </div>
     </div>
-  </section>
+
+    <div id="main">
+      <div class="header">
+        <a class="pure-menu-heading" href="#company">Health is Wealth</a>
+      </div>
+      <div class="auth-list clearfix">
+        @guest
+        <li class="register"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+        <li class="login"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+        @else
+        <li class="nav-item dropdown pure-menu-item ">
+
+          <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->name }} <span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" style="color: #000000" href="{{ route('profileView', Auth::user()->id) }}">
+              {{ __('Profile') }}
+            </a>
+            <a class="dropdown-item" style="color: #000000;" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+            </form>
+          </div>
+        </li>
+
+        @endguest
+      </div>
+
+      @yield('content')
+    </div>
+
+
+
+  </div>
 </body>
 
 </html>

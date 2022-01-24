@@ -9,10 +9,17 @@ use Illuminate\Http\Request;
  */
 interface UserDaoInterface
 {
-    /**
-     * To save user()
-     */
-    public function saveUser(Request $request);
 
+  /**
+   * To save User with values from request
+   * @param Request $request request including inputs
+   * @return Object save user
+   */
+    public function saveUser(Request $request);
     
+     /**
+     * get data from role
+     * @return View role
+     */
+    public function getRole();
 }
