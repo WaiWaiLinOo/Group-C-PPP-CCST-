@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-@if (count($customers) > 0)
 <div class="title">
   <h1>User Management</h1>
 </div>
@@ -14,6 +13,8 @@
     <input type="date" name="e_date" class="form-control">
     <input type="submit" name="submit" value="Search" id="submit" class="form-control">
   </form>
+
+
 </div>
 <div class="create">
   <a href="{{ route('customers.create') }}"><button>Create User</button> </a>
@@ -31,19 +32,20 @@
       <th>Role</th>
       <th>Action</th>
     </thead>
+    @if (count($customers) > 0)
     <tbody>
       @foreach ($customers as $customer)
       <tr>
         <td>{{ $customer->id }}</td>
         <td>{{ $customer->name }}</td>
         <td>{{ $customer->email }}</td>
-        {{--<td>
+        <td>
           @if(!empty($customer->getRoleNames()))
           @foreach($customer->getRoleNames() as $v)
           <label class="badge badge-success">{{ $v }}</label>
           @endforeach
           @endif
-        </td>--}}
+        </td>
         <td>
           <a href=""><button class="btn btn-primary">Show</button></a>
           <a href="{{route('customers.edit',$customer->id)}}"><button class="edit">Edit</button></a>

@@ -152,7 +152,11 @@ class CustomerController extends Controller
     */
     public function searchUser(Request $request)
     {
-        $user = $this->customerInterface->searchUser($request);
-        return view('customer.index')->with(['customers' => $user]);
+        //if ($request) {
+            $user = $this->customerInterface->searchUser($request);
+            return view('customer.index')->with(['customers' => $user]);
+        //}else{
+        //    return view('customer.index')->with('Message','Input field required');
+        //}
     }
 }

@@ -136,21 +136,19 @@ class CustomerDao implements CustomerDaoInterface
     public function searchUser(Request $request)
     {
         $name = $request->name;
-        $start_date = $request->s_name;
+        $start_date = $request->s_date;
         $end_date = $request->e_date;
 
         $user = DB::table('users');
-
-        if ($name) {
-            $user->where('users.name', 'LIKE', '%' . $name . '%');
+            if ($name) {
+                $user->where('users.name', 'LIKE', '%' . $name . '%');
+            }
+            if ($start_date) {
+                $user->whereDate('users.created_at', '>=', $start_date);
+            }
+            if ($end_date) {
+                $user->whereDate('users.created_at', '<=', $end_date);
+            }
+            return $user->get();
         }
-        if ($start_date) {
-            $user->where('users.created_at', 'LIKE', '%' . $start_date . '%');
-        }
-        if ($end_date) {
-            $user->where('users.updated_at', 'LIKE', '%' . $end_date . '%');
-        }
-        return $user->get();
-    }
-
 }
