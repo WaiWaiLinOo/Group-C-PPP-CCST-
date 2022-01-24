@@ -27,7 +27,7 @@
         @foreach($posts->comments as $comment)
         <li class="list-group-item">
           @if (Auth::user()->id == $comment->user_id)
-          <a href="{{ route('commentDelete',$comment->id) }}" style="float:right;text-decoration:none">&#x2715</a>
+          <a href="{{ route('commentDelete',$comment->id) }}" style="float:right;text-decoration:none;background-color:red;color:white; padding:0 5px;border-radius:5px">&#x2715</a>
           @endif
           {{ $comment->content }}
           <div class="small mt-2">
