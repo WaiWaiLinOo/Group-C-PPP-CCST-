@@ -447,7 +447,7 @@ form div label{
     border: 1px solid black;
     margin-left: 106px;
     margin-top: 23px;
-    margin-bottom: 203px;
+    margin-bottom: 30px;
     border-radius: 5px;
 }
 .pull-right a{
@@ -564,7 +564,7 @@ tbody tr td button{
     margin-left: 61px;
 }
 .permission{
-    margin-top: -42px;
+    margin-top: -10px;
 }
 .btns
 {    margin-left: 144px;
@@ -791,4 +791,59 @@ input[type=submited]:hover {
   }
 .active{
     background-color: #132b5f;
+}
+.imgprofile img{
+    width: 250px;
+    height: 250px;
+
+}
+.imgprofile span{
+    display: block;
+    margin: 10px 45px;
+
+}
+.imgprofile a{
+    display: inline;
+}
+.imgprofile a button{
+    background: rgb(29, 97, 131);
+    border-radius: 10px;
+    padding: 7px 0;
+    border:1px solid rgb(29, 97, 131);
+    color: #ffffff;
+    width: 100px;
+    margin-bottom: 40px;
+    margin-left: 30px;
+}
+.imgprofile a .cancel{
+    background-color: gray;
+    border: 1px solid gray;
+}
+.imageshow{
+    width: 400px;
+    margin: 0 auto;
+    border: 1px solid #c5a5a5;
+    padding:16px 51px ;
+    border-radius: 10px;
+}
+.btnpost{
+    margin-right: 105px;
+}
+.buttons{
+    background: rgb(29, 97, 131);
+    border-radius: 10px;
+    padding: 7px 0;
+    border:1px solid rgb(29, 97, 131);
+    color: #ffffff;
+    width: 190px;
+    margin-bottom: 40px;
+    margin-left: 155px;
+}
+.showpermission
+{
+    width: 605px;
+    margin: 0 auto;
+}
+.showpermission h4{
+    margin-left: 110px;
 }

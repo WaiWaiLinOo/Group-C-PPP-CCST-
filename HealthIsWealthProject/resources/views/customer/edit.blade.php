@@ -44,7 +44,7 @@
               <strong>Role:</strong>
               {!! Form::select('roles[]', $roles = $datas['roles'],$userRole = $datas['userRole'], array('class' => 'form-control')) !!}
             </div>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="button-secondary">Update</button>
           </form>
     </div>
 </div>

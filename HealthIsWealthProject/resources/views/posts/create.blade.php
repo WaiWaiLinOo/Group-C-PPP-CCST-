@@ -14,12 +14,13 @@
   </ul>
 </div>
 @endif
-
-
+<div class="adduser">
+<div class="cardHeader">
+Create Post
+</div>
 <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
   @csrf
   <div class="register-form">
-    <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
           <strong>Post Name:</strong>
@@ -35,9 +36,9 @@
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="button-secondary btns">Submit</button>
+        <button type="submit" class="button-secondary btnpost">Submit</button>
       </div>
     </div>
-  </div>
 </form>
+</div>
 @endsection

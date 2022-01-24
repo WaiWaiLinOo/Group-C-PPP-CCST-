@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('user/delete/{id}', [CustomerController::class, 'destroy'])->name('destroyUser');
     Route::get('user/profile/{id}', [CustomerController::class,'profileView'])->name('profileView');
     Route::put('user/profile_update/{id}', [CustomerController::class,'profileUpdate'])->name('profileUpdate');
+    Route::get('profileshow/{id}', [CustomerController::class , 'profileshows'])->name('profileshows');
 });
 
 Route::post('/comments/add', [CommentController::class, 'create']);

@@ -2,15 +2,6 @@
 
 
 @section('content')
-<div class="row">
-  <div class="col-lg-12 margin-tb">
-    <div class="pull-left">
-      <h2>Edit Role</h2>
-    </div>
-  </div>
-</div>
-
-
 @if (count($errors) > 0)
 <div class="alert alert-danger">
   <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -21,17 +12,17 @@
   </ul>
 </div>
 @endif
-
+<div class="adduser">
+<div class="cardHeader">Edit Role</div>
 {!! Form::model($role = $datas['role'], ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
 <div class="register-form">
-  <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="form-group">
         <strong>Name:</strong>
         {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
       </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="col-xs-12 col-sm-12 col-md-12 permission">
       <div class="form-group">
         <strong>Permission:</strong>
         <br />
@@ -43,11 +34,10 @@
       </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-      <button type="submit" class="button-secondary">Update</button>
+      <button type="submit" class="button-secondary btnpost">Update</button>
     </div>
-  </div>
 </div>
 {!! Form::close() !!}
-
+</div>
 
 @endsection
