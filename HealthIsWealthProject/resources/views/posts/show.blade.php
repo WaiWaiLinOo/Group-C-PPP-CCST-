@@ -6,7 +6,7 @@
 <div class="detail">
     <div class="img">
         <p style="font-size: 30px;margin-left:0px">{{$post->post_name}}<br></p>
-        <img src="{{asset('post_img/'. $post->post_img)}}" alt="">
+        <img src="{{asset('post_img/'. $post->post_img)}}">
     </div>
     <div class="text">
         <span style="color:blue;">Posted at {{ $post->created_at->diffForHumans() }}</span><br><br>

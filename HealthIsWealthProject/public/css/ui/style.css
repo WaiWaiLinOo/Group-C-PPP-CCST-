@@ -847,3 +847,7 @@ input[type=submited]:hover {
 .showpermission h4{
     margin-left: 110px;
 }
+.img img{
+    width: 400px;
+    height: 400px;
+}
