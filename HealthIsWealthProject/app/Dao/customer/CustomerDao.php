@@ -2,11 +2,12 @@
 
 namespace App\Dao\customer;
 
-use DB;
+
 use Hash;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Contracts\Dao\customer\CustomerDaoInterface;
@@ -131,7 +132,6 @@ class CustomerDao implements CustomerDaoInterface
     }
     /**
      * search user
-     * @param string $request
      */
     public function searchUser(Request $request)
     {
@@ -139,19 +139,18 @@ class CustomerDao implements CustomerDaoInterface
         $start_date = $request->s_name;
         $end_date = $request->e_date;
 
-        //$user = DB::table('users')
-        //    ->select('users.*');
+        $user = DB::table('users')->get();
 
-        //if ($name) {
-        //    $user->where('students.name', 'LIKE', '%' . $name . '%');
-        //}
-        //if ($start_date) {
-        //    $user->where('students.created_at', 'LIKE', '%' . $start_date . '%');
-        //}
-        //if ($end_date) {
-        //    $user->where('students.updated_at', 'LIKE', '%' . $end_date . '%');
-        //}
-        //return $user->get();
+        if ($name) {
+            $user->where('users.name', 'LIKE', '%' . $name . '%');
+        }
+        if ($start_date) {
+            $user->where('users.created_at', 'LIKE', '%' . $start_date . '%');
+        }
+        if ($end_date) {
+            $user->where('users.updated_at', 'LIKE', '%' . $end_date . '%');
+        }
+        return $user;
     }
 
 }

@@ -5,7 +5,6 @@
   <h1>User Management</h1>
 </div>
 <div class="search">
-
   <form action="" class="form-group searchgroup">
     <label class="name">Name</label>
     <input type="text" name="name" id="name" class="form-control">
