@@ -1,31 +1,31 @@
 @extends('layouts.app')
 @section('content')
-    <main class="container" style="background-color: #fff;">
-        <section id="contact-us">
-            <h1 style="padding-top: 50px;">Edit Category!</h1>
-           
-            <!-- Contact Form -->
-            <div class="contact-form">
-                <form action="{{ route('categories.update', $category) }}" method="post" >
-                    @method('put')
-                    @csrf
-                    <!-- name -->
-                    <label for="name"><span>Name</span></label>
-                    <input type="text" id="name" name="name" value="{{ $category->name }}" />
-                    @error('name')
-                        {{-- The $attributeValue field is/must be $validationRule --}}
-                        <p style="color: red; margin-bottom:25px;">{{ $message }}</p>
-                    @enderror
-                
-                    <!-- Button -->
-                    <input type="submit" value="Submit" />
-                </form>
-            </div>
-            <div class="create-categories">
-                <a href="{{route('categories.index')}}">Categories list <span>&#8594;</span></a>
-            </div>
-        </section>
-    </main>
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+  <strong>Whoops!</strong> There were some problems with your input.<br><br>
+  <ul>
+    @foreach ($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
+<div class="adduser">
+  <div class="cardHeader">Edit Cagetory</div>
+  <form action="{{ route('categories.update', $category) }}" method="POST">
+    @csrf
+    @method('PUT')
+    <div class="register-form">
+
+      <div class="form-group">
+        <strong>Category Name:</strong>
+        <input type="text" id="name" name="name" class="form-control" value="{{ $category->name }}" placeholder="Category name">
+      </div>
+      <button type="submit" class="button-secondary btns">Update</button>
+      <div class="create-categories">
+        <a href="{{route('categories.index')}}">Categories list <span>&#8594;</span></a>
+      </div>
+    </div>
+  </form>
+</div>
 @endsection
-
-

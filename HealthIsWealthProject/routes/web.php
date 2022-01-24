@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('customers', CustomerController::class);
     Route::resource('posts', PostController::class);
+    // Category resource controller
+    Route::resource('/categories', CategoryController::class);
     Route::delete('user/delete/{id}', [CustomerController::class, 'destroy'])->name('destroyUser');
     Route::get('user/profile/{id}', [CustomerController::class,'profileView'])->name('profileView');
     Route::put('user/profile_update/{id}', [CustomerController::class,'profileUpdate'])->name('profileUpdate');
@@ -48,5 +50,3 @@ Route::group(['middleware' => ['auth']], function () {
 Route::post('/comments/add', [CommentController::class, 'create']);
 Route::get('/comments/delete/{id}', [CommentController::class,'delete'])->name('commentDelete');
 
-// Category resource controller
-Route::resource('/categories', CategoryController::class);

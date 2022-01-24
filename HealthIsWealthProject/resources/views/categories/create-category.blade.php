@@ -1,30 +1,22 @@
 @extends('layouts.app')
 @section('content')
-   <main class="container" style="background-color: #fff;">
-        <section id="contact-us">
-            <h1 style="padding-top: 50px;">Create New Category!</h1>
-           
-            <!-- Contact Form -->
-            <div class="contact-form">
-                <form action="{{ route('categories.store') }}" method="post" >
-                    @csrf
-                    <!-- name -->
-                    <label for="name"><span>Name</span></label>
-                    <input type="text" id="name" name="name" value="{{ old('name') }}" />
-                    @error('name')
-                        {{-- The $attributeValue field is/must be $validationRule --}}
-                        <p style="color: red; margin-bottom:25px;">{{ $message }}</p>
-                    @enderror
-                
-                    <!-- Button -->
-                    <input type="submit" value="Submit" />
-                </form>
+<div class="adduser">
+    <div class="cardHeader">Add Category</div>
+    <form class="register-form" method="POST" action="{{ route('categories.store') }}">
+        @csrf
+        <div class="registerform">
+            <div class="form-group">
+                <label for="name">Category Name : </label>
+                <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" autofocus>
+                @if ($errors->has('name'))
+                <span class="text-danger">{{ $errors->first('name') }}</span>
+                @endif
             </div>
+            <button type="submit" class="button-secondary">Submit</button>
             <div class="create-categories">
                 <a href="{{route('categories.index')}}">Categories list <span>&#8594;</span></a>
             </div>
-        </section>
-    </main>
+        </div>
+    </form>
+</div>
 @endsection
-
-
