@@ -22,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Contracts\Dao\post\PostDaoInterface', 'App\Dao\post\PostDao');
         //Comment 
         $this->app->bind('App\Contracts\Dao\comment\CommentDaoInterface', 'App\Dao\comment\CommentDao');
+        //Category
+        $this->app->bind('App\Contracts\Dao\category\CategoryDaoInterface', 'App\Dao\category\CategoryDao');
         // Business logic registration
         $this->app->bind('App\Contracts\Services\auth\UserServiceInterface', 'App\Services\auth\UserService');
         /*Customer*/
@@ -32,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Contracts\Services\post\PostServiceInterface', 'App\Services\post\PostService');
         //Comment 
         $this->app->bind('App\Contracts\Services\comment\CommentServiceInterface', 'App\Services\comment\CommentService');
+        //Category
+        $this->app->bind('App\Contracts\Services\category\CategoryServiceInterface', 'App\Services\category\CategoryService');
 
     }
 

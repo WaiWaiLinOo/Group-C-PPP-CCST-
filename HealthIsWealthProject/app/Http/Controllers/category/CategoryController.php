@@ -5,6 +5,7 @@ namespace App\Http\Controllers\category;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Contracts\Services\category\CategoryServiceInterface;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -13,12 +14,22 @@ use Spatie\Permission\Models\Permission;
 
 class CategoryController extends Controller
 {
-    public function __construct()
+     /**
+     * customer interface
+     */
+    private $categoryInterface;
+
+    /**
+     * Create a new controller instance.
+     * @return void
+     */
+    public function __construct(CategoryServiceInterface $categoryServiceInterface)
     {
         $this->middleware('permission:category-list|category-create|category-edit|category-delete', ['only' => ['index', 'store']]);
         $this->middleware('permission:category-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:category-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:category-delete', ['only' => ['destroy']]);
+        $this->categoryInterface = $categoryServiceInterface;
     }
     /**
      * Display a listing of the resource.
@@ -27,7 +38,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = $this->categoryInterface->getCategory();
+        //$categories = Category::all();
         return view('categories.index-categories', compact('categories'));
     }
 
@@ -52,12 +64,12 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required | unique:categories',
         ]);
-        
-        $name = $request->input('name');
-        $category = new Category();
-        $category->name = $name;
-
-        $category->save();
+        $category = $this->categoryInterface->storeCategory($request);
+//        $name = $request->input('name');
+//        $category = new Category();
+//        $category->name = $name;
+//
+//        $category->save();
         return redirect()->route('categories.index')
             ->with('success', 'Category Created Successfully');
     }
@@ -96,12 +108,12 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required | unique:categories',
         ]);
-        
-        $name = $request->input('name');
-       
-        $category->name = $name;
-
-        $category->save();
+        $category = $this->categoryInterface->updateCategory($request,$category);
+//        $name = $request->input('name');
+//       
+//        $category->name = $name;
+//
+//        $category->save();
         
         return redirect(route('categories.index'))->with('status', 'Category Edited Successfully');
     }
@@ -114,8 +126,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-
+        $category = $this->categoryInterface->deleteCategory($category);
+        //$category->delete();
         return redirect()->back()->with('status', 'Category Deleted Successfully');
     }
 }
