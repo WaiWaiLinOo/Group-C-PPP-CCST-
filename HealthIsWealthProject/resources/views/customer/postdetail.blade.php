@@ -15,10 +15,11 @@
   <div class="detail">
     <div class="img">
       <p style="font-size: 30px;margin-left:0px">{{$posts->post_name}}<br></p>
+      <span style="color:blue;">Posted at {{ $posts->created_at->diffForHumans() }}</span><br><br>
       <img style="width: 500px; height:500px" src="{{asset('post_img/'. $posts->post_img)}}" alt="">
     </div>
     <div class="text">
-      <span style="color:blue;">Posted at {{ $posts->created_at->diffForHumans() }}</span><br><br>
+      <p style="font-size: 20px;">Category from <span style="color:blue; font-size:20px">{{$posts->Category->name}}</span></p><br><br>
       <span style="text-indent: 20px">{{$posts->detail}}</span><br><br>
       <ul class="list-group mb-2">
         <li class="list-group-item active">
