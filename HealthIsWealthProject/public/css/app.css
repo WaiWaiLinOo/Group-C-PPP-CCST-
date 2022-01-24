@@ -5559,6 +5559,7 @@ a.badge-dark.focus {
   margin-left: 88px;
 }
 
+
 .alert-success hr {
   border-top-color: #b3e8ca;
 }
@@ -5599,6 +5600,8 @@ a.badge-dark.focus {
   color: #761b18;
   background-color: #f9d6d5;
   border-color: #f7c6c5;
+  width: 946px;
+  margin-left: 88px;
 }
 
 .alert-danger hr {

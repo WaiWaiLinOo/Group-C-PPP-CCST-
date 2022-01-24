@@ -49,9 +49,9 @@ class PostDao implements PostDaoInterface
      */
     public function deletePost($post)
     {
-        if ($post->user_id == auth()->user()->id || auth()->user()->id == 1) {
+        //if ($post->user_id == auth()->user()->id || auth()->user()->id == 1) {
             $post->delete();
-        }
+        //}
         //return Post::find($id)->delete();
         return $post;
     }

@@ -50,7 +50,7 @@ class PostController extends Controller
     public function postDetail($id)
     {
         $posts = Post::find($id);
-        return view('customer.postdetail',compact('posts'));
+        return view('customer.postdetail', compact('posts'));
         //$posts = $this->postInterface->getPost();
         //return view('customer.postdetail', compact('posts'));
     }
@@ -127,8 +127,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post = $this->postInterface->deletePost($post);
-        return redirect()->route('posts.index')
-            ->with('success', 'Post deleted successfully');
+        if ($post->user_id == auth()->user()->id || auth()->user()->id == 1) {
+            $post = $this->postInterface->deletePost($post);
+            return redirect()->route('posts.index')
+                ->with('success', 'Post deleted hi successfully');
+        } else {
+            return redirect()->route('posts.index')
+                ->with('error', 'Writted User can only delete');
+        }
     }
 }
