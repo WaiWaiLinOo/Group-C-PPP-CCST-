@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('content')
+<a href="{{ route('homeside') }}"><button class="button-secondary" style="width: 100px;margin-bottom:29px;margin-left:229px;">Back</button></a>
 <div class="content">
 <div class="detail">
     <div class="img">
         <p style="font-size: 30px;margin-left:0px">{{$posts->post_name}}<br></p>
-        <img src="{{asset('post_img/'. $posts->post_img)}}" alt="">
+        <img style="width: 500px; height:500px" src="{{asset('post_img/'. $posts->post_img)}}" alt="">
     </div>
     <div class="text">
         <span style="color:blue;">Posted at {{ $posts->created_at->diffForHumans() }}</span><br><br>
