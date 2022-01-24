@@ -153,6 +153,6 @@ class CustomerController extends Controller
     public function searchUser(Request $request)
     {
         $user = $this->customerInterface->searchUser($request);
-        return view('customer.index')->with(['users' => $user]);
+        return view('customer.index')->with(['customers' => $user]);
     }
 }

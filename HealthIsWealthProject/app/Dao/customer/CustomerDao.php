@@ -139,7 +139,7 @@ class CustomerDao implements CustomerDaoInterface
         $start_date = $request->s_name;
         $end_date = $request->e_date;
 
-        $user = DB::table('users')->get();
+        $user = DB::table('users');
 
         if ($name) {
             $user->where('users.name', 'LIKE', '%' . $name . '%');
@@ -150,7 +150,7 @@ class CustomerDao implements CustomerDaoInterface
         if ($end_date) {
             $user->where('users.updated_at', 'LIKE', '%' . $end_date . '%');
         }
-        return $user;
+        return $user->get();
     }
 
 }

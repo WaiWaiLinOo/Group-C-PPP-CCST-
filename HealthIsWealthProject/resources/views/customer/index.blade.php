@@ -5,7 +5,7 @@
   <h1>User Management</h1>
 </div>
 <div class="search">
-  <form action="" class="form-group searchgroup">
+  <form action="{{route('customer.index')}}" class="form-group searchgroup">
     <label class="name">Name</label>
     <input type="text" name="name" id="name" class="form-control">
     <label>Start Date :</label>
@@ -37,13 +37,13 @@
         <td>{{ $customer->id }}</td>
         <td>{{ $customer->name }}</td>
         <td>{{ $customer->email }}</td>
-        <td>
+        {{--<td>
           @if(!empty($customer->getRoleNames()))
           @foreach($customer->getRoleNames() as $v)
           <label class="badge badge-success">{{ $v }}</label>
           @endforeach
           @endif
-        </td>
+        </td>--}}
         <td>
           <a href=""><button class="btn btn-primary">Show</button></a>
           <a href="{{route('customers.edit',$customer->id)}}"><button class="edit">Edit</button></a>
