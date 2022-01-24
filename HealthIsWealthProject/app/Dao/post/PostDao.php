@@ -40,6 +40,7 @@ class PostDao implements PostDaoInterface
             $post->post_img = $post_img;
         }
         $post->user_id = auth()->user()->id;
+        $post->category_id = request()->category_id;
         $post->save();
         return $post;
     }
@@ -83,6 +84,7 @@ class PostDao implements PostDaoInterface
             $post->post_img = $post_img;
         }
         $post->user_id = auth()->user()->id;
+        $post->category_id = request()->category_id;
         $post->update();
         return "Post updated successfully";
     }

@@ -9,6 +9,7 @@ use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Comment\CommentController;
+use App\Http\Controllers\category\CategoryController;
 use App\Models\User;
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,6 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::post('/comments/add', [CommentController::class, 'create']);
 Route::get('/comments/delete/{id}', [CommentController::class,'delete'])->name('commentDelete');
+
+// Category resource controller
+Route::resource('/categories', CategoryController::class);
