@@ -102,4 +102,7 @@ class CustomerService implements CustomerServiceInterface
     public function profileUpdate($request, $id){
         return $this->customerDao->profileUpdate($request, $id);
     }
+    public function exportPDF(){
+        return $this->customerDao->exportPDF();
+    }
 }

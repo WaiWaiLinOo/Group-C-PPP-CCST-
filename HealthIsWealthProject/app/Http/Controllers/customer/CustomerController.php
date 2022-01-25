@@ -12,6 +12,7 @@ use Hash;
 use Illuminate\Support\Arr;
 use Spatie\Permission\Models\Permission;
 use PDF;
+use com;
 
 class CustomerController extends Controller
 {
@@ -153,16 +154,10 @@ class CustomerController extends Controller
 
     public function generatePDF()
     {
-        //$users = User::all();
-        ////$pdf = app('dompdf.wrapper');
-        //$pdf = PDF::loadView('myPDF',  ['users'=>$users]);
-        ////$pdf->loadView('myPDF', ['data'=>$data]);
-        //return $pdf->stream('data.pdf');
-
-        $data = User::all();
-        view()->share('data',$data);
+        $this->customerInterface->exportPDF();
         $pdf = PDF::loadview('myPDF');
         return $pdf->download('data.pdf');
+
     }
 
 

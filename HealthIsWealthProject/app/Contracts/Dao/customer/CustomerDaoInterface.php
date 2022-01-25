@@ -28,13 +28,13 @@ interface CustomerDaoInterface
      * @return View role
      */
     public function getRole();
-    
+
     /**
      * get data from customer id
      * @return View customer
      */
     public function getUserId($id);
-   
+
     /**
      * To show user in user edit form
      *@param $id
@@ -62,4 +62,6 @@ interface CustomerDaoInterface
      * @return string $message message for success or not
      */
     public function deleteUser($id);
+
+    public function exportPDF();
 }

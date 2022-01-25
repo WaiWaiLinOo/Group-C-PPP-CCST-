@@ -9,6 +9,7 @@ use DB;
 use Hash;
 use Illuminate\Support\Arr;
 use Spatie\Permission\Models\Permission;
+use PDF;
 
 /**
  * Data accessing object for customer
@@ -45,7 +46,7 @@ class CustomerDao implements CustomerDaoInterface
 
     /**
      * to store from customerId
-     * @return View 
+     * @return View
      */
     public function storeUser($request)
     {
@@ -126,5 +127,9 @@ class CustomerDao implements CustomerDaoInterface
     public function deleteUser($id)
     {
         return User::find($id)->delete();
+    }
+    public function exportPDF(){
+        $data = User::all();
+        view()->share('data',$data);
     }
 }
