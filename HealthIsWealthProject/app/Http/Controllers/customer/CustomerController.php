@@ -123,8 +123,8 @@ class CustomerController extends Controller
     }
     public function profileshows($id)
     {
-       $data = User::find($id);
-       return view('customer.profileshow',compact('data'));;
+        $data = User::find($id);
+        return view('customer.profileshow', compact('data'));;
     }
     /**
      * To update user profile
@@ -149,5 +149,34 @@ class CustomerController extends Controller
         $user = $this->customerInterface->deleteUser($id);
         return redirect()->route('customers.index')
             ->with('success', 'User deleted successfully');
+    }
+
+    /**
+     * Show the form for email to send.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showMailForm()
+    {
+        return view('customer.emailForm');
+    }
+
+    /**
+     * Send email
+     * 
+     * @param \Illuminate\Http\Request $request 
+     * @return \Illuminate\Http\Response
+     */
+    public function postMailForm(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        // Check email is sent successfully or not
+        if ($this->customerInterface->sendMail($request)) {
+            return redirect('/')
+                ->with('success', 'Email is sent successfully.');
+        }
     }
 }
