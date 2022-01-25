@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Contracts\Services\customer;
-
 use Illuminate\Http\Request;
 
 /**
@@ -63,6 +62,13 @@ interface CustomerServiceInterface
 
     public function deleteUser($id);
 
+     /**
+     * To send email to specified email
+     * 
+     * @param Request $request request with inputs
+     * @return bool
+     */
+    public function sendMail(Request $request);
     /**
      * To search user
      * @return string $message message for success or not
