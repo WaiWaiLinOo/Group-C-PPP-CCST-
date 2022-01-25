@@ -39,5 +39,5 @@ interface PostDaoInterface
      * @param $request
      * @param $id
      */
-    public function deletePost($id);
+    public function deletePost($post);
 }

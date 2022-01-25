@@ -97,7 +97,7 @@ h6 {
 
 p {
   margin-top: 0;
-  margin-left: 74px;
+  /*margin-left: 74px;*/
   margin-bottom: 1rem;
 }
 
@@ -5555,7 +5555,10 @@ a.badge-dark.focus {
   color: #1d643b;
   background-color: #d7f3e3;
   border-color: #c7eed8;
+  width: 946px;
+  margin-left: 88px;
 }
+
 
 .alert-success hr {
   border-top-color: #b3e8ca;
@@ -5597,6 +5600,8 @@ a.badge-dark.focus {
   color: #761b18;
   background-color: #f9d6d5;
   border-color: #f7c6c5;
+  width: 946px;
+  margin-left: 88px;
 }
 
 .alert-danger hr {

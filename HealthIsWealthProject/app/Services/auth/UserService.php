@@ -35,5 +35,13 @@ class UserService implements UserServiceInterface
         return $this->userDao->saveUser($request);
     }
 
+     /**
+     * get data from role
+     * @return View role
+     */
+    public function getRole(){
+        return $this->userDao->getRole();
+    }
+
 
 }

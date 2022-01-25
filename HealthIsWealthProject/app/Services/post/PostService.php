@@ -50,9 +50,9 @@ class PostService implements PostServiceInterface
      * @param string $deletedPostId
      * @return string $message message for success or not
      */
-    public function deletePost($id)
+    public function deletePost($post)
     {
-        return $this->postDao->deletePost($id);
+        return $this->postDao->deletePost($post);
     }
 
     /**

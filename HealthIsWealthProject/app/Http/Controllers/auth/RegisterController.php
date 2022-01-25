@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\auth;
 
 use App\Models\User;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Contracts\Services\auth\UserServiceInterface;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserCreateRequest;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\WelcomeEmailNotification;
+use App\Contracts\Services\auth\UserServiceInterface;
+
 
 class RegisterController extends Controller
 {
@@ -22,7 +25,6 @@ class RegisterController extends Controller
 
     /**
      * Create a new controller instance.
-     *
      * @return void
      */
     public function __construct(UserServiceInterface $userServiceInterface)
@@ -33,19 +35,18 @@ class RegisterController extends Controller
 
     /**
      * Where to redirect users after registration.
-     *
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Where to redirect auth.register
-     *
      * @var string
      */
     protected function showRegistrationView()
     {
-        return view('auth.register');
+        $roles = $this->userInterface->getRole();
+        return view('auth.register',compact('roles'));
     }
 
     /**
@@ -56,8 +57,10 @@ class RegisterController extends Controller
     protected function create(UserCreateRequest $request)
     {
         $validated = $request->validated();
+        $roles = $this->userInterface->getRole();
         $user = $this->userInterface->saveUser($request, $validated);
+        $user->notify(new WelcomeEmailNotification($user));
         return redirect()
-            ->route('home');
+            ->route('home',compact('user','roles'));
     }
 }

@@ -1,36 +1,25 @@
 @extends('layouts.app')
+
 @section('content')
+
 <div class="content">
-  <div class="sub-content">
-    <h2 class="content-subhead">About our company</h2>
-    <p>
-      To use this layout, you can just copy paste the HTML, along with the CSS in <a href="/layouts/side-menu/styles.css" alt="Side Menu CSS">side-menu.css</a>, and the JavaScript in <a href="/js/ui.js">ui.js</a>. The JS file uses vanilla JavaScript to simply toggle an <code>active</code> class that makes the menu responsive.
-    </p>
+    @foreach ($posts as $post)
+    <div class="responsive">
+        <div class="gallery">
+        @if($post->post_img)
+          <a target="_blank" href="img_5terre.jpg">
+            <img src="{{asset('post_img/'.$post->post_img)}}" width="600px" height="300px">
+          </a>
+        @endif
+          <div class="desc">
+              <span>{{$post->post_name}}</span><br>
+              <a href="{{route('postdetail',$post->id)}}">Detail Here</a><br>
+             <span style="margin-left: 10px; font-size:10px;">Posted at {{ $post->created_at->diffForHumans() }}</span>
 
-    <h2 class="content-subhead">Our Services</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
+          </div>
+        </div>
+      </div>
 
-    <div class="pure-g">
-      <div class="pure-u-1-4">
-        <img class="pure-img-responsive" src="http://farm3.staticflickr.com/2875/9069037713_1752f5daeb.jpg" alt="Peyto Lake">
-      </div>
-      <div class="pure-u-1-4">
-        <img class="pure-img-responsive" src="http://farm3.staticflickr.com/2813/9069585985_80da8db54f.jpg" alt="Train">
-      </div>
-      <div class="pure-u-1-4">
-        <img class="pure-img-responsive" src="http://farm6.staticflickr.com/5456/9121446012_c1640e42d0.jpg" alt="T-Shirt Store">
-      </div>
-      <div class="pure-u-1-4">
-        <img class="pure-img-responsive" src="http://farm8.staticflickr.com/7357/9086701425_fda3024927.jpg" alt="Mountain">
-      </div>
-    </div>
+    @endforeach
 
-    <h2 class="content-subhead">Try Resizing your Browser</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-  </div>
-</div>
 @endsection

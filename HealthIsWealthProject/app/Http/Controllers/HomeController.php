@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Contracts\Services\post\PostServiceInterface;
 
 class HomeController extends Controller
 {
@@ -11,9 +12,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(PostServiceInterface $postServiceInterface)
     {
         $this->middleware('auth');
+        $this->postInterface = $postServiceInterface;
     }
 
     /**
@@ -23,6 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $posts = $this->postInterface->getPost();
+        return view('home', compact('posts'));
+    }
+    public function aboutUs()
+    {
+        return view('aboutus');
+    }
+    public function contactUs()
+    {
+        return view('contactus');
     }
   }

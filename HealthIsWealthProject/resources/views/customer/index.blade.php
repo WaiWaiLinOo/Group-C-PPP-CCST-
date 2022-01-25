@@ -11,7 +11,7 @@
     <input type="date" name="s_date" class="form-control">
     <label class="enddate">End Date :</label>
     <input type="date" name="e_date" class="form-control">
-    <input type="submit" name="submit" value="Search" id="submit" class="form-control">
+    <input type="submit" name="submit" value="Search" id="submited" class="form-control">
   </form>
 
 
@@ -36,7 +36,7 @@
     <tbody>
       @foreach ($customers as $customer)
       <tr>
-        <td>{{ $customer->id }}</td>
+        {{--<td>{{ ++$i }}</td>--}}
         <td>{{ $customer->name }}</td>
         <td>{{ $customer->email }}</td>
         {{--<td>
@@ -49,11 +49,11 @@
         <td>
           <a href=""><button class="btn btn-primary">Show</button></a>
           <a href="{{route('customers.edit',$customer->id)}}"><button class="edit">Edit</button></a>
-          <a href="">
+          <a href="" onclick="return confirm('Are you sure you want to delete this user!')">
             <form class="delete" style="display:inline-block" ; action="{{ url('user/delete/'.$customer->id) }}" method="POST">
               @csrf
               @method('DELETE')
-              <button type="submit" style="width: 100px;" class="delete">Delete</button>
+              <button type="submit" style="width: 100px;" class="delete-role">Delete</button>
             </form>
           </a>
         </td>

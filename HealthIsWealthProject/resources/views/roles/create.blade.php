@@ -14,11 +14,12 @@
   </ul>
 </div>
 @endif
-
-
+<div class="adduser">
+<div class="cardHeader">
+    Create New Role
+</div>
 {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
 <div class="register-form">
-  <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="form-group">
         <strong>Name:</strong>
@@ -39,9 +40,9 @@
       </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-      <button type="submit" class="button-secondary btns">Submit</button>
+      <button type="submit" class="button-secondary btnpost">Submit</button>
     </div>
-  </div>
 </div>
 {!! Form::close() !!}
+</div>
 @endsection

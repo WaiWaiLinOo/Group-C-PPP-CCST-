@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\customer;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Http\Controllers\Controller;
-use App\Contracts\Services\customer\CustomerServiceInterface;
-use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use App\Models\User;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
+use App\Notifications\WelcomeEmailNotification;
+use App\Contracts\Services\customer\CustomerServiceInterface;
 
 class CustomerController extends Controller
 {
@@ -68,7 +69,7 @@ class CustomerController extends Controller
             'roles' => 'required'
         ]);
         $user = $this->customerInterface->storeUser($request);
-
+        $user->notify(new WelcomeEmailNotification($user));
         return redirect()->route('customers.index')
             ->with('success', 'User created successfully');
     }
@@ -121,7 +122,11 @@ class CustomerController extends Controller
         $datas = $this->customerInterface->userEditView($id);
         return view('customer.profile', compact('datas'));
     }
-
+    public function profileshows($id)
+    {
+       $data = User::find($id);
+       return view('customer.profileshow',compact('data'));;
+    }
     /**
      * To update user profile
      * @param $id

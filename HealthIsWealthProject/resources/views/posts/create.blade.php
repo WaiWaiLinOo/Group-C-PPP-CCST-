@@ -13,13 +13,13 @@
   </ul>
 </div>
 @endif
-
-
+<div class="adduser">
+<div class="cardHeader">
+Create Post
+</div>
 <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
   @csrf
   <div class="register-form">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
           <strong>Post Name:</strong>
           <input type="text" name="post_name" class="form-control" placeholder="Post name">
@@ -32,11 +32,20 @@
           <strong>Details:</strong>
           <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
         </div>
-      </div>
+      <!--test -->
+       <!-- Drop down -->
+       <label for="categories"><span>Choose a category:</span></label>
+        <select name="category_id" id="categories">
+            <option selected disabled>Select option </option>
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
+      <!--test -->
       <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="button-secondary btns">Submit</button>
+        <button type="submit" class="button-secondary btnpost">Submit</button>
       </div>
-    </div>
   </div>
 </form>
+</div>
 @endsection
