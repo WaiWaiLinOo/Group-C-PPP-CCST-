@@ -11,6 +11,7 @@ use DB;
 use Hash;
 use Illuminate\Support\Arr;
 use Spatie\Permission\Models\Permission;
+use PDF;
 
 class CustomerController extends Controller
 {
@@ -149,4 +150,15 @@ class CustomerController extends Controller
         return redirect()->route('customers.index')
             ->with('success', 'User deleted successfully');
     }
+
+    public function generatePDF()
+    {
+        $users = User::all();
+        //$pdf = app('dompdf.wrapper');
+        $pdf = PDF::loadView('myPDF',  ['users'=>$users]);
+        //$pdf->loadView('myPDF', ['data'=>$data]);
+        return $pdf->stream('data.pdf');
+    }
+
+
 }

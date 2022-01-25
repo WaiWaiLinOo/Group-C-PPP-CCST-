@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('user/profile/{id}', [CustomerController::class,'profileView'])->name('profileView');
     Route::put('user/profile_update/{id}', [CustomerController::class,'profileUpdate'])->name('profileUpdate');
     Route::get('profileshow/{id}', [CustomerController::class , 'profileshows'])->name('profileshows');
+    Route::get('generate-pdf', [CustomerController::class , 'generatePDF'])->name('exportpdf');
 });
 
 Route::post('/comments/add', [CommentController::class, 'create']);
