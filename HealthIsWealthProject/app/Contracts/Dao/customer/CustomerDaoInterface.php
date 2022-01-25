@@ -67,5 +67,5 @@ interface CustomerDaoInterface
      * @return string $message message for success or not
      */
     public function searchUser(Request $request);
-
+    public function exportPDF();
 }

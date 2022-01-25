@@ -47,8 +47,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/search', [CustomerController::class,'searchUser'])->name('customer.index');
 
     Route::get('profileshow/{id}', [CustomerController::class , 'profileshows'])->name('profileshows');
+
 });
 
 Route::post('/comments/add', [CommentController::class, 'create']);
 Route::get('/comments/delete/{id}', [CommentController::class,'delete'])->name('commentDelete');
-
+Route::get('/exportpdf', [CustomerController::class , 'generatePDF'])->name('exportpdf');

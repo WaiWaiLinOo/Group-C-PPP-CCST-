@@ -60,6 +60,7 @@ interface CustomerServiceInterface
      * @param string $deletedUserId deleted user id
      * @return string $message message for success or not
      */
+
     public function deleteUser($id);
 
     /**
@@ -67,4 +68,5 @@ interface CustomerServiceInterface
      * @return string $message message for success or not
      */
     public function searchUser(Request $request);
+    public function exportPDF();
 }

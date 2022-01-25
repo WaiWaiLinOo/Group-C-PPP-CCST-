@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Contracts\Dao\customer\CustomerDaoInterface;
+use PDF;
 
 /**
  * Data accessing object for customer
@@ -151,4 +152,8 @@ class CustomerDao implements CustomerDaoInterface
             }
             return $user->get();
         }
+    public function exportPDF(){
+        $data = User::all();
+        view()->share('data',$data);
+    }
 }

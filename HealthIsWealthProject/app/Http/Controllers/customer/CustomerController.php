@@ -12,6 +12,8 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
 use App\Notifications\WelcomeEmailNotification;
 use App\Contracts\Services\customer\CustomerServiceInterface;
+use PDF;
+use com;
 
 class CustomerController extends Controller
 {
@@ -162,4 +164,13 @@ class CustomerController extends Controller
             return view('customer.index')->with(['customers' => $user]);
 
     }
+    public function generatePDF()
+    {
+        $this->customerInterface->exportPDF();
+        $pdf = PDF::loadview('myPDF');
+        return $pdf->download('data.pdf');
+
+    }
+
+
 }
