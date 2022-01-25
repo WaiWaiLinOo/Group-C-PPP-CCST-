@@ -2,6 +2,8 @@
 
 namespace App\Contracts\Services\customer;
 
+use Illuminate\Http\Request;
+
 /**
  * Interface for customer service
  */
@@ -51,12 +53,20 @@ interface CustomerServiceInterface
      *@param $request
      */
     public function profileUpdate($request, $id);
-    
+
     /**
      * To delete user by id
      * @param string $id user id
      * @param string $deletedUserId deleted user id
      * @return string $message message for success or not
      */
+
     public function deleteUser($id);
+
+    /**
+     * To search user
+     * @return string $message message for success or not
+     */
+    public function searchUser(Request $request);
+    public function exportPDF();
 }

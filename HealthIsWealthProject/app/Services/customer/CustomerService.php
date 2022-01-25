@@ -2,6 +2,7 @@
 
 namespace App\Services\customer;
 
+use Illuminate\Http\Request;
 use App\Contracts\Dao\customer\CustomerDaoInterface;
 use App\Contracts\Services\customer\CustomerServiceInterface;
 
@@ -101,5 +102,13 @@ class CustomerService implements CustomerServiceInterface
      */
     public function profileUpdate($request, $id){
         return $this->customerDao->profileUpdate($request, $id);
+    }
+    public function searchUser(Request $request)
+    {
+        return $this->customerDao->searchUser($request);
+    }
+
+    public function exportPDF(){
+        return $this->customerDao->exportPDF();
     }
 }

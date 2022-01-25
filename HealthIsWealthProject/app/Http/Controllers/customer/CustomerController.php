@@ -12,6 +12,8 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
 use App\Notifications\WelcomeEmailNotification;
 use App\Contracts\Services\customer\CustomerServiceInterface;
+use PDF;
+use com;
 
 class CustomerController extends Controller
 {
@@ -19,6 +21,7 @@ class CustomerController extends Controller
      * customer interface
      */
     private $customerInterface;
+
 
     /**
      * Create a new controller instance.
@@ -150,4 +153,24 @@ class CustomerController extends Controller
         return redirect()->route('customers.index')
             ->with('success', 'User deleted successfully');
     }
+
+    /*
+    To search user
+    */
+    public function searchUser(Request $request)
+    {
+            $user = $this->customerInterface->searchUser($request);
+            //$roles = $this->customerInterface->getRole();
+            return view('customer.index')->with(['customers' => $user]);
+
+    }
+    public function generatePDF()
+    {
+        $this->customerInterface->exportPDF();
+        $pdf = PDF::loadview('myPDF');
+        return $pdf->download('data.pdf');
+
+    }
+
+
 }
