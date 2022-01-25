@@ -19,6 +19,7 @@
 <div class="create">
   <a href="{{ route('customers.create') }}"><button>Create User</button> </a>
   <a  href="/mail"><button>Email All data</button></a>
+  <a  href="/exportpdf"><button>Export Pdf</button></a>
 </div>
 
 <div class="panel panel-default">

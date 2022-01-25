@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
 use App\Notifications\WelcomeEmailNotification;
 use App\Contracts\Services\customer\CustomerServiceInterface;
+use PDF;
 
 class CustomerController extends Controller
 {
@@ -179,4 +180,11 @@ class CustomerController extends Controller
                 ->with('success', 'Email is sent successfully.');
         }
     }
+    public function exportpdf(){
+        $data = User::all();
+        view()->share('data',$data);
+        $pdf = PDF::loadview('exportpdf');
+        return $pdf->download('data.pdf');
+    }
+    
 }

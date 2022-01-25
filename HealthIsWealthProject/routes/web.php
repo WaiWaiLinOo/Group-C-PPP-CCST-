@@ -52,3 +52,5 @@ Route::post('/mail', [CustomerController::class, 'postMailForm'])->name('postMai
 
 Route::post('/comments/add', [CommentController::class, 'create']);
 Route::get('/comments/delete/{id}', [CommentController::class, 'delete'])->name('commentDelete');
+//export pdf 
+Route::get('/exportpdf', [CustomerController::class, 'exportpdf'])->name('exportpdf');
