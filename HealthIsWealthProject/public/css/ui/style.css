@@ -523,7 +523,7 @@ form div label{
     width: 500px;
     background-color: #ffffff;
 }
-.register-form .certificate input{
+.register-form .certificate input,.register-form .categories{
     padding: 4px 5px;
     border: 1px solid #ccbdbd;
     border-radius: 5px;

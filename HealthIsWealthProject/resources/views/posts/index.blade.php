@@ -2,19 +2,18 @@
 
 
 @section('content')
-<div class="row">
-  <div class="col-lg-12 margin-tb">
-    <div class="pull-left">
-      <h2>Post Management</h2>
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2>Post Management</h2>
+            </div>
+            <div class="create-role">
+                @can('role-create')
+                    <a href="{{ route('posts.create') }}"><button>Create New Post</button></a>
+                @endcan
+            </div>
+        </div>
     </div>
-    <div class="create-role">
-      @can('post-create')
-      <a href="{{ route('posts.create') }}"><button>Create New Post</button></a>
-      @endcan
-    </div>
-  </div>
-</div>
-
 
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
@@ -35,7 +34,7 @@
       <th>Details</th>
       <th>Categories</th>
       <th>Comment Number</th>
-      <th width="460px">Action</th>
+      <th>Action</th>
     </tr>
     @foreach ($posts as $key => $post)
     <tr>
@@ -69,8 +68,20 @@
       </td>
     </tr>
     @endforeach
-  </table>
-</div>
+    </table>
+    </div>
 
-{!! $posts->render() !!}
+    {!! $posts->render() !!}
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 @endsection
