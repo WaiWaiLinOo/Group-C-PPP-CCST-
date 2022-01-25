@@ -153,11 +153,16 @@ class CustomerController extends Controller
 
     public function generatePDF()
     {
-        $users = User::all();
-        //$pdf = app('dompdf.wrapper');
-        $pdf = PDF::loadView('myPDF',  ['users'=>$users]);
-        //$pdf->loadView('myPDF', ['data'=>$data]);
-        return $pdf->stream('data.pdf');
+        //$users = User::all();
+        ////$pdf = app('dompdf.wrapper');
+        //$pdf = PDF::loadView('myPDF',  ['users'=>$users]);
+        ////$pdf->loadView('myPDF', ['data'=>$data]);
+        //return $pdf->stream('data.pdf');
+
+        $data = User::all();
+        view()->share('data',$data);
+        $pdf = PDF::loadview('myPDF');
+        return $pdf->download('data.pdf');
     }
 
 
