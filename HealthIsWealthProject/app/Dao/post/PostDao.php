@@ -97,4 +97,11 @@ class PostDao implements PostDaoInterface
         $post->update();
         return "Post updated successfully";
     }
+
+    /**
+     * To get post list for excel export
+     */
+    public function exportPostList(){
+        return Post::all();
+    }
 }

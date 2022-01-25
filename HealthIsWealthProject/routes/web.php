@@ -47,6 +47,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/search', [CustomerController::class,'searchUser'])->name('customer.index');
 
     Route::get('profileshow/{id}', [CustomerController::class , 'profileshows'])->name('profileshows');
+    Route::post('import', [PostController::class, 'import'])->name('import');
+    Route::get('export', [PostController::class, 'export'])->name('export');
     //for mail 
 Route::get('/mail', [CustomerController::class, 'showMailForm'])->name('showMailForm');
 Route::post('/mail', [CustomerController::class, 'postMailForm'])->name('postMailForm');

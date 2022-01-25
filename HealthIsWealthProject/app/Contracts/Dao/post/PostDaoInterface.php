@@ -40,4 +40,9 @@ interface PostDaoInterface
      * @param $id
      */
     public function deletePost($post);
+
+    /**
+     * To get post list for excel export
+     */
+    public function exportPostList();
 }

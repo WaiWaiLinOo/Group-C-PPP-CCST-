@@ -34,6 +34,22 @@ interface PostServiceInterface
     public function updatePost($request, $id);
 
     /**
+     * Excel file import
+     * @param $request
+     */
+    public function importExcel($request);
+
+    /**
+     * To get post list for excel export
+     */
+    public function exportPostList();
+    
+    /**
+     * Excel file Export
+     */
+    public function exportExcel();
+
+    /**
      * To delete post by id
      * @param string $id post id
      * @param string $deletedPostId

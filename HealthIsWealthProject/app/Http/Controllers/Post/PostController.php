@@ -122,6 +122,31 @@ class PostController extends Controller
             ->with('success', $message);
     }
 
+    /**
+     * Excel file Import
+     * @param $request
+     */
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+        $this->postInterface->importExcel($request);
+        $posts = $this->postInterface->getPost();
+        return view('posts.index', compact('posts'))
+        ->with('i', (request()->input('page', 1) - 1) * 5);
+
+    }
+
+
+    /**
+    * Excel file export
+    *@return
+    */
+    public function export()
+    {
+        return $this->postInterface->exportExcel();
+    }
 
     /**
      * To delelte post
