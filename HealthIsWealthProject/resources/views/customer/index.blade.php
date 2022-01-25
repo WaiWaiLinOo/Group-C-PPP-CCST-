@@ -18,7 +18,7 @@
 </div>
 <div class="create">
   <a href="{{ route('customers.create') }}"><button>Create User</button> </a>
-  <a href="{{route('exportpdf')}}"><button>ExportPDF</button></a>
+  <a href="/exportpdf"><button>ExportPDF</button></a>
 </div>
 
 <div class="panel panel-default">

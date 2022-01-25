@@ -47,4 +47,4 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::post('/comments/add', [CommentController::class, 'create']);
 Route::get('/comments/delete/{id}', [CommentController::class,'delete'])->name('commentDelete');
-    Route::get('generate-pdf', [CustomerController::class , 'generatePDF'])->name('exportpdf');
+Route::get('/exportpdf', [CustomerController::class , 'generatePDF'])->name('exportpdf');
