@@ -14,6 +14,9 @@
       <a href="{{ route('posts.create') }}"><button>Create New Post</button></a>
       <a class="js-open-modal" href="#" data-modal-id="popup1"><button>Import excel file</button></a>
       <a href="{{ route('export') }}"><button>Export excel file</button></a>
+      @role('Admin')
+      <a href="/graph"><button>View Post Graph</button></a>
+      @endrole
       @endcan
     </div>
   </div>
