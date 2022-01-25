@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Post;
 
 use DB;
 use App\Models\Post;
-use App\Imports\PostsImport;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Permission;
 use App\Contracts\Services\post\PostServiceInterface;
 
@@ -41,7 +40,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = $this->postInterface->getPost();
-        return view('posts.index', compact('posts'))
+        $categories = Category::all();
+        return view('posts.index', compact('posts','categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
     public function postView()
@@ -63,7 +63,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create',compact('categories'));
     }
 
     /**
@@ -99,8 +100,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::all();
         $post = $this->postInterface->editPost($id);
-        return view('posts.edit', compact('post'));
+        return view('posts.edit', compact('post','categories'));
     }
 
     /**
@@ -133,15 +135,15 @@ class PostController extends Controller
         $posts = $this->postInterface->getPost();
         return view('posts.index', compact('posts'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
-        
+
     }
 
-  
+
     /**
     * Excel file export
     *@return
     */
-    public function export() 
+    public function export()
     {
         return $this->postInterface->exportExcel();
     }

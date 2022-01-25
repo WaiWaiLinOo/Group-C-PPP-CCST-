@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserCreateRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\WelcomeEmailNotification;
 use App\Contracts\Services\auth\UserServiceInterface;
 
 
@@ -58,6 +59,7 @@ class RegisterController extends Controller
         $validated = $request->validated();
         $roles = $this->userInterface->getRole();
         $user = $this->userInterface->saveUser($request, $validated);
+        $user->notify(new WelcomeEmailNotification($user));
         return redirect()
             ->route('home',compact('user','roles'));
     }

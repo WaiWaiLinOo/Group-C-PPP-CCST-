@@ -37,10 +37,12 @@
           <li class="pure-menu-item  {{ Route::currentRouteNamed( 'homeside' ) ?  'active' : '' }}"><a href="{{route('homeside')}}" class="pure-menu-link ">Home</a></li>
           <li class="pure-menu-item {{ Route::currentRouteNamed( 'aboutUs' ) ?  'active' : '' }}"><a href="{{route('aboutUs')}}" class="pure-menu-link ">About</a></li>
           <li class="pure-menu-item {{ Route::currentRouteNamed( 'contactUs' ) ?  'active' : '' }}"><a href="{{route('contactUs')}}" class="pure-menu-link">Contact</a></li>
+         
           @auth
           @role('Admin')
           <li class="pure-menu-item"><a href="{{ route('customers.index') }}" class="pure-menu-link">Manage Users</a></li>
           <li class="pure-menu-item"><a href="{{ route('roles.index') }}" class="pure-menu-link">Manage Role</a></li>
+          <li class="pure-menu-item"><a href="{{ route('categories.index') }}" class="pure-menu-link">Manage Category</a></li>
           @endrole
           @hasanyrole('Admin|SubAdmin')
           <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>

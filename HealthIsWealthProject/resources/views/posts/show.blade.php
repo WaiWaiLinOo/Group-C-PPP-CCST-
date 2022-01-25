@@ -16,10 +16,11 @@
   <div class="detail">
     <div class="img">
       <p style="font-size: 30px;margin-left:0px">{{$post->post_name}}<br></p>
+      <span style="color:blue;">Posted at {{ $post->created_at->diffForHumans() }}</span><br><br>
       <img src="{{asset('post_img/'. $post->post_img)}}">
     </div>
     <div class="text">
-      <span style="color:blue;">Posted at {{ $post->created_at->diffForHumans() }}</span><br><br>
+      <p style="font-size: 20px;">Category from <span style="color:blue; font-size:20px">{{$post->Category->name}}</span></p><br><br>
       <span style="text-indent: 20px">{{$post->detail}}</span><br><br>
       <ul class="list-group mb-2">
         <li class="list-group-item active">
@@ -28,7 +29,7 @@
         @foreach($post->comments as $comment)
         <li class="list-group-item">
           @if (Auth::user()->id == $comment->user_id)
-          <a href="{{ route('commentDelete',$comment->id) }}" style="float:right;text-decoration:none">&#x2715</a>
+          <a href="{{ route('commentDelete',$comment->id) }}" style="float:right;text-decoration:none;background-color:red;color:white; padding:0 5px;border-radius:5px">&#x2715</a>
           @endif
           {{ $comment->content }}
           <div class="small mt-2">
