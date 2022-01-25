@@ -12,6 +12,8 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
 use App\Notifications\WelcomeEmailNotification;
 use App\Contracts\Services\customer\CustomerServiceInterface;
+use PDF;
+use com;
 
 class CustomerController extends Controller
 {
@@ -19,6 +21,7 @@ class CustomerController extends Controller
      * customer interface
      */
     private $customerInterface;
+
 
     /**
      * Create a new controller instance.
@@ -123,8 +126,8 @@ class CustomerController extends Controller
     }
     public function profileshows($id)
     {
-       $data = User::find($id);
-       return view('customer.profileshow',compact('data'));;
+        $data = User::find($id);
+        return view('customer.profileshow', compact('data'));;
     }
     /**
      * To update user profile
@@ -150,4 +153,52 @@ class CustomerController extends Controller
         return redirect()->route('customers.index')
             ->with('success', 'User deleted successfully');
     }
+
+    /**
+     * Show the form for email to send.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showMailForm()
+    {
+        return view('customer.emailForm');
+    }
+
+    /**
+     * Send email
+     * 
+     * @param \Illuminate\Http\Request $request 
+     * @return \Illuminate\Http\Response
+     */
+    public function postMailForm(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        // Check email is sent successfully or not
+        if ($this->customerInterface->sendMail($request)) {
+            return redirect('/')
+                ->with('success', 'Email is sent successfully.');
+        }
+    }
+    /*
+    To search user
+    */
+    public function searchUser(Request $request)
+    {
+            $user = $this->customerInterface->searchUser($request);
+            //$roles = $this->customerInterface->getRole();
+            return view('customer.index')->with(['customers' => $user]);
+
+    }
+    public function generatePDF()
+    {
+        $this->customerInterface->exportPDF();
+        $pdf = PDF::loadview('myPDF');
+        return $pdf->download('data.pdf');
+
+    }
+
+
 }

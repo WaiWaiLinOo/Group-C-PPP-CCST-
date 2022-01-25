@@ -2,10 +2,12 @@
 
 
 @section('content')
-<div class="row">
-  <div class="col-lg-12 margin-tb">
-    <div class="pull-left">
-      <h2>Post Management</h2>
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2>Post Management</h2>
+            </div>
+          </div>
     </div>
     <div class="create-role">
       @can('post-create')
@@ -42,8 +44,9 @@
   <p>{{ $message }}</p>
 </div>
 @endif
+
 <div class="panel">
-  <table class="table" id="first">
+<table class="table" id="first">
     <tr>
       <th>No</th>
       <th>Name</th>
@@ -51,7 +54,7 @@
       <th>Details</th>
       <th>Categories</th>
       <th>Comment Number</th>
-      <th width="460px">Action</th>
+      <th>Action</th>
     </tr>
     @foreach ($posts as $key => $post)
     <tr>
@@ -85,8 +88,21 @@
       </td>
     </tr>
     @endforeach
-  </table>
-</div>
+    </table>
+    </div>
+   
 
-{!! $posts->render() !!}
+    {!! $posts->render() !!}
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 @endsection

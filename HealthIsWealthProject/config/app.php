@@ -175,6 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -234,6 +235,7 @@ return [
         * Package Service Providers...
         */
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

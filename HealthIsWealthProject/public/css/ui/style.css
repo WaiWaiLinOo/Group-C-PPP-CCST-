@@ -526,7 +526,7 @@ form div label {
 
 .panel {
     width: 80%;
-    margin-left: 75px;
+    margin-left: 212px;
 }
 
 .panel table {
@@ -574,9 +574,7 @@ form div label {
     background-color: #ffffff;
     border-radius: 5px;
 }
-
-.register-form .certificate input {
-    width: 500px;
+.register-form .certificate input,.register-form .categories{
     padding: 4px 5px;
     border: 1px solid #ccbdbd;
     background-color: #ffffff;
@@ -611,7 +609,7 @@ tbody tr td button {
 .create-role a button {
     width: 162px;
     margin-bottom: 30px;
-    margin-left: 61px;
+    margin-left: 86px;
     padding: 7px 0px;
     border: 1px solid #2f65dc;
     background-color: #193063;
