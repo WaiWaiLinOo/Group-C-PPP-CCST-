@@ -39,13 +39,13 @@
         <td>{{ $customer->id }}</td>
         <td>{{ $customer->name }}</td>
         <td>{{ $customer->email }}</td>
-        <td>
+        {{--<td>
           @if(!empty($customer->getRoleNames()))
           @foreach($customer->getRoleNames() as $v)
           <label class="badge badge-success">{{ $v }}</label>
           @endforeach
           @endif
-        </td>
+        </td>--}}
         <td>
           <a href=""><button class="btn btn-primary">Show</button></a>
           <a href="{{route('customers.edit',$customer->id)}}"><button class="edit">Edit</button></a>
