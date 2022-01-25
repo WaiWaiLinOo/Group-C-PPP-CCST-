@@ -2,6 +2,10 @@
 
 namespace App\Services\post;
 
+use App\Exports\PostsExport;
+use App\Imports\PostsImport;
+use Hamcrest\Core\HasToString;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Contracts\Dao\post\PostDaoInterface;
 use App\Contracts\Services\post\PostServiceInterface;
 
@@ -75,4 +79,31 @@ class PostService implements PostServiceInterface
     {
         return $this->postDao->editPost($id);
     }
+
+     /**
+     * Excel file Import
+     * @param $request
+     */
+    public function importExcel($request)
+    {
+        return Excel::import(new PostsImport,$request->file('file'));
+    }
+
+    /**
+     * To get post list for excel export
+     * @return array 
+     */
+    public function exportPostList()
+    {
+        return $this->postDao->exportPostList();
+    }
+
+    /**
+     * Excel file Export
+     */
+    public function exportExcel()
+    {
+       return Excel::download(new PostsExport($this->postDao), 'posts.xlsx');
+    }
+    
 }

@@ -10,11 +10,27 @@
     <div class="create-role">
       @can('post-create')
       <a href="{{ route('posts.create') }}"><button>Create New Post</button></a>
+      <a class="js-open-modal" href="#" data-modal-id="popup1"><button>Import excel file</button></a>
+      <a href="{{ route('export') }}"><button>Export excel file</button></a>
       @endcan
     </div>
   </div>
 </div>
 
+<div id="popup1" class="modal-box">
+  <header> <a href="#" class="js-modal-close close">×</a>
+    <h3>Import Post Data</h3>
+  </header>
+  <div class="modal-body">
+    <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+      @csrf
+      <input type="file" name="file" class="form-control" accept=".xls,.xlsx" required>
+      <br>
+      <button>Upload</button>
+      Sample excel file. <a href="{{ asset('sample/sample_post.xlsx') }}">Download Now!</a>
+    </form>
+  </div>
+</div>
 
 @if ($message = Session::get('success'))
 <div class="alert alert-success">

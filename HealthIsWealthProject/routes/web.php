@@ -42,6 +42,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('user/profile/{id}', [CustomerController::class,'profileView'])->name('profileView');
     Route::put('user/profile_update/{id}', [CustomerController::class,'profileUpdate'])->name('profileUpdate');
     Route::get('profileshow/{id}', [CustomerController::class , 'profileshows'])->name('profileshows');
+    Route::post('import', [PostController::class, 'import'])->name('import');
+    Route::get('export', [PostController::class, 'export'])->name('export');
 });
 
 Route::post('/comments/add', [CommentController::class, 'create']);
