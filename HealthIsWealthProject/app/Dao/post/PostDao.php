@@ -2,14 +2,15 @@
 
 namespace App\Dao\post;
 
-use App\Models\Post;
-use App\Contracts\Dao\post\PostDaoInterface;
-use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Arr;
+use Spatie\Permission\Models\Role;
 use PhpParser\Node\Expr\AssignOp\Pow;
 use Spatie\Permission\Models\Permission;
+use App\Contracts\Dao\post\PostDaoInterface;
 
 /**
  * Data accessing object for post
@@ -20,9 +21,26 @@ class PostDao implements PostDaoInterface
      * to get data from database
      * @return View get data
      */
-    public function getPost()
+    public function getPost($request)
     {
-        return Post::latest()->paginate(20);
+        if ($request->search) {
+            $posts = Post::where('post_name', 'like', '%' . $request->search . '%')
+                ->orWhere('detail', 'like', '%' . $request->search . '%')->latest()->paginate(4);
+        } elseif ($request->category) {
+            $posts = Category::where('name', $request->category)->firstOrFail()->posts()->paginate(3)->withQueryString();
+        } else {
+            $posts = Post::latest()->paginate(20);
+        }
+        return $posts;
+    }
+
+    /**
+     * get data from database
+     * @return View getdata
+     */
+    public function getCategory()
+    {
+        return Category::all();
     }
 
     /**
@@ -34,12 +52,11 @@ class PostDao implements PostDaoInterface
         $post = new Post;
         $post->post_name = request()->post_name;
         $post->detail = request()->detail;
-        if($request->file()){
-            $fileName = time().'.'.$request->post_img->clientExtension();
-            $filePath = $request->file('post_img')->storeAs('post_img',$fileName,'public');
+        if ($request->file()) {
+            $fileName = time() . '.' . $request->post_img->clientExtension();
+            $filePath = $request->file('post_img')->storeAs('post_img', $fileName, 'public');
             $path = 'storage/' . $filePath;
             $post->post_img = $path;
-
         }
 
         $post->user_id = auth()->user()->id;
@@ -47,16 +64,14 @@ class PostDao implements PostDaoInterface
         $post->save();
         return $post;
     }
+
     /**
      * @param string $id post id
      * @param string $deletedPostId deleted
      */
     public function deletePost($post)
     {
-        //if ($post->user_id == auth()->user()->id || auth()->user()->id == 1) {
-            $post->delete();
-        //}
-        //return Post::find($id)->delete();
+        $post->delete();
         return $post;
     }
 
@@ -95,7 +110,8 @@ class PostDao implements PostDaoInterface
     /**
      * To get post list for excel export
      */
-    public function exportPostList(){
+    public function exportPostList()
+    {
         return Post::all();
     }
 }

@@ -162,6 +162,10 @@ class CustomerDao implements CustomerDaoInterface
         }
         return $user->get();
     }
+
+    /**
+     * export pdf
+     */
     public function exportPDF()
     {
         $data = User::all();

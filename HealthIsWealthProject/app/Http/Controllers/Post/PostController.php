@@ -39,33 +39,29 @@ class PostController extends Controller
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = $this->postInterface->getPost();
-        $categories = Category::all();
-        return view('posts.index', compact('posts','categories'))
+        $posts = $this->postInterface->getPost($request);
+        $categories = $this->postInterface->getCategory();
+        return view('posts.index', compact('posts', 'categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
+
+    /**
+     * Display a listing of the resource.
+     * @return \Illuminate\Http\Response
+     */
     public function postView(Request $request)
     {
-        //test 
-        if($request->search){
-            $posts = Post::where('post_name', 'like', '%' . $request->search . '%')
-            ->orWhere('detail', 'like', '%' . $request->search . '%')->latest()->paginate(4);
-        } elseif($request->category){
-            $posts = Category::where('name', $request->category)->firstOrFail()->posts()->paginate(3)->withQueryString();
-            //$posts = Category::where('name', 'like', '%' . $request->search . '%');
-        }
-        else{
-            $posts = Post::latest()->paginate(4);
-        }
-
-        $categories = Category::all();
-        //test 
-        //$categories = Category::all();
-        //$posts = $this->postInterface->getPost();
-        return view('home', compact('posts','categories'));
+        $posts = $this->postInterface->getPost($request);
+        $categories = $this->postInterface->getCategory();
+        return view('home', compact('posts', 'categories'));
     }
+
+    /**
+     * Display a listing of the resource.
+     * @return \Illuminate\Http\Response
+     */
     public function postDetail($id)
     {
         $posts = Post::find($id);
@@ -78,8 +74,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('posts.create',compact('categories'));
+        $categories = $this->postInterface->getCategory();
+        return view('posts.create', compact('categories'));
     }
 
     /**
@@ -91,9 +87,7 @@ class PostController extends Controller
     {
         request()->validate([
             'post_name' => 'required',
-            'post_img' =>'required',
-            //'detail' => 'required',
-            //'category_id','required',
+            'post_img' => 'required',
         ]);
         //$validated = $request->validated();
         $post = $this->postInterface->storePost($request);
@@ -118,9 +112,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::all();
+        $categories = $this->postInterface->getCategory();
         $post = $this->postInterface->editPost($id);
-        return view('posts.edit', compact('post','categories'));
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -150,17 +144,16 @@ class PostController extends Controller
             'file' => 'required|mimes:xls,xlsx'
         ]);
         $this->postInterface->importExcel($request);
-        $posts = $this->postInterface->getPost();
+        $posts = $this->postInterface->getPost($request);
         return view('posts.index', compact('posts'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
-
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
 
     /**
-    * Excel file export
-    *@return
-    */
+     * Excel file export
+     *@return
+     */
     public function export()
     {
         return $this->postInterface->exportExcel();

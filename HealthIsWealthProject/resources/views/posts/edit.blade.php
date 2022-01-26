@@ -19,7 +19,7 @@
     @method('PUT')
     <div class="register-form">
 
-     <div class="form-group">
+      <div class="form-group">
         <strong>Post Name:</strong>
         <input type="text" name="post_name" class="form-control" value="{{ $post->post_name }}" placeholder="Post name">
       </div>
@@ -28,7 +28,6 @@
         <input type="file" class="form-control" name="post_img" id="post_img">
         <img src="{{ asset('post_img/' . $post->post_img) }}" class="post_img" />
       </div>
-      <!--test -->
       <!-- Drop down -->
       <label for="categories"><span>Choose a category:</span></label>
       <select name="category_id" id="categories">
@@ -40,7 +39,6 @@
         @endif
         @endforeach
       </select>
-      <!--test -->
       <div class="form-group">
         <strong>Details:</strong>
         <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ $post->detail }}</textarea>

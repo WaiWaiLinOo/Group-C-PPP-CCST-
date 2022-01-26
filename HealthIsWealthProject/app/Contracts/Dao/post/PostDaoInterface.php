@@ -13,7 +13,13 @@ interface PostDaoInterface
      * get data from database
      * @return View getdata
      */
-    public function getPost();
+    public function getPost($request);
+
+    /**
+     * get data from database
+     * @return View getdata
+     */
+    public function getCategory();
 
     /**
      * store user

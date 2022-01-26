@@ -128,12 +128,24 @@ class CustomerService implements CustomerServiceInterface
             return redirect('/')->with('status', 'Students is absent!');
         }
     }
+
+    /**
+     * To search user
+     *@param $id
+     *@param $request
+     */
     public function searchUser(Request $request)
     {
         return $this->customerDao->searchUser($request);
     }
 
-    public function exportPDF(){
+    /**
+     * To expor pdf
+     *@param $id
+     *@param $request
+     */
+    public function exportPDF()
+    {
         return $this->customerDao->exportPDF();
     }
 }

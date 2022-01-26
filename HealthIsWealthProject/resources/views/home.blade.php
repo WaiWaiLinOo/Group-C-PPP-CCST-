@@ -4,22 +4,21 @@
 
 <div class="content">
   <!--test -->
-<div class="searchbar">
-  <form action="">
-    <input type="text" placeholder="Search post name or detail..." name="search" />
-    <button type="submit">
-      <i class="fa fa-search">Search</i>
-    </button>
-  </form>
-</div>
-<div class="categories">
-  <ul>
-    @foreach ($categories as $category)
-    <li><a href="{{route('homeside', ['category' => $category->name ])}}">{{ $category->name }}</a></li>
-    @endforeach
-  </ul>
-</div>
-<!--test -->
+  <div class="searchbar">
+    <form action="">
+      <input type="text" placeholder="Search post name or detail..." name="search" />
+      <button type="submit">
+        <i class="fa fa-search">Search</i>
+      </button>
+    </form>
+  </div>
+  <div class="categories">
+    <ul>
+      @foreach ($categories as $category)
+      <li><a href="{{route('homeside', ['category' => $category->name ])}}">{{ $category->name }}</a></li>
+      @endforeach
+    </ul>
+  </div>
   @foreach ($posts as $post)
   <div class="responsive">
     <div class="gallery">

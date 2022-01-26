@@ -31,11 +31,11 @@ interface RoleDaoInterface
      *@param $request
      */
     public function getRoleId($id);
-    
+
     /**
      * To edit role
      *@param $id
-    */
+     */
     public function editRole($id);
 
     /**
@@ -43,7 +43,7 @@ interface RoleDaoInterface
      *@param $request
      *@param $id
      */
-    public function updateRole($request,$id);
+    public function updateRole($request, $id);
 
     /**
      * To delete role by id

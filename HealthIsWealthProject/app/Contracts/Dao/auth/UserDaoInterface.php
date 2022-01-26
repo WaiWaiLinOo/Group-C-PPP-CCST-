@@ -15,12 +15,12 @@ interface UserDaoInterface
    * @param Request $request request including inputs
    * @return Object save user
    */
-    public function saveUser(Request $request);
+  public function saveUser(Request $request);
 
 
-     /**
-     * get data from role
-     * @return View role
-     */
-    public function getRole();
+  /**
+   * get data from role
+   * @return View role
+   */
+  public function getRole();
 }

@@ -25,7 +25,7 @@ interface RoleServiceInterface
      */
     public function storeRole($request);
 
-     /**
+    /**
      * To show role id
      *@param $request
      */
@@ -34,15 +34,15 @@ interface RoleServiceInterface
     /**
      * To edit role
      *@param $id
-    */
+     */
     public function editRole($id);
 
     /**
      * To update role
      *@param $request
      *@param $id
-    */
-    public function updateRole($request,$id);
+     */
+    public function updateRole($request, $id);
 
     /**
      * To delete role by id

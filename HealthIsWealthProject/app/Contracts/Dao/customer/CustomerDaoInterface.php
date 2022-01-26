@@ -62,10 +62,16 @@ interface CustomerDaoInterface
      * @return string $message message for success or not
      */
     public function deleteUser($id);
+
     /**
      * To search user
      * @return string $message message for success or not
      */
     public function searchUser(Request $request);
+
+    /**
+     * To export pdf
+     * @return string $message message for success or not
+     */
     public function exportPDF();
 }

@@ -22,13 +22,8 @@ use App\Http\Controllers\HighchartController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//
-//Route::get('/', function () {
-//    return view('home');
-//});
 
 Auth::routes();
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('user/register', [RegisterController::class, 'showRegistrationView'])->name('register');
 Route::post('user/register/confirm', [RegisterController::class, 'create'])->name('registeruser');
@@ -57,7 +52,5 @@ Route::group(['middleware' => ['auth']], function () {
     //graph 
     Route::get('/graph', [HighchartController::class, 'handleChart']);
 });
-
-
 Route::post('/comments/add', [CommentController::class, 'create']);
 Route::get('/comments/delete/{id}', [CommentController::class, 'delete'])->name('commentDelete');

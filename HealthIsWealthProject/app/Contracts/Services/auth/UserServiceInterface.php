@@ -12,7 +12,6 @@ interface UserServiceInterface
 {
     /**
      * save data
-     *
      * @return View savedata
      */
     public function saveUser(Request $request);

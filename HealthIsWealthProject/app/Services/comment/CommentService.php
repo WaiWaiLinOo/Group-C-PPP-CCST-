@@ -26,11 +26,12 @@ class CommentService implements CommentServiceInterface
         $this->commentDao = $commentDao;
     }
 
-     /**
+    /**
      * get data from comment
      * @return View comment
      */
-    public function getComment(){
+    public function getComment()
+    {
         return $this->commentDao->getComment();
     }
 
@@ -40,7 +41,8 @@ class CommentService implements CommentServiceInterface
      * @param string $deletedUserId deleted commnet id
      * @return string $message message for success or not
      */
-    public function deleteComment($id){
+    public function deleteComment($id)
+    {
         return $this->commentDao->deleteComment($id);
     }
-  }
+}

@@ -43,7 +43,6 @@ class CommentController extends Controller
     public function delete($id)
     {
         $comment = $this->commentInterface->deleteComment($id);
-        //$comment = Comment::find($id);
         if (Gate::allows('comment-delete', $comment)) {
             $comment->delete();
             return back()->with('success', 'Product deleted successfully');

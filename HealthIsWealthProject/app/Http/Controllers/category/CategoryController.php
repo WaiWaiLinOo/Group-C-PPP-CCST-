@@ -14,8 +14,8 @@ use Spatie\Permission\Models\Permission;
 
 class CategoryController extends Controller
 {
-     /**
-     * customer interface
+    /**
+     * category interface
      */
     private $categoryInterface;
 
@@ -39,7 +39,6 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->categoryInterface->getCategory();
-        //$categories = Category::all();
         return view('categories.index-categories', compact('categories'));
     }
 
@@ -70,17 +69,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Category  $category
@@ -100,7 +88,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $category = $this->categoryInterface->updateCategory($request,$category);
+        $category = $this->categoryInterface->updateCategory($request, $category);
         return redirect(route('categories.index'))->with('status', 'Category Edited Successfully');
     }
 
@@ -113,8 +101,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category = $this->categoryInterface->deleteCategory($category);
-        //$category->delete();
         return redirect()->back()->with('status', 'Category Deleted Successfully');
     }
 }
-

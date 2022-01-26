@@ -66,7 +66,7 @@ class CustomerController extends Controller
     public function store(CustomerCreateRequest $request)
     {
         $validated = $request->validated();
-        $user = $this->customerInterface->storeUser($request,$validated);
+        $user = $this->customerInterface->storeUser($request, $validated);
         $user->notify(new WelcomeEmailNotification($user));
         return redirect()->route('customers.index')
             ->with('success', 'User created successfully');
@@ -100,7 +100,7 @@ class CustomerController extends Controller
      * @param $request
      * @return view
      */
-      public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'roles' => 'required'
@@ -119,11 +119,18 @@ class CustomerController extends Controller
         $datas = $this->customerInterface->userEditView($id);
         return view('customer.profile', compact('datas'));
     }
+
+    /**
+     * To profile show
+     * @param $id
+     * @return view
+     */
     public function profileshows($id)
     {
         $data = User::find($id);
         return view('customer.profileshow', compact('data'));;
     }
+
     /**
      * To update user profile
      * @param $id
@@ -151,7 +158,6 @@ class CustomerController extends Controller
 
     /**
      * Show the form for email to send.
-     *
      * @return \Illuminate\Http\Response
      */
     public function showMailForm()
@@ -161,7 +167,6 @@ class CustomerController extends Controller
 
     /**
      * Send email
-     *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
@@ -169,28 +174,28 @@ class CustomerController extends Controller
     {
         $validated = $request->validated();
         // Check email is sent successfully or not
-        if ($this->customerInterface->sendMail($request,$validated)) {
+        if ($this->customerInterface->sendMail($request, $validated)) {
             return redirect('/')
                 ->with('success', 'Email is sent successfully.');
         }
     }
+
     /*
     To search user
     */
     public function searchUser(Request $request)
     {
-            $user = $this->customerInterface->searchUser($request);
-            //$roles = $this->customerInterface->getRole();
-            return view('customer.index')->with(['customers' => $user]);
-
+        $user = $this->customerInterface->searchUser($request);
+        return view('customer.index')->with(['customers' => $user]);
     }
+
+    /*
+    To exportpdf
+    */
     public function generatePDF()
     {
         $this->customerInterface->exportPDF();
         $pdf = PDF::loadview('myPDF');
         return $pdf->download('data.pdf');
-
     }
-
-
 }
