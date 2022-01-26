@@ -2,27 +2,21 @@
 
 
 @section('content')
-<div class="row">
-  <div class="col-lg-12 margin-tb">
-    <div class="pull-left">
+<div class="register">
+    <div class="create">
       <h2>Role Management</h2>
     </div>
-    <div class="create-role">
+    <div class="create">
       @can('role-create')
       <a href="{{ route('roles.create') }}"><button>Create New Role</button></a>
       @endcan
     </div>
-  </div>
-</div>
-
-
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
   <p>{{ $message }}</p>
 </div>
 @endif
 
-<div class="panel">
   <table class="table" id="first">
     <tr>
       <th>No</th>

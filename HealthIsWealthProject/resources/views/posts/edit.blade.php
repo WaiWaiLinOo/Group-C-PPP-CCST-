@@ -19,7 +19,7 @@
     @method('PUT')
     <div class="register-form">
 
-      <div class="form-group">
+     <div class="form-group">
         <strong>Post Name:</strong>
         <input type="text" name="post_name" class="form-control" value="{{ $post->post_name }}" placeholder="Post name">
       </div>
@@ -32,9 +32,12 @@
       <!-- Drop down -->
       <label for="categories"><span>Choose a category:</span></label>
       <select name="category_id" id="categories">
-        <option selected disabled>Select option </option>
         @foreach ($categories as $category)
-        <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @if (old('category') == $category->id || $category->id == $post->category_id)
+        <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+        @else
+        <option value="{{$category->id}}">{{ $category->name }}</option>
+        @endif
         @endforeach
       </select>
       <!--test -->
@@ -43,6 +46,10 @@
         <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ $post->detail }}</textarea>
       </div>
       <button type="submit" class="button-secondary btns">Update</button>
+      <div class="create-categories">
+        <a href="{{route('posts.index')}}">Post listx <span>&#8594;</span></a>
+
+      </div>
     </div>
   </form>
 </div>

@@ -37,7 +37,7 @@
           <li class="pure-menu-item  {{ Route::currentRouteNamed( 'homeside' ) ?  'active' : '' }}"><a href="{{route('homeside')}}" class="pure-menu-link ">Home</a></li>
           <li class="pure-menu-item {{ Route::currentRouteNamed( 'aboutUs' ) ?  'active' : '' }}"><a href="{{route('aboutUs')}}" class="pure-menu-link ">About</a></li>
           <li class="pure-menu-item {{ Route::currentRouteNamed( 'contactUs' ) ?  'active' : '' }}"><a href="{{route('contactUs')}}" class="pure-menu-link">Contact</a></li>
-         
+
           @auth
           @role('Admin')
           <li class="pure-menu-item"><a href="{{ route('customers.index') }}" class="pure-menu-link">Manage Users</a></li>
@@ -58,13 +58,13 @@
       </div>
       <div class="auth-list clearfix">
         @guest
-        <li class="register"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+        <li class="registers"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
         <li class="login"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
         @else
         <li class="nav-item dropdown pure-menu-item ">
 
           <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            {{ Auth::user()->name }} <span class="caret"></span>
+            {{ Auth::user()->user_name }} <span class="caret"></span>
           </a>
           <div class="dropdown-menu">
             <a class="dropdown-item" style="color: #000000" href="{{ route('profileshows', Auth::user()->id) }}">

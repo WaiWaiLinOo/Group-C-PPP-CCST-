@@ -1,6 +1,4 @@
 @extends('layouts.app')
-
-
 @section('content')
 @if (count($errors) > 0)
 <div class="alert alert-danger">
@@ -37,6 +35,10 @@
       <button type="submit" class="button-secondary btnpost">Update</button>
     </div>
 </div>
+<div class="create-categories">
+    <a href="{{route('roles.index')}}">Role list <span>&#8594;</span></a>
+
+  </div>
 {!! Form::close() !!}
 </div>
 

@@ -13,6 +13,7 @@ use Spatie\Permission\Models\Permission;
 use App\Notifications\WelcomeEmailNotification;
 use App\Contracts\Services\customer\CustomerServiceInterface;
 use PDF;
+use App\Http\Requests\CustomerCreateRequest;
 use com;
 
 class CustomerController extends Controller
@@ -62,15 +63,10 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerCreateRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
-        ]);
-        $user = $this->customerInterface->storeUser($request);
+        $validated = $request->validated();
+        $user = $this->customerInterface->storeUser($request,$validated);
         $user->notify(new WelcomeEmailNotification($user));
         return redirect()->route('customers.index')
             ->with('success', 'User created successfully');
@@ -104,7 +100,7 @@ class CustomerController extends Controller
      * @param $request
      * @return view
      */
-    public function update(Request $request, $id)
+      public function update(Request $request, $id)
     {
         $this->validate($request, [
             'roles' => 'required'
@@ -113,7 +109,6 @@ class CustomerController extends Controller
         return redirect()->route('customers.index')
             ->with('success', $message);
     }
-
     /**
      * To show user profile
      * @param $id
@@ -166,18 +161,15 @@ class CustomerController extends Controller
 
     /**
      * Send email
-     * 
-     * @param \Illuminate\Http\Request $request 
+     *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function postMailForm(Request $request)
+    public function postMailForm(CustomerCreateRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email'
-        ]);
-
+        $validated = $request->validated();
         // Check email is sent successfully or not
-        if ($this->customerInterface->sendMail($request)) {
+        if ($this->customerInterface->sendMail($request,$validated)) {
             return redirect('/')
                 ->with('success', 'Email is sent successfully.');
         }

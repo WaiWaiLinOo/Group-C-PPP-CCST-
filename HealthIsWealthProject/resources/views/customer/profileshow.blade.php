@@ -3,7 +3,7 @@
 <div class="content">
     <div class="imageshow">
         <div class="imgprofile">
-            <img src="{{asset('userProfile/'.$data->profile)}}" alt=""><br><br>
+            <img src="{{asset($data->profile)}}" alt=""><br><br>
             <span>Name : {{$data->name}}</span>
             <span>Email : {{$data->email}}</span>
             <span>Certificate : {{$data->certificate}}</span>

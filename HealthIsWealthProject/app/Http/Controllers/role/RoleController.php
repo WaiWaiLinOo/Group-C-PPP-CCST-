@@ -9,6 +9,7 @@ use App\Contracts\Services\role\RoleServiceInterface;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use DB;
+use App\Http\Requests\RoleCreateRequest;
 
 class RoleController extends Controller
 {
@@ -48,6 +49,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+
         $permission = $this->roleInterface->getPermission();
         return view('roles.create', compact('permission'));
     }
@@ -57,13 +59,10 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoleCreateRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:roles,name',
-            'permission' => 'required',
-        ]);
-        $role = $this->roleInterface->storeRole($request);
+        $valided = $request->validated();
+        $role = $this->roleInterface->storeRole($request,$valided);
         return redirect()->route('roles.index')
             ->with('success', 'Role created successfully');
     }
@@ -94,16 +93,12 @@ class RoleController extends Controller
      * Update the specified resource in storage.
      * @param  $request
      * @param  $id
-     * @return 
+     * @return
      */
-    public function update(Request $request, $id)
+    public function update(RoleCreateRequest $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'permission' => 'required',
-        ]);
-
-        $message = $this->roleInterface->updateRole($request, $id);
+        $validated = $request->validated();
+        $message = $this->roleInterface->updateRole($request, $id,$validated);
         return redirect()->route('roles.index')
             ->with('success', $message);
     }

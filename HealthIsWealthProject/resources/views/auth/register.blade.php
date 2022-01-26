@@ -7,9 +7,9 @@
     <div class="registerform">
       <div class="form-group">
         <label for="name">Name : </label>
-        <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" autofocus>
-        @if ($errors->has('name'))
-        <span class="text-danger">{{ $errors->first('name') }}</span>
+        <input type="text" class="form-control" name="user_name" id="user_name" value="{{ old('user_name') }}" autofocus>
+        @if ($errors->has('user_name'))
+        <span class="text-danger">{{ $errors->first('user_name') }}</span>
         @endif
       </div>
       <div class="form-group">

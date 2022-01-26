@@ -7,9 +7,9 @@
     <div class="registerform">
       <div class="form-group">
         <label for="name">Name : </label>
-        <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" autofocus>
-        @if ($errors->has('name'))
-        <span class="text-danger">{{ $errors->first('name') }}</span>
+        <input type="text" class="form-control" name="user_name" id="user_name" value="{{ old('user_name') }}" autofocus>
+        @if ($errors->has('user_name'))
+        <span class="text-danger">{{ $errors->first('user_name') }}</span>
         @endif
       </div>
       <div class="form-group">
@@ -28,8 +28,11 @@
       </div>
       <div class="form-group">
         <strong>Confirm Password:</strong>
-        {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-      </div>
+         {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control','name'=>'password','value'=>'old(password)')) !!}
+         @if ($errors->has('password'))
+         <span class="text-danger">{{ $errors->first('password') }}</span>
+         @endif
+        </div>
       <div class="form-group mb-3 profile">
         <label for="profile">User Profile</label>
         (<small class="text-danger">*We only accept jpeg png gif jpg format</small>)
@@ -59,10 +62,17 @@
       <div class="form-group">
         <div class="form-group">
           <strong>Role:</strong>
-          {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+          {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple','name'=>'role', 'value'=>'(old(role)')) !!}
+          @if ($errors->has('role'))
+          <span class="text-danger">{{ $errors->first('role') }}</span>
+          @endif
         </div>
       </div>
       <button type="submit" class="button-secondary">Register</button>
+      <div class="create-categories">
+        <a href="{{route('customers.index')}}">User list <span>&#8594;</span></a>
+
+      </div>
     </div>
   </form>
 </div>

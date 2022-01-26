@@ -7,10 +7,10 @@
             @csrf
             @method ('PUT')
             <div class="form-group">
-              <label for="name">Name : </label>
-              <input type="text" class="form-control" name="name" id="name" value="{{ $datas['user']->name }}" disabled>
-              @if ($errors->has('name'))
-              <span class="text-danger">{{ $errors->first('name') }}</span>
+              <label for="user_name">Name : </label>
+              <input type="text" class="form-control" name="user_name" id="user_name" value="{{ $datas['user']->user_name }}" disabled>
+              @if ($errors->has('user_name'))
+              <span class="text-danger">{{ $errors->first('user_name') }}</span>
               @endif
             </div>
             <div class="form-group">
@@ -45,6 +45,10 @@
               {!! Form::select('roles[]', $roles = $datas['roles'],$userRole = $datas['userRole'], array('class' => 'form-control')) !!}
             </div>
             <button type="submit" class="button-secondary">Update</button>
+            <div class="create-categories">
+                <a href="{{route('customers.index')}}">User  list <span>&#8594;</span></a>
+
+              </div>
           </form>
     </div>
 </div>

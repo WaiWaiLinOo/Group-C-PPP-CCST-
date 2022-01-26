@@ -65,11 +65,6 @@ class CategoryController extends Controller
             'name' => 'required | unique:categories',
         ]);
         $category = $this->categoryInterface->storeCategory($request);
-//        $name = $request->input('name');
-//        $category = new Category();
-//        $category->name = $name;
-//
-//        $category->save();
         return redirect()->route('categories.index')
             ->with('success', 'Category Created Successfully');
     }
@@ -105,16 +100,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'name' => 'required | unique:categories',
-        ]);
         $category = $this->categoryInterface->updateCategory($request,$category);
-//        $name = $request->input('name');
-//       
-//        $category->name = $name;
-//
-//        $category->save();
-        
         return redirect(route('categories.index'))->with('status', 'Category Edited Successfully');
     }
 
