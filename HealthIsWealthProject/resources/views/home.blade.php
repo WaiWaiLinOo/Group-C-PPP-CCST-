@@ -8,7 +8,7 @@
         <div class="gallery">
         @if($post->post_img)
           <a target="_blank" href="img_5terre.jpg">
-            <img src="{{asset('post_img/'.$post->post_img)}}" width="600px" height="300px">
+            <img src="{{asset($post->post_img)}}" width="600px" height="300px">
           </a>
         @endif
           <div class="desc">

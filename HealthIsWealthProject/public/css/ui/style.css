@@ -500,19 +500,12 @@ form div label {
 }
 
 .search {
-    width: 100%;
-    margin-top: 15px;
-    margin-left: 50px;
-}
-
-.search {
     display: flex;
     width: 100%;
-    margin-left: 77px;
 }
 
 .search form {
-    width: 94%;
+    width: 100%;
     margin-top: 4px;
     margin-bottom: 18px;
     margin-left: 0px;
@@ -543,7 +536,7 @@ form div label {
 .title {
     width: 86%;
     margin-top: 30px;
-    margin-left: 77px;
+
 }
 
 .title h1 {
@@ -567,7 +560,7 @@ form div label {
     float: right;
 }
 
-.register-form .profile input {
+.register-form .profile input ,.certificate input{
     width: 500px;
     padding: 4px 5px;
     border: 1px solid #ccbdbd;
@@ -580,7 +573,15 @@ form div label {
     background-color: #ffffff;
     border-radius: 5px;
 }
-
+.modal-body input{
+    padding: 3px 5px;
+    border: 1px solid #ccbdbd;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+#close a{
+    color: red;
+}
 tbody tr td button {
     width: 100px;
     padding: 0 5px;
@@ -593,7 +594,7 @@ tbody tr td button {
 .create a button {
     width: 162px;
     margin-bottom: 20px;
-    margin-left: 74px;
+    /*margin-left: 74px;*/
     padding: 7px 0px;
     border: 1px solid #2f65dc;
     background-color: #193063;
@@ -696,7 +697,34 @@ tbody tr td button {
     border-radius: 7px;
     border-color: #2e52a0;
 }
-
+.show-role-detail{
+    width: 100px;
+    padding: 7px 0px;
+    border: 1px solid #2e52a0;
+    background-color: #2e52a0;
+    color: #ffffff;
+    border-radius: 7px;
+    border-color: #2e52a0;
+}
+.edit-role-detail{
+    width: 100px;
+    padding: 7px 0px;
+    border: 1px solid #1ab83c;;
+    background-color: #1ab83c;;
+    color: #ffffff;
+    border-radius: 7px;
+    border-color:#1ab83c;;
+    margin-right: 10px;
+}
+.delete-role-detail{
+    width: 100px;
+    padding: 7px 0px;
+    border: 1px solid #ff0000;
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 7px;
+    border-color: #ff0000;
+}
 .profile_img {
     width: 200px;
 }
@@ -825,7 +853,7 @@ input[type=submited]:hover {
 }
 
 .auth-list {
-    margin-top: -32px;
+    margin-top: -50px;
     margin-bottom: 70px;
     margin-left: 952px;
     font-size: 15px;
@@ -1001,4 +1029,30 @@ a.close:hover {
     -webkit-transition: color 1s ease;
     -moz-transition: color 1s ease;
     transition: color 1s ease;
+}
+.create-role #export,.create-role #import{
+    margin-right: -50px;
+}
+.register{
+    width: 80%;
+    margin-left: 100px;
+}
+
+table#first{
+    width: 98%;
+}
+.button-secondary-modal{
+    width: 200px;
+    margin-bottom: 40px;
+    padding: 7px 0;
+    border: 1px solid rgb(29, 97, 131);
+    background: rgb(29, 97, 131);
+    color: #ffffff;
+    border-radius: 10px;
+}
+.categories_class{
+    width: 165px;
+}
+.categories_id{
+    width: 460px;
 }

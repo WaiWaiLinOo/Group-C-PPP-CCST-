@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
 use App\Contracts\Services\post\PostServiceInterface;
+use App\Http\Requests\PostCreateRequest;
 
 
 class PostController extends Controller
@@ -53,8 +54,6 @@ class PostController extends Controller
     {
         $posts = Post::find($id);
         return view('customer.postdetail', compact('posts'));
-        //$posts = $this->postInterface->getPost();
-        //return view('customer.postdetail', compact('posts'));
     }
 
     /**
@@ -76,8 +75,11 @@ class PostController extends Controller
     {
         request()->validate([
             'post_name' => 'required',
-            'detail' => 'required',
+            'post_img' =>'required',
+            //'detail' => 'required',
+            //'category_id','required',
         ]);
+        //$validated = $request->validated();
         $post = $this->postInterface->storePost($request);
         return redirect()->route('posts.index')
             ->with('success', 'Post created successfully.');

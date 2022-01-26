@@ -20,23 +20,24 @@ class UserDao implements UserDaoInterface
      */
     public function saveUser(Request $request)
     {
-        if ($profile = $request->file('profile')) {
-            $name = time() . '.' . $request->file('profile')->clientExtension();
-            $request->file('profile')->move('userProfile',$name);
-            $user['profile'] = "$name";
+        if ($request->file()) {
+            $filename = time() . '.' . $request->profile->clientExtension();
+            $filePath = $request->file('profile')->storeAs('userProfile', $filename, 'public');
+            $path = 'storage/'.$filePath;
+            $user['profile'] = $path;
         }
 
         if ($certificate = $request->file('certificate')) {
             $certificate = time() . '.' . $request->file('certificate')->clientExtension();
-            $request->file('certificate')->move('userCartificate',$certificate);
+            $request->file('certificate')->storeAs('userCertificate',$certificate,'public');
             $user['certificate'] = "$certificate";
         }
-       
+
         $user = User::create([
-            'name' => $request['name'],
+            'user_name' => $request['user_name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
-            'profile' => $name,
+            'profile' => $path,
             'certificate' => $certificate,
             'dob' => $request['dob'],
             'address' => $request['address'],

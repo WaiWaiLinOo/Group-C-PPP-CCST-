@@ -10,11 +10,14 @@
         <div class="form-group">
           <label for="email" class="form-label">Email</label>
           <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+          @if ($errors->has('email'))
+          <span class="text-danger">{{ $errors->first('email') }}</span>
+          @endif
         </div>
         <button type="submit" class="button-secondary">
           Send Email
         </button>
       </form>
 </div>
-   
+
 @endsection

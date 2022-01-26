@@ -17,7 +17,7 @@
     <div class="img">
       <p style="font-size: 30px;margin-left:0px">{{$post->post_name}}<br></p>
       <span style="color:blue;">Posted at {{ $post->created_at->diffForHumans() }}</span><br><br>
-      <img src="{{asset('post_img/'. $post->post_img)}}">
+      <img src="{{asset( $post->post_img)}}">
     </div>
     <div class="text">
       <p style="font-size: 20px;">Category from <span style="color:blue; font-size:20px">{{$post->Category->name}}</span></p><br><br>
