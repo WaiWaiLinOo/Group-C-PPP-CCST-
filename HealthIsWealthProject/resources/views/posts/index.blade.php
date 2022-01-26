@@ -7,9 +7,12 @@
     <div class="create">
       @can('post-create')
       <a href="{{ route('posts.create') }}"><button>Create New Post</button></a>
-      <a class="js-open-modal" href="#" data-modal-id="popup1" id="import"><button>Import excel file</button></a>
-      <a href="{{ route('export') }}" id="export"><button>Export excel file</button></a>
-      @endcan
+      <a class="js-open-modal" href="#" data-modal-id="popup1"><button>Import excel file</button></a>
+      <a href="{{ route('export') }}"><button>Export excel file</button></a>
+      @role('Admin')
+      <a href="/graph"><button>View Post Graph</button></a>
+      @endrole
+     @endcan
     </div>
 <div id="popup1" class="modal-box">
   <header id="close"> <a href="#" class="js-modal-close close">×</a>
