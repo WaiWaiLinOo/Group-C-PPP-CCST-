@@ -3,8 +3,7 @@
 @section('content')
 
 <div class="content">
-  <!--test -->
-  <div class="searchbar">
+ <div class="searchbar">
     <form action="">
       <input type="text" placeholder="Search post name or detail..." name="search" />
       <button type="submit">
@@ -19,7 +18,7 @@
       @endforeach
     </ul>
   </div>
-  @foreach ($posts as $post)
+  @forelse ($posts as $post)
   <div class="responsive">
     <div class="gallery">
       @if($post->post_img)
@@ -31,11 +30,10 @@
         <span>{{$post->post_name}}</span><br>
         <a href="{{route('postdetail',$post->id)}}">Detail Here</a><br>
         <span style="margin-left: 10px; font-size:10px;">Posted at {{ $post->created_at->diffForHumans() }}</span>
-
       </div>
     </div>
   </div>
-
-  @endforeach
-
+  @empty
+  <b style="text-align: center;">Sorry, currently there is no Post related to that search!</b>
+  @endforelse
   @endsection

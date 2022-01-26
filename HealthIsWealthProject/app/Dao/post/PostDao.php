@@ -23,9 +23,15 @@ class PostDao implements PostDaoInterface
      */
     public function getPost($request)
     {
+        $start_date = $request->s_date;
+        $end_date = $request->e_date;
         if ($request->search) {
             $posts = Post::where('post_name', 'like', '%' . $request->search . '%')
                 ->orWhere('detail', 'like', '%' . $request->search . '%')->latest()->paginate(4);
+        } elseif ($start_date) {
+            $posts = Post::whereDate('posts.created_at', '>=', $start_date);
+        } else if ($end_date) {
+            $posts = Post::whereDate('posts.created_at', '<=', $end_date);
         } elseif ($request->category) {
             $posts = Category::where('name', $request->category)->firstOrFail()->posts()->paginate(3)->withQueryString();
         } else {

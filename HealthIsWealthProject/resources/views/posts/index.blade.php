@@ -7,15 +7,17 @@
   <div class="searchbar">
     <form action="">
       <input type="text" placeholder="Search post name or detail..." name="search" />
-      <button type="submit">
-        <i class="fa fa-search">Search</i>
-      </button>
+      <label>Start Date :</label>
+      <input type="date" name="s_date" class="form-control">
+      <label class="enddate">End Date :</label>
+      <input type="date" name="e_date" class="form-control">
+      <button type="submit">Search</button>
     </form>
   </div>
   <div class="categories">
     <ul>
       @foreach ($categories as $category)
-      <li><a href="{{route('homeside', ['category' => $category->name ])}}">{{ $category->name }}</a></li>
+      <li><a href="{{route('posts.index', ['category' => $category->name ])}}">{{ $category->name }}</a></li>
       @endforeach
     </ul>
   </div>
@@ -63,7 +65,7 @@
       <th>Comment Number</th>
       <th>Action</th>
     </tr>
-    @foreach ($posts as $key => $post)
+    @forelse ($posts as $key => $post)
     <tr>
       <td>{{ ++$i }}</td>
       <td>{{ $post->post_name }}</td>
@@ -89,7 +91,9 @@
         @endcan
       </td>
     </tr>
-    @endforeach
+    @empty
+        <td colspan="5" style="text-align: center;"><b>Sorry, currently there is no Post table related to that search!</b></td>
+      @endforelse
   </table>
 </div>
 
