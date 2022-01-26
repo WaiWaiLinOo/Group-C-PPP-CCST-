@@ -26,7 +26,11 @@ class CustomerDao implements CustomerDaoInterface
     public function getUser($request)
     {
         //return User::orderBy('id', 'DESC')->paginate(5);
-        return User::all();
+        //return User::all();
+        return DB::table('users')
+            ->join('roles', 'users.id', '=', 'roles.id')
+            ->select('users.*', 'roles.name')
+            ->get();
     }
 
     /**
@@ -84,8 +88,7 @@ class CustomerDao implements CustomerDaoInterface
         $input = $request->all();
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
-        }
-        else {
+        } else {
             $input = Arr::except($input, array('password'));
         }
         $user = User::find($id);
@@ -137,24 +140,31 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function searchUser(Request $request)
     {
-        $name = $request->name;
+        $user_name = $request->user_name;
+        $role = $request->input('role');
         $start_date = $request->s_date;
         $end_date = $request->e_date;
 
-        $user = DB::table('users');
-            if ($name) {
-                $user->where('users.name', 'LIKE', '%' . $name . '%');
-            }
-            if ($start_date) {
-                $user->whereDate('users.created_at', '>=', $start_date);
-            }
-            if ($end_date) {
-                $user->whereDate('users.created_at', '<=', $end_date);
-            }
-            return $user->get();
+        $user = DB::table('users')
+            ->join('roles', 'users.id', '=', 'roles.id')
+            ->select('users.*', 'roles.name');
+        if ($user_name) {
+            $user->where('users.user_name', 'LIKE', '%' . $user_name . '%');
         }
-    public function exportPDF(){
+        if ($role) {
+            $user->where('roles.name', 'LIKE', '%' . $role . '%');
+        }
+        if ($start_date) {
+            $user->whereDate('users.created_at', '>=', $start_date);
+        }
+        if ($end_date) {
+            $user->whereDate('users.created_at', '<=', $end_date);
+        }
+        return $user->get();
+    }
+    public function exportPDF()
+    {
         $data = User::all();
-        view()->share('data',$data);
+        view()->share('data', $data);
     }
 }

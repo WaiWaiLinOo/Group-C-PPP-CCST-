@@ -5,15 +5,17 @@
   <h1>User Management</h1>
 </div>
 <div class="search">
-    <form action="{{route('customer.index')}}" class="form-group searchgroup">
-        <label class="name">Name</label>
-        <input type="text" name="name" id="name" class="form-control">
-        <label>Start Date :</label>
-        <input type="date" name="s_date" class="form-control">
-        <label class="enddate">End Date :</label>
-        <input type="date" name="e_date" class="form-control">
-        <input type="submit" name="submit" value="Search" id="submited" class="form-control">
-    </form>
+<form action="{{route('customer.index')}}" class="form-group searchgroup">
+    <label class="name">Name</label>
+    <input type="text" name="user_name" id="user_name" class="form-control">
+    <label class="role">Role</label>
+    <input type="text" name="role" id="role" class="form-control">
+    <label>Start Date :</label>
+    <input type="date" name="s_date" class="form-control">
+    <label class="enddate">End Date :</label>
+    <input type="date" name="e_date" class="form-control">
+    <input type="submit" name="submit" value="Search" id="submited" class="form-control">
+  </form>
 
 </div>
 <div class="create">
@@ -33,20 +35,14 @@
       <th>Role</th>
       <th>Action</th>
     </thead>
-    @if (count($customers) > 0)
     <tbody>
-      @foreach ($customers as $customer)
+    @forelse ($customers as $customer)
       <tr>
         {{--<td>{{ ++$i }}</td>--}}
-        <td>{{ $customer->name }}</td>
+        <td>{{ $customer->id }}</td>
+        <td>{{ $customer->user_name }}</td>
         <td>{{ $customer->email }}</td>
-        <td>
-          @if(!empty($customer->getRoleNames()))
-          @foreach($customer->getRoleNames() as $v)
-          <label class="badge badge-success">{{ $v }}</label>
-          @endforeach
-          @endif
-        </td>
+        <td><label class="badge badge-success">{{ $customer->name}}</label></td>
         <td>
           <a href="{{ route('profileshows', Auth::user()->id) }}"><button class="show-role-detail">Show</button></a>
           <a href="{{route('customers.edit',$customer->id)}}"><button class="edit">Edit</button></a>
@@ -59,9 +55,11 @@
           </a>
         </td>
       </tr>
-      @endforeach
+      @empty
+        <td colspan="5" style="text-align: center;"><b>Sorry, currently there is no User table related to that search!</b></td>
+      @endforelse
     </tbody>
-    @endif
+ 
   </table>
 </div>
 @endsection

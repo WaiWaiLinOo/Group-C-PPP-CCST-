@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <a href="{{ route('posts.index') }}"><button class="button-secondary" style="width: 100px;margin-bottom:29px;margin-left:101px;">Back</button></a>
-<div style="margin-left:100px" id="container"></div>
+<div style="margin-left:127px;width:1000px" id="container"></div>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript">
   var postData = <?php echo json_encode($postData) ?>;

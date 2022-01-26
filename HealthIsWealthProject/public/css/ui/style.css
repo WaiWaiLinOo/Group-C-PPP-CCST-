@@ -707,14 +707,14 @@ tbody tr td button {
     border-color: #2e52a0;
 }
 .edit-role-detail{
-    width: 100px;
+    width: 100px;;
+    margin-right: 10px;
     padding: 7px 0px;
     border: 1px solid #1ab83c;;
     background-color: #1ab83c;;
     color: #ffffff;
     border-radius: 7px;
-    border-color:#1ab83c;;
-    margin-right: 10px;
+    border-color:#1ab83c;
 }
 .delete-role-detail{
     width: 100px;
@@ -973,6 +973,7 @@ input[type=submited]:hover {
 .modal-box {
     display: none;
     position: absolute;
+    left: 33%;
     z-index: 1000;
     width: 50%;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -981,7 +982,6 @@ input[type=submited]:hover {
     border-bottom: 1px solid #aaa;
     border-radius: 4px;
     background-clip: padding-box;
-    left: 33%;
 }
 
 .modal-box header,
@@ -1055,4 +1055,44 @@ table#first{
 }
 .categories_id{
     width: 460px;
+}
+
+
+/*test */
+.categories ul li {
+    list-style: none;
+    margin: 20px 5px;
+    background-color: #494949;
+    border-radius: 15px;
+}
+.categories ul {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+.categories a {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+}
+  .searchbar {
+    margin: 15px auto;
+    text-align: center;
+  }
+  
+  .searchbar input {
+    width: 250px;
+    padding: 10px 10px;
+  }
+  
+  .searchbar button {
+    padding: 11px 10px;
+    border: none;
+    background-color: rgb(22, 143, 22);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .searchbar button:hover {
+   background-color: rgb(18, 97, 18);
 }
