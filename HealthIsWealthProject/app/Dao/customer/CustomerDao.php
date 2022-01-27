@@ -168,7 +168,19 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function exportPDF()
     {
-        $data = User::all();
+        $data = DB::table('users')
+        ->join('roles', 'users.id', '=', 'roles.id')
+        ->select('users.*', 'roles.name')
+        ->get();
+//    $data = DB::table('users')
+//        ->join('cate','students.major_id', '=','majors.id')
+//        ->get();
+//    view()->share('students', $student);
+//    $pdf = PDF::loadview('exportpdf');
+//    return $pdf->download('data.pdf');
+//
+//
+//        $data = User::all();
         view()->share('data', $data);
     }
 }
