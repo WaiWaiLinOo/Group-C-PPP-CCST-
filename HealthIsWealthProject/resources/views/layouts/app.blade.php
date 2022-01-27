@@ -32,8 +32,6 @@
 
 
         <ul class="pure-menu-list">
-
-
           <li class="pure-menu-item  {{ Route::currentRouteNamed( 'homeside' ) ?  'active' : '' }}"><a href="{{route('homeside')}}" class="pure-menu-link ">Home</a></li>
           @auth
           @role('User')

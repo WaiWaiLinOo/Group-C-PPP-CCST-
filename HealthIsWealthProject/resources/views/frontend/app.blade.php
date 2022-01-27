@@ -15,6 +15,7 @@
     <script src="{{ asset('js/modalbox.js') }}"></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}" defer></script>
+
 </head>
 <body>
 
@@ -26,7 +27,7 @@
 
     <nav class="navbar">
         <a href="{{route('home')}}">Home</a>
-        <a href="#contact">contact Us</a>
+        <a href="{{route('contactUs')}}">contact Us</a>
         @guest
         <li class="registers"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
         <li class="login"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
@@ -63,62 +64,80 @@
 
 </header>
 
-<div class="adduser">
-  <div class="cardHeader">Register</div>
-  <form class="register-form" method="POST" action="{{ route('registeruser') }}" enctype="multipart/form-data">
-    @csrf
-    <div class="registerform">
-      <div class="form-group">
-        <label for="name">Name : </label>
-        <input type="text" class="form-control" name="user_name" id="user_name" value="{{ old('user_name') }}" autofocus>
-        @if ($errors->has('user_name'))
-        <span class="text-danger">{{ $errors->first('user_name') }}</span>
-        @endif
-      </div>
-      <div class="form-group">
-        <label for="email">Email :</label>
-        <input type="email" class="form-control" value="{{ old('email') }}" name="email" id="email">
-        @if ($errors->has('email'))
-        <span class="text-danger">{{ $errors->first('email') }}</span>
-        @endif
-      </div>
-      <div class="form-group">
-        <label for="password">Password : </label>
-        <input type="password" class="form-control" name="password" value="{{ old('password') }}" id="password">
-        @if ($errors->has('password'))
-        <span class="text-danger">{{ $errors->first('password') }}</span>
-        @endif
-      </div>
-      <div class="form-group mb-3 profile">
-        <label for="profile">User Profile</label>
-        (<small class="text-danger">*We only accept jpeg png gif jpg format</small>)
-        <input type="file" placeholder="User Profile" value="{{ old('profile') }}" name="profile" id="profile" accept="image/png, image/gif, image/jpeg">
-        @if ($errors->has('profile'))
-        <span class="text-danger">{{ $errors->first('profile') }}</span>
-        @endif
-      </div>
-      <div class="certificate">
-        <label for="text" class="form-label">*option(if you have certificate)</label>
-        <input type="file" placeholder="Certificate" id="certificate" name="certificate">
-      </div>
-      <div class="form-group">
-        <label for="date"> Date Of Birth :</label>
-        <input type="date" placeholder="Date Of Birth" class="form-control" id="dob" name="dob" value="{{ old('dob') }}">
-        @if ($errors->has('dob'))
-        <span class="text-danger">{{ $errors->first('dob') }}</span>
-        @endif
-      </div>
-      <div class="form-group">
-        <label for="address"> Address :</label>
-        <input type="address" class="form-control" id="address" name="address" value="{{ old('address') }}">
-        @if ($errors->has('address'))
-        <span class="text-danger">{{ $errors->first('address') }}</span>
-        @endif
-      </div>
-     <button type="submit" class="button-secondary pure-button">Register</button>
+<!-- header section ends -->
+
+<!-- banner section starts  -->
+@auth
+@role('User|SubAdmin')
+<section class="banner" id="banner">
+
+</section>
+@endrole
+@endauth
+<section class="container" id="posts">
+
+    @yield('content')
+    <div class="sidebar">
+
+        @auth
+        @role('User')
+        <div class="box">
+            <h3 class="title">about us</h3>
+            <div class="about">
+                <img src="{{asset('images/image/user.png')}}" alt="">
+                <h3>Our Service</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, officia.</p>
+
+            </div>
+        </div>
+        @endrole
+        @endauth
+
+        @auth
+        @role('Admin')
+        <div class="box">
+            <h3 class="title">Action</h3>
+            <div class="category">
+                <a class="nav-link" href="{{ route('customers.index') }}" class="pure-menu-link">Manage Users</a>
+                <a class="nav-link" href="{{ route('roles.index') }}" class="pure-menu-link">Manage Role</a>
+                <a class="nav-link" href="{{ route('categories.index') }}" class="pure-menu-link">Manage Category</a>
+                <a class="nav-link" href="{{ route('contact.index') }}" class="pure-menu-link">Manage Contact </a>
+
+            </div>
+        </div>
+        @endrole
+        @endauth
+        @auth
+
+        @hasanyrole('Admin|SubAdmin')
+        <div class="box">
+        <h3 class="title">Post Action</h3>
+        <div class="category">
+        <a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a>
+        </div>
+        </div>
+        @endhasanyrole
+        @endauth
+
+
+        <div class="box">
+            <h3 class="title">categories</h3>
+            <div class="category">
+                {{--
+                @foreach ($item->Category as $item)--}}
+                {{--<a href="#">{{$item->Category->name}}</a>--}}
+                {{--@endforeach--}}
+            </div>
+        </div>
     </div>
-  </form>
-</div>
+
+</section>
+
+
+
+<!-- contact section ends -->
+
+<!-- footer section starts  -->
 
 <section class="footer">
 

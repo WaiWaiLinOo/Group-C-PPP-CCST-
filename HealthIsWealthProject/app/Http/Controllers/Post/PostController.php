@@ -48,7 +48,7 @@ class PostController extends Controller
     }
     public function postView(Request $request)
     {
-        //test 
+        //test
         if($request->search){
             $posts = Post::where('post_name', 'like', '%' . $request->search . '%')
             ->orWhere('detail', 'like', '%' . $request->search . '%')->latest()->paginate(4);
@@ -61,9 +61,6 @@ class PostController extends Controller
         }
 
         $categories = Category::all();
-        //test 
-        //$categories = Category::all();
-        //$posts = $this->postInterface->getPost();
         return view('home', compact('posts','categories'));
     }
     public function postDetail($id)
@@ -71,7 +68,11 @@ class PostController extends Controller
         $posts = Post::find($id);
         return view('customer.postdetail', compact('posts'));
     }
-
+    public function postDetails($id)
+    {
+        $posts = Post::find($id);
+        return view('frontend.postdetail', compact('posts'));
+    }
     /**
      * Show the form for creating a new resource.
      * @return \Illuminate\Http\Response

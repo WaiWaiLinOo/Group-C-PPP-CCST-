@@ -56,6 +56,7 @@ class RegisterController extends Controller
      */
     protected function create(UserCreateRequest $request)
     {
+
         $validated = $request->validated();
         $roles = $this->userInterface->getRole();
         $user = $this->userInterface->saveUser($request, $validated);

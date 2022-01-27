@@ -26,7 +26,18 @@ class HomeController extends Controller
     public function index()
     {
         $posts = $this->postInterface->getPost();
-        return view('home', compact('posts'));
+        return view('frontend.blog', compact('posts'));
+        //$roles = auth()->user()->id;
+        //// Check user role
+        //switch ($roles) {
+        //    case '1':
+        //        return redirect()->route('homeside');
+        //        break;
+        //    case '2':
+        //        return view('frontend.blog', compact('posts'));
+        //    default:
+        //        return view('frontend.blog', compact('posts'));
+        //}
     }
     public function aboutUs()
     {

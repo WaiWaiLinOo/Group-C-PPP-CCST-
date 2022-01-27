@@ -17,11 +17,12 @@ class Post extends Model
     {
         return $this->hasMany('App\Models\Comment');
     }
-    //public function category(){
-    //    return $this->belongsTo(Category::class);
-    //}
     public function category()
     {
         return $this->belongsTo(Category::class,'category_id','id');
+    }
+    public function User()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
     }
 }

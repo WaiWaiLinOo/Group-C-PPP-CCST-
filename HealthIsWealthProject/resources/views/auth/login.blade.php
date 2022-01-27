@@ -1,11 +1,71 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthIsWealth</title>
 
-@section('content')
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="{{asset('css/library/fontawesome.all.min.css')}}">
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{{asset('css/frontend_style/style.css')}}">
+    <script src="{{asset('js/script.js')}}"></script>
+    <script src="{{ asset('js/library/jquery3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/modalbox.js') }}"></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}" defer></script>
+</head>
+<body>
+
+<header class="header">
+
+    <a href="#" class="logo">Health_<span>is</span>_Wealth</a>
+
+    <nav class="navbar">
+        <a href="{{route('home')}}">Home</a>
+        <a href="#contact">contact Us</a>
+        @guest
+        <li class="registers"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+        <li class="login"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+        @else
+        <li class="nav-item dropdown pure-menu-item ">
+
+          <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->user_name }} <span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" style="color: #000000" href="{{ route('profileshows', Auth::user()->id) }}">
+              {{ __('Profile') }}
+            </a>
+            <a class="dropdown-item" style="color: #000000;" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+            </form>
+          </div>
+        </li>
+        @endguest
+    </nav>
+
+    <div class="icons">
+        <i class="fas fa-bars" id="menu-bars"></i>
+        <i class="fas fa-search" id="search-icon"></i>
+    </div>
+
+    <form action="" class="search-form">
+        <input type="search" name="" placeholder="search here..." id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+
+</header>
+
 <div class="adduser">
-  <div class="cardHeader">User Login</div>
-  <form method="POST" action="{{ route('login') }}">
+  <div class="cardHeader">Login</div>
+  <form method="POST" action="{{ route('login') }}" class="register-form">
     @csrf
-    <div class="register-form">
+    <div class="registerform">
       <div class="form-group">
         <input id="email" type="email" placeholder="Email address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
         @error('email')
@@ -44,4 +104,20 @@
   </form>
 </div>
 
-@endsection
+<section class="footer">
+
+    <div class="follow">
+        <a href="#" class="fab fa-facebook-f"></a>
+        <a href="#" class="fab fa-twitter"></a>
+        <a href="#" class="fab fa-instagram"></a>
+        <a href="#" class="fab fa-linkedin"></a>
+    </div>
+
+    <div class="credit">created by <span>Group-C</span> | all rights reserved</div>
+
+</section>
+
+
+<!-- footer section ends -->
+</body>
+</html>
