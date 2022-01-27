@@ -10,6 +10,7 @@ use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\category\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Models\User;
 use App\Http\Controllers\HighchartController;
 /*
@@ -40,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('customers', CustomerController::class);
     Route::resource('posts', PostController::class);
+    Route::resource('contact',ContactController::class);
     // Category resource controller
     Route::resource('/categories', CategoryController::class);
     Route::delete('user/delete/{id}', [CustomerController::class, 'destroy'])->name('destroyUser');
@@ -50,12 +52,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('profileshow/{id}', [CustomerController::class, 'profileshows'])->name('profileshows');
     Route::post('import', [PostController::class, 'import'])->name('import');
     Route::get('export', [PostController::class, 'export'])->name('export');
-    //for mail 
+    //for mail
     Route::get('/mail', [CustomerController::class, 'showMailForm'])->name('showMailForm');
     Route::post('/mail', [CustomerController::class, 'postMailForm'])->name('postMailForm');
     Route::get('/exportpdf', [CustomerController::class, 'generatePDF'])->name('exportpdf');
-    //graph 
+    //graph
     Route::get('/graph', [HighchartController::class, 'handleChart']);
+    Route::get('/contactshow', [ContactController::class , 'show'])->name('contact.show');
+    Route::post('/contactdata', [ContactController::class , 'store'])->name('contact.store');
+    Route::get('/managecontact',[ContactController::class,'index'])->name('contact.index');
 });
 
 

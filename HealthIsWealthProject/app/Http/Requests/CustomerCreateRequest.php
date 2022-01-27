@@ -32,6 +32,9 @@ class CustomerCreateRequest extends FormRequest
         'address' =>['required','string','min:2'],
         'role'=>['required'],
         'email'=>['required'],
+        'first_name'=>['required'],
+        'last_name'=>['required'],
+        'detail'=>['required'],
     ];
   }
 }

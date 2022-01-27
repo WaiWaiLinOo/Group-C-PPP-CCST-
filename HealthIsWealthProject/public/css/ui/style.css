@@ -825,7 +825,7 @@ input[type=submited]:hover {
 .contact .map iframe {
     float: left;
     width: 50%;
-    height: 480px;
+    height: 580px;
 }
 
 .contact .contactform {
@@ -1079,12 +1079,12 @@ table#first{
     margin: 15px auto;
     text-align: center;
   }
-  
+
   .searchbar input {
     width: 250px;
     padding: 10px 10px;
   }
-  
+
   .searchbar button {
     padding: 11px 10px;
     border: none;
