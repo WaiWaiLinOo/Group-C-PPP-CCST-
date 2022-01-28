@@ -318,9 +318,11 @@ section{
 
 .container .sidebar .box .category a{
     padding:.4rem 0;
+    margin-bottom: 3%;
     font-size: 1.5rem;
     color:var(--black);
     /*display: flex;*/
+    display: block;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #b6b6e9;
@@ -610,10 +612,10 @@ ul li #comment{
     font-size: 15px;
 }
 .adduser {
-    width: 600px;
+    /*width: 600px;
     margin-top: 115px;
     margin-bottom: 95px;
-    margin-left: 380px;
+    margin-left: 380px;*/
     border: 1px solid #F8F4F4;
     /*background-color: #F8F4F4;*/
     background-color: #fff;
@@ -621,7 +623,7 @@ ul li #comment{
 }
 
 
-.cardHeader,.cardHeaders {
+.cardHeader {
     padding: 10px 0;
     padding-left: 10px;
     border: 1px solid #2dcba6;
@@ -632,10 +634,14 @@ ul li #comment{
     border-radius: 5px;
     font-size: 20px;
 }
-.cardHeaders{
+/*.cardHeaders{
     padding: 16px 7px;
     width: 100%;
 
+}*/
+.showpermission .showlist{
+    width: 50%;
+    margin: 2% auto;
 }
 .nav-item{
     list-style-type: none;
@@ -838,6 +844,77 @@ ul li #comment{
 .post_create i{
     color: #ffffff;
 }
+.create h2{
+    font-size: 2rem;
+}
+.create a{
+    text-decoration: none;
+    color: #0000ff;
+    padding-right: 20px;
+}
+.create a i{
+    font-size: 2.5rem;
+    color: #0000ff;
+}
+.g-color{
+    color: #00ff00 !important;
+}
+
+.r-color{
+    color: #ff0000 !important;
+}
+.b-color{
+    color: #0000ff !important;
+}
+.margin-top{
+    margin-top: 25px;
+}
+.label{
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+.margin-top input{
+    padding: 17px 5px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+.role-list li{
+    font-size: 13px;
+}
+/*dropdown*/
+.dropbtn {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 237px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    padding: 0 22px;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown a:hover {background-color: #ddd;}
+  
+  .show {display: block;}
 /* -------------------------------------------------------------------------------------------------------- */
 
 

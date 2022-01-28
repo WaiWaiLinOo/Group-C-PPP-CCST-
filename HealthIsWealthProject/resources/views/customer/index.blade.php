@@ -1,11 +1,14 @@
-@extends('layouts.app')
+@extends('frontend.app')
 @section('content')
 <div class="register">
-<div class="create">
-  <h1>User Management</h1>
-</div>
-<div class="search">
-<form action="{{route('customer.index')}}" class="form-group searchgroup">
+  <div class="cardHeader">
+    <div class="create">
+      <h1>User Management</h1>
+      <a href="{{ route('customers.create') }}" title="create new user">New User <i class="fas fa-user-plus"></i></a>
+    </div>
+  </div>
+  <!--<div class="search">
+  <form action="{{route('customer.index')}}" class="form-group searchgroup">
     <label class="name">Name</label>
     <input type="text" name="user_name" id="user_name" class="form-control">
     <label class="role">Role</label>
@@ -17,15 +20,9 @@
     <input type="submit" name="submit" value="Search" id="submited" class="form-control">
   </form>
 
-</div>
-<div class="create">
-  <a href="{{ route('customers.create') }}"><button>Create User</button> </a>
-  <a  href="/mail"><button>Email All data</button></a>
-  <a href="/exportpdf"><button>ExportPDF</button></a>
-</div>
-
-  <div class="cardHeader">
-    Customer List
+</div>-->
+  <div class="create">
+    <a href="/mail"><button>Email All data</button></a>
   </div>
   <table class="table" id="first">
     <thead>
@@ -36,7 +33,7 @@
       <th>Action</th>
     </thead>
     <tbody>
-    @forelse ($customers as $customer)
+      @forelse ($customers as $customer)
       <tr>
         {{--<td>{{ ++$i }}</td>--}}
         <td>{{ $customer->id }}</td>
@@ -56,10 +53,10 @@
         </td>
       </tr>
       @empty
-        <td colspan="5" style="text-align: center;"><b>Sorry, currently there is no User table related to that search!</b></td>
+      <td colspan="5" style="text-align: center;"><b>Sorry, currently there is no User table related to that search!</b></td>
       @endforelse
     </tbody>
- 
+
   </table>
 </div>
 @endsection

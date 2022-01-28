@@ -67,7 +67,7 @@
     @csrf
     <div class="registerform">
       <div class="form-group">
-        <label for="email">Eamil:</label>
+        <label for="email">Email:</label>
         <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
         @error('email')
         <span class="invalid-feedback" role="alert">
