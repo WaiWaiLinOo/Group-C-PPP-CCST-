@@ -1,9 +1,6 @@
 @extends('frontend.app')
 @section('content')
 <div class="register">
-{{--<div class="title">
-  <h1>Category Management</h1>
-</div>--}}
   <div class="cardHeader">
     <div class="create">
         <h2>Category List</h2>
@@ -27,7 +24,7 @@
             <form class="delete" style="display:inline-block" ; action="{{route('categories.destroy', $category)}}" method="POST">
               @csrf
               @method('DELETE')
-              <button type="submit" style="width: 100px;" class="delete-role">Delete</button>
+              <button type="submit" class="delete">Delete</button>
             </form>
           </a>
         </td>
