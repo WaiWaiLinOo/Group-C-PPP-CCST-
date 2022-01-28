@@ -115,6 +115,7 @@
         <span class="text-danger">{{ $errors->first('address') }}</span>
         @endif
       </div>
+      <input type="hidden" id="roles" name="roles" value="User">
      <button type="submit" class="button-secondary pure-button">Register</button>
     </div>
   </form>
