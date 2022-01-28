@@ -45,6 +45,7 @@ class CustomerController extends Controller
     {
         $customers = $this->customerInterface->getUser($request);
         return view('customer.index', compact('customers'))
+        //return view('customer.index')->with('customers',$customers);
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
