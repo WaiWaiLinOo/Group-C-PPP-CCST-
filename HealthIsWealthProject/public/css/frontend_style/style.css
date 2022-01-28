@@ -191,7 +191,7 @@ section{
     margin-bottom: 1.5rem;
     margin-top: 10px;
 }
-.container .posts-container .post .image{
+.container .posts-container .post .image,.editform .image{
     height: 40rem;
     width:100%;
     border-radius: .5rem;
@@ -719,8 +719,38 @@ ul li #comment{
 }
 
 .edit {
-    width: 100px;
-    margin: 0 12px;
+    width: 120px;
+    margin-right: 12px;
+    padding: 7px 0px;
+    border: 1px solid #1ab83c;
+    background-color: #1ab83c;
+    color: #ffffff;
+    border-radius: 7px;
+    border-color: #1ab83c;
+}
+.detail{
+    width: 90px;
+    margin-right: 12px;
+    padding: 7px 0px;
+    border: 1px solid #0a8f7d;
+    background-color: #0a8f7d;
+    color: #ffffff;
+    border-radius: 7px;
+    border-color: #0a8f7d;
+}
+.deletes{
+    width: 90px;
+    margin-right: 12px;
+    padding: 7px 0px;
+    border: 1px solid #FF0000;
+    background-color: #FF0000;
+    color: #ffffff;
+    border-radius: 7px;
+    border-color: #FF0000;
+}
+.edit-role{
+    width: 90px;
+    margin-right: 12px;
     padding: 7px 0px;
     border: 1px solid #1ab83c;
     background-color: #1ab83c;
@@ -729,7 +759,7 @@ ul li #comment{
     border-color: #1ab83c;
 }
 .delete button {
-    width: 120px;
+    width: 90px;
     padding: 7px 0px;
     border: 1px solid #FF0000;
     background-color: #FF0000;
@@ -745,6 +775,68 @@ ul li #comment{
     display: flex;
     justify-content: space-between;
     background-color: #2dcba6;
+}
+.editform{
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 35px;
+
+}
+.editform input{
+    padding: 20px 0;
+    font-size: 14px;
+}
+.editform strong,.editform label{
+    font-size: 14px;
+}
+.editform a{
+    font-size: 35px;
+    color: #2dcba6;
+}
+.editform a:hover{
+    color: #2dcba6;
+}
+.btns{
+    width: 300px;
+    margin-bottom: 25px;
+    margin-left: 90px;
+    padding: 7px 0;
+    border: 1px solid #2dcba6;
+    background: #2dcba6;
+    color: #ffffff;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+.post_img{
+    width: 100px;
+    box-shadow: 1px 1px 10px black;
+    border-radius: 5px;
+}
+
+.editform select{
+    width: 100%;
+    display: block;
+    padding: 12px 0px;
+    font-size: 14px;
+    border-radius: 3px;
+    border: 1px solid rgb(226, 212, 212);
+}
+.editform textarea{
+    font-size: 14px;
+}
+.content {
+    line-height: 1.6em;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    padding: 0 2em;
+    max-width: 800px;
+}
+.post_create{
+    font-size: 14px;
+}
+.post_create i{
+    color: #ffffff;
 }
 /* -------------------------------------------------------------------------------------------------------- */
 
