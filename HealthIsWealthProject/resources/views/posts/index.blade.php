@@ -29,7 +29,7 @@
     <div class="cardHeader">
         Post Management
         @can('post-create')
-        <a href="{{ route('posts.create') }}" class="post_create"><i class="fas fa-plus-square"></i>Addpost</a>
+        <a href="{{ route('posts.create') }}" class="post_create">Addpost</a>
 
         {{--<a class="js-open-modal" href="#" data-modal-id="popup1"><button>Import excel file</button></a>
         <a href="{{ route('export') }}"><button>Export excel file</button></a>--}}
