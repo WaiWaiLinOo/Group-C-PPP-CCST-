@@ -5,7 +5,7 @@
     <div class="create">
         <h2>Role List</h2>
         @can('role-create')
-        <a href="{{ route('roles.create') }}"><i class="fas fa-plus-square"></i>New Role</a>
+        <a href="{{ route('roles.create') }}" title="add new role"><i class="fas fa-plus-square"></i> New Role </a>
         @endcan
       </div>
   </div>
@@ -21,14 +21,15 @@
           <td>{{$loop->iteration}}</td>
           <td>{{ $role->name }}</td>
           <td>
-            <a href="{{ route('roles.show',$role->id) }}"> <button class="detail">Show</button></a>
+            <a href="{{ route('roles.show',$role->id) }}" class="g-color"><i class="fas fa-eye"></i> Show</a>
             @can('role-edit')
-            <a class="edit-r" href="{{ route('roles.edit',$role->id) }}"><button class="edit-role">Edit</button></a>
+            <a class="edit-r" href="{{ route('roles.edit',$role->id) }}" class="b-color"><i class="fas fa-edit"></i> Edit</button></a>
             @endcan
             @can('role-delete')
-            <a href="#" onclick="return confirm('Are you sure you want to delete this role!')">
+            <a href="#" onclick="return confirm('Are you sure you want to delete this role!')" class="r-color">
+            <i class="fas fa-trash-alt"></i>
               {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline;']) !!}
-              {!! Form::submit('Delete', ['class' => 'deletes']) !!}
+              {!! Form::submit('Delete', ['class' => 'r-color']) !!}
               {!! Form::close() !!}
             </a>
             @endcan
