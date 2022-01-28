@@ -42,7 +42,11 @@
         <td>{{ $customer->id }}</td>
         <td>{{ $customer->user_name }}</td>
         <td>{{ $customer->email }}</td>
-        <td><label class="badge badge-success">{{ $customer->name}}</label></td>
+        <td> @if(!empty($customer->getRoleNames()))
+          @foreach($customer->getRoleNames() as $v)
+          <label class="badge badge-success">{{ $v }}</label>
+          @endforeach
+          @endif</td>
         <td>
           <a href="{{ route('profileshows', Auth::user()->id) }}"><button class="show-role-detail">Show</button></a>
           <a href="{{route('customers.edit',$customer->id)}}"><button class="edit">Edit</button></a>

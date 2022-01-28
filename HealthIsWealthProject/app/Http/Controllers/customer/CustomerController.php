@@ -67,7 +67,7 @@ class CustomerController extends Controller
     {
         //$validated = $request->validated();
         $user = $this->customerInterface->storeUser($request);
-        $user->notify(new WelcomeEmailNotification($user));
+        //$user->notify(new WelcomeEmailNotification($user));
         return redirect()->route('frontend.blog')
             ->with('success', 'User created successfully');
     }

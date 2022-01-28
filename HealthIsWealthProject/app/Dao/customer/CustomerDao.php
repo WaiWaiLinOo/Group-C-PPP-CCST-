@@ -25,12 +25,12 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function getUser($request)
     {
-        //return User::orderBy('id', 'DESC')->paginate(5);
+        return User::orderBy('id', 'DESC')->paginate(5);
         //return User::all();
-        return DB::table('users')
-            ->join('roles', 'users.id', '=', 'roles.id')
-            ->select('users.*', 'roles.name')
-            ->get();
+        //return DB::table('users')
+        //    ->join('roles', 'users.id', '=', 'roles.id')
+        //    ->select('users.*', 'roles.name')
+        //    ->get();
     }
 
     /**
