@@ -116,6 +116,11 @@
                 @role('Admin')
                 <a class="nav-link" href="{{ route('categories.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Category</a>
                 <a class="nav-link" href="{{ route('contact.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Contact </a>
+                <a class="nav-link dropbtn pure-menu-link"  onclick="myDownload()"><i class="fas fa-file-download"></i> &nbsp;Download Files <i class="fas fa-caret-down"></i></a>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="/exportpdf">User Pdf File <i class="fas fa-file-pdf"></i></a>
+                    <a href="{{ route('export') }}">Post Excel File <i class="fas fa-file-excel"></i></a>
+                </div>
                 @endrole
                 
             </div>
