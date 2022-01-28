@@ -39,8 +39,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $roles = $this->roleInterface->getRole($request);
-        return view('roles.index', compact('roles'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('roles.index', compact('roles'));;
     }
 
     /**
