@@ -521,11 +521,11 @@ section{
 
 a.close {
     position: absolute;
-    top: 5%;
+    top: 10%;
     right: 2%;
     line-height: 1;
     color: rgb(204, 16, 16);
-    font-size: 1.5em;
+    font-size: 2.5em;
     text-decoration: none;
     margin-top: -15px;
 }
@@ -588,6 +588,12 @@ ul li #comment{
 
 .register-form .profile input ,.certificate input{
     width: 500px;
+    padding: 4px 5px;
+    border: 1px solid #ccbdbd;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+.editform .profile input{
     padding: 4px 5px;
     border: 1px solid #ccbdbd;
     background-color: #ffffff;
@@ -656,10 +662,10 @@ ul li #comment{
 .header nav a:hover{
     text-decoration: none;
 }
-
+/*
 .registerform{
     margin-top: 24px;
-}
+}*/
 .registerform input{
     padding: 17px 5px;
     border-radius: 5px;
@@ -795,11 +801,11 @@ ul li #comment{
 .editform strong,.editform label{
     font-size: 14px;
 }
-.editform a{
+.editform a,.registerform a{
     font-size: 35px;
     color: #2dcba6;
 }
-.editform a:hover{
+.editform a:hover,.registerform a:hover{
     color: #2dcba6;
 }
 .btns{
@@ -849,12 +855,13 @@ ul li #comment{
 }
 .create a{
     text-decoration: none;
-    color: #0000ff;
+    color: #fafaff;
     padding-right: 20px;
+    font-size: 14px;
 }
 .create a i{
-    font-size: 2.5rem;
-    color: #0000ff;
+    font-size: 15px;
+    color: #fafaff;
 }
 .g-color{
     color: #00ff00 !important;
@@ -911,10 +918,32 @@ ul li #comment{
     text-decoration: none;
     display: block;
   }
-
+  .modal-body input{
+    padding: 0.5px 0px;
+    border: 1px solid #ccbdbd;
+    background-color: #ffffff;
+    border-radius: 5px;
+    font-size: 14px;
+}
   .dropdown a:hover {background-color: #ddd;}
 
   .show {display: block;}
+
+  .button-secondary-modal{
+    width: 200px;
+    margin-bottom: 40px;
+    padding: 7px 0;
+    border: 1px solid rgb(29, 97, 131);
+    background: rgb(29, 97, 131);
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+#graph{
+width: 100%;
+margin: 0 auto;
+}
 /* -------------------------------------------------------------------------------------------------------- */
 
 
