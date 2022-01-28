@@ -28,7 +28,7 @@ class CustomerDao implements CustomerDaoInterface
         //return User::orderBy('id', 'DESC')->paginate(5);
         //return User::all();
         return DB::table('users')
-            ->join('roles', 'users.id', '=', 'roles.id')
+            ->join('roles', 'users.role_id', '=', 'roles.name')
             ->select('users.*', 'roles.name')
             ->get();
     }
@@ -57,10 +57,18 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function storeUser($request)
     {
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
-
-        $user = User::create($input);
+                //$input = $request->all();
+                //$input['password'] = Hash::make($input['password']);
+                //$input['role_id'] =  $request->role;
+                //$user = User::create($input);
+                //$user->assignRole($request->input('roles'));
+                //return $user;
+        $user = new User;
+        $user->user_name = $request->user_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request['password']);
+        $user->role_id =  $request->role;
+        $user->save();
         $user->assignRole($request->input('roles'));
         return $user;
     }
@@ -169,18 +177,18 @@ class CustomerDao implements CustomerDaoInterface
     public function exportPDF()
     {
         $data = DB::table('users')
-        ->join('roles', 'users.id', '=', 'roles.id')
-        ->select('users.*', 'roles.name')
-        ->get();
-//    $data = DB::table('users')
-//        ->join('cate','students.major_id', '=','majors.id')
-//        ->get();
-//    view()->share('students', $student);
-//    $pdf = PDF::loadview('exportpdf');
-//    return $pdf->download('data.pdf');
-//
-//
-//        $data = User::all();
+            ->join('roles', 'users.id', '=', 'roles.id')
+            ->select('users.*', 'roles.name')
+            ->get();
+        //    $data = DB::table('users')
+        //        ->join('cate','students.major_id', '=','majors.id')
+        //        ->get();
+        //    view()->share('students', $student);
+        //    $pdf = PDF::loadview('exportpdf');
+        //    return $pdf->download('data.pdf');
+        //
+        //
+        //        $data = User::all();
         view()->share('data', $data);
     }
 }

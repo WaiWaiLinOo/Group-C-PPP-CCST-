@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('certificate')->nullable();
             $table->date('dob')->nullable();
             $table->string('address')->nullable();
+            $table->string('role_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
