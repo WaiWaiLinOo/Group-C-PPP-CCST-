@@ -2,11 +2,11 @@
 @section('content')
 <div class="register">
     <div class="cardHeader">Add Category</div>
-    <form class="register-form" method="POST" action="{{ route('categories.store') }}">
+    <form class="register-form margin-top" method="POST" action="{{ route('categories.store') }}">
         @csrf
         <div class="editform">
             <div class="form-group">
-                <label for="name">Category Name : </label>
+                <label for="name" class="label">Category Name : </label>
                 <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" autofocus>
                 @if ($errors->has('name'))
                 <span class="text-danger">{{ $errors->first('name') }}</span>

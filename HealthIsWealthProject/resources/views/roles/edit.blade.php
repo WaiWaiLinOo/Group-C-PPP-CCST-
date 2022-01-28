@@ -18,7 +18,7 @@
     </div>
   </div>
 {!! Form::model($role = $datas['role'], ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
-  <div class="register-form margin-top">
+  <div class="editform margin-top">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
         <label for="name" class="label"> Name: </label>
@@ -38,8 +38,11 @@
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="button-secondary btnpost">Update</button>
+        <button type="submit" class="btns">Update</button>
       </div>
+    <div class="create-categories">
+      <a href="{{ route('roles.index') }}" title="Back to role lists"><i class="fas fa-arrow-circle-left"></i></a>
+    </div>
   </div>
 {!! Form::close() !!}
 </div>

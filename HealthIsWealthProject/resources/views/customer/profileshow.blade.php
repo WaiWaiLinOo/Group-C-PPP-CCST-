@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('frontend.app')
 @section('content')
 <div class="content">
     <div class="imageshow">
