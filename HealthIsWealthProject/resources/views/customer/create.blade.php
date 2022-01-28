@@ -62,7 +62,7 @@
       <div class="form-group">
         <div class="form-group">
           <strong>Role:</strong>
-          {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+          {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','name'=>'roles','multiple')) !!}
         </div>
       </div>
       <button type="submit" class="button-secondary">Register</button>
