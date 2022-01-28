@@ -49,6 +49,19 @@ class UserDao implements UserDaoInterface
         $user->user_name = $request->user_name;
         $user->email = $request->email;
         $user->password = Hash::make($request['password']);
+        if ($request->file()) {
+            $filename = time() . '.' . $request->profile->clientExtension();
+            $filePath = $request->file('profile')->storeAs('userProfile', $filename, 'public');
+            $path = 'storage/' . $filePath;
+            $user->profile = $path;
+        }
+        if ($certificate = $request->file('certificate')) {
+            $certificate = time() . '.' . $request->file('certificate')->clientExtension();
+            $request->file('certificate')->storeAs('userCertificate', $certificate, 'public');
+            $user->certificate = $certificate;
+        }
+        $user->dob = $request->dob;
+        $user->address = $request->address;
         $user->role_id =  $request->roles;
         $user->save();
         $user->assignRole('User');

@@ -67,6 +67,19 @@ class CustomerDao implements CustomerDaoInterface
         $user->user_name = $request->user_name;
         $user->email = $request->email;
         $user->password = Hash::make($request['password']);
+        if ($request->file()) {
+            $filename = time() . '.' . $request->profile->clientExtension();
+            $filePath = $request->file('profile')->storeAs('userProfile', $filename, 'public');
+            $path = 'storage/' . $filePath;
+            $user->profile = $path;
+        }
+        if ($certificate = $request->file('certificate')) {
+            $certificate = time() . '.' . $request->file('certificate')->clientExtension();
+            $request->file('certificate')->storeAs('userCertificate', $certificate, 'public');
+            $user->certificate = $certificate;
+        }
+        $user->dob = $request->dob;
+        $user->address = $request->address;
         $user->role_id =  $request->roles;
         $user->save();
         $user->assignRole($request->input('roles'));
@@ -108,6 +121,19 @@ class CustomerDao implements CustomerDaoInterface
         $user->user_name = $request->user_name;
         $user->email = $request->email;
         $user->password = Hash::make($request['password']);
+        if ($request->file()) {
+            $filename = time() . '.' . $request->profile->clientExtension();
+            $filePath = $request->file('profile')->storeAs('userProfile', $filename, 'public');
+            $path = 'storage/' . $filePath;
+            $user->profile = $path;
+        }
+        if ($certificate = $request->file('certificate')) {
+            $certificate = time() . '.' . $request->file('certificate')->clientExtension();
+            $request->file('certificate')->storeAs('userCertificate', $certificate, 'public');
+            $user->certificate = $certificate;
+        }
+        $user->dob = $request->dob;
+        $user->address = $request->address;
         $user->role_id =  $request->roles;
         $user->update();
         DB::table('model_has_roles')->where('model_id', $id)->delete();
@@ -164,7 +190,7 @@ class CustomerDao implements CustomerDaoInterface
 
         $user = DB::table('users')
             ->join('roles', 'users.role_id', '=', 'roles.name')
-            ->select('users.*', 'roles.name');
+            ->select('users.*', 'roles.*');
         if ($user_name) {
             $user->where('users.user_name', 'LIKE', '%' . $user_name . '%');
         }
