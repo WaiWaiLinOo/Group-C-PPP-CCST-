@@ -42,7 +42,7 @@
         <td>{{ $customer->id }}</td>
         <td>{{ $customer->user_name }}</td>
         <td>{{ $customer->email }}</td>
-        <td>{{ $customer->name}} </td>
+        <td><b class="badge badge-success">{{ $customer->name}}</b></td>
         <td>
           <a href="{{ route('profileshows', Auth::user()->id) }}"><button class="show-role-detail">Show</button></a>
           <a href="{{route('customers.edit',$customer->id)}}"><button class="edit">Edit</button></a>
