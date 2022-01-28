@@ -7,21 +7,26 @@
                 <a target="_blank" href="img_5terre.jpg">
                     <img src="{{ asset($posts->post_img) }}" class="image">
                 </a>
+                <div class="date">
+                    <i class="far fa-clock"></i>
+                    <span>{{ date('M-d-Y', strtotime($posts->created_at)) }}</span>
+                </div>
             @endif
-            <div class="date">
-                <i class="far fa-clock"></i>
-                <span>Posted at {{ $posts->created_at->diffForHumans() }}</span>
-            </div>
             <h3 class="title">{{ $posts->post_name }} <span class="date">({{$posts->Category->name}})</span></h3>
+            @if($posts->post_img == '')
+            <div class="date">
+                    <i class="far fa-clock"></i>
+                    <span>{{ date('M-d-Y', strtotime($posts->created_at)) }}</span>
+                </div>
+            @endif
             <p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, nulla maiores placeat
                 voluptas tenetur aperiam sapiente natus fugit suscipit facilis nam iure. Voluptatum rerum numquam, optio
                 quasi excepturi aliquid iusto!
-                <a href="{{ route('postdetail', $posts->id) }}">Detail Here</a>
-            </p>
+           </p>
             <div class="links">
                 <a href="#" class="user">
                     <i class="far fa-user"></i>
-                    <span>by admin</span>
+                    <span>by {{$posts->User->user_name}}</span>
                 </a>
                 <a href="{{route('home')}}" class="icon"> <i class="fas fa-arrow-circle-left"></i></a>
 
@@ -39,7 +44,7 @@
 
                            <span>{{ $comment->content }}</span>
                             <div class="small">
-                                written by <b>{{ $comment->user->name }}</b>
+                                written by <b>{{ $comment->user->user_name }}</b>
 
                                 <span style="float: right;" id="comment">{{ $comment->created_at->diffForHumans() }}</span>
                             </div>

@@ -169,7 +169,7 @@ section{
 
 .container{
     display: grid;
-    grid-template-columns: 2.5fr 1fr;
+    grid-template-columns: 0.8fr 2.5fr;
     gap:1.5rem;
     background:#eee;
 }
@@ -263,7 +263,8 @@ section{
     padding:1.5rem;
     font-size: 2rem;
     color:#fff;
-    background:var(--black);
+    /*background:var(--black);*/
+    background-color: #2dcba6;
     text-transform: capitalize;
 }
 
@@ -319,9 +320,11 @@ section{
     padding:.4rem 0;
     font-size: 1.5rem;
     color:var(--black);
-    display: flex;
+    /*display: flex;*/
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid #b6b6e9;
+    border-radius: 3px;
 }
 
 .container .sidebar .box .category a span{
@@ -612,7 +615,8 @@ ul li #comment{
     margin-bottom: 95px;
     margin-left: 380px;
     border: 1px solid #F8F4F4;
-    background-color: #F8F4F4;
+    /*background-color: #F8F4F4;*/
+    background-color: #fff;
     border-radius: 5px;
 }
 
@@ -620,11 +624,12 @@ ul li #comment{
 .cardHeader,.cardHeaders {
     padding: 10px 0;
     padding-left: 10px;
-    border: 1px solid rgb(48, 77, 238);
-    background-color: rgb(48, 77, 238);
+    border: 1px solid #2dcba6;
+    /*background-color: rgb(48, 77, 238);*/
+    background-color: #2dcba6;
     color: #ffffff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
     font-size: 20px;
 }
 .cardHeaders{
@@ -656,7 +661,8 @@ ul li #comment{
 
 }
 .registerform label{
-    font-size: 12px;
+    font-size: 13px;
+    padding-bottom: 3px;
 }
 
 .contact {
@@ -734,7 +740,7 @@ ul li #comment{
     }
 
     .container{
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 1fr 2fr;
     }
 
 }

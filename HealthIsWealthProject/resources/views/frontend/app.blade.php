@@ -26,8 +26,12 @@
     <a href="#" class="logo">Health_<span>is</span>_Wealth</a>
 
     <nav class="navbar">
+        @auth
+        @role('User|SubAdmin')
         <a href="{{route('home')}}">Home</a>
         <a href="{{route('contactUs')}}">contact Us</a>
+        @endrole
+        @endauth
         @guest
         <li class="registers"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
         <li class="login"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
@@ -67,20 +71,15 @@
 <!-- header section ends -->
 
 <!-- banner section starts  -->
-@auth
-@role('User|SubAdmin')
 <section class="banner" id="banner">
 
 </section>
-@endrole
-@endauth
 <section class="container" id="posts">
 
-    @yield('content')
     <div class="sidebar">
 
         @auth
-        @role('User')
+        @role('User|SubAdmin')
         <div class="box">
             <h3 class="title">about us</h3>
             <div class="about">
@@ -96,33 +95,36 @@
         @auth
         @role('Admin')
         <div class="box">
-            <h3 class="title">Action</h3>
+            <h3 class="title">Controls</h3>
             <div class="category">
-                <a class="nav-link" href="{{ route('customers.index') }}" class="pure-menu-link">Manage Users</a>
-                <a class="nav-link" href="{{ route('roles.index') }}" class="pure-menu-link">Manage Role</a>
-                <a class="nav-link" href="{{ route('categories.index') }}" class="pure-menu-link">Manage Category</a>
-                <a class="nav-link" href="{{ route('contact.index') }}" class="pure-menu-link">Manage Contact </a>
-
+                <a class="nav-link" href="{{ route('customers.index') }}" class="pure-menu-link"><i class="fas fa-home"></i> &nbsp;Dashboard</a>
+                <a class="nav-link" href="{{ route('roles.index') }}" class="pure-menu-link"><i class="fas fa-chart-line"></i> &nbsp;Statistics</a>
+                <a class="nav-link" href="{{ route('customers.index') }}" class="pure-menu-link"><i class="fas fa-users"></i> &nbsp;Users</a>
+                <a class="nav-link" href="{{ route('roles.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Roles</a>
             </div>
         </div>
         @endrole
         @endauth
+
         @auth
-
-        @hasanyrole('Admin|SubAdmin')
         <div class="box">
-        <h3 class="title">Post Action</h3>
-        <div class="category">
-        <a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a>
+            <h3 class="title">Actions</h3>
+            <div class="category">
+                @hasanyrole('Admin|SubAdmin')
+                <a class="nav-link" href="{{ route('posts.index') }}"><i class="fas fa-edit"></i> &nbsp;Post</a>
+                @endhasanyrole
+                @role('Admin')
+                <a class="nav-link" href="{{ route('categories.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Category</a>
+                <a class="nav-link" href="{{ route('contact.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Contact </a>
+                @endrole
+                
+            </div>
         </div>
-        </div>
-        @endhasanyrole
         @endauth
-
 
         <div class="box">
             <h3 class="title">categories</h3>
-            <div class="category">
+            <div class="category" id="categoryList">
                 {{--
                 @foreach ($item->Category as $item)--}}
                 {{--<a href="#">{{$item->Category->name}}</a>--}}
@@ -131,6 +133,7 @@
         </div>
     </div>
 
+    @yield('content')               
 </section>
 
 

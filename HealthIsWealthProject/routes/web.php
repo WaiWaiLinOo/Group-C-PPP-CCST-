@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/contactshow', [ContactController::class , 'show'])->name('contact.show');
     Route::post('/contactdata', [ContactController::class , 'store'])->name('contact.store');
     Route::get('/managecontact',[ContactController::class,'index'])->name('contact.index');
+
+    Route::get('/postByCategory/{id}', [PostController::class, 'postByCategoryId'])->name('postByCategoryId');
 });
 
 

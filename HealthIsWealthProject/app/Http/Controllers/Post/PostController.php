@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Post;
 
-use DB;
+
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostCreateRequest;
 use Spatie\Permission\Models\Permission;
 use App\Contracts\Services\post\PostServiceInterface;
-use App\Http\Requests\PostCreateRequest;
-use Illuminate\Support\Str;
 
 
 class PostController extends Controller
@@ -183,5 +184,18 @@ class PostController extends Controller
             return redirect()->route('posts.index')
                 ->with('error', 'Writted User can only delete');
         }
+    }
+
+     /**
+     * Post by category id
+     * @param  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function postByCategoryId($id)
+    {
+        $posts = Post::with(['user','category'])
+                ->where('category_id', '=', $id)
+                ->get();
+        return view('frontend.blog', compact('posts'));
     }
 }

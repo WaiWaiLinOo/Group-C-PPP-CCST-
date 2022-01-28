@@ -116,5 +116,15 @@ class CategoryController extends Controller
         //$category->delete();
         return redirect()->back()->with('status', 'Category Deleted Successfully');
     }
+
+     /**
+     * category list
+     * @return  
+     */
+    public function getCategoryList()
+    {   
+        $categories = Category::pluck('name', 'id');
+        return response()->json($categories);
+    }
 }
 
