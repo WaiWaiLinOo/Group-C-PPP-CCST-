@@ -629,7 +629,7 @@ ul li #comment{
     background-color: #2dcba6;
     color: #ffffff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    /*border-radius: 5px;*/
+    border-radius: 5px;
     font-size: 20px;
 }
 .cardHeaders{
@@ -718,6 +718,34 @@ ul li #comment{
 
 }
 
+.edit {
+    width: 100px;
+    margin: 0 12px;
+    padding: 7px 0px;
+    border: 1px solid #1ab83c;
+    background-color: #1ab83c;
+    color: #ffffff;
+    border-radius: 7px;
+    border-color: #1ab83c;
+}
+.delete button {
+    width: 120px;
+    padding: 7px 0px;
+    border: 1px solid #FF0000;
+    background-color: #FF0000;
+    color: #ffffff;
+    border-radius: 7px;
+}
+.create  button{
+    background-color: #2dcba6;
+    color: #ffffff;
+    padding: 0px 19px;
+}
+.create{
+    display: flex;
+    justify-content: space-between;
+    background-color: #2dcba6;
+}
 /* -------------------------------------------------------------------------------------------------------- */
 
 

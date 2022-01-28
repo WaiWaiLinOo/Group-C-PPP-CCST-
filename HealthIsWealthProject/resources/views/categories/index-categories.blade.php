@@ -1,14 +1,14 @@
-@extends('layouts.app')
+@extends('frontend.app')
 @section('content')
 <div class="register">
-<div class="title">
+{{--<div class="title">
   <h1>Category Management</h1>
-</div>
-<div class="create">
-  <a href="{{ route('categories.create') }}"><button>Create Category</button> </a>
-</div>
+</div>--}}
   <div class="cardHeader">
-    Category List
+    <div class="create">
+        <h2>Category List</h2>
+        <a href="{{ route('categories.create') }}"><button><h2>Create Category</h2></button> </a>
+      </div>
   </div>
   <table class="table" id="first" >
     <thead>
