@@ -17,8 +17,11 @@ Create Post
         <div class="form-group mb-3 profile">
             <label for="profile">Post Image</label>
             (<small class="text-danger">*We only accept jpeg png gif jpg format</small>)
-            <input type="file" placeholder="User Profile" value="{{old('post_img')}} name="post_img" id="post_img" accept="image/png, image/gif, image/jpeg" style="width:100%;">
-          </div>
+            <input type="file" placeholder="User Profile" value="{{old('post_img')}}" name="post_img" id="post_img" accept="image/png, image/gif, image/jpeg" style="width:100%;">
+            @if ($errors->has('post_img'))
+            <span class="text-danger">{{ $errors->first('post_img') }}</span>
+            @endif
+        </div>
         <div class="form-group">
           <strong>Details:</strong>
           <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail" value="{{old('detail')}}"></textarea>

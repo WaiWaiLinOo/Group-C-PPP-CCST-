@@ -91,12 +91,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'post_name' => 'required',
-            'post_img' =>'required',
-            //'detail' => 'required',
-            //'category_id','required',
-        ]);
+        //request()->validate([
+        //    'post_name' => 'required',
+        //    'post_img' =>'required',
+        //    //'detail' => 'required',
+        //    //'category_id','required',
+        //]);
         //$validated = $request->validated();
         $post = $this->postInterface->storePost($request);
         return redirect()->route('posts.index')
