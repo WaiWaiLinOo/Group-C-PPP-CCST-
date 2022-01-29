@@ -1,33 +1,34 @@
 @extends('frontend.app')
 @section('content')
 <div class="register">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+  @endif
 <div class="cardHeader">
 Create Post
 </div>
 <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
   @csrf
+
   <div class="editform">
         <div class="form-group">
           <strong>Post Name:</strong>
           <input type="text" name="post_name" class="form-control" placeholder="Post name" value="{{old('post_name')}}">
-          @if ($errors->has('post_name'))
-          <span class="text-danger">{{ $errors->first('post_name') }}</span>
-          @endif
         </div>
         <div class="form-group mb-3 profile">
             <label for="profile">Post Image</label>
             (<small class="text-danger">*We only accept jpeg png gif jpg format</small>)
             <input type="file" placeholder="User Profile" value="{{old('post_img')}}" name="post_img" id="post_img" accept="image/png, image/gif, image/jpeg" style="width:100%;">
-            @if ($errors->has('post_img'))
-            <span class="text-danger">{{ $errors->first('post_img') }}</span>
-            @endif
         </div>
         <div class="form-group">
           <strong>Details:</strong>
           <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail" value="{{old('detail')}}"></textarea>
-          @if ($errors->has('detail'))
-          <span class="text-danger">{{ $errors->first('detail') }}</span>
-          @endif
         </div>
 
        <label for="categories"><span>Choose a category:</span></label>
@@ -36,9 +37,6 @@ Create Post
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
-            @if ($errors->has('category_id'))
-            <span class="text-danger">{{ $errors->first('category_id') }}</span>
-            @endif
         </select>
       <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btns">Submit</button>

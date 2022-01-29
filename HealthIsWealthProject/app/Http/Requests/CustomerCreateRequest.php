@@ -24,17 +24,13 @@ class CustomerCreateRequest extends FormRequest
   public function rules()
   {
     return [
-        'user_name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        'password' => ['required', 'string', 'min:8'],
+        'user_name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required', 'string', 'min:8',
         'profile'=>"required|mimes:jpeg,bmp,png",
-        'dob'=>['required'],
-        'address' =>['required','string','min:2'],
-        'role'=>['required'],
-        'email'=>['required'],
-        'first_name'=>['required'],
-        'last_name'=>['required'],
-        'detail'=>['required'],
+        'dob'=>'required',
+        'address' =>'required','string','min:2',
+        'email'=>'required',
     ];
   }
 }

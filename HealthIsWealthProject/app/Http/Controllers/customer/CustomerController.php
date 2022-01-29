@@ -63,10 +63,10 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerCreateRequest $request)
     {
-        //$validated = $request->validated();
-        $user = $this->customerInterface->storeUser($request);
+        $validated = $request->validated();
+        $user = $this->customerInterface->storeUser($request,$validated);
         //$user->notify(new WelcomeEmailNotification($user));
         return redirect()->route('frontend.blog')
             ->with('success', 'User created successfully');

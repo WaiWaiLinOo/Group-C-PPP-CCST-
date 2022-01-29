@@ -1,6 +1,15 @@
 @extends('frontend.app')
 @section('content')
 <div class="adduser">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+  @endif
   <div class="cardHeader">
     <div class="create">
       <h2>New Role</h2>
@@ -13,9 +22,6 @@
       <div class="form-group">
         <label for="name" class="label"> Name: </label>
         <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" autofocus placeholder="Enter Name">
-        @if ($errors->has('name'))
-        <span class="text-danger">{{ $errors->first('name') }}</span>
-        @endif
       </div>
     </div>
     <div class="permission">

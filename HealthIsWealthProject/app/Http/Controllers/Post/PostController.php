@@ -89,16 +89,16 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostCreateRequest $request)
     {
-        //request()->validate([
+        //$request()->validate([
         //    'post_name' => 'required',
         //    'post_img' =>'required',
-        //    //'detail' => 'required',
-        //    //'category_id','required',
+        //    'detail' => 'required',
+        //    'category_id','required',
         //]);
-        //$validated = $request->validated();
-        $post = $this->postInterface->storePost($request);
+        $validated = $request->validated();
+        $post = $this->postInterface->storePost($request,$validated);
         return redirect()->route('posts.index')
             ->with('success', 'Post created successfully.');
     }

@@ -1,6 +1,15 @@
 @extends('frontend.app')
 @section('content')
 <div class="content-contact">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+  @endif
     <h3 class="cardHeaders">Contact Form</h3>
     <div class="contact clearfix">
         <div class="map">
@@ -12,24 +21,15 @@
                 <div>
                 <label for="fname">First Name</label>
                 <input type="text" id="fname" name="first_name" placeholder="Your name.." value="{{old('first_name')}}">
-                @if ($errors->has('first_name'))
-                <span class="text-danger">{{ $errors->first('first_name') }}</span>
-                @endif
                 </div>
                 <div>
                 <label for="lname">Last Name</label>
                 <input type="text" id="lname" name="last_name" placeholder="Your last name.." value="{{old('last_name')}}">
-                @if ($errors->has('last_name'))
-                <span class="text-danger">{{ $errors->first('last_name') }}</span>
-                @endif
                 </div>
                 <div>
                 <label for="subject">Subject</label>
                 <textarea id="subject" name="detail" placeholder="Write something.." style="height:200px"></textarea>
                 <input type="submit" value="Submit" id="submits" value="{{old('detail')}}">
-                @if ($errors->has('detail'))
-                <span class="text-danger">{{ $errors->first('detail') }}</span>
-                @endif
                 </div>
               </form>
         </div>

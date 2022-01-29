@@ -5613,10 +5613,9 @@ a.badge-dark.focus {
   color: #761b18;
   background-color: #f9d6d5;
   border-color: #f7c6c5;
-  width: 595px;
-  margin-left:300px;
-  margin-bottom: -104px;
+  width: 100%;
 }
+
 
 .alert-danger hr {
   border-top-color: #f4b0af;
