@@ -6,7 +6,7 @@
       <h1>User Management</h1>
       <a href="{{ route('customers.create') }}" title="create new user"><i class="fas fa-user-plus"></i> New User</a>
       <a href="/mail" title="send email"><i class="fas fa-paper-plane"></i> Email All data</a>
-    
+
     </div>
   </div>
   <!--<div class="search">
@@ -44,11 +44,11 @@
           <a href="{{route('customers.edit',$customer->id)}}" class="b-color"><i class="fas fa-edit"></i> Edit</a>
           <a href="" onclick="return confirm('Are you sure you want to delete this user!')" class="r-color">
             <i class="fas fa-trash-alt"></i>
-            <form class="delete" style="display:inline-block" ; action="{{ url('user/delete/'.$customer->id) }}" method="POST">
-              @csrf
-              @method('DELETE')
-              Delete
-            </form>
+            @csrf
+            @method('DELETE')
+            {!! Form::open(['method' => 'DELETE','route' => ['customers.destroy', $customer->id],'style'=>'display:inline;']) !!}
+            {!! Form::submit('Delete', ['class' => 'r-color']) !!}
+            {!! Form::close() !!}
           </a>
         </td>
       </tr>
