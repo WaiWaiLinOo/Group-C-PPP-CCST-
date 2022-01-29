@@ -29,6 +29,7 @@ class CustomerDao implements CustomerDaoInterface
         //return User::all();
         return DB::table('users')
             ->join('roles', 'users.role_id', '=', 'roles.name')
+            ->whereNull('users.deleted_at')
             ->select('users.*', 'roles.name')
             ->get();
     }
@@ -190,6 +191,7 @@ class CustomerDao implements CustomerDaoInterface
 
         $user = DB::table('users')
             ->join('roles', 'users.role_id', '=', 'roles.name')
+            ->whereNull('users.deleted_at')
             ->select('users.*', 'roles.*');
         if ($user_name) {
             $user->where('users.user_name', 'LIKE', '%' . $user_name . '%');
