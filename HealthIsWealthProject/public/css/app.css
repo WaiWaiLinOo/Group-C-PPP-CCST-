@@ -460,7 +460,7 @@ hr {
 
 small,
 .small {
-  font-size: 80%;
+  font-size: 120%;
   font-weight: 400;
 }
 
@@ -1788,6 +1788,9 @@ pre code {
   text-align: center;
 }
 
+.table td {
+  padding: 0.75rem 0;
+}
 .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #dee2e6;

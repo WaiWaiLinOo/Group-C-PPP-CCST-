@@ -1,72 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthIsWealth</title>
 
-    <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="{{asset('css/library/fontawesome.all.min.css')}}">
-    <!-- custom css file link  -->
-    <link rel="stylesheet" href="{{asset('css/frontend_style/style.css')}}">
-    <script src="{{asset('js/script.js')}}"></script>
-    <script src="{{ asset('js/library/jquery3.6.0.min.js') }}"></script>
-    <script src="{{ asset('js/modalbox.js') }}"></script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/app.js') }}" defer></script>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthIsWealth</title>
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="{{asset('css/library/fontawesome.all.min.css')}}">
+  <!-- custom css file link  -->
+  <link rel="stylesheet" href="{{asset('css/frontend_style/style.css')}}">
+  <script src="{{asset('js/script.js')}}"></script>
+  <script src="{{ asset('js/library/jquery3.6.0.min.js') }}"></script>
+  <script src="{{ asset('js/modalbox.js') }}"></script>
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
+
 <body>
 
-<header class="header">
+  <header class="header">
 
     <a href="#" class="logo">Health_<span>is</span>_Wealth</a>
 
     <nav class="navbar">
-        <a href="{{route('home')}}">Home</a>
-        <a href="#contact">contact Us</a>
-        @guest
-        <li class="registers"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
-        <li class="login"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
-        @else
-        <li class="nav-item dropdown pure-menu-item ">
+      <a href="{{route('home')}}">Home</a>
+      <a href="#contact">contact Us</a>
+      @guest
+      <li class="registers"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+      <li class="login"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+      @else
+      <li class="nav-item dropdown pure-menu-item ">
 
-          <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            {{ Auth::user()->user_name }} <span class="caret"></span>
+        <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+          {{ Auth::user()->user_name }} <span class="caret"></span>
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" style="color: #000000" href="{{ route('profileshows', Auth::user()->id) }}">
+            {{ __('Profile') }}
           </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" style="color: #000000" href="{{ route('profileshows', Auth::user()->id) }}">
-              {{ __('Profile') }}
-            </a>
-            <a class="dropdown-item" style="color: #000000;" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-              {{ __('Logout') }}
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-              @csrf
-            </form>
-          </div>
-        </li>
-        @endguest
+          <a class="dropdown-item" style="color: #000000;" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
+        </div>
+      </li>
+      @endguest
     </nav>
 
     <div class="icons">
-        <i class="fas fa-bars" id="menu-bars"></i>
-        <i class="fas fa-search" id="search-icon"></i>
+      <i class="fas fa-bars" id="menu-bars"></i>
+      <i class="fas fa-search" id="search-icon"></i>
     </div>
 
     <form action="" class="search-form">
-        <input type="search" name="" placeholder="search here..." id="search-box">
-        <label for="search-box" class="fas fa-search"></label>
+      <input type="search" name="" placeholder="search here..." id="search-box">
+      <label for="search-box" class="fas fa-search"></label>
     </form>
 
-</header>
-<section class="container" id="posts">
-<div class="register">
-    <div class="adduser">
+  </header>
+  <section class="container" id="posts">
+    <div class="m-login">
+      <div class="register">
         <div class="cardHeader">Login</div>
-        <form method="POST" action="{{ route('login') }}" class="register-form">
+        <form method="POST" action="{{ route('login') }}">
           @csrf
-          <div class="registerform">
+          <div class="editform">
             <div class="form-group">
               <label for="email">Email:</label>
               <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -89,16 +91,16 @@
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                 <label class="form-check-label" for="remember">
-                  {{ __('Remember Me') }}
+                  &nbsp;{{ __('Remember Me') }}
                 </label>
               </div>
             </div>
             <div class="form-group mb-0">
-              <button type="submit" class="button-secondary pure-button">
+              <button type="submit" class="btns">
                 {{ __('Login') }}
               </button>
               @if (Route::has('password.request'))
-              <a class="btn btn-link" href="{{ route('password.request') }}">
+              <a class="forget" href="{{ route('password.request') }}">
                 {{ __('Forgot Your Password?') }}
               </a>
               @endif
@@ -106,22 +108,23 @@
           </div>
         </form>
       </div>
-</div>
-</section>
-<section class="footer">
+    </div>
+  </section>
+  <section class="footer">
 
     <div class="follow">
-        <a href="#" class="fab fa-facebook-f"></a>
-        <a href="#" class="fab fa-twitter"></a>
-        <a href="#" class="fab fa-instagram"></a>
-        <a href="#" class="fab fa-linkedin"></a>
+      <a href="#" class="fab fa-facebook-f"></a>
+      <a href="#" class="fab fa-twitter"></a>
+      <a href="#" class="fab fa-instagram"></a>
+      <a href="#" class="fab fa-linkedin"></a>
     </div>
 
     <div class="credit">created by <span>Group-C</span> | all rights reserved</div>
 
-</section>
+  </section>
 
 
-<!-- footer section ends -->
+  <!-- footer section ends -->
 </body>
+
 </html>

@@ -17,14 +17,16 @@
     @method('PUT')
     <div class="editform">
      <div class="form-group">
-        <strong>Post Name:</strong>
+     <label for="name">Post Name:</label>
         <input type="text" name="post_name" class="form-control" value="{{ $post->post_name }}" placeholder="Post name">
       </div>
       <div class="form-group mb-3 profile">
         <label for="profile">Post Image</label>
         (<small class="text-danger">*We only accept jpeg png gif jpg format</small>)
-        <input type="file" placeholder="User Profile" name="post_img" id="post_img" accept="image/png, image/gif, image/jpeg">
-        <img src="{{ asset('post_img/' . $post->post_img) }}" class="post_img" />
+        <input type="file" name="post_img" id="post_img" accept="image/png, image/gif, image/jpeg">
+        @if($post->post_img)
+        <img src="{{ asset($post->post_img) }}" class="post_img" />
+        @endif
       </div>
       <div class="form-group">
         <label for="categories"><span>Choose a category:</span></label>
