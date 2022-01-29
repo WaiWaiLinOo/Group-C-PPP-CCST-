@@ -191,7 +191,7 @@ section{
     margin-bottom: 1.5rem;
     margin-top: 10px;
 }
-.container .posts-container .post .image{
+.container .posts-container .post .image,.editform .image{
     height: 40rem;
     width:100%;
     border-radius: .5rem;
@@ -318,9 +318,11 @@ section{
 
 .container .sidebar .box .category a{
     padding:.4rem 0;
+    margin-bottom: 3%;
     font-size: 1.5rem;
     color:var(--black);
     /*display: flex;*/
+    display: block;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #b6b6e9;
@@ -519,11 +521,11 @@ section{
 
 a.close {
     position: absolute;
-    top: 5%;
+    top: 10%;
     right: 2%;
     line-height: 1;
     color: rgb(204, 16, 16);
-    font-size: 1.5em;
+    font-size: 2.5em;
     text-decoration: none;
     margin-top: -15px;
 }
@@ -591,6 +593,12 @@ ul li #comment{
     background-color: #ffffff;
     border-radius: 5px;
 }
+.editform .profile input{
+    padding: 4px 5px;
+    border: 1px solid #ccbdbd;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
 .register-form .certificate input,.register-form .categories{
     padding: 4px 5px;
     border: 1px solid #ccbdbd;
@@ -610,10 +618,10 @@ ul li #comment{
     font-size: 15px;
 }
 .adduser {
-    width: 600px;
+    /*width: 600px;
     margin-top: 115px;
     margin-bottom: 95px;
-    margin-left: 380px;
+    margin-left: 380px;*/
     border: 1px solid #F8F4F4;
     /*background-color: #F8F4F4;*/
     background-color: #fff;
@@ -621,7 +629,7 @@ ul li #comment{
 }
 
 
-.cardHeader,.cardHeaders {
+.cardHeader {
     padding: 10px 0;
     padding-left: 10px;
     border: 1px solid #2dcba6;
@@ -629,13 +637,17 @@ ul li #comment{
     background-color: #2dcba6;
     color: #ffffff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    /*border-radius: 5px;*/
+    border-radius: 5px;
     font-size: 20px;
 }
-.cardHeaders{
+/*.cardHeaders{
     padding: 16px 7px;
     width: 100%;
 
+}*/
+.showpermission .showlist{
+    width: 50%;
+    margin: 2% auto;
 }
 .nav-item{
     list-style-type: none;
@@ -650,10 +662,14 @@ ul li #comment{
 .header nav a:hover{
     text-decoration: none;
 }
-
+/*
 .registerform{
     margin-top: 24px;
-}
+}*/
+/*.register{
+    margin-left: 330px;
+    margin-top: 150px;
+}*/
 .registerform input{
     padding: 17px 5px;
     border-radius: 5px;
@@ -718,6 +734,220 @@ ul li #comment{
 
 }
 
+.edit {
+    width: 120px;
+    margin-right: 12px;
+    padding: 7px 0px;
+    border: 1px solid #1ab83c;
+    background-color: #1ab83c;
+    color: #ffffff;
+    border-radius: 7px;
+    border-color: #1ab83c;
+}
+.detail{
+    width: 90px;
+    margin-right: 12px;
+    padding: 7px 0px;
+    border: 1px solid #0a8f7d;
+    background-color: #0a8f7d;
+    color: #ffffff;
+    border-radius: 7px;
+    border-color: #0a8f7d;
+}
+.deletes{
+    width: 90px;
+    margin-right: 12px;
+    padding: 7px 0px;
+    border: 1px solid #FF0000;
+    background-color: #FF0000;
+    color: #ffffff;
+    border-radius: 7px;
+    border-color: #FF0000;
+}
+.edit-role{
+    width: 90px;
+    margin-right: 12px;
+    padding: 7px 0px;
+    border: 1px solid #1ab83c;
+    background-color: #1ab83c;
+    color: #ffffff;
+    border-radius: 7px;
+    border-color: #1ab83c;
+}
+.delete button {
+    width: 90px;
+    padding: 7px 0px;
+    border: 1px solid #FF0000;
+    background-color: #FF0000;
+    color: #ffffff;
+    border-radius: 7px;
+}
+.create  button{
+    background-color: #2dcba6;
+    color: #ffffff;
+    padding: 0px 19px;
+}
+.create{
+    display: flex;
+    justify-content: space-between;
+    background-color: #2dcba6;
+}
+.editform{
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 35px;
+
+}
+.editform input{
+    padding: 20px 0;
+    font-size: 14px;
+}
+.editform strong,.editform label{
+    font-size: 14px;
+}
+.editform a,.registerform a{
+    font-size: 35px;
+    color: #2dcba6;
+}
+.editform a:hover,.registerform a:hover{
+    color: #2dcba6;
+}
+.btns{
+    width: 300px;
+    margin-bottom: 25px;
+    margin-left: 90px;
+    padding: 7px 0;
+    border: 1px solid #2dcba6;
+    background: #2dcba6;
+    color: #ffffff;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+.post_img{
+    width: 100px;
+    box-shadow: 1px 1px 10px black;
+    border-radius: 5px;
+}
+
+.editform select{
+    width: 100%;
+    display: block;
+    padding: 12px 0px;
+    font-size: 14px;
+    border-radius: 3px;
+    border: 1px solid rgb(226, 212, 212);
+}
+.editform textarea{
+    font-size: 14px;
+}
+.content {
+    line-height: 1.6em;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    padding: 0 2em;
+    max-width: 800px;
+}
+.post_create{
+    font-size: 14px;
+}
+.post_create i{
+    color: #ffffff;
+}
+.create h2{
+    font-size: 2rem;
+}
+.create a{
+    text-decoration: none;
+    color: #fafaff;
+    padding-right: 20px;
+    font-size: 14px;
+}
+.create a i{
+    font-size: 15px;
+    color: #fafaff;
+}
+.g-color{
+    color: #00ff00 !important;
+}
+
+.r-color{
+    color: #ff0000 !important;
+}
+.b-color{
+    color: #0000ff !important;
+}
+.margin-top{
+    margin-top: 25px;
+}
+.label{
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+.margin-top input{
+    padding: 17px 5px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+.role-list li{
+    font-size: 13px;
+}
+/*dropdown*/
+.dropbtn {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 237px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    padding: 0 22px;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  .modal-body input{
+    padding: 0.5px 0px;
+    border: 1px solid #ccbdbd;
+    background-color: #ffffff;
+    border-radius: 5px;
+    font-size: 14px;
+}
+  .dropdown a:hover {background-color: #ddd;}
+
+  .show {display: block;}
+
+  .button-secondary-modal{
+    width: 200px;
+    margin-bottom: 40px;
+    padding: 7px 0;
+    border: 1px solid rgb(29, 97, 131);
+    background: rgb(29, 97, 131);
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+#graph{
+width: 100%;
+margin: 0 auto;
+}
 /* -------------------------------------------------------------------------------------------------------- */
 
 

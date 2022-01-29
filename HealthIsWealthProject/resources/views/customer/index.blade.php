@@ -1,11 +1,16 @@
-@extends('layouts.app')
+@extends('frontend.app')
 @section('content')
 <div class="register">
-<div class="create">
-  <h1>User Management</h1>
-</div>
-<div class="search">
-<form action="{{route('customer.index')}}" class="form-group searchgroup">
+  <div class="cardHeader">
+    <div class="create">
+      <h1>User Management</h1>
+      <a href="{{ route('customers.create') }}" title="create new user"><i class="fas fa-user-plus"></i> New User</a>
+      <a href="/mail" title="send email"><i class="fas fa-paper-plane"></i> Email All data</a>
+    
+    </div>
+  </div>
+  <!--<div class="search">
+  <form action="{{route('customer.index')}}" class="form-group searchgroup">
     <label class="name">Name</label>
     <input type="text" name="user_name" id="user_name" class="form-control">
     <label class="role">Role</label>
@@ -17,16 +22,7 @@
     <input type="submit" name="submit" value="Search" id="submited" class="form-control">
   </form>
 
-</div>
-<div class="create">
-  <a href="{{ route('customers.create') }}"><button>Create User</button> </a>
-  <a  href="/mail"><button>Email All data</button></a>
-  <a href="/exportpdf"><button>ExportPDF</button></a>
-</div>
-
-  <div class="cardHeader">
-    Customer List
-  </div>
+</div>-->
   <table class="table" id="first">
     <thead>
       <th>No</th>
@@ -36,7 +32,7 @@
       <th>Action</th>
     </thead>
     <tbody>
-    @forelse ($customers as $customer)
+      @forelse ($customers as $customer)
       <tr>
         {{--<td>{{ ++$i }}</td>--}}
         <td>{{ $customer->id }}</td>
@@ -44,22 +40,23 @@
         <td>{{ $customer->email }}</td>
         <td><b class="badge badge-success">{{ $customer->name}}</b></td>
         <td>
-          <a href="{{ route('profileshows', Auth::user()->id) }}"><button class="show-role-detail">Show</button></a>
-          <a href="{{route('customers.edit',$customer->id)}}"><button class="edit">Edit</button></a>
-          <a href="" onclick="return confirm('Are you sure you want to delete this user!')">
+          <a href="{{ route('profileshows', Auth::user()->id) }}" class="g-color"><i class="fas fa-eye"></i> Show</a>
+          <a href="{{route('customers.edit',$customer->id)}}" class="b-color"><i class="fas fa-edit"></i> Edit</a>
+          <a href="" onclick="return confirm('Are you sure you want to delete this user!')" class="r-color">
+            <i class="fas fa-trash-alt"></i>
             <form class="delete" style="display:inline-block" ; action="{{ url('user/delete/'.$customer->id) }}" method="POST">
               @csrf
               @method('DELETE')
-              <button type="submit" style="width: 100px;" class="delete-role">Delete</button>
+              Delete
             </form>
           </a>
         </td>
       </tr>
       @empty
-        <td colspan="5" style="text-align: center;"><b>Sorry, currently there is no User table related to that search!</b></td>
+      <td colspan="5" style="text-align: center;"><b>Sorry, currently there is no User table related to that search!</b></td>
       @endforelse
     </tbody>
- 
+
   </table>
 </div>
 @endsection

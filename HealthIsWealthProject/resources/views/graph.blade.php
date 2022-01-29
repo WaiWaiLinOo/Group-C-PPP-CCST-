@@ -1,11 +1,16 @@
-@extends('layouts.app')
+@extends('frontend.app')
 @section('content')
-<a href="{{ route('posts.index') }}"><button class="button-secondary" style="width: 100px;margin-bottom:29px;margin-left:101px;">Back</button></a>
-<div style="margin-left:127px;width:1000px" id="container"></div>
+<div class="registerform">
+    <div class="cardHeader">Graph for Post</div>
+<div id="graph"></div>
+<div class="create-categories">
+<a href="{{ route('posts.index') }}"><i class="fas fa-arrow-circle-left"></i></a>
+</div>
+</div>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript">
   var postData = <?php echo json_encode($postData) ?>;
-  Highcharts.chart('container', {
+  Highcharts.chart('graph', {
     title: {
       text: 'New Post Growth, 2022'
     },

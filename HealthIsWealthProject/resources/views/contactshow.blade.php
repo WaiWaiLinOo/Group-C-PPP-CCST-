@@ -1,7 +1,7 @@
 @extends('frontend.app')
 @section('content')
 <div class="register">
-    <div class="create">
+    <div class="cardHeader">
       <h2>Contact Data Show</h2>
     </div>
   <table class="table" id="first">
