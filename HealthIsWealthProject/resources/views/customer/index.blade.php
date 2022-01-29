@@ -38,7 +38,7 @@
         <td>{{ $customer->id }}</td>
         <td>{{ $customer->user_name }}</td>
         <td>{{ $customer->email }}</td>
-        <td><label class="badge badge-success">{{ $customer->name}}</label></td>
+        <td><b class="badge badge-success">{{ $customer->name}}</b></td>
         <td>
           <a href="{{ route('profileshows', Auth::user()->id) }}" class="g-color"><i class="fas fa-eye"></i> Show</a>
           <a href="{{route('customers.edit',$customer->id)}}" class="b-color"><i class="fas fa-edit"></i> Edit</a>

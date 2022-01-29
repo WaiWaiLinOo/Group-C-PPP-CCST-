@@ -20,29 +20,50 @@ class UserDao implements UserDaoInterface
      */
     public function saveUser(Request $request)
     {
+        //        if ($request->file()) {
+        //            $filename = time() . '.' . $request->profile->clientExtension();
+        //            $filePath = $request->file('profile')->storeAs('userProfile', $filename, 'public');
+        //            $path = 'storage/'.$filePath;
+        //            $user['profile'] = $path;
+        //        }
+        //
+        //        if ($certificate = $request->file('certificate')) {
+        //            $certificate = time() . '.' . $request->file('certificate')->clientExtension();
+        //            $request->file('certificate')->storeAs('userCertificate',$certificate,'public');
+        //            $user['certificate'] = "$certificate";
+        //        }
+        //
+        //        $user = User::create([
+        //            'user_name' => $request['user_name'],
+        //            'email' => $request['email'],
+        //            'password' => Hash::make($request['password']),
+        //            'profile' => $path,
+        //            'certificate' => $certificate,
+        //            'dob' => $request['dob'],
+        //            'address' => $request['address'],
+        //
+        //        ]);
+        //        $user->assignRole('User');
+        //        return $user;
+        $user = new User;
+        $user->user_name = $request->user_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request['password']);
         if ($request->file()) {
             $filename = time() . '.' . $request->profile->clientExtension();
             $filePath = $request->file('profile')->storeAs('userProfile', $filename, 'public');
-            $path = 'storage/'.$filePath;
-            $user['profile'] = $path;
+            $path = 'storage/' . $filePath;
+            $user->profile = $path;
         }
-
         if ($certificate = $request->file('certificate')) {
             $certificate = time() . '.' . $request->file('certificate')->clientExtension();
-            $request->file('certificate')->storeAs('userCertificate',$certificate,'public');
-            $user['certificate'] = "$certificate";
+            $request->file('certificate')->storeAs('userCertificate', $certificate, 'public');
+            $user->certificate = $certificate;
         }
-
-        $user = User::create([
-            'user_name' => $request['user_name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-            'profile' => $path,
-            'certificate' => $certificate,
-            'dob' => $request['dob'],
-            'address' => $request['address'],
-
-        ]);
+        $user->dob = $request->dob;
+        $user->address = $request->address;
+        $user->role_id =  $request->roles;
+        $user->save();
         $user->assignRole('User');
         return $user;
     }

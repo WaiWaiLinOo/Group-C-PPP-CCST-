@@ -62,10 +62,7 @@
       <div class="form-group">
         <div class="form-group">
           <strong>Role:</strong>
-          {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple','name'=>'role', 'value'=>'(old(role)')) !!}
-          @if ($errors->has('role'))
-          <span class="text-danger">{{ $errors->first('role') }}</span>
-          @endif
+          {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','name'=>'roles','multiple')) !!}
         </div>
       </div>
       <button type="submit" class="button-secondary">Register</button>

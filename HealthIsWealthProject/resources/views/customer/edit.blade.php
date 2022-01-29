@@ -8,14 +8,14 @@
             @method ('PUT')
             <div class="form-group">
               <label for="user_name">Name : </label>
-              <input type="text" class="form-control" name="user_name" id="user_name" value="{{ $datas['user']->user_name }}" disabled>
+              <input type="text" class="form-control" name="user_name" id="user_name" value="{{ $datas['user']->user_name }}">
               @if ($errors->has('user_name'))
               <span class="text-danger">{{ $errors->first('user_name') }}</span>
               @endif
             </div>
             <div class="form-group">
               <label for="email">Email :</label>
-              <input type="email" class="form-control" value="{{ $datas['user']->email }}" name="email" id="email" disabled>
+              <input type="email" class="form-control" value="{{ $datas['user']->email }}" name="email" id="email">
               @if ($errors->has('email'))
               <span class="text-danger">{{ $errors->first('email') }}</span>
               @endif
@@ -42,7 +42,7 @@
             </div>
             <div class="form-group">
               <strong>Role:</strong>
-              {!! Form::select('roles[]', $roles = $datas['roles'],$userRole = $datas['userRole'], array('class' => 'form-control')) !!}
+              {!! Form::select('roles[]', $roles = $datas['roles'],$userRole = $datas['userRole'], array('class' => 'form-control','name'=>'roles')) !!}
             </div>
             <button type="submit" class="button-secondary">Update</button>
             <div class="create-categories">

@@ -28,7 +28,7 @@ class CustomerDao implements CustomerDaoInterface
         //return User::orderBy('id', 'DESC')->paginate(5);
         //return User::all();
         return DB::table('users')
-            ->join('roles', 'users.id', '=', 'roles.id')
+            ->join('roles', 'users.role_id', '=', 'roles.name')
             ->select('users.*', 'roles.name')
             ->get();
     }
@@ -57,10 +57,31 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function storeUser($request)
     {
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
-
-        $user = User::create($input);
+        //        $input = $request->all();
+        //        $input['password'] = Hash::make($input['password']);
+        //
+        //        $user = User::create($input);
+        //        $user->assignRole($request->input('roles'));
+        //        return $user;
+        $user = new User;
+        $user->user_name = $request->user_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request['password']);
+        if ($request->file()) {
+            $filename = time() . '.' . $request->profile->clientExtension();
+            $filePath = $request->file('profile')->storeAs('userProfile', $filename, 'public');
+            $path = 'storage/' . $filePath;
+            $user->profile = $path;
+        }
+        if ($certificate = $request->file('certificate')) {
+            $certificate = time() . '.' . $request->file('certificate')->clientExtension();
+            $request->file('certificate')->storeAs('userCertificate', $certificate, 'public');
+            $user->certificate = $certificate;
+        }
+        $user->dob = $request->dob;
+        $user->address = $request->address;
+        $user->role_id =  $request->roles;
+        $user->save();
         $user->assignRole($request->input('roles'));
         return $user;
     }
@@ -85,14 +106,36 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function userRoleUpdate($request, $id)
     {
-        $input = $request->all();
-        if (!empty($input['password'])) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            $input = Arr::except($input, array('password'));
-        }
+        //$input = $request->all();
+        //if (!empty($input['password'])) {
+        //    $input['password'] = Hash::make($input['password']);
+        //} else {
+        //    $input = Arr::except($input, array('password'));
+        //}
+        //$user = User::find($id);
+        //$user->update($input);
+        //DB::table('model_has_roles')->where('model_id', $id)->delete();
+        //$user->assignRole($request->input('roles'));
+        //return 'Role Update Successfully!';
         $user = User::find($id);
-        $user->update($input);
+        $user->user_name = $request->user_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request['password']);
+        if ($request->file()) {
+            $filename = time() . '.' . $request->profile->clientExtension();
+            $filePath = $request->file('profile')->storeAs('userProfile', $filename, 'public');
+            $path = 'storage/' . $filePath;
+            $user->profile = $path;
+        }
+        if ($certificate = $request->file('certificate')) {
+            $certificate = time() . '.' . $request->file('certificate')->clientExtension();
+            $request->file('certificate')->storeAs('userCertificate', $certificate, 'public');
+            $user->certificate = $certificate;
+        }
+        $user->dob = $request->dob;
+        $user->address = $request->address;
+        $user->role_id =  $request->roles;
+        $user->update();
         DB::table('model_has_roles')->where('model_id', $id)->delete();
         $user->assignRole($request->input('roles'));
         return 'Role Update Successfully!';
@@ -146,8 +189,8 @@ class CustomerDao implements CustomerDaoInterface
         $end_date = $request->e_date;
 
         $user = DB::table('users')
-            ->join('roles', 'users.id', '=', 'roles.id')
-            ->select('users.*', 'roles.name');
+            ->join('roles', 'users.role_id', '=', 'roles.name')
+            ->select('users.*', 'roles.*');
         if ($user_name) {
             $user->where('users.user_name', 'LIKE', '%' . $user_name . '%');
         }
