@@ -165,11 +165,13 @@ class CustomerController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function postMailForm(CustomerCreateRequest $request)
+    public function postMailForm(Request $request)
     {
-        $validated = $request->validated();
+        $request->validate([
+            'email' => 'required|email'
+        ]);
         // Check email is sent successfully or not
-        if ($this->customerInterface->sendMail($request,$validated)) {
+        if ($this->customerInterface->sendMail($request)) {
             return redirect('/')
                 ->with('success', 'Email is sent successfully.');
         }
