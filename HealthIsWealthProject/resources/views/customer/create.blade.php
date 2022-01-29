@@ -1,27 +1,27 @@
 @extends('frontend.app')
 @section('content')
-<div class="adduser">
+<div class="register">
   <div class="cardHeader">Add User</div>
-  <form class="register-form" method="POST" action="{{ route('customers.store') }}" enctype="multipart/form-data">
+  <form method="POST" action="{{ route('customers.store') }}" enctype="multipart/form-data">
     @csrf
-    <div class="registerform">
+    <div class="editform">
       <div class="form-group">
         <label for="name">Name : </label>
-        <input type="text" class="form-control" name="user_name" id="user_name" value="{{ old('user_name') }}" autofocus>
+        <input type="text" placeholder="Enter Name" class="form-control" name="user_name" id="user_name" value="{{ old('user_name') }}" autofocus>
         @if ($errors->has('user_name'))
         <span class="text-danger">{{ $errors->first('user_name') }}</span>
         @endif
       </div>
       <div class="form-group">
         <label for="email">Email :</label>
-        <input type="email" class="form-control" value="{{ old('email') }}" name="email" id="email">
+        <input type="email" placeholder="Enter Email" class="form-control" value="{{ old('email') }}" name="email" id="email">
         @if ($errors->has('email'))
         <span class="text-danger">{{ $errors->first('email') }}</span>
         @endif
       </div>
       <div class="form-group">
         <label for="password">Password : </label>
-        <input type="password" class="form-control" name="password" value="{{ old('password') }}" id="password">
+        <input type="password" placeholder="Enter Password" class="form-control" name="password" value="{{ old('password') }}" id="password">
         @if ($errors->has('password'))
         <span class="text-danger">{{ $errors->first('password') }}</span>
         @endif
@@ -32,18 +32,6 @@
          @if ($errors->has('password'))
          <span class="text-danger">{{ $errors->first('password') }}</span>
          @endif
-        </div>
-      <div class="form-group mb-3 profile">
-        <label for="profile">User Profile</label>
-        (<small class="text-danger">*We only accept jpeg png gif jpg format</small>)
-        <input type="file" placeholder="User Profile" value="{{ old('profile') }}" name="profile" id="profile" accept="image/png, image/gif, image/jpeg">
-        @if ($errors->has('profile'))
-        <span class="text-danger">{{ $errors->first('profile') }}</span>
-        @endif
-      </div>
-      <div class="certificate">
-        <label for="text" class="form-label">*option(if you have certificate)</label>
-        <input type="file" placeholder="Certificate" id="certificate" name="certificate">
       </div>
       <div class="form-group">
         <label for="date"> Date Of Birth :</label>
@@ -54,7 +42,7 @@
       </div>
       <div class="form-group">
         <label for="address"> Address :</label>
-        <input type="address" class="form-control" id="address" name="address" value="{{ old('address') }}">
+        <input type="address" placeholder="Enter Address" class="form-control" id="address" name="address" value="{{ old('address') }}">
         @if ($errors->has('address'))
         <span class="text-danger">{{ $errors->first('address') }}</span>
         @endif
@@ -65,10 +53,9 @@
           {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','name'=>'roles','multiple')) !!}
         </div>
       </div>
-      <button type="submit" class="button-secondary">Register</button>
+      <button type="submit" class="btns">Create</button>
       <div class="create-categories">
-        <a href="{{route('customers.index')}}">User list <span>&#8594;</span></a>
-
+        <a href="{{route('customers.index')}}"><i class="fas fa-arrow-circle-left"></i></a>
       </div>
     </div>
   </form>

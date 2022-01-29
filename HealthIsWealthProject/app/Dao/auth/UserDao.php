@@ -57,8 +57,9 @@ class UserDao implements UserDaoInterface
         }
         if ($certificate = $request->file('certificate')) {
             $certificate = time() . '.' . $request->file('certificate')->clientExtension();
-            $request->file('certificate')->storeAs('userCertificate', $certificate, 'public');
-            $user->certificate = $certificate;
+            $filePath = $request->file('certificate')->storeAs('userCertificate', $certificate, 'public');
+            $path = 'storage/' . $filePath;
+            $user->certificate = $path;
         }
         $user->dob = $request->dob;
         $user->address = $request->address;

@@ -14,7 +14,7 @@
       <th>Action</th>
     </thead>
     <tbody>
-    @foreach ($categories as $category)
+      @foreach ($categories as $category)
       <tr>
         <td>{{$category->id}}</td>
         <td>{{ $category->name }}</td>
@@ -31,6 +31,11 @@
         </td>
       </tr>
       @endforeach
+      @if($categories == '')
+      <tr>
+        <td colspan="7"><b>No data found</b></td>
+      </tr>
+      @endif
     </tbody>
   </table>
 </div>
