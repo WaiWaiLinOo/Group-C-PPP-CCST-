@@ -29,13 +29,13 @@
         @foreach ($posts as $key => $post)
         <tr>
           <td>{{ ++$i }}</td>
-          <td>{{ $post->post_name }}</td>
+          <td>{{ substr($post->post_name,0,10)}} ...</td>
           <td>
             @if($post->post_img)
             <img src="{{ asset($post->post_img) }}" class="post_img" />
             @endif
           </td>
-          <td>{{substr($post->detail,0,50) }}</td>
+          <td>{{substr($post->detail,0,10) }} ...</td>
           <td>{{$post->Category->name}}</td>
           <td><b>Comments ({{ count($post->comments) }})</b></td>
           <td>

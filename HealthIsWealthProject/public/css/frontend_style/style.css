@@ -659,6 +659,30 @@ ul li #comment{
 .login{
     list-style-type: none;
 }
+.m-login{
+    width: 100%;
+    margin-left: 62%;
+    margin-top: 15%;
+    background-color: transparent;
+    border: 1px solid #fff;
+    padding:10px;
+    border-radius: 10px;
+}
+.m-register{
+    width: 100%;
+    margin-left: 50%;
+    margin-top: 15%;
+    background-color: transparent;
+    border: 1px solid #fff;
+    padding:10px;
+    border-radius: 10px;
+}
+.m-login .forget{
+    font-size: 15px;
+    display: block;
+    text-align: center;
+    color: #e67e22;
+}
 .header nav a:hover{
     text-decoration: none;
 }
@@ -799,7 +823,7 @@ ul li #comment{
 
 }
 .editform input{
-    padding: 20px 0;
+    padding: 20px 0 20px 7px;
     font-size: 14px;
 }
 .editform strong,.editform label{
@@ -841,12 +865,44 @@ ul li #comment{
 .editform textarea{
     font-size: 14px;
 }
-.content {
+.imgprofile {
     line-height: 1.6em;
     margin: 0 auto;
     margin-bottom: 50px;
-    padding: 0 2em;
-    max-width: 800px;
+    padding: 2em 2em;
+    max-width: 630px;
+}
+.imgprofile .info{
+    width: 200px;
+    margin: 0 auto;
+    padding: 10px 5px 10px 25px;
+}
+.imgprofile .info span{
+    display: block;
+    width: 100%;
+    padding: 8px 0;
+    font-size: 12px;
+}
+.imgprofile .info a{
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    background-color: #2dcba6;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 7px 0;
+    margin-top: 10px;
+}
+.imgprofile .img{
+    width: 150px;
+    border-radius: 10%;
+    margin: 0 auto;
+    background-color: #f5ecec;
+}
+.imgprofile .img img{
+    width: 99%;
+    border-radius: 6%;
 }
 .post_create{
     font-size: 14px;
@@ -870,7 +926,84 @@ ul li #comment{
 .g-color{
     color: #00ff00 !important;
 }
+.icon-size{
+    font-size: 20px;
+   
+}
+.p-relative{
+    position: relative;
+}
+.p-absolute{
+    position: absolute;
+    left: 14%;
+    top: -15%;
+    width: 50px;
+    opacity: 0;
+}
+.user-profile{    
+    position: relative;
+    width: 30%;
+    margin: 12% auto;
+    text-align: center;
+}
+.user-profile div{
+    background-color: #f5ecec;   
+    padding: 13px 0;
+    border-radius: 12%;
+}
+.user-profile img{
+    width: 70%;
+    border-radius: 50%;
+}
+.user-profile div i{
+    position: absolute;
+    top: 37%;
+    right: 18%;
+}
+.user-profile input{
+    position: absolute;
+    left: 14%;
+    padding: 79px 0px;
+    border-radius: 50%;
+    opacity: 0;
+}
+.d-flex{
+    display: flex;
+}
 
+.register-profile{    
+    position: relative;
+    width: 30%;
+    margin: 25% auto;
+    margin-right: 2%;
+    text-align: center;
+}
+.register-profile div{
+    background-color: #f5ecec;   
+    padding: 13px 0;
+    border-radius: 12%;
+}
+.register-profile img{
+    width: 100%;
+    border-radius: 50%;
+}
+.register-profile div i{
+    position: absolute;
+    top: 45%;
+    right: 7%;
+}
+.register-profile input{
+    position: absolute;
+    left: 2%;
+    width: 100%;
+    padding: 54px 0px;
+    border-radius: 50%;
+    opacity: 0;
+}
+.m-register .btns{
+    margin: 0 auto;
+    width: 100%;
+}
 .r-color{
     color: #ff0000 !important;
 }
@@ -957,6 +1090,10 @@ margin: 0 auto;
 
 @media (max-width:991px){
 
+    .m-login{
+        margin-left: 16%;
+    }
+
     html{
         font-size: 55%;
     }
@@ -976,7 +1113,9 @@ margin: 0 auto;
 }
 
 @media (max-width:768px){
-
+    .m-login{
+        margin-left: 0;
+    }
     #menu-bars{
         display: inline-block;
     }
@@ -1027,6 +1166,10 @@ margin: 0 auto;
 }
 
 @media (max-width:450px){
+
+    .m-login{
+        margin-left: 0;
+    }
 
     html{
         font-size: 50%;
