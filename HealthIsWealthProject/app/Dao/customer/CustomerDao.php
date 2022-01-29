@@ -163,7 +163,12 @@ class CustomerDao implements CustomerDaoInterface
     }
     public function exportPDF()
     {
-        $data = User::all();
+        $data = DB::table('users')
+            ->join('roles', 'users.role_id', '=', 'roles.name')
+            ->whereNull('users.deleted_at')
+            ->select('users.*', 'roles.name')
+            ->get();
+        //$data = User::all();
         view()->share('data', $data);
     }
 }
