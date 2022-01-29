@@ -26,37 +26,43 @@
     </thead>
 
     <tbody>
-        @foreach ($posts as $key => $post)
-        <tr>
-          <td>{{ ++$i }}</td>
-          <td>{{ substr($post->post_name,0,10)}} ...</td>
-          <td>
-            @if($post->post_img)
-            <img src="{{ asset($post->post_img) }}" class="post_img" />
-            @endif
-          </td>
-          <td>{{substr($post->detail,0,10) }} ...</td>
-          <td>{{$post->Category->name}}</td>
-          <td><b>Comments ({{ count($post->comments) }})</b></td>
-          <td>
-            <a href="{{ route('postdetail',$post->id) }}" class="g-color"><i class="fas fa-eye"></i>Show</a>
-            @can('post-edit')
-            <a class="edit-r" href="{{ route('posts.edit',$post->id) }}" class="b-color"><i class="fas fa-edit"></i>Edit</a>
-            @endcan
-            @can('post-delete')
+      @foreach ($posts as $key => $post)
+      <tr>
+        <td>{{ ++$i }}</td>
+        <td>{{ substr($post->post_name,0,10)}} ...</td>
+        <td>
+          @if($post->post_img)
+          <img src="{{ asset($post->post_img) }}" class="post_img" />
+          @endif
+        </td>
+        <td>{{substr($post->detail,0,10) }} ...</td>
+        <td>{{$post->Category->name}}</td>
+        <td><b>Comments ({{ count($post->comments) }})</b></td>
+        <td>
+          <a href="{{ route('postdetail',$post->id) }}" class="g-color"><i class="fas fa-eye"></i>Show</a>
+          @can('post-edit')
+          <a class="edit-r" href="{{ route('posts.edit',$post->id) }}" class="b-color"><i class="fas fa-edit"></i>Edit</a>
+          @endcan
+          @can('post-delete')
 
-            <a href="#" onclick="return confirm('Are you sure you want to delete this post!')" class="r-color">
-                <i class="fas fa-trash-alt">
-              {!! Form::open(['method' => 'DELETE','route' => ['posts.destroy', $post->id],'style'=>'display:inline;']) !!}
+          <a href="#" onclick="return confirm('Are you sure you want to delete this post!')" class="r-color">
+              <i class="fas fa-trash-alt">
+            {!! Form::open(['method' => 'DELETE','route' => ['posts.destroy', $post->id],'style'=>'display:inline;']) !!}
 
-              {!! Form::submit('Delete', ['class' => 'r-color']) !!}
-              {!! Form::close() !!}
-            </i>
-            </a>
-            @endcan
-          </td>
-        </tr>
-        @endforeach
+            {!! Form::submit('Delete', ['class' => 'r-color']) !!}
+            {!! Form::close() !!}
+          </i>
+          </a>
+          @endcan
+        </td>
+      </tr>
+      @endforeach
+
+      @if($posts == '')
+      <tr>
+        <td colspan="7"><b>No data found</b></td>
+      </tr>
+      @endif
     </tbody>
   </table>
   <div id="popup1" class="modal-box">

@@ -68,7 +68,7 @@ class CustomerController extends Controller
         $validated = $request->validated();
         $user = $this->customerInterface->storeUser($request,$validated);
         //$user->notify(new WelcomeEmailNotification($user));
-        return redirect()->route('frontend.blog')
+        return redirect()->route('customers.index')
             ->with('success', 'User created successfully');
     }
 
@@ -122,7 +122,7 @@ class CustomerController extends Controller
     public function profileshows($id)
     {
         $data = User::find($id);
-        return view('customer.profileshow', compact('data'));;
+        return view('customer.profileshow', compact('data'));
     }
     /**
      * To update user profile
@@ -131,9 +131,10 @@ class CustomerController extends Controller
      * @return view
      */
     public function profileUpdate(Request $request, $id)
-    {
-        $message = $this->customerInterface->profileUpdate($request, $id);
-        return view('home');
+    {   
+        $message = $this->customerInterface->profileUpdate($request, $id); 
+        $data = User::find($id);
+        return view('customer.profileshow', compact('data'))->with('success',$message);
     }
 
     /**
@@ -165,12 +166,14 @@ class CustomerController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function postMailForm(CustomerCreateRequest $request)
+    public function postMailForm(Request $request)
     {
-        $validated = $request->validated();
+        $request->validate([
+            'email' => 'required|email'
+        ]);
         // Check email is sent successfully or not
-        if ($this->customerInterface->sendMail($request,$validated)) {
-            return redirect('/')
+        if ($this->customerInterface->sendMail($request)) {
+            return redirect('customers.index')
                 ->with('success', 'Email is sent successfully.');
         }
     }
