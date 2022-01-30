@@ -14,7 +14,6 @@ class HomeController extends Controller
      */
     public function __construct(PostServiceInterface $postServiceInterface)
     {
-        $this->middleware('auth');
         $this->postInterface = $postServiceInterface;
     }
 
@@ -27,17 +26,7 @@ class HomeController extends Controller
     {
         $posts = $this->postInterface->getPost();
         return view('frontend.blog', compact('posts'));
-        //$roles = auth()->user()->id;
-        //// Check user role
-        //switch ($roles) {
-        //    case '1':
-        //        return redirect()->route('homeside');
-        //        break;
-        //    case '2':
-        //        return view('frontend.blog', compact('posts'));
-        //    default:
-        //        return view('frontend.blog', compact('posts'));
-        //}
+
     }
     public function aboutUs()
     {

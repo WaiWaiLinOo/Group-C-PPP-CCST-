@@ -25,8 +25,7 @@
     <a href="#" class="logo">Health_<span>is</span>_Wealth</a>
 
     <nav class="navbar">
-      <a href="{{route('home')}}">Home</a>
-      <a href="#contact">contact Us</a>
+      <a href="/">Home</a>
       @guest
       <li class="registers"><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
       <li class="login"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
@@ -50,17 +49,6 @@
       </li>
       @endguest
     </nav>
-
-    <div class="icons">
-      <i class="fas fa-bars" id="menu-bars"></i>
-      <i class="fas fa-search" id="search-icon"></i>
-    </div>
-
-    <form action="" class="search-form">
-      <input type="search" name="" placeholder="search here..." id="search-box">
-      <label for="search-box" class="fas fa-search"></label>
-    </form>
-
   </header>
   <section class="container" id="posts">
     <div class="m-login">

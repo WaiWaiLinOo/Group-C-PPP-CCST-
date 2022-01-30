@@ -70,13 +70,7 @@
 
   </header>
 
-  <!-- header section ends -->
-
-  <!-- banner section starts  -->
-  <section class="banner" id="banner">
-
-  </section>
-  <section class="container" id="posts">
+  <section class="container mt" id="posts">
 
     <div class="sidebar">
 
@@ -85,9 +79,9 @@
       <div class="box">
         <h3 class="title">about us</h3>
         <div class="about">
-          <img src="{{asset('images/image/user.png')}}" alt="">
+          <img src="{{asset('images/image/about_us.jpg')}}" alt="">
           <h3>Our Service</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, officia.</p>
+          <p>Health services consist of medical professionals, organizations, and ancillary health care workers who provide medical care to those in need. Health services serve patients, families, communities, and populations.</p>
 
         </div>
       </div>
@@ -109,12 +103,11 @@
       @endauth
 
       @auth
+      @hasanyrole('Admin|SubAdmin')
       <div class="box">
         <h3 class="title">Actions</h3>
         <div class="category">
-          @hasanyrole('Admin|SubAdmin')
           <a class="nav-link" href="{{ route('posts.index') }}"><i class="fas fa-edit"></i> &nbsp;Post</a>
-          @endhasanyrole
           @role('Admin')
           <a class="nav-link" href="{{ route('categories.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Category</a>
           <a class="nav-link" href="{{ route('contact.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Contact </a>
@@ -127,23 +120,18 @@
 
         </div>
       </div>
+      @endhasanyrole
       @endauth
 
       <div class="box">
         <h3 class="title">categories</h3>
         <div class="category" id="categoryList">
-          {{--
-                @foreach ($item->Category as $item)--}}
-          {{--<a href="#">{{$item->Category->name}}</a>--}}
-          {{--@endforeach--}}
         </div>
       </div>
     </div>
 
     @yield('content')
   </section>
-
-
 
   <!-- contact section ends -->
 

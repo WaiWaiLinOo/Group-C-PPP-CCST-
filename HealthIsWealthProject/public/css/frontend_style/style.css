@@ -197,7 +197,10 @@ section{
     border-radius: .5rem;
     object-fit: cover;
 }
-
+.mt{
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
 .container .posts-container .post .date{
     padding-top: 2rem;
     font-size: 1.5rem;
@@ -1081,6 +1084,9 @@ ul li #comment{
 #graph{
 width: 100%;
 margin: 0 auto;
+}
+.text-danger{
+    font-size: 14px;
 }
 /* -------------------------------------------------------------------------------------------------------- */
 

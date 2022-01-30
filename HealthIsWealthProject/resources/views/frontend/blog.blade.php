@@ -20,8 +20,7 @@
             <span>{{ date('M-d-Y', strtotime($item->created_at)) }}</span>
         </div>
         @endif
-        <p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, nulla maiores placeat voluptas tenetur aperiam sapiente natus fugit suscipit facilis nam iure. Voluptatum rerum numquam, optio quasi excepturi aliquid iusto!
-        <a href="{{route('postdetail',$item->id)}}">Detail Here</a></p>
+        <p class="text">{{$item->detail}}<a href="{{route('postdetail',$item->id)}}">Detail Here</a></p>
         <div class="links">
             <a href="#" class="user">
                 <i class="far fa-user"></i>
