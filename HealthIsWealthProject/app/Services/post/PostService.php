@@ -105,5 +105,23 @@ class PostService implements PostServiceInterface
     {
        return Excel::download(new PostsExport($this->postDao), 'posts.xlsx');
     }
-    
+
+    /**
+     * search post by post name
+     * @param $request
+     * @return object
+     */
+    public function searchPostByName($request){
+        return $this->postDao->searchPostByName($request);
+    }
+
+    /**
+     * Post by category id
+     * @param  $id
+     * @return object
+     */
+    public function postByCategoryId($id)
+    {
+        return $this->postDao->postByCategoryId($id);
+    }
 }

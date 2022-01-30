@@ -100,4 +100,31 @@ class PostDao implements PostDaoInterface
     public function exportPostList(){
         return Post::all();
     }
+
+    /**
+     * search post by post name
+     * @param $request
+     * @return object
+     */
+    public function searchPostByName($request)
+    {
+        $posts = Post::with(['user','category'])
+                ->where('post_name', 'like', '%' . $request->search . '%')
+                ->latest()
+                ->paginate(4);
+        return $posts;
+    }
+
+    /**
+     * Post by category id
+     * @param  $id
+     * @return object
+     */
+    public function postByCategoryId($id)
+    {
+        $posts = Post::with(['user','category'])
+                ->where('category_id', '=', $id)
+                ->get();
+        return $posts;
+    }
 }

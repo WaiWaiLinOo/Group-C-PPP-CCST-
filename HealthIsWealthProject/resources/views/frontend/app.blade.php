@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="{{asset('css/library/fontawesome.all.min.css')}}">
   <!-- custom css file link  -->
   <link rel="stylesheet" href="{{asset('css/frontend_style/style.css')}}">
-  <script src="{{asset('js/script.js')}}"></script>
   <script src="{{ asset('js/library/jquery3.6.0.min.js') }}"></script>
+  <script src="{{asset('js/script.js')}}"></script>
   <script src="{{ asset('js/modalbox.js') }}"></script>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <script src="{{ asset('js/app.js') }}" defer></script>
@@ -63,9 +63,11 @@
       <i class="fas fa-search" id="search-icon"></i>
     </div>
 
-    <form action="" class="search-form">
-      <input type="search" name="" placeholder="search here..." id="search-box">
-      <label for="search-box" class="fas fa-search"></label>
+    <form action="{{ route('searchPost')}}" class="search-form">
+      <input type="search" name="search" placeholder="search post here..." id="search-box" required>
+      <button type="submit">
+        <label for="search-box" class="fas fa-search"></label>
+      </button>
     </form>
 
   </header>

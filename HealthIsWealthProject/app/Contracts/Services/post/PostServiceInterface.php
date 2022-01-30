@@ -48,6 +48,18 @@ interface PostServiceInterface
      * Excel file Export
      */
     public function exportExcel();
+    
+    /**
+     * search post by post name
+     * @param $request
+     */
+    public function searchPostByName($request);
+    
+    /**
+    * Post by category id
+    * @param  $id
+    */
+    public function postByCategoryId($id);
 
     /**
      * To delete post by id

@@ -38,7 +38,7 @@ class PostController extends Controller
 
     /**
      * Display a listing of the resource.
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function index()
     {
@@ -47,28 +47,13 @@ class PostController extends Controller
         return view('posts.index', compact('posts','categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
-    public function postView(Request $request)
-    {
-        //test
-        if($request->search){
-            $posts = Post::where('post_name', 'like', '%' . $request->search . '%')
-            ->orWhere('detail', 'like', '%' . $request->search . '%')->latest()->paginate(4);
-        } elseif($request->category){
-            $posts = Category::where('name', $request->category)->firstOrFail()->posts()->paginate(3)->withQueryString();
-            //$posts = Category::where('name', 'like', '%' . $request->search . '%');
-        }
-        else{
-            $posts = Post::latest()->paginate(4);
-        }
 
-        $categories = Category::all();
-        return view('home', compact('posts','categories'));
-    }
     public function postDetail($id)
     {
         $posts = Post::find($id);
         return view('customer.postdetail', compact('posts'));
     }
+
     public function postDetails($id)
     {
         $posts = Post::find($id);
@@ -76,7 +61,7 @@ class PostController extends Controller
     }
     /**
      * Show the form for creating a new resource.
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function create()
     {
@@ -86,17 +71,11 @@ class PostController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  $request
+     * @return view
      */
     public function store(PostCreateRequest $request)
     {
-        //$request()->validate([
-        //    'post_name' => 'required',
-        //    'post_img' =>'required',
-        //    'detail' => 'required',
-        //    'category_id','required',
-        //]);
         $validated = $request->validated();
         $post = $this->postInterface->storePost($request,$validated);
         return redirect()->route('posts.index')
@@ -105,8 +84,8 @@ class PostController extends Controller
 
     /**
      * Display the specified resource.
-     * @param  \App\Product  $post
-     * @return \Illuminate\Http\Response
+     * @param  $post
+     * @return view
      */
     public function show(Post $post)
     {
@@ -116,7 +95,7 @@ class PostController extends Controller
     /**
      * Show the form  for post edit
      * @param  $id
-     * @return Response
+     * @return view
      */
     public function edit($id)
     {
@@ -129,7 +108,7 @@ class PostController extends Controller
      * Update the post.
      * @param  $request
      * @param  $id
-     * @return Response
+     * @return view
      */
     public function update(PostCreateRequest $request, $id)
     {
@@ -142,6 +121,7 @@ class PostController extends Controller
     /**
      * Excel file Import
      * @param $request
+     * @return view
      */
     public function import(Request $request)
     {
@@ -152,9 +132,7 @@ class PostController extends Controller
         $posts = $this->postInterface->getPost();
         return view('posts.index', compact('posts'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
-
     }
-
 
     /**
     * Excel file export
@@ -163,6 +141,28 @@ class PostController extends Controller
     public function export()
     {
         return $this->postInterface->exportExcel();
+    }
+
+    /**
+     * search post by post name
+     * @param $request
+     * @return view
+     */
+    public function searchPostByName(Request $request)
+    {
+        $posts = $this->postInterface->searchPostByName($request);
+        return view('frontend.blog', compact('posts'));
+    }
+
+    /**
+     * Post by category id
+     * @param  $id
+     * @return view
+     */
+    public function postByCategoryId($id)
+    {
+        $posts = $this->postInterface->postByCategoryId($id);
+        return view('frontend.blog', compact('posts'));
     }
 
     /**
@@ -183,16 +183,4 @@ class PostController extends Controller
         }
     }
 
-     /**
-     * Post by category id
-     * @param  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function postByCategoryId($id)
-    {
-        $posts = Post::with(['user','category'])
-                ->where('category_id', '=', $id)
-                ->get();
-        return view('frontend.blog', compact('posts'));
-    }
 }

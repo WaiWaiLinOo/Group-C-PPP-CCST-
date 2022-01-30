@@ -93,7 +93,7 @@ section{
 
 .header .search-form{
     position: absolute;
-    background:#fff;
+    background:#e9dada;
     border-radius: .5rem;
     display: flex;
     align-items: center;
@@ -118,7 +118,11 @@ section{
     color:var(--black);
     height: 100%;
 }
-
+.header .search-form button{
+    background-color: transparent;
+    outline: none;
+    border-color: transparent;
+}
 .header .search-form label{
     font-size: 2rem;
     padding-left: 1rem;
