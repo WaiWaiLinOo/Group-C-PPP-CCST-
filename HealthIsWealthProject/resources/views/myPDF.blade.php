@@ -34,14 +34,16 @@
       <th>Name</th>
       <th>Email</th>
       <th>Date</th>
+      <th>Role</th>
       <th>Address</th>
     </tr>
     @foreach ($data as $item)
     <tr>
       <td>{{ $item->id }}</td>
-      <td>{{ $item->name }}</td>
+      <td>{{ $item->user_name }}</td>
       <td>{{ $item->email }}</td>
       <td>{{ $item->dob }}</td>
+      <td>{{ $item->name }}</td>
       <td>{{ $item->address }}</td>
     </tr>
     @endforeach

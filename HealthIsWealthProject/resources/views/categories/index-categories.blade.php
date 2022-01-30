@@ -22,11 +22,11 @@
           <a href="{{ route('categories.edit', $category) }}" class="b-color"><i class="fas fa-edit"></i>Edit</a>
           <a href="" onclick="return confirm('Are you sure you want to delete this category!')" class="r-color">
             <i class="fas fa-trash-alt"></i>
-            <form class="delete" style="display:inline-block" ; action="{{route('categories.destroy', $category)}}" method="POST">
-              @csrf
-              @method('DELETE')
-              Delete
-            </form>
+            @csrf
+            @method('DELETE')
+            {!! Form::open(['method' => 'DELETE','route' => ['categories.destroy', $category->id],'style'=>'display:inline;']) !!}
+            {!! Form::submit('Delete', ['class' => 'r-color']) !!}
+            {!! Form::close() !!}
           </a>
         </td>
       </tr>

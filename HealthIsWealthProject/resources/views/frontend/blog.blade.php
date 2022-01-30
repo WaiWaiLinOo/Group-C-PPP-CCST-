@@ -12,7 +12,7 @@
             <span>{{ date('M-d-Y', strtotime($item->created_at)) }}</span>
         </div>
         @endif
-        <h3 class="title" style="inline-block">{{$item->post_name}}
+        <h3 class="title" style="display:inline-block;">{{$item->post_name}}
         <span class="date">({{$item->Category->name}})</span></h3>
         @if($item->post_img == '')
         <div class="date">

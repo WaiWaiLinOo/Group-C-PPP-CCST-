@@ -32,14 +32,16 @@
       <th>Name</th>
       <th>Email</th>
       <th>Date</th>
+      <th>Role</th>
       <th>Address</th>
     </tr>
     @component('mail::table')
     @foreach ($customers as $customer)
     <tr>
-      <td>{{$customer->name}} </td>
+      <td>{{$customer->user_name}} </td>
       <td>{{$customer->email}} </td>
       <td>{{$customer->dob}} </td>
+      <td>{{$customer->name}} </td>
       <td>{{$customer->address}} </td>
     </tr>
     @endforeach
