@@ -133,7 +133,7 @@ class PostController extends Controller
      */
     public function update(PostCreateRequest $request, $id)
     {
-        $validated = $request->validaded();
+        $validated = $request->validated();
         $message = $this->postInterface->updatePost($request, $id,$validated);
         return redirect()->route('posts.index')
             ->with('success', $message);

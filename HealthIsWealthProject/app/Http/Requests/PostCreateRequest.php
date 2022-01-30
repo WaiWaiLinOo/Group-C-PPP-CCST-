@@ -25,7 +25,7 @@ class PostCreateRequest extends FormRequest
   {
     return [
       'post_name' => 'required|string',
-      'post_img' => 'required|mimes:jpeg,bmp,png',
+      'post_img' => 'mimes:jpeg,bmp,png',
       'detail'=>'required|string',
       'category_id' => 'required',
     ];

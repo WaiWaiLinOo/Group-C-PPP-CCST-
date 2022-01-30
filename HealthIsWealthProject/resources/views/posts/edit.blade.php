@@ -22,7 +22,7 @@
       <div class="form-group mb-3 profile">
         <label for="profile">Post Image</label>
         (<small class="text-danger">*We only accept jpeg png gif jpg format</small>)
-        <input type="file" name="post_img" id="post_img" accept="image/png, image/gif, image/jpeg">
+        <input type="file" name="post_img" id="post_img" accept="image/png, image/gif, image/jpeg" value={{$post->post_img}}>
         @if($post->post_img)
         <img src="{{ asset($post->post_img) }}" class="post_img" />
         @endif

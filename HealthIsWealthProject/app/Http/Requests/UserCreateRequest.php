@@ -27,7 +27,7 @@ class UserCreateRequest extends FormRequest
       'user_name' => ['required', 'string', 'max:255'],
       'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
       'password' => ['required', 'string', 'min:8'],
-      'profile'=>"required|mimes:jpeg,bmp,png",
+      'profile'=>'mimes:jpeg,bmp,png',
       'dob'=>['required'],
       'address' =>['required','string','min:2'],
     ];
