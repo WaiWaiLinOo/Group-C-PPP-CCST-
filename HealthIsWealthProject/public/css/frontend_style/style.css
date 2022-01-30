@@ -549,6 +549,7 @@ a.close:hover {
 ul li{
     list-style-type: none;
     padding: 5px 0;
+    font-size: 14px;
 
 }
 ul li .small,ul li span{
@@ -928,7 +929,7 @@ ul li #comment{
 }
 .icon-size{
     font-size: 20px;
-   
+
 }
 .p-relative{
     position: relative;
@@ -940,14 +941,14 @@ ul li #comment{
     width: 50px;
     opacity: 0;
 }
-.user-profile{    
+.user-profile{
     position: relative;
     width: 30%;
     margin: 12% auto;
     text-align: center;
 }
 .user-profile div{
-    background-color: #f5ecec;   
+    background-color: #f5ecec;
     padding: 13px 0;
     border-radius: 12%;
 }
@@ -971,7 +972,7 @@ ul li #comment{
     display: flex;
 }
 
-.register-profile{    
+.register-profile{
     position: relative;
     width: 30%;
     margin: 25% auto;
@@ -979,7 +980,7 @@ ul li #comment{
     text-align: center;
 }
 .register-profile div{
-    background-color: #f5ecec;   
+    background-color: #f5ecec;
     padding: 13px 0;
     border-radius: 12%;
 }

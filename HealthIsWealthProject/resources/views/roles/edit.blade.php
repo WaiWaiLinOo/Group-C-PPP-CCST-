@@ -1,6 +1,8 @@
 @extends('frontend.app')
 @section('content')
-@if (count($errors) > 0)
+
+<div class="adduser">
+    @if (count($errors) > 0)
 <div class="alert alert-danger">
   <strong>Whoops!</strong> There were some problems with your input.<br><br>
   <ul>
@@ -10,7 +12,6 @@
   </ul>
 </div>
 @endif
-<div class="adduser">
   <div class="cardHeader">
     <div class="create">
       <h2>Role Update</h2>

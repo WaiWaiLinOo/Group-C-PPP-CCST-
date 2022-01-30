@@ -1,16 +1,15 @@
 @extends('frontend.app')
 @section('content')
-@if (count($errors) > 0)
+<div class="register">
+@if ($errors->any())
 <div class="alert alert-danger">
-  <strong>Whoops!</strong> There were some problems with your input.<br><br>
-  <ul>
-    @foreach ($errors->all() as $error)
-    <li>{{ $error }}</li>
-    @endforeach
-  </ul>
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
 </div>
 @endif
-<div class="register">
   <div class="cardHeader">Edit Post</div>
   <form action="{{ route('posts.update',$post->id) }}" method="POST" enctype="multipart/form-data" class="register-form">
     @csrf

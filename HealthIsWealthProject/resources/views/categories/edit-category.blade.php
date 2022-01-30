@@ -1,8 +1,15 @@
 @extends('frontend.app')
 @section('content')
-@if (count($errors) > 0)
-@endif
 <div class="register">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+  @endif
   <div class="cardHeader">Edit Cagetory</div>
   <form action="{{ route('categories.update', $category) }}" method="POST" class="register-form">
     @csrf

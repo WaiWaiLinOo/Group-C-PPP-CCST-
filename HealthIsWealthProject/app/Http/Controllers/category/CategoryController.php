@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\category;
 
-use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Contracts\Services\category\CategoryServiceInterface;
-use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use App\Models\Category;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
+use App\Http\Requests\CategoryUpdateRequest;
+use App\Contracts\Services\category\CategoryServiceInterface;
 
 class CategoryController extends Controller
 {
@@ -59,12 +60,10 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryUpdateRequest $request)
     {
-        $request->validate([
-            'name' => 'required | unique:categories',
-        ]);
-        $category = $this->categoryInterface->storeCategory($request);
+        $validated = $request->validated();
+        $category = $this->categoryInterface->storeCategory($request,$validated);
         return redirect()->route('categories.index')
             ->with('success', 'Category Created Successfully');
     }
@@ -98,9 +97,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
-        $category = $this->categoryInterface->updateCategory($request,$category);
+        $validated = $request->validated();
+        $category = $this->categoryInterface->updateCategory($request,$category,$validated);
         return redirect(route('categories.index'))->with('status', 'Category Edited Successfully');
     }
 
@@ -119,10 +119,10 @@ class CategoryController extends Controller
 
      /**
      * category list
-     * @return  
+     * @return
      */
     public function getCategoryList()
-    {   
+    {
         $categories = Category::pluck('name', 'id');
         return response()->json($categories);
     }

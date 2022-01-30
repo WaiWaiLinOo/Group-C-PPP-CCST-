@@ -100,12 +100,10 @@ class CustomerController extends Controller
      * @param $request
      * @return view
      */
-      public function update(Request $request, $id)
+      public function update(CustomerCreateRequest $request, $id)
     {
-        $this->validate($request, [
-            'roles' => 'required'
-        ]);
-        $message = $this->customerInterface->userRoleUpdate($request, $id);
+        $validated = $request->validated();
+        $message = $this->customerInterface->userRoleUpdate($request, $id,$validated);
         return redirect()->route('customers.index')
             ->with('success', $message);
     }
@@ -131,8 +129,8 @@ class CustomerController extends Controller
      * @return view
      */
     public function profileUpdate(Request $request, $id)
-    {   
-        $message = $this->customerInterface->profileUpdate($request, $id); 
+    {
+        $message = $this->customerInterface->profileUpdate($request, $id);
         $data = User::find($id);
         return view('customer.profileshow', compact('data'))->with('success',$message);
     }
