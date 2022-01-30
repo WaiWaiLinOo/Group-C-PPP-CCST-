@@ -6,23 +6,35 @@
       <h1>User Management</h1>
       <a href="{{ route('customers.create') }}" title="create new user"><i class="fas fa-user-plus"></i> New User</a>
       <a href="/mail" title="send email"><i class="fas fa-paper-plane"></i> Email All data</a>
-
     </div>
   </div>
-  <!--<div class="search">
-  <form action="{{route('customer.index')}}" class="form-group searchgroup">
-    <label class="name">Name</label>
-    <input type="text" name="user_name" id="user_name" class="form-control">
-    <label class="role">Role</label>
-    <input type="text" name="role" id="role" class="form-control">
-    <label>Start Date :</label>
-    <input type="date" name="s_date" class="form-control">
-    <label class="enddate">End Date :</label>
-    <input type="date" name="e_date" class="form-control">
-    <input type="submit" name="submit" value="Search" id="submited" class="form-control">
-  </form>
-
-</div>-->
+  <div class="editform searchgroup">
+    <form action="{{route('search.user')}}" class="form-group d-flex">
+      <div>
+      <div class="d-flex">
+          <div>
+            <label class="name">Name:</label><br>
+            <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter User Name">
+          </div>
+          <div>
+            <label class="role">Role:</label>
+            <input type="text" name="role" id="role" class="form-control" placeholder="Enter Role Name">
+          </div>
+        </div>
+        <div class="d-flex">
+          <div>
+            <label>Start Date:</label>
+            <input type="date" name="s_date" class="form-control">
+          </div>
+          <div>
+            <label class="enddate">End Date:</label>
+            <input type="date" name="e_date" class="form-control">
+          </div>
+        </div>
+      </div>
+      <button type="submit" name="submit" id="submited" class="form-control">Serach </button>
+    </form>
+  </div>
   <table class="table" id="first">
     <thead>
       <th>No</th>

@@ -117,6 +117,7 @@ class CustomerController extends Controller
         $datas = $this->customerInterface->userEditView($id);
         return view('customer.profile', compact('datas'));
     }
+    
     public function profileshows($id)
     {
         $data = User::find($id);

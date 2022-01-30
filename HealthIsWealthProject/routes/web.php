@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('user/delete/{id}', [CustomerController::class, 'destroy'])->name('destroyUser');
     Route::get('user/profile/{id}', [CustomerController::class, 'profileView'])->name('profileView');
     Route::put('user/profile_update/{id}', [CustomerController::class, 'profileUpdate'])->name('profileUpdate');
-    Route::get('/search', [CustomerController::class, 'searchUser'])->name('customer.index');
+    Route::get('/search', [CustomerController::class, 'searchUser'])->name('search.user');
 
     Route::get('profileshow/{id}', [CustomerController::class, 'profileshows'])->name('profileshows');
     Route::post('import', [PostController::class, 'import'])->name('import');
