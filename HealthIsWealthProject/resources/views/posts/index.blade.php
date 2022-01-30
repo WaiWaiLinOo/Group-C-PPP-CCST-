@@ -26,7 +26,7 @@
     </thead>
 
     <tbody>
-      @foreach ($posts as $key => $post)
+      @forelse ($posts as $key => $post)
       <tr>
         <td>{{ ++$i }}</td>
         <td>{{ substr($post->post_name,0,10)}} ...</td>
@@ -55,13 +55,9 @@
           @endcan
         </td>
       </tr>
-      @endforeach
-
-      @if($posts == '')
-      <tr>
-        <td colspan="7"><b>No data found</b></td>
-      </tr>
-      @endif
+      @empty
+      <td colspan="5" style="text-align: center;"><b>Sorry, currently there is no Post table related to that search!</b></td>
+      @endforelse
     </tbody>
   </table>
   <div id="popup1" class="modal-box">
