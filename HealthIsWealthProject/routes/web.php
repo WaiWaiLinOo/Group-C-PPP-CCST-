@@ -67,6 +67,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/managecontact',[ContactController::class,'index'])->name('contact.index');
 
     Route::get('/postByCategory/{id}', [PostController::class, 'postByCategoryId'])->name('postByCategoryId');
+
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    
 });
 
 
