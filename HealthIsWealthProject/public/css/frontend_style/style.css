@@ -1109,6 +1109,31 @@ margin: 0 auto;
     font-size: 20px;
     color: #fff;
 }
+h2.sub-t{
+    font-size: 14px;
+    font-weight: bold;
+    color: #565050;
+    padding: 20px 0 0 20px;
+}
+.count{
+    display: flex;
+    padding:10px 20px;
+    justify-content: space-between;
+}
+.count .count-box{
+    background-color: #fff;
+    padding: 15px 52px 3px 20px;
+    border-radius: 10px;
+}
+.count .count-box span{
+    font-size: 18px;
+    font-weight: bold;
+}
+.count .count-box p{
+    font-size: 15px;
+    color: #2dcba6;
+    padding: 5px 0px;
+}
 /* -------------------------------------------------------------------------------------------------------- */
 
 

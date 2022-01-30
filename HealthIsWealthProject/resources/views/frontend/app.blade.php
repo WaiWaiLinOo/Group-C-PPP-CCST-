@@ -12,6 +12,8 @@
   <!-- custom css file link  -->
   <link rel="stylesheet" href="{{asset('css/frontend_style/style.css')}}">
   <script src="{{ asset('js/library/jquery3.6.0.min.js') }}"></script>
+  <script src="{{ asset('js/library/chart.min.js') }}"></script>
+  <script src="{{asset('js/graph.js')}}"></script>
   <script src="{{asset('js/script.js')}}"></script>
   <script src="{{ asset('js/modalbox.js') }}"></script>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -95,7 +97,7 @@
       <div class="box">
         <h3 class="title">Controls</h3>
         <div class="category">
-          <a class="nav-link" href="{{ route('customers.index') }}" class="pure-menu-link"><i class="fas fa-home"></i> &nbsp;Dashboard</a>
+          <a class="nav-link" href="{{ route('dashboard') }}" class="pure-menu-link"><i class="fas fa-home"></i> &nbsp;Dashboard</a>
           <a class="nav-link" href="{{ route('roles.index') }}" class="pure-menu-link"><i class="fas fa-chart-line"></i> &nbsp;Statistics</a>
           <a class="nav-link" href="{{ route('customers.index') }}" class="pure-menu-link"><i class="fas fa-users"></i> &nbsp;Users</a>
           <a class="nav-link" href="{{ route('roles.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Roles</a>
