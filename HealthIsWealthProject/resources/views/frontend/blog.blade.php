@@ -27,7 +27,7 @@
         <i class="far fa-user"></i>
         <span>by {{$item->user->user_name}}</span>
       </a>
-      <a href="#" class="icon">
+      <a href="{{route('postdetail',$item->id)}}" class="icon">
         <i class="far fa-comment"></i>
         <span>({{ count($item->comments) }})</span>
       </a>

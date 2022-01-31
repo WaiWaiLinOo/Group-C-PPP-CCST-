@@ -44,7 +44,7 @@
       <div class="form-group">
         <div class="form-group">
           <strong>Role:</strong>
-          {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','name'=>'roles','multiple')) !!}
+          {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','name'=>'roles')) !!}
         </div>
       </div>
       <button type="submit" class="btns">Create</button>
