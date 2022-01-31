@@ -18,6 +18,7 @@
   <script src="{{ asset('js/modalbox.js') }}"></script>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <script src="{{ asset('js/app.js') }}" defer></script>
+  <link rel="stylesheet" href="{{asset('css/frontend_style/modal.css')}}">
 
 </head>
 
