@@ -57,4 +57,16 @@ interface PostDaoInterface
      * @param  $id
      */
     public function postByCategoryId($id);
+
+    /**
+     * Dashboard/ to show count
+     * @return view
+     */
+    public function getMonthlyRecord();
+    
+    /**
+     * Dashboard/ to show weelypost graph
+     * @return 
+     */
+    public function getWeeklyPost();
 }

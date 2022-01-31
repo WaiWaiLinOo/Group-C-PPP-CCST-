@@ -60,6 +60,18 @@ interface PostServiceInterface
     * @param  $id
     */
     public function postByCategoryId($id);
+    
+    /**
+     * Dashboard/ to show count
+     * @return view
+     */
+    public function getMonthlyRecord();
+    
+    /**
+    * Dashboard/ to show weelypost graph
+    * @return 
+    */
+    public function getWeeklyPost();
 
     /**
      * To delete post by id

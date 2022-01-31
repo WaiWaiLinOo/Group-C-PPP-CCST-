@@ -5,13 +5,13 @@ $(document).ready(function () {
     url: "/api/weeklyPost",
     type: "GET",
     success: function (data) {
-      //console.log(data);
+      console.log(data);
 
-      var day = [];
+      //var day = [];
       var post = [];
-
+      var day = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
       $.each(data, function (index, value) {
-        day.push(index);
+        //day.push(index);
         post.push(value);
       });
       console.log(day);

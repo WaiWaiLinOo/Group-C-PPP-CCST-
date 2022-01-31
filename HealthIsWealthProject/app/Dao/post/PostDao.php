@@ -2,14 +2,16 @@
 
 namespace App\Dao\post;
 
-use App\Models\Post;
-use App\Contracts\Dao\post\PostDaoInterface;
-use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use Carbon\Carbon;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Arr;
+use Spatie\Permission\Models\Role;
 use PhpParser\Node\Expr\AssignOp\Pow;
 use Spatie\Permission\Models\Permission;
+use App\Contracts\Dao\post\PostDaoInterface;
 
 /**
  * Data accessing object for post
@@ -122,5 +124,74 @@ class PostDao implements PostDaoInterface
             ->where('category_id', '=', $id)
             ->get();
         return $posts;
+    }
+
+    /**
+     * Dashboard/ to show count
+     * @return view
+     */
+    public function getMonthlyRecord()
+    {
+        //MONTHLY RECORDS
+        $musers = User::select('id', 'created_at')
+            ->get()
+            ->groupBy(function ($date) {
+                //return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+                return Carbon::parse($date->created_at)->format('m'); // grouping by months
+            });
+
+        $usermcount = [];
+        $userArr = [];
+        $months = [' ', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        foreach ($musers as $key => $value) {
+            $usermcount[(int)$key] = count($value);
+        }
+        for ($i = 1; $i <= 12; $i++) {
+            if (!empty($usermcount[$i])) {
+                $userArr[$months[$i]] = $usermcount[$i];
+            } else {
+                $userArr[$i] = 0;
+            }
+        }
+
+        $mposts = Post::select('id', 'created_at')
+            ->get()
+            ->groupBy(function ($date) {
+                return Carbon::parse($date->created_at)->format('m'); // grouping by months
+            });
+        $postmcount = [];
+        $postArr = [];
+
+        foreach ($mposts as $key => $value) {
+            $postmcount[(int)$key] = count($value);
+        }
+        for ($i = 1; $i <= 12; $i++) {
+            if (!empty($postmcount[$i])) {
+                $postArr[$months[$i]] = $postmcount[$i];
+            } else {
+                $postArr[$i] = 0;
+            }
+        }
+
+        $users = User::all();
+        $posts = Post::all();
+        return ['users' => $users, 'user' => $userArr[date('M')], 'posts' => $posts, 'post' => $postArr[date('M')],];
+    }
+
+    /**
+     * Dashboard/ to show weelypost graph
+     * @return 
+     */
+    public function getWeeklyPost()
+    {
+        // Weekly records this week results
+        $weekly = Post::where('created_at', '>', Carbon::now()->startOfWeek())
+            ->where('created_at', '<', Carbon::now()->endOfWeek())
+            ->get()
+            ->groupBy(function ($date) {
+                return Carbon::parse($date->created_at)->format('D'); // grouping by day
+            });
+        return $weekly;
     }
 }

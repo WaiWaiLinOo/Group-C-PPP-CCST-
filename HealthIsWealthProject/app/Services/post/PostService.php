@@ -125,4 +125,39 @@ class PostService implements PostServiceInterface
     {
         return $this->postDao->postByCategoryId($id);
     }
+
+    /**
+     * Dashboard/ to show count
+     * @return view
+     */
+    public function getMonthlyRecord()
+    {
+        return $this->postDao->getMonthlyRecord();
+    }
+
+    /**
+     * Dashboard/ to show weelypost graph
+     * @return 
+     */
+    public function getWeeklyPost()
+    {
+        $weekly = $this->postDao->getWeeklyPost();  
+        $postweek = [];
+        $postweekArr = [];
+        $week = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+          
+    
+        foreach ($weekly as $key => $value) {
+            $postweek[$key] = count($value);
+        }
+    
+        for ($i = 0; $i <= 6; $i++) {
+            if (!empty($postweek[ $week[$i]])) {
+                $postweekArr[$i] = $postweek[$week[$i]];
+            } else {
+                $postweekArr[$i] = 0;
+            }
+        }
+        return $postweekArr;
+    }
 }
