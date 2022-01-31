@@ -89,6 +89,13 @@
               @endif
             </div>
             <div class="form-group">
+                <strong>Confirm Password:</strong>
+                 {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control','name'=>'password','value'=>'old(password)')) !!}
+                 @if ($errors->has('password'))
+                 <span class="text-danger">{{ $errors->first('password') }}</span>
+                 @endif
+              </div>
+            <div class="form-group">
               <label for="date"> Date Of Birth :</label>
               <input type="date" placeholder="Date Of Birth" class="form-control" id="dob" name="dob" value="{{ old('dob') }}">
               @if ($errors->has('dob'))
