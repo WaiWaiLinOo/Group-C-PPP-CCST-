@@ -60,9 +60,9 @@
           @csrf
           <div class="register-profile">
             <div>
-              <img src="{{ asset('sample/profile.png') }}" alt="">
+              <img src="{{ asset('sample/profile.png') }}" alt="" id="previewImg">
               <i class="fas fa-edit b-color icon-size"></i>
-              <input type="file" placeholder="User Profile" name="profile" id="profile" accept="image/png, image/gif, image/jpeg">
+              <input type="file" onchange="previewFile(this);" placeholder="User Profile" name="profile" id="profile" accept="image/png, image/gif, image/jpeg">
             </div>
             (<small class="text-danger">*We only accept jpeg png gif jpg format</small>)
           </div>

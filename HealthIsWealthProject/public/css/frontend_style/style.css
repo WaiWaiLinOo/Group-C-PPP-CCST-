@@ -960,19 +960,20 @@ ul li #comment{
     border-radius: 12%;
 }
 .user-profile img{
-    width: 70%;
-    border-radius: 50%;
+    width: 80%;
+    border-radius: 10%;
 }
 .user-profile div i{
-    position: absolute;
-    top: 37%;
-    right: 18%;
+    position: sticky;
+    top: 31%;
+    right: 10%;
+
 }
 .user-profile input{
     position: absolute;
+    top: 6%;
     left: 14%;
     padding: 79px 0px;
-    border-radius: 50%;
     opacity: 0;
 }
 .d-flex{
@@ -987,25 +988,27 @@ ul li #comment{
     text-align: center;
 }
 .register-profile div{
+    position: relative;
     background-color: #f5ecec;
     padding: 13px 0;
     border-radius: 12%;
 }
 .register-profile img{
     width: 100%;
-    border-radius: 50%;
+    border-radius: 10%;
 }
 .register-profile div i{
     position: absolute;
-    top: 45%;
+    top: 72%;
     right: 7%;
 }
 .register-profile input{
+
     position: absolute;
-    left: 2%;
+    left: -1%;
     width: 100%;
-    padding: 54px 0px;
-    border-radius: 50%;
+    padding: 57px 0px;
+    border-radius: 10%;
     opacity: 0;
 }
 .m-register .btns{

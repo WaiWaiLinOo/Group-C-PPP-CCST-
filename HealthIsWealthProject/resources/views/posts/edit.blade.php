@@ -22,9 +22,9 @@
       <div class="form-group mb-3 profile">
         <label for="profile">Post Image</label>
         (<small class="text-danger">*We only accept jpeg png gif jpg format</small>)
-        <input type="file" name="post_img" id="post_img" accept="image/png, image/gif, image/jpeg" value={{$post->post_img}}>
+        <input type="file" onchange="previewFile(this);"  name="post_img" id="post_img" accept="image/png, image/gif, image/jpeg" value={{$post->post_img}}>
         @if($post->post_img)
-        <img src="{{ asset($post->post_img) }}" class="post_img" />
+        <img src="{{ asset($post->post_img) }}" class="post_img" id="previewImg" />
         @endif
       </div>
       <div class="form-group">
