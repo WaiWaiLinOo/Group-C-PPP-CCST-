@@ -74,6 +74,6 @@
       </form>
     </div>
   </div>
-  {!! $posts->render() !!}
+  {{--{!! $posts->render() !!}--}}
 </div>
 @endsection

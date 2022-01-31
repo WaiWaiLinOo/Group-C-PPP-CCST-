@@ -3409,7 +3409,7 @@ input[type=button].btn-block {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 13px;
   z-index: 1000;
   display: none;
   float: left;
@@ -3460,7 +3460,7 @@ input[type=button].btn-block {
   }
 }
 
-@media (min-width: 992px) {
+@media (max-width: 500px) {
   .dropdown-menu-lg-left {
     right: auto;
     left: 0;
@@ -3472,7 +3472,7 @@ input[type=button].btn-block {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 500px) {
   .dropdown-menu-xl-left {
     right: auto;
     left: 0;
@@ -3587,7 +3587,7 @@ input[type=button].btn-block {
 
 .dropdown-item {
   display: block;
-  width: 100%;
+  width: 95%;
   padding: 0.25rem 1.5rem;
   clear: both;
   font-weight: 400;

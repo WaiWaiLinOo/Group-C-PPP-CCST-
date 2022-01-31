@@ -1216,9 +1216,9 @@ h2.sub-t{
         text-align: center;
     }
 
-}
 
-@media (max-width:450px){
+}
+@media (max-width:765px){
 
     .m-login{
         margin-left: 0;
@@ -1231,5 +1231,15 @@ h2.sub-t{
     .contact form .inputBox input{
         width:100%;
     }
+    .navbar{
+        width: 100%;
+    }
+    .navbar .nav-item{
+        width: 100%;
+    }
+    .dropdown-menu{
+        width: 96%;
+    }
+
 
 }
