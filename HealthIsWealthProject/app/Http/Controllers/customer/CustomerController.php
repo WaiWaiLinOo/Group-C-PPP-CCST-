@@ -177,7 +177,7 @@ class CustomerController extends Controller
         ]);
         // Check email is sent successfully or not
         if ($this->customerInterface->sendMail($request)) {
-            return redirect('customers.index')
+            return redirect()->route('customers.index')
                 ->with('success', 'Email is sent successfully.');
         }
     }
