@@ -7,6 +7,11 @@ use App\Models\Post;
 
 class HighchartController extends Controller
 {
+
+    /**
+     * Display handleChart.
+     * @return view
+     */
     public function handleChart()
     {
         $postData = Post::select(\DB::raw("COUNT(*) as count"))

@@ -28,7 +28,6 @@ class RoleService implements RoleServiceInterface
 
     /**
      * to get data from database
-     *
      * @return View getdata from database
      */
     public function getRole($request)
@@ -47,7 +46,7 @@ class RoleService implements RoleServiceInterface
 
     /**
      * To store role
-     *@param $request
+     * @param $request
      */
     public function storeRole($request)
     {
@@ -56,7 +55,6 @@ class RoleService implements RoleServiceInterface
 
     /**
      * to get data from database
-     *
      * @return View getdata id from role
      */
     public function getRoleId($id)
@@ -66,8 +64,8 @@ class RoleService implements RoleServiceInterface
 
     /**
      * To edit role
-     *@param $id
-     *@return 
+     * @param $id
+     * @return 
      */
     public function editRole($id)
     {
@@ -76,7 +74,7 @@ class RoleService implements RoleServiceInterface
 
     /**
      * To update role
-     *@param $request
+     * @param $request
      */
     public function updateRole($request, $id)
     {

@@ -168,7 +168,6 @@ class CustomerDao implements CustomerDaoInterface
             ->whereNull('users.deleted_at')
             ->select('users.*', 'roles.name')
             ->get();
-        //$data = User::all();
         view()->share('data', $data);
     }
 }

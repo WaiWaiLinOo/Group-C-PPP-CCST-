@@ -80,13 +80,13 @@ class PostService implements PostServiceInterface
         return $this->postDao->editPost($id);
     }
 
-     /**
+    /**
      * Excel file Import
      * @param $request
      */
     public function importExcel($request)
     {
-        return Excel::import(new PostsImport,$request->file('file'));
+        return Excel::import(new PostsImport, $request->file('file'));
     }
 
     /**
@@ -103,7 +103,7 @@ class PostService implements PostServiceInterface
      */
     public function exportExcel()
     {
-       return Excel::download(new PostsExport($this->postDao), 'posts.xlsx');
+        return Excel::download(new PostsExport($this->postDao), 'posts.xlsx');
     }
 
     /**
@@ -111,7 +111,8 @@ class PostService implements PostServiceInterface
      * @param $request
      * @return object
      */
-    public function searchPostByName($request){
+    public function searchPostByName($request)
+    {
         return $this->postDao->searchPostByName($request);
     }
 

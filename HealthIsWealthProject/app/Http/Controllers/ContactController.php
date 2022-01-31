@@ -12,18 +12,22 @@ class ContactController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
      * @return void
      */
     private $contactInterface;
+
+    /**
+     * Create a new controller instance.
+     * Display a listing of the resource.
+     * @return void
+     */
     public function __construct(ContactServiceInterface $contactServiceInterface)
     {
-
         $this->contactInterface = $contactServiceInterface;
     }
+
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -32,12 +36,14 @@ class ContactController extends Controller
         return view('contactshow', compact('contact'));
     }
 
-
+    /**
+     * store contact
+     * @return \Illuminate\Http\Response
+     */
     public function store(ContactCreateRequest $request)
     {
         $validated = $request->validated();
-        $this->contactInterface->storeDataContact($request,$validated);
+        $this->contactInterface->storeDataContact($request, $validated);
         return view('contactus');
     }
-
 }

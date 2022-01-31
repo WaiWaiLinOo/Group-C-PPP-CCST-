@@ -109,7 +109,6 @@ class CustomerService implements CustomerServiceInterface
 
     /**
      * To send email to specified email
-     * 
      * @param Request $request request with inputs
      * @return bool
      */
@@ -128,12 +127,23 @@ class CustomerService implements CustomerServiceInterface
             return redirect('/')->with('status', 'Students is absent!');
         }
     }
+    /**
+     * To searchUser
+     * @param Request $request request with inputs
+     * @return bool
+     */
     public function searchUser(Request $request)
     {
         return $this->customerDao->searchUser($request);
     }
 
-    public function exportPDF(){
+    /**
+     * To exportpdf
+     * @param Request $request request with inputs
+     * @return bool
+     */
+    public function exportPDF()
+    {
         return $this->customerDao->exportPDF();
     }
 }

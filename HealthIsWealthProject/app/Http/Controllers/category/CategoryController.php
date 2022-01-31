@@ -15,7 +15,7 @@ use App\Contracts\Services\category\CategoryServiceInterface;
 
 class CategoryController extends Controller
 {
-     /**
+    /**
      * customer interface
      */
     private $categoryInterface;
@@ -34,19 +34,16 @@ class CategoryController extends Controller
     }
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $categories = $this->categoryInterface->getCategory();
-        //$categories = Category::all();
         return view('categories.index-categories', compact('categories'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -56,32 +53,19 @@ class CategoryController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CategoryUpdateRequest $request)
     {
         $validated = $request->validated();
-        $category = $this->categoryInterface->storeCategory($request,$validated);
+        $category = $this->categoryInterface->storeCategory($request, $validated);
         return redirect()->route('categories.index')
             ->with('success', 'Category Created Successfully');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
-     *
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
@@ -92,7 +76,6 @@ class CategoryController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
@@ -100,13 +83,12 @@ class CategoryController extends Controller
     public function update(CategoryUpdateRequest $request, Category $category)
     {
         $validated = $request->validated();
-        $category = $this->categoryInterface->updateCategory($request,$category,$validated);
+        $category = $this->categoryInterface->updateCategory($request, $category, $validated);
         return redirect(route('categories.index'))->with('status', 'Category Edited Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
-     *
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
@@ -117,7 +99,7 @@ class CategoryController extends Controller
         return redirect()->back()->with('status', 'Category Deleted Successfully');
     }
 
-     /**
+    /**
      * category list
      * @return
      */
@@ -127,4 +109,3 @@ class CategoryController extends Controller
         return response()->json($categories);
     }
 }
-

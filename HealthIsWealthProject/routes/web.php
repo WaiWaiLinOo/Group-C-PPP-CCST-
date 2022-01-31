@@ -36,8 +36,8 @@ Route::get('user/register', [RegisterController::class, 'showRegistrationView'])
 Route::post('user/register/confirm', [RegisterController::class, 'create'])->name('registeruser');
 Route::get('/searchPost', [PostController::class, 'searchPostByName'])->name('searchPost');
 Route::group(['middleware' => ['auth']], function () {
-    //Route::get('/home', [PostController::class, 'postView'])->name('homeside');
-    //Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [PostController::class, 'postView'])->name('homeside');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/detail/{id}', [PostController::class, 'postDetail'])->name('postdetail');
     Route::get('/detail/{id}', [PostController::class, 'postDetails'])->name('postdetail');
     Route::get('/aboutus', [HomeController::class, 'aboutUs'])->name('aboutUs');

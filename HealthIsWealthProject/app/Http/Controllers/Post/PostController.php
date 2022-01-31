@@ -44,21 +44,30 @@ class PostController extends Controller
     {
         $posts = $this->postInterface->getPost();
         $categories = Category::all();
-        return view('posts.index', compact('posts','categories'))
+        return view('posts.index', compact('posts', 'categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    /**
+     * Show the postdetail for creating a new resource.
+     * @return view
+     */
     public function postDetail($id)
     {
         $posts = Post::find($id);
         return view('customer.postdetail', compact('posts'));
     }
 
+    /**
+     * Show the postdetails for creating a new resource.
+     * @return view
+     */
     public function postDetails($id)
     {
         $posts = Post::find($id);
         return view('frontend.postdetail', compact('posts'));
     }
+
     /**
      * Show the form for creating a new resource.
      * @return view
@@ -66,7 +75,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create',compact('categories'));
+        return view('posts.create', compact('categories'));
     }
 
     /**
@@ -77,7 +86,7 @@ class PostController extends Controller
     public function store(PostCreateRequest $request)
     {
         $validated = $request->validated();
-        $post = $this->postInterface->storePost($request,$validated);
+        $post = $this->postInterface->storePost($request, $validated);
         return redirect()->route('posts.index')
             ->with('success', 'Post created successfully.');
     }
@@ -101,7 +110,7 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $post = $this->postInterface->editPost($id);
-        return view('posts.edit', compact('post','categories'));
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -113,7 +122,7 @@ class PostController extends Controller
     public function update(PostCreateRequest $request, $id)
     {
         $validated = $request->validated();
-        $message = $this->postInterface->updatePost($request, $id,$validated);
+        $message = $this->postInterface->updatePost($request, $id, $validated);
         return redirect()->route('posts.index')
             ->with('success', $message);
     }
@@ -131,13 +140,13 @@ class PostController extends Controller
         $this->postInterface->importExcel($request);
         $posts = $this->postInterface->getPost();
         return view('posts.index', compact('posts'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
-    * Excel file export
-    *@return
-    */
+     * Excel file export
+     * @return view
+     */
     public function export()
     {
         return $this->postInterface->exportExcel();
@@ -166,7 +175,7 @@ class PostController extends Controller
     }
 
     /**
-     * To delelte post
+     * To delete post
      * @param $id
      * @param $request
      * @return view
@@ -182,5 +191,4 @@ class PostController extends Controller
                 ->with('error', 'Writted User can only delete');
         }
     }
-
 }

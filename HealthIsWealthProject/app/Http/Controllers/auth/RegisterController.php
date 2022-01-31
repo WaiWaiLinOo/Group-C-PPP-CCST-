@@ -46,7 +46,7 @@ class RegisterController extends Controller
     protected function showRegistrationView()
     {
         $roles = $this->userInterface->getRole();
-        return view('auth.register',compact('roles'));
+        return view('auth.register', compact('roles'));
     }
 
     /**
@@ -56,12 +56,11 @@ class RegisterController extends Controller
      */
     protected function create(UserCreateRequest $request)
     {
-
         $validated = $request->validated();
         $roles = $this->userInterface->getRole();
         $user = $this->userInterface->saveUser($request, $validated);
-        //$user->notify(new WelcomeEmailNotification($user));
+        $user->notify(new WelcomeEmailNotification($user));
         return redirect()
-            ->route('home',compact('user','roles'));
+            ->route('home', compact('user', 'roles'));
     }
 }

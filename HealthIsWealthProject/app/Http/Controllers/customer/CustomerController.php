@@ -66,8 +66,8 @@ class CustomerController extends Controller
     public function store(CustomerCreateRequest $request)
     {
         $validated = $request->validated();
-        $user = $this->customerInterface->storeUser($request,$validated);
-        //$user->notify(new WelcomeEmailNotification($user));
+        $user = $this->customerInterface->storeUser($request, $validated);
+        $user->notify(new WelcomeEmailNotification($user));
         return redirect()->route('customers.index')
             ->with('success', 'User created successfully');
     }
@@ -100,13 +100,14 @@ class CustomerController extends Controller
      * @param $request
      * @return view
      */
-      public function update(CustomerCreateRequest $request, $id)
+    public function update(CustomerCreateRequest $request, $id)
     {
         $validated = $request->validated();
-        $message = $this->customerInterface->userRoleUpdate($request, $id,$validated);
+        $message = $this->customerInterface->userRoleUpdate($request, $id, $validated);
         return redirect()->route('customers.index')
             ->with('success', $message);
     }
+
     /**
      * To show user profile
      * @param $id
@@ -117,12 +118,18 @@ class CustomerController extends Controller
         $datas = $this->customerInterface->userEditView($id);
         return view('customer.profile', compact('datas'));
     }
-    
+
+    /**
+     * To show profile show
+     * @param $id
+     * @return view
+     */
     public function profileshows($id)
     {
         $data = User::find($id);
         return view('customer.profileshow', compact('data'));
     }
+
     /**
      * To update user profile
      * @param $id
@@ -133,7 +140,7 @@ class CustomerController extends Controller
     {
         $message = $this->customerInterface->profileUpdate($request, $id);
         $data = User::find($id);
-        return view('customer.profileshow', compact('data'))->with('success',$message);
+        return view('customer.profileshow', compact('data'))->with('success', $message);
     }
 
     /**
@@ -151,7 +158,6 @@ class CustomerController extends Controller
 
     /**
      * Show the form for email to send.
-     *
      * @return \Illuminate\Http\Response
      */
     public function showMailForm()
@@ -161,7 +167,6 @@ class CustomerController extends Controller
 
     /**
      * Send email
-     *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
@@ -176,23 +181,28 @@ class CustomerController extends Controller
                 ->with('success', 'Email is sent successfully.');
         }
     }
-    /*
-    To search user
-    */
+
+    /**
+     * To search user
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function searchUser(Request $request)
     {
-            $user = $this->customerInterface->searchUser($request);
-            //$roles = $this->customerInterface->getRole();
-            return view('customer.index')->with(['customers' => $user]);
-
+        $user = $this->customerInterface->searchUser($request);
+        //$roles = $this->customerInterface->getRole();
+        return view('customer.index')->with(['customers' => $user]);
     }
+
+    /**
+     * To generatepdf
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function generatePDF()
     {
         $this->customerInterface->exportPDF();
         $pdf = PDF::loadview('myPDF');
         return $pdf->download('data.pdf');
-
     }
-
-
 }
