@@ -33,8 +33,10 @@ class PostsExport implements FromCollection,  WithHeadings, WithEvents, WithMapp
     public function headings() :array
     {
         return [
-            'Post_name',
-            'Detail',
+            'Post name',
+            'Details',
+            'Category Names',
+            'Posted Uploaded Users',
             'Created_at',
             'Updated_at',
         ];
@@ -44,6 +46,8 @@ class PostsExport implements FromCollection,  WithHeadings, WithEvents, WithMapp
         return [
             $post->post_name,
             $post->detail,
+            $post->Category->name,
+            $post->User->user_name,
             $post->created_at,
             $post->updated_at,
         ] ;
