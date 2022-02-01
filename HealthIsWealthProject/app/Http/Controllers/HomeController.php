@@ -29,7 +29,23 @@ class HomeController extends Controller
         $posts = $this->postInterface->getPost();
         return view('frontend.blog', compact('posts'));
     }
+//    public function likePost($id)
+//    {
+//        $posts = Post::find($id);
+//        $posts->like();
+//        $posts->save();
+//
+//        return redirect()->route('home.index')->with('message','Post Like successfully!');
+//    }
 
+//    public function unlikePost($id)
+//    {
+//        $posts = Post::find($id);
+//        $posts->unlike();
+//        $posts->save();
+//
+//        return redirect()->route('home.index')->with('message','Post Like undo successfully!');
+//    }
     /**
      * Show about us.
      */
@@ -102,7 +118,7 @@ class HomeController extends Controller
 
     /**
      * Dashboard/ to show weelypost graph
-     * @return 
+     * @return
      */
     public function weeklyPost()
     {

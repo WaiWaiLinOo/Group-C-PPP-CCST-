@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Post;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\LikeDislike;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -47,7 +48,6 @@ class PostController extends Controller
         return view('posts.index', compact('posts', 'categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
-
     /**
      * Show the postdetail for creating a new resource.
      * @return view
@@ -190,5 +190,19 @@ class PostController extends Controller
             return redirect()->route('posts.index')
                 ->with('error', 'Writted User can only delete');
         }
+    }
+
+     public function save_likedislike(Request $request){
+        $data=new LikeDislike;
+        $data->post_id=$request->post;
+        if($request->type=='like'){
+            $data->like=1;
+        }else{
+            $data->dislike=1;
+        }
+        $data->save();
+        return response()->json([
+            'bool'=>true
+        ]);
     }
 }

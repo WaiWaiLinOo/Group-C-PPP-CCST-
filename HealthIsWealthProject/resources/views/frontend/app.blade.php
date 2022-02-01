@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HealthIsWealth</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- font awesome cdn link  -->
   <link rel="stylesheet" href="{{asset('css/library/fontawesome.all.min.css')}}">
@@ -136,6 +137,7 @@
     </div>
 
     @yield('content')
+    @yield('script')
   </section>
 
   <!-- contact section ends -->

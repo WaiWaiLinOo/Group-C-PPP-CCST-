@@ -15,6 +15,7 @@
         "laravel/ui": "^3.4",
         "laravelcollective/html": "^6.2",
         "maatwebsite/excel": "^3.1",
+        "rtconner/laravel-likeable": "^3.2",
         "spatie/laravel-permission": "^5.5"
     },
     "require-dev": {

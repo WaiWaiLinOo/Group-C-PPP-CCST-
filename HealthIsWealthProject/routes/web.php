@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('customers', CustomerController::class);
     Route::resource('posts', PostController::class);
     Route::resource('contact',ContactController::class);
+    Route::resource('home', HomeController::class);
     // Category resource controller
     Route::resource('/categories', CategoryController::class);
     Route::delete('user/delete/{id}', [CustomerController::class, 'destroy'])->name('destroyUser');
@@ -69,7 +70,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/postByCategory/{id}', [PostController::class, 'postByCategoryId'])->name('postByCategoryId');
 
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-    
+
+
+    //Route::post('/like-post/{id}',[HomeController::class,'likePost'])->name('like.post');
+    //Route::post('/unlike-post/{id}',[HomeController::class,'unlikePost'])->name('unlike.post');
+
+    // Like Or Dislike
+    Route::post('save-likedislike', [PostController::class , 'save_likedislike'])->name('like.dislike');
+
 });
 
 

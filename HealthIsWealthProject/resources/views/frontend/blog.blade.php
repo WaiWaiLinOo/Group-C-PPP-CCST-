@@ -31,8 +31,59 @@
         <i class="far fa-comment"></i>
         <span>({{ count($item->comments) }})</span>
       </a>
+    <span title="Likes" id="saveLikeDislike" data-type="like" data-post="{{ $item->id}}" class="mr-2 btn btn-sm btn-outline-primary d-inline font-weight-bold">
+        Like
+        <span class="like-count">{{ $item->likes() }}</span>
+    </span>
+    <span title="Dislikes" id="saveLikeDislike" data-type="dislike" data-type="dislike" data-post="{{ $item->id}}" class="mr-2 btn btn-sm btn-outline-danger d-inline font-weight-bold">
+        Dislike
+        <span class="dislike-count">{{ $item->dislikes() }}</span>
+    </span>
+
     </div>
   </div>
   @endforeach
 </div>
+
+@endsection
+@section('script')
+
+<script>
+    $(document).ready(function () {
+    $.ajaxSetup({
+        headers: {
+           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
+     });
+
+$('#saveLikeDislike').click(function(){
+    var _post=$(this).data('post');
+    var _type=$(this).data('type');
+    var vm = $(this);
+    // Run Ajax
+    $.ajax({
+        url:"{{url('save-likedislike')}}",
+        type:"post",
+        dataType: 'json',
+        data: {
+            post:_post,
+            type:_type,
+            _token:"{{ csrf_token() }}"
+        },
+        beforeSend:function(){
+            vm.addClass('disabled');
+        },
+        success:function(res){
+            if(res.bool==true){
+                vm.removeClass('disabled').addClass('active');
+                vm.removeAttr('id');
+                var _prevCount=$("."+_type+"-count").text();
+                _prevCount++;
+                $("."+_type+"-count").text(_prevCount);
+            }
+        }
+    })
+    });
+});
+</script>
 @endsection

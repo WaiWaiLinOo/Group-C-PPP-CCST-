@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Conner\Likeable\Likeable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Likeable;
     protected $fillable = [
         'post_name',
         'detail',
@@ -29,4 +32,11 @@ class Post extends Model
         return $this->belongsTo(User::class,'user_id','id');
     }
     protected $dates = ['deleted_at'];
+    public function likes(){
+        return $this->hasMany('App\Models\LikeDislike','post_id')->sum('like');
+    }
+    // Dislikes
+    public function dislikes(){
+        return $this->hasMany('App\Models\LikeDislike','post_id')->sum('dislike');
+    }
 }
