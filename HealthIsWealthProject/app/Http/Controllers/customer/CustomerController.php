@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\customer;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Http\Controllers\Controller;
-use App\Contracts\Services\customer\CustomerServiceInterface;
-use Spatie\Permission\Models\Role;
 use DB;
+use com;
+use PDF;
 use Hash;
-use Illuminate\Support\Arr;
-use Spatie\Permission\Models\Permission;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\CustomerCreateRequest;
+use App\Notifications\WelcomeEmailNotification;
+use App\Contracts\Services\customer\CustomerServiceInterface;
+
 
 class CustomerController extends Controller
 {
@@ -18,6 +21,7 @@ class CustomerController extends Controller
      * customer interface
      */
     private $customerInterface;
+
 
     /**
      * Create a new controller instance.
@@ -58,18 +62,13 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerCreateRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
-        ]);
-        $user = $this->customerInterface->storeUser($request);
-
-        return redirect()->route('customers.index')
-            ->with('success', 'User created successfully');
+        $validated = $request->validated();
+        $user = $this->customerInterface->storeUser($request, $validated);
+        Alert::success('Congrats', 'You\'ve Successfully Registered');
+        $user->notify(new WelcomeEmailNotification($user));
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -102,12 +101,9 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'roles' => 'required'
-        ]);
         $message = $this->customerInterface->userRoleUpdate($request, $id);
-        return redirect()->route('customers.index')
-            ->with('success', $message);
+        Alert::success('Congrats', 'You\'ve Successfully Updated User');
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -122,6 +118,17 @@ class CustomerController extends Controller
     }
 
     /**
+     * To show profile show
+     * @param $id
+     * @return view
+     */
+    public function profileshows($id)
+    {
+        $data = User::find($id);
+        return view('customer.profileshow', compact('data'));
+    }
+
+    /**
      * To update user profile
      * @param $id
      * @param $request
@@ -130,7 +137,8 @@ class CustomerController extends Controller
     public function profileUpdate(Request $request, $id)
     {
         $message = $this->customerInterface->profileUpdate($request, $id);
-        return view('home');
+        $data = User::find($id);
+        return view('customer.profileshow', compact('data'))->with('success', $message);
     }
 
     /**
@@ -142,7 +150,58 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $user = $this->customerInterface->deleteUser($id);
-        return redirect()->route('customers.index')
-            ->with('success', 'User deleted successfully');
+        Alert::warning('Delete Comfirm!', 'Deleted Successufully');
+        return redirect()->route('customers.index');
+          
+    }
+
+    /**
+     * Show the form for email to send.
+     * @return \Illuminate\Http\Response
+     */
+    public function showMailForm()
+    {
+        return view('customer.emailForm');
+    }
+
+    /**
+     * Send email
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postMailForm(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+        // Check email is sent successfully or not
+        if ($this->customerInterface->sendMail($request)) {
+            return redirect()->route('customers.index')
+                ->with('success', 'Email is sent successfully.');
+        }
+    }
+
+    /**
+     * To search user
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function searchUser(Request $request)
+    {
+        $user = $this->customerInterface->searchUser($request);
+        //$roles = $this->customerInterface->getRole();
+        return view('customer.index')->with(['customers' => $user]);
+    }
+
+    /**
+     * To generatepdf
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function generatePDF()
+    {
+        $this->customerInterface->exportPDF();
+        $pdf = PDF::loadview('myPDF');
+        return $pdf->download('data.pdf');
     }
 }

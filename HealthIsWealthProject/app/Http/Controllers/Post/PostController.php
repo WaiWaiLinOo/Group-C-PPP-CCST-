@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Post;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+
 use App\Models\Post;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\PostCreateRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Contracts\Services\post\PostServiceInterface;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use DB;
+
 
 
 class PostController extends Controller
@@ -34,56 +36,63 @@ class PostController extends Controller
 
     /**
      * Display a listing of the resource.
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function index()
     {
         $posts = $this->postInterface->getPost();
-        return view('posts.index', compact('posts'))
+        $categories = Category::all();
+        return view('posts.index', compact('posts', 'categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
-    public function postView()
-    {
-        $posts = $this->postInterface->getPost();
-        return view('home', compact('posts'));
-    }
+
+    /**
+     * Show the postdetail for creating a new resource.
+     * @return view
+     */
     public function postDetail($id)
     {
         $posts = Post::find($id);
-        return view('customer.postdetail',compact('posts'));
-        //$posts = $this->postInterface->getPost();
-        //return view('customer.postdetail', compact('posts'));
+        return view('customer.postdetail', compact('posts'));
+    }
+
+    /**
+     * Show the postdetails for creating a new resource.
+     * @return view
+     */
+    public function postDetails($id)
+    {
+        $posts = Post::find($id);
+        return view('frontend.postdetail', compact('posts'));
     }
 
     /**
      * Show the form for creating a new resource.
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  $request
+     * @return view
      */
-    public function store(Request $request)
+    public function store(PostCreateRequest $request)
     {
-        request()->validate([
-            'post_name' => 'required',
-            'detail' => 'required',
-        ]);
-        $post = $this->postInterface->storePost($request);
-        return redirect()->route('posts.index')
-            ->with('success', 'Post created successfully.');
-    }
+        $validated = $request->validated();
+        $post = $this->postInterface->storePost($request, $validated);
+        Alert::success('Congrats', 'You\'ve Successfully Created Post');
+        return redirect()->route('posts.index');
+  }
 
     /**
      * Display the specified resource.
-     * @param  \App\Product  $post
-     * @return \Illuminate\Http\Response
+     * @param  $post
+     * @return view
      */
     public function show(Post $post)
     {
@@ -93,42 +102,102 @@ class PostController extends Controller
     /**
      * Show the form  for post edit
      * @param  $id
-     * @return Response
+     * @return view
      */
     public function edit($id)
     {
+        $categories = Category::all();
         $post = $this->postInterface->editPost($id);
-        return view('posts.edit', compact('post'));
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     /**
      * Update the post.
      * @param  $request
      * @param  $id
-     * @return Response
+     * @return view
      */
-    public function update(Request $request, $id)
+    public function update(PostCreateRequest $request, $id)
     {
-        $this->validate($request, [
-            'post_name' => 'required',
-            'detail' => 'required'
-        ]);
-        $message = $this->postInterface->updatePost($request, $id);
-        return redirect()->route('posts.index')
-            ->with('success', $message);
-    }
-
+        $validated = $request->validated();
+        $message = $this->postInterface->updatePost($request, $id, $validated);
+        Alert::success('Congrats', 'You\'ve Successfully Updated Post');
+        return redirect()->route('posts.index');
+  }
 
     /**
-     * To delelte post
+     * Excel file Import
+     * @param $request
+     * @return view
+     */
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+        $this->postInterface->importExcel($request);
+        $posts = $this->postInterface->getPost();
+        return view('posts.index', compact('posts'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    /**
+     * Excel file export
+     * @return view
+     */
+    public function export()
+    {
+        return $this->postInterface->exportExcel();
+    }
+
+    /**
+     * search post by post name
+     * @param $request
+     * @return view
+     */
+    public function searchPostByName(Request $request)
+    {
+        $posts = $this->postInterface->searchPostByName($request);
+        return view('frontend.blog', compact('posts'));
+    }
+
+    /**
+     * Post by category id
+     * @param  $id
+     * @return view
+     */
+    public function postByCategoryId($id)
+    {
+        $posts = $this->postInterface->postByCategoryId($id);
+        return view('frontend.blog', compact('posts'));
+    }
+
+    /**
+     * Display handleChart.
+     * @return view
+     */
+    public function handleChart()
+    {
+        $postData = $this->postInterface->handleChart();
+        return view('graph', compact('postData'));
+    }
+
+    /**
+     * To delete post
      * @param $id
      * @param $request
      * @return view
      */
     public function destroy(Post $post)
     {
-        $post = $this->postInterface->deletePost($post);
-        return redirect()->route('posts.index')
-            ->with('success', 'Post deleted successfully');
+        if ($post->user_id == auth()->user()->id || auth()->user()->id == 1) {
+            $post = $this->postInterface->deletePost($post);
+            Alert::warning('Delete Comfirm!', 'Post Deleted Successufully');
+            return redirect()->route('posts.index');
+
+        } else {
+            Alert::warning('Delete Comfirm!', 'Only Post User Can deleted');
+            return redirect()->route('posts.index');
+}
     }
 }

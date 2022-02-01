@@ -15,33 +15,30 @@ class UserDao implements UserDaoInterface
 {
     /**
      * save data in database
-     *
      * @return View savadata into database
      */
     public function saveUser(Request $request)
     {
-        if ($profile = $request->file('profile')) {
-            $name = time() . '.' . $request->file('profile')->clientExtension();
-            $request->file('profile')->move('userProfile',$name);
-            $user['profile'] = "$name";
+        $user = new User;
+        $user->user_name = $request->user_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request['password']);
+        if ($request->file()) {
+            $filename = time() . '.' . $request->profile->clientExtension();
+            $filePath = $request->file('profile')->storeAs('userProfile', $filename, 'public');
+            $path = 'storage/' . $filePath;
+            $user->profile = $path;
         }
-
         if ($certificate = $request->file('certificate')) {
             $certificate = time() . '.' . $request->file('certificate')->clientExtension();
-            $request->file('certificate')->move('userCartificate',$certificate);
-            $user['certificate'] = "$certificate";
+            $filePath = $request->file('certificate')->storeAs('userCertificate', $certificate, 'public');
+            $path = 'storage/' . $filePath;
+            $user->certificate = $path;
         }
-       
-        $user = User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-            'profile' => $name,
-            'certificate' => $certificate,
-            'dob' => $request['dob'],
-            'address' => $request['address'],
-
-        ]);
+        $user->dob = $request->dob;
+        $user->address = $request->address;
+        $user->role_id =  $request->roles;
+        $user->save();
         $user->assignRole('User');
         return $user;
     }

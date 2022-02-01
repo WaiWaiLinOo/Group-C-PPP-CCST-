@@ -1,17 +1,8 @@
-@extends('layouts.app')
-
-
+@extends('frontend.app')
 @section('content')
-<div class="row">
-  <div class="col-lg-12 margin-tb">
-    <div class="pull-left">
-      <h2>Edit Role</h2>
-    </div>
-  </div>
-</div>
 
-
-@if (count($errors) > 0)
+<div class="adduser">
+    @if (count($errors) > 0)
 <div class="alert alert-danger">
   <strong>Whoops!</strong> There were some problems with your input.<br><br>
   <ul>
@@ -21,33 +12,40 @@
   </ul>
 </div>
 @endif
-
-{!! Form::model($role = $datas['role'], ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
-<div class="register-form">
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group">
-        <strong>Name:</strong>
-        {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group">
-        <strong>Permission:</strong>
-        <br />
-        @foreach($permission = $datas['permission'] as $value)
-        <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions = $datas['rolePermission']) ? true : false, array('class' => 'name')) }}
-          {{ $value->name }}</label>
-        <br />
-        @endforeach
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-      <button type="submit" class="button-secondary">Update</button>
+  <div class="cardHeader">
+    <div class="create">
+      <h2>Role Update</h2>
+      <a href="{{ route('roles.index') }}" title="Back to role lists">Role List <i class="fas fa-list-alt"></i></a>
     </div>
   </div>
-</div>
-{!! Form::close() !!}
+{!! Form::model($role = $datas['role'], ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
+  <div class="editform margin-top">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+        <label for="name" class="label"> Name: </label>
+          {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 permission">
+        <div class="form-group">
+          <b class="label">Permission:</b>
+          <br />
 
+          <ul class="role-list">
+          @foreach($permission = $datas['permission'] as $value)
+          <li>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions = $datas['rolePermission']) ? true : false, array('class' => 'name')) }}
+            {{ $value->name }}</li>
+          @endforeach
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+        <button type="submit" class="btns">Update</button>
+      </div>
+    <div class="create-categories">
+      <a href="{{ route('roles.index') }}" title="Back to role lists"><i class="fas fa-arrow-circle-left"></i></a>
+    </div>
+  </div>
+{!! Form::close() !!}
+</div>
 
 @endsection

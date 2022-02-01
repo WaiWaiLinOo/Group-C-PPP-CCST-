@@ -2,6 +2,9 @@
 
 namespace App\Services\customer;
 
+use App\Mail\CustomerList;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Contracts\Dao\customer\CustomerDaoInterface;
 use App\Contracts\Services\customer\CustomerServiceInterface;
 
@@ -99,7 +102,48 @@ class CustomerService implements CustomerServiceInterface
      *@param $id
      *@param $request
      */
-    public function profileUpdate($request, $id){
+    public function profileUpdate($request, $id)
+    {
         return $this->customerDao->profileUpdate($request, $id);
+    }
+
+    /**
+     * To send email to specified email
+     * @param Request $request request with inputs
+     * @return bool
+     */
+    public function sendMail(Request $request)
+    {
+        $customers = $this->customerDao->getUser($request);
+        if ($customers) {
+            Mail::to($request->email)->send(new CustomerList($customers));
+            // Check mail sending process has error.
+            if (count(Mail::failures()) > 0) {
+                return redirect('/')->with('status', 'Mail cannot sent!');
+            } else {
+                return true;
+            }
+        } else {
+            return redirect('/')->with('status', 'Students is absent!');
+        }
+    }
+    /**
+     * To searchUser
+     * @param Request $request request with inputs
+     * @return bool
+     */
+    public function searchUser(Request $request)
+    {
+        return $this->customerDao->searchUser($request);
+    }
+
+    /**
+     * To exportpdf
+     * @param Request $request request with inputs
+     * @return bool
+     */
+    public function exportPDF()
+    {
+        return $this->customerDao->exportPDF();
     }
 }

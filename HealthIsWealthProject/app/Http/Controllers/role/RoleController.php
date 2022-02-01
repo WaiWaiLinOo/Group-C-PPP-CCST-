@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\role;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Http\Controllers\Controller;
-use App\Contracts\Services\role\RoleServiceInterface;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 use DB;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RoleCreateRequest;
+use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Permission;
+use App\Contracts\Services\role\RoleServiceInterface;
+
 
 class RoleController extends Controller
 {
@@ -38,8 +41,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $roles = $this->roleInterface->getRole($request);
-        return view('roles.index', compact('roles'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('roles.index', compact('roles'));;
     }
 
     /**
@@ -48,6 +50,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+
         $permission = $this->roleInterface->getPermission();
         return view('roles.create', compact('permission'));
     }
@@ -57,15 +60,12 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoleCreateRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:roles,name',
-            'permission' => 'required',
-        ]);
-        $role = $this->roleInterface->storeRole($request);
-        return redirect()->route('roles.index')
-            ->with('success', 'Role created successfully');
+        $valided = $request->validated();
+        $role = $this->roleInterface->storeRole($request, $valided);
+        Alert::success('Congrats', 'Role created successfully');
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -94,18 +94,14 @@ class RoleController extends Controller
      * Update the specified resource in storage.
      * @param  $request
      * @param  $id
-     * @return 
+     * @return
      */
-    public function update(Request $request, $id)
+    public function update(RoleCreateRequest $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'permission' => 'required',
-        ]);
-
-        $message = $this->roleInterface->updateRole($request, $id);
-        return redirect()->route('roles.index')
-            ->with('success', $message);
+        $validated = $request->validated();
+        $message = $this->roleInterface->updateRole($request, $id, $validated);
+        Alert::success('Congrats', 'You\'ve Successfully Updated Role');
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -117,7 +113,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
         $role = $this->roleInterface->deleteRole($id);
-        return redirect()->route('roles.index')
-            ->with('success', 'Role deleted successfully');
+        Alert::warning('Delete Comfirm!', 'Role deleted successfully');
+        return redirect()->route('roles.index');
     }
 }

@@ -2,13 +2,16 @@
 
 namespace App\Dao\customer;
 
-use App\Models\User;
-use App\Contracts\Dao\customer\CustomerDaoInterface;
-use Spatie\Permission\Models\Role;
-use DB;
+
 use Hash;
+use App\Models\User;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Contracts\Dao\customer\CustomerDaoInterface;
+use PDF;
 
 /**
  * Data accessing object for customer
@@ -22,7 +25,11 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function getUser($request)
     {
-        return User::orderBy('id', 'DESC')->paginate(5);
+        return DB::table('users')
+            ->join('roles', 'users.role_id', '=', 'roles.name')
+            ->whereNull('users.deleted_at')
+            ->select('users.*', 'roles.name')
+            ->get();
     }
 
     /**
@@ -45,14 +52,18 @@ class CustomerDao implements CustomerDaoInterface
 
     /**
      * to store from customerId
-     * @return View 
+     * @return View
      */
     public function storeUser($request)
     {
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
-
-        $user = User::create($input);
+        $user = new User;
+        $user->user_name = $request->user_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request['password']);
+        $user->dob = $request->dob;
+        $user->address = $request->address;
+        $user->role_id =  $request->roles;
+        $user->save();
         $user->assignRole($request->input('roles'));
         return $user;
     }
@@ -77,14 +88,9 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function userRoleUpdate($request, $id)
     {
-        $input = $request->all();
-        if (!empty($input['password'])) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            $input = Arr::except($input, array('password'));
-        }
         $user = User::find($id);
-        $user->update($input);
+        $user->role_id =  $request->roles;
+        $user->update();
         DB::table('model_has_roles')->where('model_id', $id)->delete();
         $user->assignRole($request->input('roles'));
         return 'Role Update Successfully!';
@@ -97,21 +103,21 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function profileUpdate($request, $id)
     {
-
         $user = User::find($id);
-        if ($profile = $request->file('profile')) {
-            $name = time() . '.' . $request->file('profile')->clientExtension();
-            $request->file('profile')->move('userProfile', $name);
-            $user->profile = $name;
+        if ($request->file()) {
+            $filename = time() . '.' . $request->profile->clientExtension();
+            $filePath = $request->file('profile')->storeAs('userProfile', $filename, 'public');
+            $path = 'storage/' . $filePath;
+            $user->profile = $path;
         }
-
         if ($certificate = $request->file('certificate')) {
             $certificate = time() . '.' . $request->file('certificate')->clientExtension();
-            $request->file('certificate')->move('userCertificate', $certificate);
-            $user->certificate = $certificate;
+            $filePath = $request->file('certificate')->storeAs('userCertificate', $certificate, 'public');
+            $path = 'storage/' . $filePath;
+            $user->certificate = $path;
         }
 
-        $user->name = $request->input('name');
+        $user->user_name = $request->input('user_name');
         $user->email = $request->input('email');
         $user->dob = $request->input('dob');
         $user->address = $request->input('address');
@@ -126,5 +132,42 @@ class CustomerDao implements CustomerDaoInterface
     public function deleteUser($id)
     {
         return User::find($id)->delete();
+    }
+    /**
+     * search user
+     */
+    public function searchUser(Request $request)
+    {
+        $user_name = $request->user_name;
+        $role = $request->input('role');
+        $start_date = $request->s_date;
+        $end_date = $request->e_date;
+
+        $user = DB::table('users')
+            ->join('roles', 'users.role_id', '=', 'roles.name')
+            ->whereNull('users.deleted_at')
+            ->select('users.*', 'roles.*');
+        if ($user_name) {
+            $user->where('users.user_name', 'LIKE', '%' . $user_name . '%');
+        }
+        if ($role) {
+            $user->where('roles.name', 'LIKE', '%' . $role . '%');
+        }
+        if ($start_date) {
+            $user->whereDate('users.created_at', '>=', $start_date);
+        }
+        if ($end_date) {
+            $user->whereDate('users.created_at', '<=', $end_date);
+        }
+        return $user->get();
+    }
+    public function exportPDF()
+    {
+        $data = DB::table('users')
+            ->join('roles', 'users.role_id', '=', 'roles.name')
+            ->whereNull('users.deleted_at')
+            ->select('users.*', 'roles.name')
+            ->get();
+        view()->share('data', $data);
     }
 }

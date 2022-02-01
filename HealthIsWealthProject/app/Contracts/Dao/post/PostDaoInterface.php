@@ -40,4 +40,42 @@ interface PostDaoInterface
      * @param $id
      */
     public function deletePost($post);
+
+    /**
+     * To get post list for excel export
+     */
+    public function exportPostList();
+
+    /**
+     * search post by post name
+     * @param $request
+     */
+    public function searchPostByName($request);
+
+    /**
+     * Post by category id
+     * @param  $id
+     */
+    public function postByCategoryId($id);
+
+    /**
+     * Dashboard/ to show count
+     * @return view
+     */
+    public function getMonthlyRecord();
+    
+    /**
+     * Dashboard/ to show weelypost graph
+     */
+    public function getWeeklyPost();
+
+    /**
+     * count for all
+     */
+    public function getCountAll();
+
+    /**
+     * Display handleChart.
+     */
+    public function handleChart();
 }
