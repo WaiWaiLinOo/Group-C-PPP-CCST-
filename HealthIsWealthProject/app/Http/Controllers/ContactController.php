@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
-use Illuminate\Http\Request;
 use App\Contracts\Services\contact\ContactServiceInterface;
 use App\Http\Requests\ContactCreateRequest;
 use Alert;

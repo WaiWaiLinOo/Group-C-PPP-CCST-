@@ -60,4 +60,16 @@ class HomeController extends Controller
         $weeklyPost = $this->postInterface->getWeeklyPost();
         return response()->json($weeklyPost);
     }
+
+    /**
+     * count for all
+     * @return
+     */
+    public function getCountAll()
+    {   
+        $count = $this->postInterface->getCountAll();
+        return response()->json($count);
+    }
+
+    
 }

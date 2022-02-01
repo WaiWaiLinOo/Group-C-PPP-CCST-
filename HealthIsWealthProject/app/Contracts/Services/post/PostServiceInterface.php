@@ -69,9 +69,18 @@ interface PostServiceInterface
     
     /**
     * Dashboard/ to show weelypost graph
-    * @return 
     */
     public function getWeeklyPost();
+
+    /**
+     * count for all
+     */
+    public function getCountAll();
+
+    /**
+     * Display handleChart.
+     */
+    public function handleChart();
 
     /**
      * To delete post by id

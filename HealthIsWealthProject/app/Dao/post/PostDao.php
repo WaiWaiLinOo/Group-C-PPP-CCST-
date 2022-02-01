@@ -7,10 +7,9 @@ use Hash;
 use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Support\Arr;
+use App\Models\Contact;
+use App\Models\Category;
 use Spatie\Permission\Models\Role;
-use PhpParser\Node\Expr\AssignOp\Pow;
-use Spatie\Permission\Models\Permission;
 use App\Contracts\Dao\post\PostDaoInterface;
 
 /**
@@ -193,5 +192,39 @@ class PostDao implements PostDaoInterface
                 return Carbon::parse($date->created_at)->format('D'); // grouping by day
             });
         return $weekly;
+    }
+
+    /**
+     * count for all
+     * @return
+     */
+    public function getCountAll()
+    {
+        $user = count(User::all());
+        $role = count(Role::all());
+        $post = count(Post::all());
+        $category = count(Category::all());
+        $contact = count(Contact::all());
+        $count = [
+            'user' => $user,
+            'role' => $role,
+            'post' => $post,
+            'category' => $category,
+            'contact' => $contact,
+        ];
+        return $count;
+    }
+
+    /**
+     * Display handleChart.
+     * @return view
+     */
+    public function handleChart()
+    {
+        $postData = Post::select(\DB::raw("COUNT(*) as count"))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(\DB::raw("Month(created_at)"))
+            ->pluck('count');
+        return $postData;
     }
 }

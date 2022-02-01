@@ -5,11 +5,7 @@ namespace App\Http\Controllers\category;
 use DB;
 use Hash;
 use App\Models\Category;
-use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use Spatie\Permission\Models\Permission;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Contracts\Services\category\CategoryServiceInterface;
 use Alert;
@@ -108,7 +104,8 @@ class CategoryController extends Controller
      */
     public function getCategoryList()
     {
-        $categories = Category::pluck('name', 'id');
-        return response()->json($categories);
+        $count = Category::withCount('posts')
+                ->get(); 
+        return response()->json($count);
     }
 }

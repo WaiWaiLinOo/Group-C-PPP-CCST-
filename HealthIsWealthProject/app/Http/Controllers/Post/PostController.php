@@ -5,13 +5,9 @@ namespace App\Http\Controllers\Post;
 
 use App\Models\Post;
 use App\Models\Category;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostCreateRequest;
-use Spatie\Permission\Models\Permission;
 use App\Contracts\Services\post\PostServiceInterface;
 use Alert;
 
@@ -173,6 +169,16 @@ class PostController extends Controller
     {
         $posts = $this->postInterface->postByCategoryId($id);
         return view('frontend.blog', compact('posts'));
+    }
+
+    /**
+     * Display handleChart.
+     * @return view
+     */
+    public function handleChart()
+    {
+        $postData = $this->postInterface->handleChart();
+        return view('graph', compact('postData'));
     }
 
     /**

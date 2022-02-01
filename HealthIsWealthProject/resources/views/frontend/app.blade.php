@@ -30,8 +30,14 @@
 
   <header class="header">
 
+<<<<<<< HEAD
+    <a href="{{route('home')}}" class="logo">Health_<span>is</span>_Wealth</a>
+
+    <nav class="navbar">
+=======
     <a href="#" class="logo">Health_<span>is</span>_Wealth</a>
    <nav class="navbar">
+>>>>>>> features/contact
       @auth
       @role('User|SubAdmin')
       <a href="{{route('home')}}">Home</a>
@@ -101,8 +107,8 @@
         <div class="category">
           <a class="nav-link" href="{{ route('dashboard') }}" class="pure-menu-link"><i class="fas fa-home"></i> &nbsp;Dashboard</a>
           <a class="nav-link" href="{{ route('roles.index') }}" class="pure-menu-link"><i class="fas fa-chart-line"></i> &nbsp;Statistics</a>
-          <a class="nav-link" href="{{ route('customers.index') }}" class="pure-menu-link"><i class="fas fa-users"></i> &nbsp;Users</a>
-          <a class="nav-link" href="{{ route('roles.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Roles</a>
+          <a class="nav-link user-count" href="{{ route('customers.index') }}" class="pure-menu-link"><i class="fas fa-users"></i> &nbsp;Users</a>
+          <a class="nav-link role-count" href="{{ route('roles.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Roles</a>
         </div>
       </div>
       @endrole
@@ -113,10 +119,10 @@
       <div class="box">
         <h3 class="title">Actions</h3>
         <div class="category">
-          <a class="nav-link" href="{{ route('posts.index') }}"><i class="fas fa-edit"></i> &nbsp;Post</a>
+          <a class="nav-link post-count" href="{{ route('posts.index') }}"><i class="fas fa-edit"></i> &nbsp;Post</a>
           @role('Admin')
-          <a class="nav-link" href="{{ route('categories.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Category</a>
-          <a class="nav-link" href="{{ route('contact.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Contact </a>
+          <a class="nav-link category-count" href="{{ route('categories.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Category</a>
+          <a class="nav-link contact-count" href="{{ route('contact.index') }}" class="pure-menu-link"><i class="fas fa-edit"></i> &nbsp;Contact </a>
           <a class="nav-link dropbtn pure-menu-link" onclick="myDownload()"><i class="fas fa-file-download"></i> &nbsp;Download Files <i class="fas fa-caret-down"></i></a>
           <div id="myDropdown" class="dropdown-content">
             <a href="/exportpdf">User Pdf File <i class="fas fa-file-pdf"></i></a>
