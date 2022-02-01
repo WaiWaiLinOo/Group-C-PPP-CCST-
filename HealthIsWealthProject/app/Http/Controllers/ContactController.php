@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Services\contact\ContactServiceInterface;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\ContactCreateRequest;
-use Alert;
+use App\Contracts\Services\contact\ContactServiceInterface;
+
 
 class ContactController extends Controller
 

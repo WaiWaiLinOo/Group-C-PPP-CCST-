@@ -6,9 +6,10 @@ use DB;
 use Hash;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Contracts\Services\category\CategoryServiceInterface;
-use Alert;
+
 
 class CategoryController extends Controller
 {

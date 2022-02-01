@@ -8,8 +8,9 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostCreateRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Contracts\Services\post\PostServiceInterface;
-use Alert;
+
 
 
 class PostController extends Controller

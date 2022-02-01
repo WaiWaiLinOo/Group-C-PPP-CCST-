@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\role;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Http\Controllers\Controller;
-use App\Contracts\Services\role\RoleServiceInterface;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 use DB;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleCreateRequest;
-use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Permission;
+use App\Contracts\Services\role\RoleServiceInterface;
+
 
 class RoleController extends Controller
 {

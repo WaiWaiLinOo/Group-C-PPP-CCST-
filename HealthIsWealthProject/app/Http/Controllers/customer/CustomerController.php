@@ -3,16 +3,17 @@
 namespace App\Http\Controllers\customer;
 
 use DB;
+use com;
+use PDF;
 use Hash;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\CustomerCreateRequest;
 use App\Notifications\WelcomeEmailNotification;
 use App\Contracts\Services\customer\CustomerServiceInterface;
-use PDF;
-use App\Http\Requests\CustomerCreateRequest;
-use com;
-use Alert;
+
 
 class CustomerController extends Controller
 {
