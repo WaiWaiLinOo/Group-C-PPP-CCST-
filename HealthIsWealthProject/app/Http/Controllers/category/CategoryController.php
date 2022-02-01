@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Contracts\Services\category\CategoryServiceInterface;
+use Alert;
 
 class CategoryController extends Controller
 {
@@ -56,9 +57,9 @@ class CategoryController extends Controller
     {
         $validated = $request->validated();
         $category = $this->categoryInterface->storeCategory($request, $validated);
-        return redirect()->route('categories.index')
-            ->with('success', 'Category Created Successfully');
-    }
+        Alert::success('Congrats', 'Category Created Successfully');
+        return redirect()->route('categories.index');
+}
 
     /**
      * Show the form for editing the specified resource.
@@ -80,7 +81,8 @@ class CategoryController extends Controller
     {
         $validated = $request->validated();
         $category = $this->categoryInterface->updateCategory($request, $category, $validated);
-        return redirect(route('categories.index'))->with('status', 'Category Edited Successfully');
+        Alert::success('Congrats', 'Category Edited Successfully');
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -92,7 +94,8 @@ class CategoryController extends Controller
     {
         $category = $this->categoryInterface->deleteCategory($category);
         //$category->delete();
-        return redirect()->back()->with('status', 'Category Deleted Successfully');
+        Alert::warning('Delete Comfirm!', 'Category Deleted Successfully');
+        return redirect()->back();
     }
 
     /**

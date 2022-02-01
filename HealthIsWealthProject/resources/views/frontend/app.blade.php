@@ -25,14 +25,19 @@
 </head>
 
 <body>
-
+@include('sweetalert::alert')
   <!-- header section starts  -->
 
   <header class="header">
 
+<<<<<<< HEAD
     <a href="{{route('home')}}" class="logo">Health_<span>is</span>_Wealth</a>
 
     <nav class="navbar">
+=======
+    <a href="#" class="logo">Health_<span>is</span>_Wealth</a>
+   <nav class="navbar">
+>>>>>>> features/contact
       @auth
       @role('User|SubAdmin')
       <a href="{{route('home')}}">Home</a>

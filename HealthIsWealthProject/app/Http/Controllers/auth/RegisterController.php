@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use App\Http\Requests\UserCreateRequest;
 use App\Notifications\WelcomeEmailNotification;
 use App\Contracts\Services\auth\UserServiceInterface;
+use Alert;
 
 
 class RegisterController extends Controller
@@ -54,6 +55,7 @@ class RegisterController extends Controller
         $validated = $request->validated();
         $roles = $this->userInterface->getRole();
         $user = $this->userInterface->saveUser($request, $validated);
+        Alert::success('Congrats', 'You\'ve Successfully Registered');
         $user->notify(new WelcomeEmailNotification($user));
         return redirect()
             ->route('home', compact('user', 'roles'));

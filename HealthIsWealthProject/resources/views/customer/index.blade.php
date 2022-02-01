@@ -14,21 +14,21 @@
       <div class="d-flex">
           <div>
             <label class="name">Name:</label><br>
-            <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter User Name">
+            <input type="text" name="user_name" id="user_name" class="form-control" value="{{request('user_name')}}" placeholder="Enter User Name">
           </div>
           <div>
             <label class="role">Role:</label>
-            <input type="text" name="role" id="role" class="form-control" placeholder="Enter Role Name">
+            <input type="text" name="role" id="role" class="form-control" value="{{request('role')}}" placeholder="Enter Role Name">
           </div>
         </div>
         <div class="d-flex">
           <div>
             <label>Start Date:</label>
-            <input type="date" name="s_date" class="form-control">
+            <input type="date" name="s_date" value="{{request('s_date')}}" class="form-control">
           </div>
           <div>
             <label class="enddate">End Date:</label>
-            <input type="date" name="e_date" class="form-control">
+            <input type="date" name="e_date" value="{{request('e_date')}}" class="form-control">
           </div>
         </div>
       </div>
