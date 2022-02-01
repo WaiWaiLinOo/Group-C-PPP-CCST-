@@ -70,8 +70,7 @@ class CustomerController extends Controller
         $user = $this->customerInterface->storeUser($request, $validated);
         Alert::success('Congrats', 'You\'ve Successfully Registered');
         $user->notify(new WelcomeEmailNotification($user));
-        return redirect()->route('customers.index')
-            ->with('success', 'User created successfully');
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -106,8 +105,7 @@ class CustomerController extends Controller
     {
         $message = $this->customerInterface->userRoleUpdate($request, $id);
         Alert::success('Congrats', 'You\'ve Successfully Updated User');
-        return redirect()->route('customers.index')
-            ->with('success', $message);
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -155,8 +153,8 @@ class CustomerController extends Controller
     {
         $user = $this->customerInterface->deleteUser($id);
         Alert::warning('Delete Comfirm!', 'Deleted Successufully');
-        return redirect()->route('customers.index')
-            ->with('success', 'User deleted successfully');
+        return redirect()->route('customers.index');
+          
     }
 
     /**

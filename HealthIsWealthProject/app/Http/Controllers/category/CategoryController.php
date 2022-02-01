@@ -62,9 +62,8 @@ class CategoryController extends Controller
         $validated = $request->validated();
         $category = $this->categoryInterface->storeCategory($request, $validated);
         Alert::success('Congrats', 'Category Created Successfully');
-        return redirect()->route('categories.index')
-            ->with('success', 'Category Created Successfully');
-    }
+        return redirect()->route('categories.index');
+}
 
     /**
      * Show the form for editing the specified resource.
@@ -87,7 +86,7 @@ class CategoryController extends Controller
         $validated = $request->validated();
         $category = $this->categoryInterface->updateCategory($request, $category, $validated);
         Alert::success('Congrats', 'Category Edited Successfully');
-        return redirect(route('categories.index'))->with('status', 'Category Edited Successfully');
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -100,7 +99,7 @@ class CategoryController extends Controller
         $category = $this->categoryInterface->deleteCategory($category);
         //$category->delete();
         Alert::warning('Delete Comfirm!', 'Category Deleted Successfully');
-        return redirect()->back()->with('status', 'Category Deleted Successfully');
+        return redirect()->back();
     }
 
     /**

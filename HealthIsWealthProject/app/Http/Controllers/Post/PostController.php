@@ -89,9 +89,8 @@ class PostController extends Controller
         $validated = $request->validated();
         $post = $this->postInterface->storePost($request, $validated);
         Alert::success('Congrats', 'You\'ve Successfully Created Post');
-        return redirect()->route('posts.index')
-            ->with('success', 'Post created successfully.');
-    }
+        return redirect()->route('posts.index');
+  }
 
     /**
      * Display the specified resource.
@@ -126,9 +125,8 @@ class PostController extends Controller
         $validated = $request->validated();
         $message = $this->postInterface->updatePost($request, $id, $validated);
         Alert::success('Congrats', 'You\'ve Successfully Updated Post');
-        return redirect()->route('posts.index')
-            ->with('success', $message);
-    }
+        return redirect()->route('posts.index');
+  }
 
     /**
      * Excel file Import
@@ -188,11 +186,11 @@ class PostController extends Controller
         if ($post->user_id == auth()->user()->id || auth()->user()->id == 1) {
             $post = $this->postInterface->deletePost($post);
             Alert::warning('Delete Comfirm!', 'Post Deleted Successufully');
-            return redirect()->route('posts.index')
-                ->with('success', 'Post deleted hi successfully');
+            return redirect()->route('posts.index');
+
         } else {
-            return redirect()->route('posts.index')
-                ->with('error', 'Writted User can only delete');
-        }
+            Alert::warning('Delete Comfirm!', 'Only Post User Can deleted');
+            return redirect()->route('posts.index');
+}
     }
 }
