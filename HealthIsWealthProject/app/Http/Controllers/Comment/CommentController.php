@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Comment;
 
-use App\Models\Comment;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use App\Contracts\Services\comment\CommentServiceInterface;

@@ -24,3 +24,4 @@ Route::get('/category',[CategoryController::class,'getCategoryList']);
 
 //weekly post graph
 Route::get('/weeklyPost',[HomeController::class,'weeklyPost']);
+Route::get('/count',[HomeController::class,'getCountAll']);

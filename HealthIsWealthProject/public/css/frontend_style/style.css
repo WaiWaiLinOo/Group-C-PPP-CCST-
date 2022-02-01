@@ -342,7 +342,11 @@ section{
     border-radius: .5rem;
     padding:.5rem;
 }
-
+.container .sidebar .box .category a span.num{
+    float: right;
+    background: transparent;
+    color: #f6993f;
+}
 .container .sidebar .box .category a:hover{
     color:var(--orange);
 }
@@ -350,7 +354,9 @@ section{
 .container .sidebar .box .category a:hover span{
     background-color:var(--orange);
 }
-
+.container .sidebar .box .category a:hover span.num{
+    background-color:transparent;
+}
 .container .sidebar .box .p-post{
     padding:1rem 2rem;
 }

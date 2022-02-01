@@ -160,4 +160,22 @@ class PostService implements PostServiceInterface
         }
         return $postweekArr;
     }
+
+    /**
+     * count for all
+     * @return
+     */
+    public function getCountAll()
+    {   
+        return $this->postDao->getCountAll();
+    }
+
+    /**
+     * Display handleChart.
+     * @return view
+     */
+    public function handleChart()
+    {
+        return $this->postDao->handleChart();
+    }
 }

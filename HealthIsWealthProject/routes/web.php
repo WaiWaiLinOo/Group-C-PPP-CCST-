@@ -61,7 +61,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/mail', [CustomerController::class, 'postMailForm'])->name('postMailForm');
     Route::get('/exportpdf', [CustomerController::class, 'generatePDF'])->name('exportpdf');
     //graph
-    Route::get('/graph', [HighchartController::class, 'handleChart']);
+    Route::get('/graph', [PostController::class, 'handleChart']);
     Route::get('/contactshow', [ContactController::class , 'show'])->name('contact.show');
     Route::post('/contactdata', [ContactController::class , 'store'])->name('contact.store');
     Route::get('/managecontact',[ContactController::class,'index'])->name('contact.index');

@@ -28,6 +28,25 @@ $(function () {
   $(window).resize();
 
 });
+
+//Count For all
+$(document).ready(function () {
+  
+  $.ajax({
+    dataType: "json",
+    url: "/api/count",
+    type: "GET",
+    success: function (result) {
+      console.log(result);
+      $(".category .user-count").append(`<span class='num'>${result['user']}</span>`);
+      $(".category .role-count").append(`<span class='num'>${result['role']}</span>`);
+      $(".category .post-count").append(`<span class='num'>${result['post']}</span>`);
+      $(".category .category-count").append(`<span class='num'>${result['category']}</span>`);
+      $(".category .contact-count").append(`<span class='num'>${result['contact']}</span>`);
+    }
+  });
+});
+
 //Add category list
 $(document).ready(function () {
   
@@ -36,9 +55,11 @@ $(document).ready(function () {
     url: "/api/category",
     type: "GET",
     success: function (result) {
-      console.log(result);
-      $.each(result, function (index, value) {
-        $("#categoryList").append(`<a href="http://127.0.0.1:8000/postByCategory/${index}"> ${value}</a>`);
+      console.log(result.length);
+      let i = 0;
+      $.each(result, function () {
+        $("#categoryList").append(`<a href="http://127.0.0.1:8000/postByCategory/${result[i].id}"> ${result[i].name} <span class='num'>${result[i].posts_count}</span></a>`);
+        i++;
       });
     }
   });
