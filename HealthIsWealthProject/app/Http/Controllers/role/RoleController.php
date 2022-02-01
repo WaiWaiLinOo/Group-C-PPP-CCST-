@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use DB;
 use App\Http\Requests\RoleCreateRequest;
+use Alert;
 
 class RoleController extends Controller
 {
@@ -62,6 +63,7 @@ class RoleController extends Controller
     {
         $valided = $request->validated();
         $role = $this->roleInterface->storeRole($request, $valided);
+        Alert::success('Congrats', 'Role created successfully');
         return redirect()->route('roles.index')
             ->with('success', 'Role created successfully');
     }
@@ -98,6 +100,7 @@ class RoleController extends Controller
     {
         $validated = $request->validated();
         $message = $this->roleInterface->updateRole($request, $id, $validated);
+        Alert::success('Congrats', 'You\'ve Successfully Updated Role');
         return redirect()->route('roles.index')
             ->with('success', $message);
     }
@@ -111,6 +114,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
         $role = $this->roleInterface->deleteRole($id);
+        Alert::warning('Delete Comfirm!', 'Role deleted successfully');
         return redirect()->route('roles.index')
             ->with('success', 'Role deleted successfully');
     }
