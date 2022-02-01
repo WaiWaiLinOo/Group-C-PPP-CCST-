@@ -1,6 +1,7 @@
 @extends('frontend.app')
 @section('content')
 <div class="posts-container">
+
   @foreach ($posts as $item)
   <div class="post">
     @if($item->post_img)
@@ -34,5 +35,6 @@
     </div>
   </div>
   @endforeach
+  {{ $posts->links() }}
 </div>
 @endsection

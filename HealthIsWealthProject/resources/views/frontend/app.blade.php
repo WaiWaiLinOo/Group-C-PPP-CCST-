@@ -19,19 +19,14 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <script src="{{ asset('js/app.js') }}" defer></script>
   <link rel="stylesheet" href="{{asset('css/frontend_style/modal.css')}}">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
-@include('sweetalert::alert')
+  @include('sweetalert::alert')
   <!-- header section starts  -->
-
   <header class="header">
-
     <a href="{{route('home')}}" class="logo">Health_<span>is</span>_Wealth</a>
-
     <nav class="navbar">
       @auth
       @role('User|SubAdmin')
@@ -152,12 +147,8 @@
       <a href="#" class="fab fa-instagram"></a>
       <a href="#" class="fab fa-linkedin"></a>
     </div>
-
     <div class="credit">created by <span>Group-C</span> | all rights reserved</div>
-
   </section>
-
-
   <!-- footer section ends -->
 </body>
 

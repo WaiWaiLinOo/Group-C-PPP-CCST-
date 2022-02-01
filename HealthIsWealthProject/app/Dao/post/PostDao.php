@@ -121,7 +121,7 @@ class PostDao implements PostDaoInterface
     {
         $posts = Post::with(['user', 'category'])
             ->where('category_id', '=', $id)
-            ->get();
+            ->latest()->paginate(20);
         return $posts;
     }
 

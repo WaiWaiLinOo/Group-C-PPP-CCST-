@@ -26,7 +26,7 @@
     </thead>
 
     <tbody>
-      @forelse ($posts as $key => $post)
+   @forelse ($posts as $key => $post)
       <tr>
         <td>{{ ++$i }}</td>
         <td>{{ substr($post->post_name,0,10)}} ...</td>
@@ -58,8 +58,10 @@
       @empty
       <td colspan="5" style="text-align: center;"><b>Sorry, currently there is no Post table related to that search!</b></td>
       @endforelse
-    </tbody>
-  </table>
+     </tbody>
+   </table>
+   {{ $posts->links() }}
+ 
   <div id="popup1" class="modal-box">
     <header id="close"> <a href="#" class="js-modal-close close">×</a>
       <h3>Import Post Data</h3>
