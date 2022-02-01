@@ -15,6 +15,7 @@ use App\Contracts\Services\customer\CustomerServiceInterface;
 use PDF;
 use App\Http\Requests\CustomerCreateRequest;
 use com;
+use Alert;
 
 class CustomerController extends Controller
 {
@@ -67,6 +68,7 @@ class CustomerController extends Controller
     {
         $validated = $request->validated();
         $user = $this->customerInterface->storeUser($request, $validated);
+        Alert::success('Congrats', 'You\'ve Successfully Registered');
         $user->notify(new WelcomeEmailNotification($user));
         return redirect()->route('customers.index')
             ->with('success', 'User created successfully');
@@ -152,6 +154,7 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $user = $this->customerInterface->deleteUser($id);
+        Alert::warning('Delete Comfirm!', 'Deleted Successufully');
         return redirect()->route('customers.index')
             ->with('success', 'User deleted successfully');
     }
