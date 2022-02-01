@@ -102,10 +102,9 @@ class CustomerController extends Controller
      * @param $request
      * @return view
      */
-    public function update(CustomerCreateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validated();
-        $message = $this->customerInterface->userRoleUpdate($request, $id, $validated);
+        $message = $this->customerInterface->userRoleUpdate($request, $id);
         Alert::success('Congrats', 'You\'ve Successfully Updated User');
         return redirect()->route('customers.index')
             ->with('success', $message);
