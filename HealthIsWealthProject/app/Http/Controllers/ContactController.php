@@ -6,6 +6,7 @@ use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Contracts\Services\contact\ContactServiceInterface;
 use App\Http\Requests\ContactCreateRequest;
+use Alert;
 
 class ContactController extends Controller
 
@@ -44,6 +45,7 @@ class ContactController extends Controller
     {
         $validated = $request->validated();
         $this->contactInterface->storeDataContact($request, $validated);
+        Alert::success('Congrats', 'You\'ve Successfully Created Message');
         return view('contactus');
     }
 }

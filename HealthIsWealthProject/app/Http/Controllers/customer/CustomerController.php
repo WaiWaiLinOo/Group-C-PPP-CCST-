@@ -106,6 +106,7 @@ class CustomerController extends Controller
     {
         $validated = $request->validated();
         $message = $this->customerInterface->userRoleUpdate($request, $id, $validated);
+        Alert::success('Congrats', 'You\'ve Successfully Updated User');
         return redirect()->route('customers.index')
             ->with('success', $message);
     }
