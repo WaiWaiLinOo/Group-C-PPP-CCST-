@@ -39,7 +39,20 @@
       </div>
       <div class="form-group">
         <strong>Role:</strong>
-        {!! Form::select('roles[]', $roles = $datas['roles'],$userRole = $datas['userRole'], array('class' => 'form-control','name'=>'roles')) !!}
+        <select name="roles">
+          @foreach ($datas['roles'] as $key => $value)
+            @if($datas['user']->role_id == $key)
+            <option value="{{ $key }}" selected>
+              {{ $value }}
+            </option>
+            @else
+            <option value="{{ $key }}">
+              {{ $value }}
+            </option>
+            @endif
+          @endforeach
+        </select>
+        <!--{!! Form::select('roles[]', $roles = $datas['roles'],$userRole = $datas['userRole'], array('class' => 'form-control','name'=>'roles')) !!}-->
       </div>
       <button type="submit" class="btns">Update</button>
       <div class="create-categories">

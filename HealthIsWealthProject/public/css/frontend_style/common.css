@@ -712,10 +712,11 @@ border-radius:5px;
 .registerform{
   margin-top: 24px;
 }*/
-/*.register{
-  margin-left: 330px;
-  margin-top: 150px;
-}*/
+.register{
+  /*margin-left: 330px;
+  margin-top: 150px;*/
+  background: #fff;
+}
 .registerform input{
   padding: 17px 5px;
   border-radius: 5px;
@@ -1183,6 +1184,15 @@ h2.sub-t{
   .container{
       grid-template-columns: 1fr 2fr;
   }
+  .count .count-box{
+    background-color: #fff;
+    padding: 15px 14px 3px 20px;
+    border-radius: 10px;
+  }
+  .table td a{
+    padding: 0px !important;
+    font-size: 10px;
+  }
 
 }
 
@@ -1237,6 +1247,9 @@ h2.sub-t{
       width: 100%;
       /*margin-left: 0px;*/
       padding: 1.307vw;
+  }
+  .m-register .register,.m-login .register{
+    background: transparent;
   }
   .m-register form input{
       width: 100%;
@@ -1886,6 +1899,10 @@ pre code {
   .container {
     max-width: 100%;
     display: block;
+  }
+  .editform{
+    width: 100%;
+    padding: 35px 10px 0 10px;;
   }
 }
 
