@@ -178,7 +178,12 @@ section{
   background:#eee;
   max-width: 100%;
 }
-
+.auth-container{
+  display: block;
+  margin: 0 auto;
+  background:#eee;
+  max-width: 100%;
+}
 .container .posts-container .post{
   width:100%;
   padding:2rem;
@@ -675,18 +680,20 @@ border-radius:5px;
   list-style-type: none;
 }
 .m-login{
-  width: 100%;
-  margin-left: 62%;
-  margin-top: 15%;
+  width: 50%;
+  /*margin-left: 62%;*/
+  margin: 0 auto;
+  margin-top: 10%;
   background-color: transparent;
   border: 1px solid #fff;
   padding:10px;
   border-radius: 10px;
 }
 .m-register{
-  width: 100%;
-  margin-left: 50%;
-  margin-top: 15%;
+  width: 50%;
+  /*margin-left: 50%;*/
+  margin: 0 auto;
+  margin-top: 10%;
   background-color: transparent;
   border: 1px solid #fff;
   padding:10px;
@@ -833,9 +840,12 @@ border-radius:5px;
 }
 .editform{
   width: 500px;
+  /*width: 100%;*/
   margin: 0 auto;
   padding-top: 35px;
-
+}
+.auth-container .editform{
+  width: 100%;
 }
 .editform input{
   padding: 20px 0 20px 7px;
@@ -852,9 +862,10 @@ border-radius:5px;
   color: #2dcba6;
 }
 .btns{
-  width: 300px;
+  /*width: 300px;*/
+  width: 100%;
   margin-bottom: 25px;
-  margin-left: 90px;
+  /*margin-left: 90px;*/
   padding: 7px 0;
   border: 1px solid #2dcba6;
   background: #2dcba6;
@@ -1153,9 +1164,9 @@ h2.sub-t{
 
 @media (max-width:991px){
 
-  .m-login{
+  /*.m-login{
       margin-left: 16%;
-  }
+  }*/
 
   html{
       font-size: 55%;
@@ -1223,7 +1234,8 @@ h2.sub-t{
       text-align: center;
   }
   .m-register{
-      margin-left: 0px;
+      width: 100%;
+      /*margin-left: 0px;*/
       padding: 1.307vw;
   }
   .m-register form input{
@@ -1234,15 +1246,16 @@ h2.sub-t{
   }
   .m-login{
       width: 100%;
-      margin-left: 0px;
+      /*margin-left: 0px;*/
+      margin-top: 15%;
   }
   .m-login form input{
       width: 100%;
   }
-  .m-login form button{
+  /*.m-login form button{
       width: 30%;
-  }
-  .editform{
+  }*/
+  .auth-container .editform{
       width: 100%;
   }
 }
@@ -1250,9 +1263,9 @@ h2.sub-t{
 
 @media (max-width:765px){
 
-  .m-login{
+  /*.m-login{
       margin-left: 0;
-  }
+  }*/
 
   html{
       font-size: 50%;
@@ -1882,6 +1895,9 @@ pre code {
   .container-sm,
   .container {
     max-width: 100%;
+  }
+  .m-register{
+    width: 55%;
   }
 }
 
@@ -4750,6 +4766,14 @@ input[type=button].btn-block {
   .dropdown-menu-lg-right {
     right: 0;
     left: auto;
+  }
+  .m-register .d-flex{
+    display: block !important;
+  }
+  .m-register .register-profile {
+    width: 30%;
+    margin: 2% auto;
+    /*margin-right: 0;*/
   }
 }
 

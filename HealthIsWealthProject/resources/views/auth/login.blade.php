@@ -63,7 +63,7 @@
       </button>
     </form>
   </header>
-  <section class="container" id="posts">
+  <section class="container auth-container" id="posts">
     <div class="m-login">
       <div class="register">
         <div class="cardHeader">Login</div>
