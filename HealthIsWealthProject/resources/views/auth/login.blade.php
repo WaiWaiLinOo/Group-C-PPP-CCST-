@@ -7,14 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HealthIsWealth</title>
 
-  <!-- font awesome cdn link  -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('css/library/fontawesome.all.min.css')}}">
-  <!-- custom css file link  -->
-  <link rel="stylesheet" href="{{asset('css/frontend_style/style.css')}}">
-  <script src="{{asset('js/script.js')}}"></script>
+  <link rel="stylesheet" href="{{asset('css/frontend_style/common.css')}}"> 
+  <link rel="stylesheet" href="{{asset('css/frontend_style/modal.css')}}">
+ 
   <script src="{{ asset('js/library/jquery3.6.0.min.js') }}"></script>
+  <script src="{{ asset('js/library/chart.min.js') }}"></script>
+  <script src="{{asset('js/graph.js')}}"></script>
+  <script src="{{asset('js/script.js')}}"></script>
   <script src="{{ asset('js/modalbox.js') }}"></script>
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
@@ -49,6 +51,17 @@
       </li>
       @endguest
     </nav>
+    <div class="icons">
+      <i class="fas fa-bars" id="menu-bars"></i>
+      <i class="fas fa-search" id="search-icon"></i>
+    </div>
+
+    <form action="{{ route('searchPost')}}" class="search-form">
+      <input type="search" name="search" placeholder="search post here..." id="search-box" required>
+      <button type="submit">
+        <label for="search-box" class="fas fa-search"></label>
+      </button>
+    </form>
   </header>
   <section class="container" id="posts">
     <div class="m-login">
