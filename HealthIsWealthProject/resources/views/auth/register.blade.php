@@ -9,9 +9,9 @@
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('css/library/fontawesome.all.min.css')}}">
-  <link rel="stylesheet" href="{{asset('css/frontend_style/common.css')}}"> 
+  <link rel="stylesheet" href="{{asset('css/frontend_style/common.css')}}">
   <link rel="stylesheet" href="{{asset('css/frontend_style/modal.css')}}">
- 
+
   <script src="{{ asset('js/library/jquery3.6.0.min.js') }}"></script>
   <script src="{{ asset('js/library/chart.min.js') }}"></script>
   <script src="{{asset('js/graph.js')}}"></script>

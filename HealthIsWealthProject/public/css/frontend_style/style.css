@@ -1224,7 +1224,10 @@ h2.sub-t{
         flex-flow: column;
         text-align: center;
     }
-
+    .m-register{
+        margin-left: 0px;
+        padding: 1.307vw;
+    }
 
 }
 @media (max-width:765px){

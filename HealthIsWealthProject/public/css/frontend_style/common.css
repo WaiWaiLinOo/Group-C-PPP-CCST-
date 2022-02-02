@@ -176,6 +176,7 @@ section{
   grid-template-columns: 0.8fr 2.5fr;
   gap:1.5rem;
   background:#eee;
+  max-width: 100%;
 }
 
 .container .posts-container .post{
@@ -1175,9 +1176,6 @@ h2.sub-t{
 }
 
 @media (max-width:768px){
-  .m-login{
-      margin-left: 0;
-  }
   #menu-bars{
       display: inline-block;
   }
@@ -1224,9 +1222,32 @@ h2.sub-t{
       flex-flow: column;
       text-align: center;
   }
-
-
+  .m-register{
+      margin-left: 0px;
+      padding: 1.307vw;
+  }
+  .m-register form input{
+      width: 100%;
+  }
+  .text-danger{
+      font-size: 1.307vw;
+  }
+  .m-login{
+      width: 100%;
+      margin-left: 0px;
+  }
+  .m-login form input{
+      width: 100%;
+  }
+  .m-login form button{
+      width: 30%;
+  }
+  .editform{
+      width: 100%;
+  }
 }
+
+
 @media (max-width:765px){
 
   .m-login{
@@ -1329,6 +1350,7 @@ body {
   color: #212529;
   text-align: left;
   background-color: #f8fafc;
+  max-width: 1920px;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -1846,20 +1868,23 @@ pre code {
   margin-left: auto;
 }
 
-@media (min-width: 576px) {
+@media screen and (max-width: 576px) {
   .container-sm,
   .container {
-    max-width: 540px;
+    max-width: 100%;
+    display: block;
   }
 }
+
 
 @media (min-width: 768px) {
   .container-md,
   .container-sm,
   .container {
-    max-width: 720px;
+    max-width: 100%;
   }
 }
+
 
 @media (min-width: 992px) {
   .container-lg,
@@ -12128,13 +12153,13 @@ a.text-dark:focus {
     size: a3;
 }
 
-  body {
+  /*body {
     min-width: 992px !important;
-  }
+  }*/
 
-  .container {
+  /*.container {
     min-width: 992px !important;
-  }
+  }*/
 
   .navbar {
     display: none;
