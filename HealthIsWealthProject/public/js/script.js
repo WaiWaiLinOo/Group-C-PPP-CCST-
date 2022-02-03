@@ -28,7 +28,17 @@ $(function () {
     searchForm.classList.remove('active');
   }
 
+  let sidebar = document.querySelector('.sidebar');
+  $('.tooltips .fa-cog').click(function () {
+    sidebar.classList.toggle('display');
+  });
+
+  $('#posts').click(function(e) {
+    sidebar.classList.remove('display');
+  });
 });
+
+
 //Image Preview
 function previewFile(input){
   var file = $("input[type=file]").get(0).files[0];
@@ -63,6 +73,4 @@ $(document).ready(function(){
     $('.close').click(function(){
         modal.style.display = "none";
     })
-
-
 })

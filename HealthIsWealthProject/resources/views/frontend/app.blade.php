@@ -70,9 +70,12 @@
     </form>
 
   </header>
+  <div class="tooltips">
+    <i class="fas fa-cog"></i>
+    <span class="tooltiptexts">Controls/Actions</span>
+  </div>
 
   <section class="container mt" id="posts">
-
     <div class="sidebar">
 
       @auth
