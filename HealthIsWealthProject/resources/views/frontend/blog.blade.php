@@ -1,7 +1,6 @@
 @extends('frontend.app')
 @section('content')
 <div class="posts-container">
-
   @foreach ($posts as $item)
   <div class="post">
     @if($item->post_img)

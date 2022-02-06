@@ -1,4 +1,3 @@
-
 @component('mail::message')
 # Customer List
 <!DOCTYPE html>
@@ -26,7 +25,6 @@
 </head>
 
 <body>
-
   <table>
     <tr>
       <th>Name</th>
@@ -46,8 +44,9 @@
     </tr>
     @endforeach
     @endcomponent
-   </table>
+  </table>
 </body>
+
 </html>
 @component('mail::button', ['url' => 'http://localhost:8000/customers'])
 See More Customers

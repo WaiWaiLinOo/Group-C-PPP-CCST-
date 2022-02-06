@@ -1276,51 +1276,6 @@ h2.sub-t {
   color: #2dcba6;
   font-size: 15px;
 }
-
-.tooltips .fa-cog {
-  display: none;
-}
-
-.tooltips {
-  display: inline-block;
-  position: fixed;
-  /*width: 10px;*/
-}
-
-.tooltips .tooltiptexts {
-  position: absolute;
-  top: -5px;
-  left: 150%;
-  z-index: 1;
-  width: 120px;
-  visibility: hidden;
-  padding: 5px 0;
-  background-color: #2dcba6;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-}
-
-.tooltips .tooltiptexts::after {
-  position: absolute;
-  top: 50%;
-  right: 100%;
-  margin-top: -5px;
-  content: "";
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent black transparent transparent;
-}
-
-.tooltips:hover .tooltiptexts {
-  visibility: visible;
-}
-
-.display {
-  display: block !important;
-  position: absolute;
-}
-
 /* -------------------------------------------------------------------------------------------------------- */
 
 
@@ -1449,17 +1404,6 @@ h2.sub-t {
 
   .m-login form .form-check-input {
     width: 5%;
-  }
-
-  .tooltips .fa-cog {
-    display: block;
-    font-size: 20px;
-    border-bottom: none;
-  }
-
-  .sidebar {
-    display: none;
-    position: fixed;
   }
 }
 

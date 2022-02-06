@@ -1,14 +1,14 @@
 @extends('frontend.app')
 @section('content')
 <div class="adduser">
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+  @if ($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
   @endif
   <div class="cardHeader">Add User</div>
   <form method="POST" action="{{ route('customers.store') }}" enctype="multipart/form-data">
@@ -28,10 +28,10 @@
       </div>
       <div class="form-group">
         <strong>Confirm Password:</strong>
-         {!! Form::password('confirm-password', array('placeholder' => 'Enter Confirm Password','class' => 'form-control','name'=>'password','value'=>'old(password)')) !!}
-         @if ($errors->has('password'))
-         <span class="text-danger">{{ $errors->first('password') }}</span>
-         @endif
+        {!! Form::password('confirm-password', array('placeholder' => 'Enter Confirm Password','class' => 'form-control','name'=>'password','value'=>'old(password)')) !!}
+        @if ($errors->has('password'))
+        <span class="text-danger">{{ $errors->first('password') }}</span>
+        @endif
       </div>
       <div class="form-group">
         <label for="date"> Date Of Birth :</label>
@@ -51,7 +51,6 @@
           </option>
           @endforeach
         </select>
-        <!--{!! Form::select('roles[]', $roles,[], array('class' => 'form-control','name'=>'roles')) !!}-->
       </div>
       <button type="submit" class="btns">Create</button>
       <div class="create-categories">

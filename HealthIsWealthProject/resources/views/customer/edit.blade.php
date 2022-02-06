@@ -1,14 +1,14 @@
 @extends('frontend.app')
 @section('content')
 <div class="register">
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+  @if ($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
   @endif
   <div class="cardHeader">Edit User Role</div>
   <div class="editform">
@@ -27,7 +27,7 @@
         <label for="email">Certificate :</label>
         @if($datas['user']->certificate)
         <i class="fas fa-check-square b-color icon-size"></i>
-       @endif
+        @endif
       </div>
       <div class="form-group">
         <label for="date"> Date Of Birth :</label>
@@ -41,18 +41,17 @@
         <strong>Role:</strong>
         <select name="roles">
           @foreach ($datas['roles'] as $key => $value)
-            @if($datas['user']->role_id == $key)
-            <option value="{{ $key }}" selected>
-              {{ $value }}
-            </option>
-            @else
-            <option value="{{ $key }}">
-              {{ $value }}
-            </option>
-            @endif
+          @if($datas['user']->role_id == $key)
+          <option value="{{ $key }}" selected>
+            {{ $value }}
+          </option>
+          @else
+          <option value="{{ $key }}">
+            {{ $value }}
+          </option>
+          @endif
           @endforeach
         </select>
-        <!--{!! Form::select('roles[]', $roles = $datas['roles'],$userRole = $datas['userRole'], array('class' => 'form-control','name'=>'roles')) !!}-->
       </div>
       <button type="submit" class="btns">Update</button>
       <div class="create-categories">

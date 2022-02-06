@@ -49,7 +49,7 @@
         @endif
       </div>
       <div class="form-group mb-3 profile p-relative">
-        <label for="profile">Certificate:</label> 
+        <label for="profile">Certificate:</label>
         @if($datas['user']->certificate)
         <i class="fas fa-check-square b-color icon-size" title="choose certificate"></i>
         @endif
@@ -63,10 +63,8 @@
         @endif
       </div>
       <button type="submit" class="btns">Update</button>
-      
       <div class="create-categories">
         <a href="{{ route('profileshows', Auth::user()->id) }}"><i class="fas fa-arrow-circle-left"></i></a>
-
       </div>
     </div>
   </form>
