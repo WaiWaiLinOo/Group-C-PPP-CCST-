@@ -149,10 +149,10 @@ class PostDao implements PostDaoInterface
         for ($i = 1; $i <= 12; $i++) {
             if (!empty($usermcount[$i])) {
                 $userArr[$i] = $usermcount[$i];
-            } else {
+            } else{
                 $userArr[$i] = 0;
             }
-        }
+            }
  
         $mposts = Post::select('id', 'created_at')
             ->get()
@@ -168,10 +168,10 @@ class PostDao implements PostDaoInterface
         for ($i = 1; $i <= 12; $i++) {
             if (!empty($postmcount[$i])) {
                 $postArr[$i] = $postmcount[$i];
-            } else {
+            }else{
                 $postArr[$i] = 0;
             }
-        }
+            }
 
         $users = User::all();
         $posts = Post::all();

@@ -33,7 +33,7 @@ class ContactController extends Controller
     public function index()
     {
         $contact = $this->contactInterface->getContactData();
-        return view('contactshow', compact('contact'));
+        return view('contactshow')->with('contact',$contact);
     }
 
     /**

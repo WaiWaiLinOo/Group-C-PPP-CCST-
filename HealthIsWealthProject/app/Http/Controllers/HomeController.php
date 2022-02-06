@@ -22,7 +22,7 @@ class HomeController extends Controller
     public function index()
     {
         $posts = $this->postInterface->getPost();
-        return view('frontend.blog', compact('posts'));
+        return view('frontend.blog')->with('posts',$posts);
     }
 
     /**

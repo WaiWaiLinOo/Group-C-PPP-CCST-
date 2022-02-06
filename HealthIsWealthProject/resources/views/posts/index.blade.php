@@ -26,7 +26,7 @@
     <tbody>
       @forelse ($posts as $key => $post)
       <tr>
-        <td>{{ ++$i }}</td>
+        <td>{{$loop->iteration}}</td>
         <td>{{ substr($post->post_name,0,10)}} ...</td>
         <td>
           @if($post->post_img)

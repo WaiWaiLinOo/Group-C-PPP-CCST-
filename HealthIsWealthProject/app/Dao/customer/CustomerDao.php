@@ -78,12 +78,12 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function userEditView($id)
     {
-        DB::transaction(function () use ($id) {
+        //DB::transaction(function () use ($id) {
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
         return ['user' => $user, 'roles' => $roles, 'userRole' => $userRole];
-        });
+        //});
     }
 
     /**

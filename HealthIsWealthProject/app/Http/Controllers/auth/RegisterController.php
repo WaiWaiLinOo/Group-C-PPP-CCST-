@@ -42,7 +42,7 @@ class RegisterController extends Controller
     protected function showRegistrationView()
     {
         $roles = $this->userInterface->getRole();
-        return view('auth.register', compact('roles'));
+        return view('auth.register')->with('roles', $roles);
     }
 
     /**
@@ -57,7 +57,9 @@ class RegisterController extends Controller
         $user = $this->userInterface->saveUser($request, $validated);
         Alert::success('Congrats', 'You\'ve Successfully Registered');
         $user->notify(new WelcomeEmailNotification($user));
+        //   return redirect()
+        //        ->route('home', compact('user', 'roles'));
         return redirect()
-            ->route('home', compact('user', 'roles'));
+            ->route('home', ['user' => $user, 'roles' => $roles,]);
     }
 }

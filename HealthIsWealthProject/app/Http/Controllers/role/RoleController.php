@@ -27,7 +27,8 @@ class RoleController extends Controller
      */
     public function __construct(RoleServiceInterface $roleServiceInterface)
     {
-        $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:role-list|role-create|role-edit|role-delete', 
+                            ['only' => ['index', 'store']]);
         $this->middleware('permission:role-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:role-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:role-delete', ['only' => ['destroy']]);
@@ -41,7 +42,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $roles = $this->roleInterface->getRole($request);
-        return view('roles.index', compact('roles'));;
+        return view('roles.index')->with('roles',$roles);
     }
 
     /**
@@ -52,7 +53,7 @@ class RoleController extends Controller
     {
 
         $permission = $this->roleInterface->getPermission();
-        return view('roles.create', compact('permission'));
+        return view('roles.create')->with('permission',$permission);
     }
 
     /**
@@ -76,7 +77,7 @@ class RoleController extends Controller
     public function show($id)
     {
         $datas = $this->roleInterface->getRoleId($id);
-        return view('roles.show', compact('datas'));
+        return view('roles.show')->with('datas',$datas);
     }
 
     /**
@@ -87,7 +88,7 @@ class RoleController extends Controller
     public function edit($id)
     {
         $datas = $this->roleInterface->editRole($id);
-        return view('roles.edit', compact('datas'));
+        return view('roles.edit')->with('datas',$datas);
     }
 
     /**

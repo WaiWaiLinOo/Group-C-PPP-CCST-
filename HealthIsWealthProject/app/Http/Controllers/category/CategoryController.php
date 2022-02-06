@@ -24,7 +24,8 @@ class CategoryController extends Controller
      */
     public function __construct(CategoryServiceInterface $categoryServiceInterface)
     {
-        $this->middleware('permission:category-list|category-create|category-edit|category-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:category-list|category-create|category-edit|category-delete',
+                             ['only' => ['index', 'store']]);
         $this->middleware('permission:category-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:category-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:category-delete', ['only' => ['destroy']]);
@@ -37,7 +38,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->categoryInterface->getCategory();
-        return view('categories.index-categories', compact('categories'));
+        return view('categories.index-categories')
+                ->with('categories',$categories);
     }
 
     /**
@@ -69,7 +71,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit-category', compact('category'));
+        return view('categories.edit-category')->with('category',$category);
     }
 
     /**

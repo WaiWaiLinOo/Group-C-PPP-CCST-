@@ -20,8 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 //category list
-Route::get('/category',[CategoryController::class,'getCategoryList']);
+Route::get('/category',[CategoryController::class,'getCategoryList'])->name('category');
 
 //weekly post graph
-Route::get('/weeklyPost',[HomeController::class,'weeklyPost']);
-Route::get('/count',[HomeController::class,'getCountAll']);
+Route::get('/weeklyPost',[HomeController::class,'weeklyPost'])->name('weeklyPost');
+Route::get('/count',[HomeController::class,'getCountAll'])->name('count');

@@ -29,7 +29,8 @@ class CustomerController extends Controller
      */
     public function __construct(CustomerServiceInterface $customerServiceInterface)
     {
-        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:user-list|user-create|user-edit|user-delete',
+                             ['only' => ['index', 'store']]);
         $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
@@ -43,8 +44,8 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $customers = $this->customerInterface->getUser($request);
-        return view('customer.index', compact('customers'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('customer.index')->with('customers',$customers);
+            //->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -54,7 +55,7 @@ class CustomerController extends Controller
     public function create()
     {
         $roles = $this->customerInterface->getRole();
-        return view('customer.create', compact('roles'));
+        return view('customer.create')->with('roles',$roles);
     }
 
     /**
@@ -90,7 +91,9 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $datas = $this->customerInterface->userEditView($id);
-        return view('customer.edit', compact('datas'));
+        return view('customer.edit')->with('datas',$datas);
+        //return view('customer.edit',compact('datas'));
+        
     }
 
     /**
@@ -114,7 +117,7 @@ class CustomerController extends Controller
     public function profileView($id)
     {
         $datas = $this->customerInterface->userEditView($id);
-        return view('customer.profile', compact('datas'));
+        return view('customer.profile');
     }
 
     /**
@@ -125,7 +128,7 @@ class CustomerController extends Controller
     public function profileshows($id)
     {
         $data = User::find($id);
-        return view('customer.profileshow', compact('data'));
+        return view('customer.profileshow')->with('data',$data);
     }
 
     /**
@@ -138,7 +141,7 @@ class CustomerController extends Controller
     {
         $message = $this->customerInterface->profileUpdate($request, $id);
         $data = User::find($id);
-        return view('customer.profileshow', compact('data'))->with('success', $message);
+        return view('customer.profileshow')->with('data',$data);
     }
 
     /**
