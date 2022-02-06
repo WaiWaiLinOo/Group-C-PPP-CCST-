@@ -24,8 +24,8 @@ class ContactCreateRequest extends FormRequest
   public function rules()
   {
     return [
-       'first_name'=>'required','max:20',
-       'last_name'=>'required','max:20',
+       'first_name'=>['required','max:20'],
+       'last_name'=>['required','max:20'],
        'detail'=>'required',
     ];
   }
