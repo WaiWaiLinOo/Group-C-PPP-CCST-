@@ -12,6 +12,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Contracts\Dao\customer\CustomerDaoInterface;
 use PDF;
+use App\Notifications\WelcomeEmailNotification;
 
 /**
  * Data accessing object for customer
@@ -56,6 +57,7 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function storeUser($request)
     {
+        DB::transaction(function () use ($request) {
         $user = new User;
         $user->user_name = $request->user_name;
         $user->email = $request->email;
@@ -65,7 +67,9 @@ class CustomerDao implements CustomerDaoInterface
         $user->role_id =  $request->roles;
         $user->save();
         $user->assignRole($request->input('roles'));
+        $user->notify(new WelcomeEmailNotification($user));
         return $user;
+    });
     }
 
     /**
@@ -74,10 +78,12 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function userEditView($id)
     {
+        DB::transaction(function () use ($id) {
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
         return ['user' => $user, 'roles' => $roles, 'userRole' => $userRole];
+        });
     }
 
     /**
@@ -88,12 +94,14 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function userRoleUpdate($request, $id)
     {
+        DB::transaction(function () use ($request,$id) {
         $user = User::find($id);
         $user->role_id =  $request->roles;
         $user->update();
         DB::table('model_has_roles')->where('model_id', $id)->delete();
         $user->assignRole($request->input('roles'));
         return 'Role Update Successfully!';
+        });
     }
 
     /**
@@ -103,6 +111,7 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function profileUpdate($request, $id)
     {
+        DB::transaction(function () use ($request,$id) {
         $user = User::find($id);
         if ($request->file()) {
             $filename = time() . '.' . $request->profile->clientExtension();
@@ -123,6 +132,7 @@ class CustomerDao implements CustomerDaoInterface
         $user->address = $request->input('address');
         $user->update();
         return 'Profile Update Successfully!';
+    });
     }
 
     /**
@@ -131,7 +141,9 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function deleteUser($id)
     {
+        DB::transaction(function () use ($id) {
         return User::find($id)->delete();
+        });
     }
     /**
      * search user
