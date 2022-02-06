@@ -17,7 +17,7 @@
     <div class="editform">
       <div class="form-group">
         <label for="name">Post Name:</label>
-        <input type="text" name="post_name" class="form-control" value="{{ $post->post_name }}" placeholder="Post name">
+        <input type="text" name="post_name" class="form-control" value="{{ old('post_name', $post->post_name) }}" placeholder="Post name">
       </div>
       <div class="form-group mb-3 profile">
         <label for="profile">Post Image</label>
@@ -41,7 +41,7 @@
       </div>
       <div class="form-group">
         <strong>Details:</strong>
-        <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ $post->detail }}</textarea>
+        <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ old('detail', $post->detail) }}</textarea>
       </div>
       <button type="submit" class="btns">Update</button>
       <div class="create-categories">
