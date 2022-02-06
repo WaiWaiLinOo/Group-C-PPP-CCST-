@@ -18,7 +18,7 @@
         <div class="editform">
             <div class="form-group">
               <strong>Category Name:</strong>
-              <input type="text" id="name" name="name" class="form-control" value="{{ $category->name }}" placeholder="Category name">
+              <input type="text" id="name" name="name" class="form-control"  value="{{ old('name', $category->name ) }}" placeholder="Category name">
             </div>
             <button type="submit" class="btns">Update</button>
             <div class="create-categories">

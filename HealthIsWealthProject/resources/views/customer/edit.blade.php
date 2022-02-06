@@ -17,11 +17,11 @@
       @method ('PUT')
       <div class="form-group">
         <label for="user_name">Name : </label>
-        <input type="text" class="form-control" name="user_name" id="user_name" value="{{ $datas['user']->user_name }}" disabled>
+        <input type="text" class="form-control" name="user_name" id="user_name" value="{{ old('user_name', $datas['user']->user_name) }}" disabled>
       </div>
       <div class="form-group">
         <label for="email">Email :</label>
-        <input type="email" class="form-control" value="{{ $datas['user']->email }}" name="email" id="email" disabled>
+        <input type="email" class="form-control" value="{{ old('email', $datas['user']->email ) }}"  name="email" id="email" disabled>
       </div>
       <div class="form-group">
         <label for="email">Certificate :</label>
@@ -31,11 +31,11 @@
       </div>
       <div class="form-group">
         <label for="date"> Date Of Birth :</label>
-        <input type="date" placeholder="Date Of Birth" class="form-control" id="dob" name="dob" value="{{ $datas['user']->dob }}" disabled>
+        <input type="date" placeholder="Date Of Birth" class="form-control" id="dob" name="dob" value="{{old('dob', $datas['user']->dob )}}" disabled>
       </div>
       <div class="form-group">
         <label for="address"> Address :</label>
-        <input type="address" class="form-control" id="address" name="address" value="{{ $datas['user']->address }}" disabled>
+        <input type="address" class="form-control" id="address" name="address" value="{{old('address', $datas['user']->address) }}" disabled>
       </div>
       <div class="form-group">
         <strong>Role:</strong>
