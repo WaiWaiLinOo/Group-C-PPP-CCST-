@@ -151,11 +151,11 @@ class PostService implements PostServiceInterface
             $postweek[$key] = count($value);
         }
     
-        for ($i = 0; $i <= 6; $i++) {
-            if (!empty($postweek[ $week[$i]])) {
-                $postweekArr[$i] = $postweek[$week[$i]];
+        for ($index = 0; $index <= 6; $index++) {
+            if (!empty($postweek[ $week[$index]])) {
+                $postweekArr[$index] = $postweek[$week[$index]];
             } else {
-                $postweekArr[$i] = 0;
+                $postweekArr[$index] = 0;
             }
         }
         return $postweekArr;

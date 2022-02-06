@@ -88,8 +88,7 @@ class PostController extends Controller
      */
     public function store(PostCreateRequest $request)
     {
-        $validated = $request->validated();
-        $post = $this->postInterface->storePost($request, $validated);
+        $post = $this->postInterface->storePost($request);
         Alert::success('Congrats', 'You\'ve Successfully Created Post');
         return redirect()->route('posts.index');
   }
@@ -129,8 +128,7 @@ class PostController extends Controller
      */
     public function update(PostCreateRequest $request, $id)
     {
-        $validated = $request->validated();
-        $message = $this->postInterface->updatePost($request, $id, $validated);
+      $message = $this->postInterface->updatePost($request, $id);
         Alert::success('Congrats', 'You\'ve Successfully Updated Post');
         return redirect()->route('posts.index');
   }

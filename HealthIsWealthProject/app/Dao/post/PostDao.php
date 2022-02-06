@@ -146,11 +146,11 @@ class PostDao implements PostDaoInterface
             $usermcount[(int)$key] = count($value);
         }
 
-        for ($i = 1; $i <= 12; $i++) {
-            if (!empty($usermcount[$i])) {
-                $userArr[$i] = $usermcount[$i];
+        for ($index= 1; $index <= 12; $index++) {
+            if (!empty($usermcount[$index])) {
+                $userArr[$index] = $usermcount[$index];
             } else{
-                $userArr[$i] = 0;
+                $userArr[$index] = 0;
             }
             }
  
@@ -165,11 +165,11 @@ class PostDao implements PostDaoInterface
         foreach ($mposts as $key => $value) {
             $postmcount[(int)$key] = count($value);
         }
-        for ($i = 1; $i <= 12; $i++) {
-            if (!empty($postmcount[$i])) {
-                $postArr[$i] = $postmcount[$i];
+        for ($index = 1; $index <= 12; $index++) {
+            if (!empty($postmcount[$index])) {
+                $postArr[$index] = $postmcount[$index];
             }else{
-                $postArr[$i] = 0;
+                $postArr[$index] = 0;
             }
             }
 

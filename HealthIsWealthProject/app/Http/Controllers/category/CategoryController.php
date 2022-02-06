@@ -58,8 +58,8 @@ class CategoryController extends Controller
      */
     public function store(CategoryUpdateRequest $request)
     {
-        $validated = $request->validated();
-        $category = $this->categoryInterface->storeCategory($request, $validated);
+
+        $category = $this->categoryInterface->storeCategory($request);
         Alert::success('Congrats', 'Category Created Successfully');
         return redirect()->route('categories.index');
 }
@@ -82,8 +82,7 @@ class CategoryController extends Controller
      */
     public function update(CategoryUpdateRequest $request, Category $category)
     {
-        $validated = $request->validated();
-        $category = $this->categoryInterface->updateCategory($request, $category, $validated);
+     $category = $this->categoryInterface->updateCategory($request, $category);
         Alert::success('Congrats', 'Category Edited Successfully');
         return redirect(route('categories.index'));
     }

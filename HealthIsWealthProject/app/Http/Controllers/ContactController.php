@@ -42,8 +42,7 @@ class ContactController extends Controller
      */
     public function store(ContactCreateRequest $request)
     {
-        $validated = $request->validated();
-        $this->contactInterface->storeDataContact($request, $validated);
+$this->contactInterface->storeDataContact($request);
         Alert::success('Congrats', 'You\'ve Successfully Created Message');
         return view('contactus');
     }

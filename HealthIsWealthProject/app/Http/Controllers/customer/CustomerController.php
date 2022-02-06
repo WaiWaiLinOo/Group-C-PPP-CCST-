@@ -65,8 +65,7 @@ class CustomerController extends Controller
      */
     public function store(CustomerCreateRequest $request)
     {
-        $validated = $request->validated();
-        $user = $this->customerInterface->storeUser($request, $validated);
+        $user = $this->customerInterface->storeUser($request);
         Alert::success('Congrats', 'You\'ve Successfully Registered');
         //$user->notify(new WelcomeEmailNotification($user));
         return redirect()->route('customers.index');

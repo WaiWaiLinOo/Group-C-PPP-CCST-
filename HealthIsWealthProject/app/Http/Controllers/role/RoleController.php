@@ -63,8 +63,7 @@ class RoleController extends Controller
      */
     public function store(RoleCreateRequest $request)
     {
-        $valided = $request->validated();
-        $role = $this->roleInterface->storeRole($request, $valided);
+$role = $this->roleInterface->storeRole($request);
         Alert::success('Congrats', 'Role created successfully');
         return redirect()->route('roles.index');
     }
@@ -99,8 +98,8 @@ class RoleController extends Controller
      */
     public function update(RoleCreateRequest $request, $id)
     {
-        $validated = $request->validated();
-        $message = $this->roleInterface->updateRole($request, $id, $validated);
+  
+        $message = $this->roleInterface->updateRole($request, $id);
         Alert::success('Congrats', 'You\'ve Successfully Updated Role');
         return redirect()->route('roles.index');
     }
