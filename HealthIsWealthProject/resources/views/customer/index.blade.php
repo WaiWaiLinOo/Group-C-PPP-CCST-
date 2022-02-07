@@ -56,7 +56,7 @@
         <td>{{ $customer->created_at}}</td>
         <td>{{ $customer->updated_at}}</td>
         <td>
-          <a href="{{ route('profileshows', Auth::user()->id) }}" class="g-color"><i class="fas fa-eye"></i> Show</a>
+          <a href="{{ route('profileshows', Auth::user()->id) }}" class="g-color"><i class="fas fa-eye"></i> Show</a><br>
           <a href="{{route('customers.edit',$customer->id)}}" class="b-color"><i class="fas fa-edit"></i> Edit</a><br>
           <a href="" onclick="return confirm('Are you sure you want to delete this user!')" class="r-color">
             <i class="fas fa-trash-alt"></i>
