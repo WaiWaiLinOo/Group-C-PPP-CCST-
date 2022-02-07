@@ -138,22 +138,22 @@ class PostDao implements PostDaoInterface
                 //return Carbon::parse($date->created_at)->format('Y'); // grouping by years
                 return Carbon::parse($date->created_at)->format('m'); // grouping by months
             });
-       
+
         $usermcount = [];
         $userArr = [];
-    
+
         foreach ($musers as $key => $value) {
             $usermcount[(int)$key] = count($value);
         }
 
-        for ($index= 1; $index <= 12; $index++) {
+        for ($index = 1; $index <= 12; $index++) {
             if (!empty($usermcount[$index])) {
                 $userArr[$index] = $usermcount[$index];
-            } else{
+            } else {
                 $userArr[$index] = 0;
             }
-            }
- 
+        }
+
         $mposts = Post::select('id', 'created_at')
             ->get()
             ->groupBy(function ($date) {
@@ -168,10 +168,10 @@ class PostDao implements PostDaoInterface
         for ($index = 1; $index <= 12; $index++) {
             if (!empty($postmcount[$index])) {
                 $postArr[$index] = $postmcount[$index];
-            }else{
+            } else {
                 $postArr[$index] = 0;
             }
-            }
+        }
 
         $users = User::all();
         $posts = Post::all();

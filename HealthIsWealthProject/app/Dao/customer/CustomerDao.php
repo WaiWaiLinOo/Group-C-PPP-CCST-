@@ -58,18 +58,18 @@ class CustomerDao implements CustomerDaoInterface
     public function storeUser($request)
     {
         DB::transaction(function () use ($request) {
-        $user = new User;
-        $user->user_name = $request->user_name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request['password']);
-        $user->dob = $request->dob;
-        $user->address = $request->address;
-        $user->role_id =  $request->roles;
-        $user->save();
-        $user->assignRole($request->input('roles'));
-        $user->notify(new WelcomeEmailNotification($user));
-        return $user;
-    });
+            $user = new User;
+            $user->user_name = $request->user_name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request['password']);
+            $user->dob = $request->dob;
+            $user->address = $request->address;
+            $user->role_id =  $request->roles;
+            $user->save();
+            $user->assignRole($request->input('roles'));
+            $user->notify(new WelcomeEmailNotification($user));
+            return $user;
+        });
     }
 
     /**
@@ -78,12 +78,10 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function userEditView($id)
     {
-        //DB::transaction(function () use ($id) {
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
         return ['user' => $user, 'roles' => $roles, 'userRole' => $userRole];
-        //});
     }
 
     /**
@@ -94,13 +92,13 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function userRoleUpdate($request, $id)
     {
-        DB::transaction(function () use ($request,$id) {
-        $user = User::find($id);
-        $user->role_id =  $request->roles;
-        $user->update();
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
-        $user->assignRole($request->input('roles'));
-        return 'Role Update Successfully!';
+        DB::transaction(function () use ($request, $id) {
+            $user = User::find($id);
+            $user->role_id =  $request->roles;
+            $user->update();
+            DB::table('model_has_roles')->where('model_id', $id)->delete();
+            $user->assignRole($request->input('roles'));
+            return 'Role Update Successfully!';
         });
     }
 
@@ -111,28 +109,28 @@ class CustomerDao implements CustomerDaoInterface
      */
     public function profileUpdate($request, $id)
     {
-        DB::transaction(function () use ($request,$id) {
-        $user = User::find($id);
-        if ($request->file()) {
-            $filename = time() . '.' . $request->profile->clientExtension();
-            $filePath = $request->file('profile')->storeAs('userProfile', $filename, 'public');
-            $path = 'storage/' . $filePath;
-            $user->profile = $path;
-        }
-        if ($certificate = $request->file('certificate')) {
-            $certificate = time() . '.' . $request->file('certificate')->clientExtension();
-            $filePath = $request->file('certificate')->storeAs('userCertificate', $certificate, 'public');
-            $path = 'storage/' . $filePath;
-            $user->certificate = $path;
-        }
+        DB::transaction(function () use ($request, $id) {
+            $user = User::find($id);
+            if ($request->file()) {
+                $filename = time() . '.' . $request->profile->clientExtension();
+                $filePath = $request->file('profile')->storeAs('userProfile', $filename, 'public');
+                $path = 'storage/' . $filePath;
+                $user->profile = $path;
+            }
+            if ($certificate = $request->file('certificate')) {
+                $certificate = time() . '.' . $request->file('certificate')->clientExtension();
+                $filePath = $request->file('certificate')->storeAs('userCertificate', $certificate, 'public');
+                $path = 'storage/' . $filePath;
+                $user->certificate = $path;
+            }
 
-        $user->user_name = $request->input('user_name');
-        $user->email = $request->input('email');
-        $user->dob = $request->input('dob');
-        $user->address = $request->input('address');
-        $user->update();
-        return 'Profile Update Successfully!';
-    });
+            $user->user_name = $request->input('user_name');
+            $user->email = $request->input('email');
+            $user->dob = $request->input('dob');
+            $user->address = $request->input('address');
+            $user->update();
+            return 'Profile Update Successfully!';
+        });
     }
 
     /**
@@ -142,7 +140,7 @@ class CustomerDao implements CustomerDaoInterface
     public function deleteUser($id)
     {
         DB::transaction(function () use ($id) {
-        return User::find($id)->delete();
+            return User::find($id)->delete();
         });
     }
     /**

@@ -24,8 +24,10 @@ class CategoryController extends Controller
      */
     public function __construct(CategoryServiceInterface $categoryServiceInterface)
     {
-        $this->middleware('permission:category-list|category-create|category-edit|category-delete',
-                             ['only' => ['index', 'store']]);
+        $this->middleware(
+            'permission:category-list|category-create|category-edit|category-delete',
+            ['only' => ['index', 'store']]
+        );
         $this->middleware('permission:category-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:category-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:category-delete', ['only' => ['destroy']]);
@@ -39,7 +41,7 @@ class CategoryController extends Controller
     {
         $categories = $this->categoryInterface->getCategory();
         return view('categories.index-categories')
-                ->with('categories',$categories);
+            ->with('categories', $categories);
     }
 
     /**
@@ -62,7 +64,7 @@ class CategoryController extends Controller
         $category = $this->categoryInterface->storeCategory($request);
         Alert::success('Congrats', 'Category Created Successfully');
         return redirect()->route('categories.index');
-}
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -71,7 +73,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit-category')->with('category',$category);
+        return view('categories.edit-category')->with('category', $category);
     }
 
     /**
@@ -82,7 +84,7 @@ class CategoryController extends Controller
      */
     public function update(CategoryUpdateRequest $request, Category $category)
     {
-     $category = $this->categoryInterface->updateCategory($request, $category);
+        $category = $this->categoryInterface->updateCategory($request, $category);
         Alert::success('Congrats', 'Category Edited Successfully');
         return redirect(route('categories.index'));
     }
@@ -107,7 +109,7 @@ class CategoryController extends Controller
     public function getCategoryList()
     {
         $count = Category::withCount('posts')
-                ->get(); 
+            ->get();
         return response()->json($count);
     }
 }

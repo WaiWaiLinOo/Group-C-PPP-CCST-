@@ -27,8 +27,10 @@ class RoleController extends Controller
      */
     public function __construct(RoleServiceInterface $roleServiceInterface)
     {
-        $this->middleware('permission:role-list|role-create|role-edit|role-delete', 
-                            ['only' => ['index', 'store']]);
+        $this->middleware(
+            'permission:role-list|role-create|role-edit|role-delete',
+            ['only' => ['index', 'store']]
+        );
         $this->middleware('permission:role-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:role-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:role-delete', ['only' => ['destroy']]);
@@ -42,7 +44,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $roles = $this->roleInterface->getRole($request);
-        return view('roles.index')->with('roles',$roles);
+        return view('roles.index')->with('roles', $roles);
     }
 
     /**
@@ -53,7 +55,7 @@ class RoleController extends Controller
     {
 
         $permission = $this->roleInterface->getPermission();
-        return view('roles.create')->with('permission',$permission);
+        return view('roles.create')->with('permission', $permission);
     }
 
     /**
@@ -63,7 +65,7 @@ class RoleController extends Controller
      */
     public function store(RoleCreateRequest $request)
     {
-$role = $this->roleInterface->storeRole($request);
+        $role = $this->roleInterface->storeRole($request);
         Alert::success('Congrats', 'Role created successfully');
         return redirect()->route('roles.index');
     }
@@ -76,7 +78,7 @@ $role = $this->roleInterface->storeRole($request);
     public function show($id)
     {
         $datas = $this->roleInterface->getRoleId($id);
-        return view('roles.show')->with('datas',$datas);
+        return view('roles.show')->with('datas', $datas);
     }
 
     /**
@@ -87,7 +89,7 @@ $role = $this->roleInterface->storeRole($request);
     public function edit($id)
     {
         $datas = $this->roleInterface->editRole($id);
-        return view('roles.edit')->with('datas',$datas);
+        return view('roles.edit')->with('datas', $datas);
     }
 
     /**
@@ -98,7 +100,7 @@ $role = $this->roleInterface->storeRole($request);
      */
     public function update(RoleCreateRequest $request, $id)
     {
-  
+
         $message = $this->roleInterface->updateRole($request, $id);
         Alert::success('Congrats', 'You\'ve Successfully Updated Role');
         return redirect()->route('roles.index');

@@ -33,7 +33,7 @@ class ContactController extends Controller
     public function index()
     {
         $contact = $this->contactInterface->getContactData();
-        return view('contactshow')->with('contact',$contact);
+        return view('contactshow')->with('contact', $contact);
     }
 
     /**
@@ -42,7 +42,7 @@ class ContactController extends Controller
      */
     public function store(ContactCreateRequest $request)
     {
-$this->contactInterface->storeDataContact($request);
+        $this->contactInterface->storeDataContact($request);
         Alert::success('Congrats', 'You\'ve Successfully Created Message');
         return view('contactus');
     }

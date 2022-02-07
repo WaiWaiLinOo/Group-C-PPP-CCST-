@@ -29,7 +29,7 @@ class ContactService implements ContactServiceInterface
         $this->contactDao = $contactDao;
     }
 
-     /**
+    /**
      * store contact
      * @return View contact
      */
@@ -38,10 +38,12 @@ class ContactService implements ContactServiceInterface
         return $this->contactDao->storeDataContact($request);
     }
 
-    /*contactshow
-    *@return View show data
+    /*
+    * contactshow
+    * @return View show data
     */
-    public function getContactData(){
+    public function getContactData()
+    {
         return $this->contactDao->getContactData();
     }
-  }
+}
