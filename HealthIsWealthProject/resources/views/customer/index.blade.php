@@ -11,7 +11,7 @@
   <div class="editform searchgroup">
     <form action="{{route('search.user')}}" class="form-group d-flex">
       <div>
-      <div class="d-flex">
+        <div class="d-flex">
           <div>
             <label class="name">Name:</label><br>
             <input type="text" name="user_name" id="user_name" class="form-control" value="{{request('user_name')}}" placeholder="Enter User Name">
@@ -41,6 +41,8 @@
       <th>Name</th>
       <th>Email</th>
       <th>Role</th>
+      <th>Start_date</th>
+      <th>End_date</th>
       <th>Action</th>
     </thead>
     <tbody>
@@ -51,9 +53,11 @@
         <td>{{ $customer->user_name }}</td>
         <td>{{ $customer->email }}</td>
         <td><b class="badge badge-success">{{ $customer->name}}</b></td>
+        <td>{{ $customer->created_at}}</td>
+        <td>{{ $customer->updated_at}}</td>
         <td>
-          <a href="{{ route('profileshows', Auth::user()->id) }}" class="g-color"><i class="fas fa-eye"></i> Show</a>
-          <a href="{{route('customers.edit',$customer->id)}}" class="b-color"><i class="fas fa-edit"></i> Edit</a>
+          <a href="{{ route('profileshows', Auth::user()->id) }}" class="g-color"><i class="fas fa-eye"></i> Show</a><br>
+          <a href="{{route('customers.edit',$customer->id)}}" class="b-color"><i class="fas fa-edit"></i> Edit</a><br>
           <a href="" onclick="return confirm('Are you sure you want to delete this user!')" class="r-color">
             <i class="fas fa-trash-alt"></i>
             @csrf

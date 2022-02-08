@@ -7,19 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HealthIsWealth</title>
 
-  <!-- font awesome cdn link  -->
+  <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">-->
   <link rel="stylesheet" href="{{asset('css/library/fontawesome.all.min.css')}}">
-  <!-- custom css file link  -->
-  <link rel="stylesheet" href="{{asset('css/frontend_style/style.css')}}">
+  <link rel="stylesheet" href="{{asset('css/frontend_style/common.css')}}">
+  <link rel="stylesheet" href="{{asset('css/frontend_style/modal.css')}}">
+
   <script src="{{ asset('js/library/jquery3.6.0.min.js') }}"></script>
   <script src="{{ asset('js/library/chart.min.js') }}"></script>
   <script src="{{asset('js/graph.js')}}"></script>
   <script src="{{asset('js/script.js')}}"></script>
   <script src="{{ asset('js/modalbox.js') }}"></script>
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
   <script src="{{ asset('js/app.js') }}" defer></script>
-  <link rel="stylesheet" href="{{asset('css/frontend_style/modal.css')}}">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -39,7 +38,6 @@
       <li class="login"><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
       @else
       <li class="nav-item dropdown pure-menu-item ">
-
         <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
           {{ Auth::user()->user_name }} <span class="caret"></span>
         </a>
@@ -57,25 +55,19 @@
       </li>
       @endguest
     </nav>
-
     <div class="icons">
       <i class="fas fa-bars" id="menu-bars"></i>
       <i class="fas fa-search" id="search-icon"></i>
     </div>
-
     <form action="{{ route('searchPost')}}" class="search-form">
       <input type="search" name="search" placeholder="search post here..." id="search-box" required>
       <button type="submit">
         <label for="search-box" class="fas fa-search"></label>
       </button>
     </form>
-
   </header>
-
   <section class="container mt" id="posts">
-
     <div class="sidebar">
-
       @auth
       @role('User|SubAdmin')
       <div class="box">
@@ -84,12 +76,10 @@
           <img src="{{asset('images/image/about_us.jpg')}}" alt="">
           <h3>Our Service</h3>
           <p>Health services consist of medical professionals, organizations, and ancillary health care workers who provide medical care to those in need. Health services serve patients, families, communities, and populations.</p>
-
         </div>
       </div>
       @endrole
       @endauth
-
       @auth
       @role('Admin')
       <div class="box">
@@ -103,7 +93,6 @@
       </div>
       @endrole
       @endauth
-
       @auth
       @hasanyrole('Admin|SubAdmin')
       <div class="box">
@@ -119,28 +108,21 @@
             <a href="{{ route('export') }}">Post Excel File <i class="fas fa-file-excel"></i></a>
           </div>
           @endrole
-
         </div>
       </div>
       @endhasanyrole
       @endauth
-
       <div class="box">
         <h3 class="title">categories</h3>
         <div class="category" id="categoryList">
         </div>
       </div>
     </div>
-
     @yield('content')
   </section>
-
   <!-- contact section ends -->
-
   <!-- footer section starts  -->
-
   <section class="footer">
-
     <div class="follow">
       <a href="#" class="fab fa-facebook-f"></a>
       <a href="#" class="fab fa-twitter"></a>

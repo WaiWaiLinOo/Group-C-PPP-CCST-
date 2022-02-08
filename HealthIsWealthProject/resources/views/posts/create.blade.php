@@ -6,7 +6,6 @@
   </div>
   <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
-
     <div class="editform">
       <div class="form-group">
         <strong>Post Name:</strong>
@@ -22,15 +21,14 @@
         @if ($errors->has('post_img'))
         <span class="text-danger">{{ $errors->first('post_img') }}</span>
         @endif
-    </div>
+      </div>
       <div class="form-group">
         <strong>Details:</strong>
         <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail" value="{{old('detail')}}"></textarea>
         @if ($errors->has('detail'))
         <span class="text-danger">{{ $errors->first('detail') }}</span>
         @endif
-    </div>
-
+      </div>
       <label for="categories"><span>Choose a category:</span></label>
       <select name="category_id" id="categories" value="{{old('category_id')}}">
         <option selected disabled>Select option </option>

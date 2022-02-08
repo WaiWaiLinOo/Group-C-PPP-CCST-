@@ -12,7 +12,6 @@
       @endrole
       @endcan
     </div>
-
   </div>
   <table class="table" id="first">
     <thead>
@@ -24,15 +23,14 @@
       <th>Comment No</th>
       <th>Action</th>
     </thead>
-
     <tbody>
-   @forelse ($posts as $key => $post)
+      @forelse ($posts as $key => $post)
       <tr>
-        <td>{{ ++$i }}</td>
+        <td>{{$loop->iteration}}</td>
         <td>{{ substr($post->post_name,0,10)}} ...</td>
         <td>
           @if($post->post_img)
-          <img src="{{ asset($post->post_img) }}" class="post_img" id="myImg"/>
+          <img src="{{ asset($post->post_img) }}" class="post_img" id="myImg" />
           @endif
         </td>
         <td>{{substr($post->detail,0,10) }} ...</td>
@@ -44,7 +42,6 @@
           <a class="edit-r" href="{{ route('posts.edit',$post->id) }}" class="b-color"><i class="fas fa-edit"></i>Edit</a>
           @endcan
           @can('post-delete')
-
           <a href="#" onclick="return confirm('Are you sure you want to delete this post!')" class="r-color">
             <i class="fas fa-trash-alt">
               {!! Form::open(['method' => 'DELETE','route' => ['posts.destroy', $post->id],'style'=>'display:inline;']) !!}
@@ -58,10 +55,9 @@
       @empty
       <td colspan="5" style="text-align: center;"><b>Sorry, currently there is no Post table related to that search!</b></td>
       @endforelse
-     </tbody>
-   </table>
-   {{ $posts->links() }}
- 
+    </tbody>
+  </table>
+  {{ $posts->links() }}
   <div id="popup1" class="modal-box">
     <header id="close"> <a href="#" class="js-modal-close close">×</a>
       <h3>Import Post Data</h3>
@@ -76,11 +72,11 @@
       </form>
     </div>
   </div>
-    <div id="myModal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-content" id="img01">
-            <div id="caption"></div>
-        </div>
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
   {{--{!! $posts->render() !!}--}}
 </div>
 @endsection

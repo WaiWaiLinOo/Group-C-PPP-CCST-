@@ -29,7 +29,10 @@ class CustomerController extends Controller
      */
     public function __construct(CustomerServiceInterface $customerServiceInterface)
     {
-        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'store']]);
+        $this->middleware(
+            'permission:user-list|user-create|user-edit|user-delete',
+            ['only' => ['index', 'store']]
+        );
         $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
@@ -43,8 +46,7 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $customers = $this->customerInterface->getUser($request);
-        return view('customer.index', compact('customers'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('customer.index')->with('customers', $customers);
     }
 
     /**
@@ -54,7 +56,7 @@ class CustomerController extends Controller
     public function create()
     {
         $roles = $this->customerInterface->getRole();
-        return view('customer.create', compact('roles'));
+        return view('customer.create')->with('roles', $roles);
     }
 
     /**
@@ -64,10 +66,8 @@ class CustomerController extends Controller
      */
     public function store(CustomerCreateRequest $request)
     {
-        $validated = $request->validated();
-        $user = $this->customerInterface->storeUser($request, $validated);
+        $user = $this->customerInterface->storeUser($request);
         Alert::success('Congrats', 'You\'ve Successfully Registered');
-        $user->notify(new WelcomeEmailNotification($user));
         return redirect()->route('customers.index');
     }
 
@@ -90,7 +90,7 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $datas = $this->customerInterface->userEditView($id);
-        return view('customer.edit', compact('datas'));
+        return view('customer.edit')->with('datas', $datas);
     }
 
     /**
@@ -114,7 +114,7 @@ class CustomerController extends Controller
     public function profileView($id)
     {
         $datas = $this->customerInterface->userEditView($id);
-        return view('customer.profile', compact('datas'));
+        return view('customer.profile');
     }
 
     /**
@@ -125,7 +125,7 @@ class CustomerController extends Controller
     public function profileshows($id)
     {
         $data = User::find($id);
-        return view('customer.profileshow', compact('data'));
+        return view('customer.profileshow')->with('data', $data);
     }
 
     /**
@@ -138,7 +138,7 @@ class CustomerController extends Controller
     {
         $message = $this->customerInterface->profileUpdate($request, $id);
         $data = User::find($id);
-        return view('customer.profileshow', compact('data'))->with('success', $message);
+        return view('customer.profileshow')->with('data', $data);
     }
 
     /**
@@ -152,7 +152,6 @@ class CustomerController extends Controller
         $user = $this->customerInterface->deleteUser($id);
         Alert::warning('Delete Comfirm!', 'Deleted Successufully');
         return redirect()->route('customers.index');
-          
     }
 
     /**

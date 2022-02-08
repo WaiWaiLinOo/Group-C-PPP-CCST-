@@ -27,7 +27,10 @@ class PostController extends Controller
      */
     public function __construct(PostServiceInterface $postServiceInterface)
     {
-        $this->middleware('permission:post-list|post-create|post-edit|post-delete', ['only' => ['index', 'show']]);
+        $this->middleware(
+            'permission:post-list|post-create|post-edit|post-delete',
+            ['only' => ['index', 'show']]
+        );
         $this->middleware('permission:post-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:post-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:post-delete', ['only' => ['destroy']]);
@@ -42,8 +45,10 @@ class PostController extends Controller
     {
         $posts = $this->postInterface->getPost();
         $categories = Category::all();
-        return view('posts.index', compact('posts', 'categories'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('posts.index', [
+            'posts' => $posts,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -53,7 +58,7 @@ class PostController extends Controller
     public function postDetail($id)
     {
         $posts = Post::find($id);
-        return view('customer.postdetail', compact('posts'));
+        return view('customer.postdetail')->with('posts', $posts);
     }
 
     /**
@@ -63,7 +68,7 @@ class PostController extends Controller
     public function postDetails($id)
     {
         $posts = Post::find($id);
-        return view('frontend.postdetail', compact('posts'));
+        return view('frontend.postdetail')->with('posts', $posts);
     }
 
     /**
@@ -73,7 +78,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create', compact('categories'));
+        return view('posts.create')->with('categories', $categories);
     }
 
     /**
@@ -83,11 +88,10 @@ class PostController extends Controller
      */
     public function store(PostCreateRequest $request)
     {
-        $validated = $request->validated();
-        $post = $this->postInterface->storePost($request, $validated);
+        $post = $this->postInterface->storePost($request);
         Alert::success('Congrats', 'You\'ve Successfully Created Post');
         return redirect()->route('posts.index');
-  }
+    }
 
     /**
      * Display the specified resource.
@@ -96,7 +100,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show', compact('post'));
+        return view('posts.show')->with('post', $post);
     }
 
     /**
@@ -108,7 +112,11 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $post = $this->postInterface->editPost($id);
-        return view('posts.edit', compact('post', 'categories'));
+        return view('posts.edit', [
+            'categories' => $categories,
+            'post' => $post,
+
+        ]);
     }
 
     /**
@@ -119,11 +127,10 @@ class PostController extends Controller
      */
     public function update(PostCreateRequest $request, $id)
     {
-        $validated = $request->validated();
-        $message = $this->postInterface->updatePost($request, $id, $validated);
+        $message = $this->postInterface->updatePost($request, $id);
         Alert::success('Congrats', 'You\'ve Successfully Updated Post');
         return redirect()->route('posts.index');
-  }
+    }
 
     /**
      * Excel file Import
@@ -137,8 +144,7 @@ class PostController extends Controller
         ]);
         $this->postInterface->importExcel($request);
         $posts = $this->postInterface->getPost();
-        return view('posts.index', compact('posts'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -158,7 +164,7 @@ class PostController extends Controller
     public function searchPostByName(Request $request)
     {
         $posts = $this->postInterface->searchPostByName($request);
-        return view('frontend.blog', compact('posts'));
+        return view('frontend.blog')->with('posts', $posts);
     }
 
     /**
@@ -169,7 +175,7 @@ class PostController extends Controller
     public function postByCategoryId($id)
     {
         $posts = $this->postInterface->postByCategoryId($id);
-        return view('frontend.blog', compact('posts'));
+        return view('frontend.blog')->with('posts', $posts);
     }
 
     /**
@@ -179,7 +185,7 @@ class PostController extends Controller
     public function handleChart()
     {
         $postData = $this->postInterface->handleChart();
-        return view('graph', compact('postData'));
+        return view('graph')->with('postData', $postData);
     }
 
     /**
@@ -190,14 +196,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        if ($post->user_id == auth()->user()->id || auth()->user()->id == 1) {
+        if ($post->user_id === auth()->user()->id || auth()->user()->id === 1) {
             $post = $this->postInterface->deletePost($post);
             Alert::warning('Delete Comfirm!', 'Post Deleted Successufully');
             return redirect()->route('posts.index');
-
         } else {
             Alert::warning('Delete Comfirm!', 'Only Post User Can deleted');
             return redirect()->route('posts.index');
-}
+        }
     }
 }

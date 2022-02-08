@@ -119,13 +119,13 @@ class CustomerService implements CustomerServiceInterface
             Mail::to($request->email)->send(new CustomerList($customers));
             // Check mail sending process has error.
             if (count(Mail::failures()) > 0) {
-                return redirect('/')->with('status', 'Mail cannot sent!');
-            } else {
+                return redirect()->route('home')->with('status', 'Mail cannot sent!');
+            } 
                 return true;
-            }
-        } else {
-            return redirect('/')->with('status', 'Students is absent!');
-        }
+            
+        } 
+            return redirect()->route('home')->with('status', 'Students is absent!');
+        
     }
     /**
      * To searchUser
