@@ -52,9 +52,8 @@ class RegisterController extends Controller
      */
     protected function create(UserCreateRequest $request)
     {
-        $validated = $request->validated();
         $roles = $this->userInterface->getRole();
-        $user = $this->userInterface->saveUser($request, $validated);
+        $user = $this->userInterface->saveUser($request);
         Alert::success('Congrats', 'You\'ve Successfully Registered');
         $user->notify(new WelcomeEmailNotification($user));
         return redirect()

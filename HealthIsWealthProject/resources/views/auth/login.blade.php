@@ -9,9 +9,9 @@
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('css/library/fontawesome.all.min.css')}}">
-  <link rel="stylesheet" href="{{asset('css/frontend_style/common.css')}}"> 
+  <link rel="stylesheet" href="{{asset('css/frontend_style/common.css')}}">
   <link rel="stylesheet" href="{{asset('css/frontend_style/modal.css')}}">
- 
+
   <script src="{{ asset('js/library/jquery3.6.0.min.js') }}"></script>
   <script src="{{ asset('js/library/chart.min.js') }}"></script>
   <script src="{{asset('js/graph.js')}}"></script>
@@ -66,27 +66,26 @@
   <section class="container auth-container" id="posts">
     <div class="m-login">
       <div class="register">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+        @endif
         <div class="cardHeader">Login</div>
         <form method="POST" action="{{ route('login') }}">
           @csrf
           <div class="editform">
             <div class="form-group">
               <label for="email">Email:</label>
-              <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-              @error('email')
-              <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-              </span>
-              @enderror
+              <input id="email" type="email" placeholder="Email" class="form-control "name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
             </div>
             <div class="form-group">
               <label for="password">Password:</label>
-              <input id="password" placeholder="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-              @error('password')
-              <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-              </span>
-              @enderror
+              <input id="password" placeholder="password" type="password" class="form-control" name="password" value = "{{old('password')}}" required autocomplete="current-password">
             </div>
             <div class="form-group">
               <div class="form-check">
