@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\category\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+//category list
+Route::get('/category',[CategoryController::class,'getCategoryList'])->name('category');
+
+//weekly post graph
+Route::get('/weeklyPost',[HomeController::class,'weeklyPost'])->name('weeklyPost');
+Route::get('/count',[HomeController::class,'getCountAll'])->name('count');

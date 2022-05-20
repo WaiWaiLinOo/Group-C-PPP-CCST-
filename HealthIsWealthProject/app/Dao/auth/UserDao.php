@@ -4,53 +4,51 @@ namespace App\Dao\auth;
 
 
 use App\Models\User;
-use App\Models\Student;
 use Illuminate\Http\Request;
-
 use App\Contracts\Dao\auth\UserDaoInterface;
-use App\Notifications\WelcomeEmailNotification;
-use Illuminate\Foundation\Auth\RegistersUsers;
-
-
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Validator;
-use App\Contracts\Services\auth\UserServiceInterface;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Arr;
+use Spatie\Permission\Models\Permission;
 
-/**
- * Data accessing object for post
- */
 class UserDao implements UserDaoInterface
 {
     /**
-     * To getuser
+     * save data in database
+     * @return View savadata into database
      */
     public function saveUser(Request $request)
-    {  if ($profile = $request->file('profile')) {
-        $name = time().'_'.$request->file('profile')->getClientOriginalName();
-        $request->file('profile')->store('public/images');
-        $user['profile'] = "$name";
+    {
+        $user = new User;
+        $user->user_name = $request->user_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request['password']);
+        if ($request->file()) {
+            $filename = time() . '.' . $request->profile->clientExtension();
+            $filePath = $request->file('profile')->storeAs('userProfile', $filename, 'public');
+            $path = 'storage/' . $filePath;
+            $user->profile = $path;
+        }
+        if ($certificate = $request->file('certificate')) {
+            $certificate = time() . '.' . $request->file('certificate')->clientExtension();
+            $filePath = $request->file('certificate')->storeAs('userCertificate', $certificate, 'public');
+            $path = 'storage/' . $filePath;
+            $user->certificate = $path;
+        }
+        $user->dob = $request->dob;
+        $user->address = $request->address;
+        $user->role_id =  $request->roles;
+        $user->save();
+        $user->assignRole('User');
+        return $user;
     }
-    if ($certificate = $request->file('certificate')) {
-        $certificate = time().'_'.$request->file('certificate')->getClientOriginalName();
-        $request->file('profile')->store('public/images');
-        $user['certificate'] = "$certificate";
-    }
-        return User::create([
-            //$user = User::create([
-          
-                'name' => $request['name'],
-                'email' => $request['email'],
-                'password' => Hash::make($request['password']),
-                'profile' => $name,
-                'certificate' => $certificate,
-                'dob' => $request['dob'],
-                'address' => $request['address'],
 
-            ]);
-           
+    /**
+     * to get data from role
+     * @return View get role all
+     */
+    public function getRole()
+    {
+        return Role::pluck('name', 'name')->all();
     }
-
-    
 }

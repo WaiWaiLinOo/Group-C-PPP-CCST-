@@ -11,7 +11,15 @@ use Illuminate\Http\Request;
 interface UserServiceInterface
 {
     /**
-     * To save user()
+     * save data
+     *
+     * @return View savedata
      */
     public function saveUser(Request $request);
+
+    /**
+     * get data from role
+     * @return View role
+     */
+    public function getRole();
 }
